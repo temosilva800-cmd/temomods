@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TEMO STORE</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#fff;font-family:Arial}
-header{background:#000;border-bottom:2px solid red;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:10}
-.logo{font-weight:900;font-size:20px}.logo span{color:red}
-.card{max-width:600px;margin:12px auto;background:#111;border:2px solid #222;border-radius:12px;padding:12px}
-.card-green{border-color:#0f0}
-.card-yellow{border-color:#f3ba2f}
-.b{width:100%;padding:12px;border-radius:10px;font-weight:900;border:none;margin-top:6px;cursor:pointer}
-.buy{background:red;color:#fff}
-.n{background:#000;padding:10px;border-radius:8px;border:1px dashed #555;text-align:center;font-weight:900;margin:6px 0;word-break:break-all}
-.w{background:#25D366;color:#fff;display:block;text-align:center;text-decoration:none}
-.i{display:flex;justify-content:space-between;background:#1a1a1a;padding:8px;border-radius:8px;margin:4px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.prod{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:8px}
-input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#111;color:#fff;margin:5px 0}
-#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999;overflow:auto;padding:10px}
-.stock{font-size:10px;background:#000;border:1px solid #333;border-radius:6px;padding:3px 6px;display:inline-block;margin:3
+</head>
+<body style="margin:0;background:#000;color:#fff;font-family:Arial">
+<div style="background:#000;border-bottom:2px solid red;padding:12px;font-weight:900">TEMO <span style="color:red">STORE</span> - SI CARGA</div>
+
+<div style="max-width:500px;margin:20px auto;background:#111;border:2px solid #0f0;border-radius:12px;padding:15px">
+<h3 style="color:#0f0;text-align:center">LOGIN - TEMO STORE</h3>
+<input id="u" placeholder="Usuario" style="width:100%;padding:12px;margin:6px 0;background:#000;color:#fff;border:1px solid #333;border-radius:8px">
+<input id="p" type="password" placeholder="Contraseña" style="width:100%;padding:12px;margin:6px 0;background:#000;color:#fff;border:1px solid #333;border-radius:8px">
+<button onclick="login()" style="width:100%;padding:12px;background:#0f0;color:#000;font-weight:900;border:none;border-radius:8px;margin-top:6px">ENTRAR</button>
+<button onclick="reg()" style="width:100%;padding:12px;background:#ffaa00;color:#000;font-weight:900;border:none;border-radius:8px;margin-top:6px">CREAR CUENTA GRATIS</button>
+<div id="msg" style="margin-top:10px;text-align:center"></div>
+</div>
+
+<div id="shop" style="display:none;max-width:500px;margin:10px auto;background:#111;border:1px solid #333;border-radius:12px;padding:12px">
+<div id="info" style="background:#000;padding:10px;border-radius:8px;text-align:center;margin-bottom:10px"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="background:#1a1a1a;padding:8px;border-radius:8px"><b>DRIP 1 DIA $80</b><br><span id="s1" style="font-size:10px"></span><br><button onclick="buy('DRIP 1 DIA',80)" style="width:100%;background:red;color:#fff;border:none;padding:8px;border-radius:6px;margin-top:4px">COMPRAR</button></div>
+<div style="background:#1a1a1a;padding:8px;border-radius:8px"><b>DRIP 7 DIAS $240</b><br><span id="s2" style="font-size:10px"></span><br><button onclick="buy('DRIP 7 DIAS',240)" style="width:100%;background:red;color:#fff;border:none;padding:8px;border-radius:6px;margin-top:4px">COMPRAR</button></div>
+<div style="background:#1a1a1a;padding:8px;border-radius:8px"><b>CUBAN 30 DIAS $200</b><br><span id="s3" style="font-size:10px"></span><br><button onclick="buy('CUBAN 30 DIAS',200)" style="width:100%;background:red;color:#fff;border:none;padding:8px;border-radius:6px;margin-top:4px">COMPRAR</button></div>
+<div style="background:#1a1a1a;padding:8px;border-radius:8px"><b>110 DIAM $18</b><br><button onclick="buy('110 DIAM',18)" style="width:100%;background:red;color:#fff;border:none;padding:8px;border-radius:6px;margin-top:4px">COMPRAR</button></div>
+</div>
+<button onclick="logout()" style="width:100%;margin-top:10px;background:#333;color:#fff;border:none;padding:10px;border-radius:8px">SALIR</button>
+</div>
+
+<div style="max-width:500px;margin:10px auto;background:#111;border:2px solid #f3ba2f;border-radius:12px;padding:12px;text-align:center">
+<b style="color:#f3ba2f">💳 RECARGA</b><br><br>CLABE: 722969027389252036<br><button onclick="navigator.clipboard.writeText('722969027389252036');alert('COPIADA')" style="background:#fff;color:#000;border:none;padding:8px;border-radius:6px;margin:6px">COPIAR CLABE</button><br>BINANCE: 1150540078<br><button onclick="navigator.clipboard.writeText('1150540078');alert('COPIADO')" style="background:#f
