@@ -2,86 +2,47 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEMO STORE - OFICIAL</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-@keyframes slideDown{0%{opacity:0;transform:translateY(-15px) scale(0.95)}100%{opacity:1;transform:translateY(0) scale(1)}}
-.anim-open{animation:slideDown 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards}
+*{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif;}
+body{background:#0f0f0f;color:#fff;padding-bottom:80px;}
+.top{ background: linear-gradient(90deg, #ff0000, #8b0000); padding:12px 15px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+.top h1{font-size:18px; letter-spacing:1px;}
+.badge{ background:#000; padding:4px 10px; border-radius:20px; font-size:11px; margin-left:8px; border:1px solid #333;}
+.saldo{ background:#000; border:1px solid #333; padding:6px 14px; border-radius:20px; font-weight:bold;}
+.cart{ background:#fff; color:#000; padding:6px 14px; border-radius:20px; font-weight:bold; margin-left:8px;}
+.banner{ margin:15px; background: linear-gradient(180deg, #1a1a1a, #0a0a0a); border:1px solid #333; border-radius:15px; padding:18px;}
+.banner h2{font-size:22px;} .banner h2 span{color:#ff0000;}
+.sub{color:#888; font-size:13px; margin-top:4px;}
+.tags{display:flex; gap:8px; margin-top:12px;}
+.tag{padding:6px 12px; border-radius:20px; font-size:12px; border:1px solid #333;}
+.t1{background:#11291c; color:#2eff7a; border-color:#1a4d2e;} .t2{background:#1a1a4a; color:#8aa8ff; border-color:#2a2a6a;}
+.box{ margin:15px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:15px; padding:15px;}
+.input-id{display:flex; gap:8px;}
+.input-id input{flex:1; background:#0f0f0f; border:1px solid #333; color:#fff; padding:12px; border-radius:10px; font-weight:bold;}
+.btn-copy{background:#fff; border:none; border-radius:50%; width:44px; height:44px; cursor:pointer;}
+.id-ok{ background: linear-gradient(90deg, #b8960f, #7a5a00); color:#000; text-align:center; padding:12px; border-radius:12px; margin-top:10px; font-weight:bold;}
+.btns{display:flex; gap:10px; margin-top:12px;}
+.btns button{flex:1; padding:10px; border-radius:20px; border:1px solid #333; background:#222; color:#fff; cursor:pointer;}
+.btns button:last-child{color:#ffeb3b; border-color:#ffeb3b33;}
+.search{margin:15px;}
+.search input{width:100%; background:#1a1a1a; border:1px solid #2a2a2a; padding:14px; border-radius:12px; color:#fff;}
+.product{margin:12px 15px; background:#1a1a1a; border:1px solid #2a2a2a; border-radius:15px; padding:15px; display:flex; align-items:center; justify-content:space-between;}
+.p-left{display:flex; align-items:center; gap:12px;}
+.icon{width:50px; height:50px; background:#2a1a1a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px;}
+.p-left b{font-size:16px;} .p-left small{color:#666; font-size:12px;}
+.btn-ver{background:#e50914; color:#fff; border:none; padding:10px 18px; border-radius:20px; font-weight:bold; cursor:pointer;}
+#adminPanel{display:none; position:fixed; inset:0; background:#0a0a0a; z-index:999; overflow:auto; padding:15px;}
+.admin-card{background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:12px; margin-bottom:12px;}
+.admin-card h3{color:#2eff7a; margin-bottom:6px;}
+.admin-card textarea{width:100%; background:#000; color:#0f0; border:1px solid #333; padding:8px; border-radius:8px; min-height:70px;}
+.admin-card button{background:#2eff7a; color:#000; border:none; padding:8px 12px; border-radius:8px; font-weight:bold; margin-top:6px; cursor:pointer; width:100%;}
+.login{max-width:400px; margin:50px auto; background:#1a1a1a; padding:20px; border-radius:15px; border:1px solid #333; text-align:center;}
+.login input{width:100%; padding:12px; margin:6px 0; background:#000; border:1px solid #333; color:#fff; border-radius:8px;}
+.login button{width:100%; padding:12px; background:#2eff7a; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:10px;}
 </style>
 </head>
-<body class="bg-[#0a0a0a] text-white">
-<header class="bg-gradient-to-r from-red-700 to-red-500 p-3 sticky top-0 z-50">
-<div class="max-w-6xl mx-auto flex justify-between items-center">
-<div class="flex gap-2 items-center"><span>🔥</span><b class="tracking-widest">TEMO STORE</b><span class="bg-black text-[8px] px-2 py-1 rounded-full">OFICIAL</span></div>
-<div class="flex gap-2"><span id="saldoDisplay" class="bg-black/80 px-3 py-1.5 rounded-full text-xs border border-white/20">💰 $0</span><button id="cartBtn" class="bg-white text-black px-4 py-1.5 rounded-full font-black text-sm">🛒 <span id="cartCount">0</span></button></div>
-</div>
-</header>
-
-<div class="max-w-6xl mx-auto p-3">
-<div class="bg-gradient-to-br from-zinc-900 to-black border border-red-600/50 rounded-[20px] p-4">
-<h1 class="text-2xl font-black">BIENVENIDO A <span class="text-red-500">TEMO STORE</span> 🔥</h1>
-<p class="text-[11px] text-zinc-400">Las mejores herramientas Free Fire - Entrega inmediata</p>
-<div class="flex gap-2 mt-3"><span class="bg-green-500/20 text-green-400 text-[10px] px-3 py-1 rounded-full border border-green-500/30">⚡ ENTREGA AUTO</span><span class="bg-blue-500/20 text-blue-400 text-[10px] px-3 py-1 rounded-full border border-blue-500/30">🛡️ SEGURO</span></div>
-</div>
-
-<div class="bg-zinc-900 border border-zinc-800 rounded-[20px] p-3 mt-3">
-<div class="flex gap-2">
-<input id="userId" placeholder="TEMO-XXXX" class="flex-1 bg-black border border-zinc-700 p-3 rounded-full text-white font-bold uppercase text-xs outline-none">
-<button id="btnCopiar" class="bg-white text-black px-4 rounded-full font-black text-xs">📋</button>
-</div>
-<button id="btnCrear" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-black w-full py-3.5 rounded-full font-black mt-2">🎲 CREAR TU ID UNICO</button>
-<div class="grid grid-cols-2 gap-2 mt-2">
-<button id="btnHistorial" class="bg-zinc-800 border border-zinc-700 py-3 rounded-full text-[11px] font-bold">📜 HISTORIAL</button>
-<button id="btnResetear" class="bg-zinc-800 border border-yellow-400/50 py-3 rounded-full text-[11px] font-bold text-yellow-400">♻️ RESETEAR</button>
-</div>
-<p id="miIdTexto" class="text-[10px] text-center mt-2 text-zinc-400"></p>
-</div>
-
-<input id="buscador" placeholder="Buscar DRIP, CUBAN, VLT..." class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-full text-xs mt-3 outline-none">
-<h2 class="font-black text-sm mt-4 mb-3">🔥 PRODUCTOS DISPONIBLES</h2>
-<div id="productos" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-</div>
-
-<!-- MODALES -->
-<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-[20px] p-4"><div id="cartItems" class="text-sm"></div><div id="cartTotal" class="font-black mt-3 text-lg"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR AHORA</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs text-zinc-500">Cerrar</button></div></div>
-
-<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 w-full max-w-md rounded-[20px] p-5 text-center"><h2 class="font-black text-green-400 text-lg">COMPRA EXITOSA 🔥</h2><div id="keysEntregadas" class="bg-black rounded-xl p-3 mt-3 text-left text-xs"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
-
-<div id="historialModal" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border border-zinc-700 w-full max-w-md rounded-[20px] p-4 max-h-[85vh] flex flex-col"><div class="flex justify-between items-center"><b>📜 TU HISTORIAL</b><button onclick="historialModal.classList.add('hidden')" class="bg-red-600 px-3 py-1 rounded-full text-xs">X</button></div><div id="historialLista" class="mt-3 grid gap-3 text-[11px] overflow-auto flex-1"></div><button id="btnResetDesdeHistorial" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black text-xs mt-3">♻️ RESETEAR POR WHATSAPP</button></div></div>
-
-<div id="adminPanel" class="hidden fixed inset-0 bg-black z-[100] overflow-auto p-4"><div class="max-w-md mx-auto bg-zinc-900 p-4 rounded-2xl border-2 border-green-500 mt-6"><div class="flex justify-between"><b class="text-green-400">ADMIN TEMO</b><button onclick="location.href='/'" class="bg-red-600 px-3 py-1 rounded-full text-xs">X</button></div><div id="loginDiv" class="mt-3 space-y-2"><input id="adminUser" placeholder="Usuario" class="w-full p-3 rounded text-black"><input id="pass" type="password" placeholder="Contraseña" class="w-full p-3 rounded text-black"><button id="btnLogin" class="bg-white text-black w-full p-3 rounded-full font-black mt-2">ENTRAR</button></div><div id="panel" class="hidden mt-3"><button onclick="restaurarTodo()" class="bg-green-500 w-full py-2 rounded-full font-black text-xs">✅ RESTAURAR PRECIOS BASE</button><div class="bg-blue-500/10 border border-blue-500 rounded-xl p-2 mt-2"><div class="flex gap-1"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button id="btnRecarga" class="bg-green-500 px-3 rounded-full">+</button></div><div class="flex gap-1 mt-2"><input id="verHistorialId" placeholder="ID para ver/reset" class="flex-1 p-2 rounded text-black text-xs"><button id="btnVerHistorialAdmin" class="bg-blue-500 px-3 rounded-full text-xs">VER</button><button id="btnResetAdmin" class="bg-red-600 px-3 rounded-full text-xs">RESET</button></div><div id="historialAdmin" class="bg-black rounded p-2 mt-2 text-[10px] max-h-40 overflow-auto"></div></div><div id="lista" class="grid gap-2 mt-3"></div></div></div></div>
-
-<script>
-// === TIENDA LOCAL - SIEMPRE SE VE ===
-const BASE_FIJO={drip:{nombre:"DRIP",icono:"💧",opciones:[{dias:1,precio:4,keys:[]},{dias:7,precio:12,keys:[]},{dias:15,precio:15,keys:[]},{dias:30,precio:20,keys:[]}]},cuban:{nombre:"CUBAN",icono:"🇨🇺",opciones:[{dias:1,precio:3,keys:[]},{dias:7,precio:5,keys:[]},{dias:30,precio:10,keys:[]}]},hg:{nombre:"HG",icono:"⚡",opciones:[{dias:1,precio:5,keys:[]},{dias:10,precio:12,keys:[]},{dias:30,precio:18,keys:[]}]},vlt:{nombre:"VLT",icono:"🔮",opciones:[{dias:1,precio:5,keys:[]},{dias:7,precio:12,keys:[]},{dias:30,precio:25,keys:[]}]},pato:{nombre:"PATO",icono:"🦆",opciones:[{dias:30,precio:14,keys:[]}]},flourite:{nombre:"FLOURITE",icono:"💎",opciones:[{dias:7,precio:30,keys:[]},{dias:30,precio:50,keys:[]}]}};
-let preciosLocal=BASE_FIJO; let cart=[];
-window.toggleOpts=(id)=>{let el=document.getElementById('opts_'+id); let btn=document.getElementById('btn_'+id); let card=document.getElementById('card_'+id); if(el.classList.contains('hidden')){el.classList.remove('hidden'); el.classList.add('anim-open'); btn.innerText='✕'; card.classList.add('border-red-600'); card.classList.remove('border-zinc-800');}else{el.classList.add('hidden'); el.classList.remove('anim-open'); btn.innerText='VER'; card.classList.remove('border-red-600'); card.classList.add('border-zinc-800');}};
-function renderTiendaLocal(filtro=""){let c=document.getElementById('productos'); if(!c) return; c.innerHTML=''; Object.entries(preciosLocal).forEach(([id,prod])=>{ if(filtro&&!prod.nombre.toLowerCase().includes(filtro.toLowerCase())) return; let ops=(prod.opciones||[]).sort((a,b)=>a.dias-b.dias); let html=''; ops.forEach((op,i)=>{ html+=`<div class="flex justify-between items-center bg-black/50 rounded-full p-1.5 pl-4 mt-2 border border-zinc-800"><div><b class="text-[11px]">${op.dias} DIAS</b><p class="text-green-400 font-black text-xs">$${op.precio} MXN • ${op.keys?.length||0} keys</p></div><button onclick="addCart('${id}','${prod.nombre}',${op.precio},${op.dias},${i})" class="bg-white text-black px-5 py-2 rounded-full font-black text-[10px]">COMPRAR</button></div>`}); c.innerHTML+=`<div id="card_${id}" class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-[20px] p-4"><div class="flex justify-between items-center cursor-pointer" onclick="toggleOpts('${id}')"><div class="flex items-center gap-3"><div class="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center text-xl">${prod.icono}</div><div><b class="text-sm">${prod.nombre}</b><p class="text-[10px] text-zinc-500">${ops.length} planes</p></div></div><span id="btn_${id}" class="bg-red-600 px-4 py-1.5 rounded-full text-[10px] font-black">VER</span></div><div id="opts_${id}" class="hidden mt-3">${html}</div></div>`; });}
-window.addCart=(id,n,p,d,i)=>{cart.push({id,n,p,d,idx:i}); document.getElementById('cartCount').innerText=cart.length; let h='',t=0; cart.forEach(x=>{h+=`<div class='flex justify-between py-1'><span>${x.n} ${x.d}D</span><span class='font-black'>$${x.p}</span></div>`;t+=x.p}); document.getElementById('cartItems').innerHTML=h; document.getElementById('cartTotal').innerText='Total $'+t; document.getElementById('cartModal').classList.remove('hidden');};
-renderTiendaLocal();
-document.getElementById('buscador').oninput=e=>renderTiendaLocal(e.target.value);
-document.getElementById('cartBtn').onclick=()=>{ let h='',t=0; cart.forEach(x=>{h+=`<div class='flex justify-between'><span>${x.n} ${x.d}D</span><span>$${x.p}</span></div>`;t+=x.p}); document.getElementById('cartItems').innerHTML=h; document.getElementById('cartTotal').innerText='Total $'+t; document.getElementById('cartModal').classList.remove('hidden'); };
-function actualizarUI(id,saldo){document.getElementById('saldoDisplay').innerText="💰 $"+saldo;document.getElementById('miIdTexto').innerHTML=`Tu ID: <b>${id}</b> | $${saldo}`;document.getElementById('userId').value=id;document.getElementById('btnCrear').innerText="✅ ID: "+id;document.getElementById('btnCrear').disabled=true;document.getElementById('btnCrear').style.opacity="0.5";}
-document.getElementById('btnCrear').onclick=()=>{let ex=localStorage.getItem('temo_id');if(ex){alert("Ya tienes ID: "+ex);actualizarUI(ex,localStorage.getItem('temo_saldo')||0);return;}let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];let id="TEMO-"+r;localStorage.setItem('temo_id',id);localStorage.setItem('temo_saldo',"0");localStorage.setItem('temo_historial',JSON.stringify([]));alert("Tu ID creado: "+id);actualizarUI(id,0);if(window.guardarFB)window.guardarFB(id);};
-document.getElementById('btnCopiar').onclick=()=>{let id=document.getElementById('userId').value||localStorage.getItem('temo_id');if(!id)return alert("Crea ID primero");navigator.clipboard.writeText(id).then(()=>alert("Copiado: "+id));};
-document.getElementById('btnHistorial').onclick=()=>{let id=localStorage.getItem('temo_id');if(!id)return alert("Crea ID primero");let hist=JSON.parse(localStorage.getItem('temo_historial')||"[]");let cont=document.getElementById('historialLista');cont.innerHTML='';if(hist.length===0)cont.innerHTML='<p class="text-center py-10 text-zinc-500">Sin compras</p>';else hist.slice().reverse().forEach(h=>{let fecha=new Date(h.fecha).toLocaleString();let num="523224528803";let msg=`Hola Temo quiero resetear esta KEY%0A%0AID: ${id}%0APRODUCTO: ${h.producto} ${h.dias}D%0AKEY: ${h.key}%0AFecha: ${fecha}`;cont.innerHTML+=`<div class="bg-black p-3 rounded-xl border border-zinc-800 anim-open"><div class="flex justify-between"><div><b>${h.producto}</b> - ${h.dias}D<br><span class="text-[9px] text-zinc-400">${fecha}</span><br><span class="font-mono text-[10px] text-green-400 break-all">${h.key||''}</span></div><div class="text-green-400 font-black">$${h.precio}</div></div><a href="https://wa.me/${num}?text=${msg}" target="_blank" class="bg-yellow-400 text-black block text-center py-2.5 rounded-full text-[10px] font-black mt-3">♻️ RESETEAR ESTA KEY</a></div>`;});document.getElementById('historialModal').classList.remove('hidden');};
-document.getElementById('btnResetear').onclick=()=>{let id=localStorage.getItem('temo_id');if(!id)return alert("Crea ID primero");let hist=JSON.parse(localStorage.getItem('temo_historial')||"[]");let ultima=hist[hist.length-1];let keyTxt=ultima?`%0AKEY: ${ultima.key}%0AProducto: ${ultima.producto}`:'';let num="523224528803";let msg=`Hola Temo quiero resetear mi dispositivo%0AID: ${id}${keyTxt}`;window.open(`https://wa.me/${num}?text=${msg}`,"_blank");};
-document.getElementById('btnResetDesdeHistorial').onclick=()=>{let id=localStorage.getItem('temo_id');if(!id)return;let num="523224528803";let msg=`Hola Temo quiero resetear mi dispositivo%0AID: ${id}`;window.open(`https://wa.me/${num}?text=${msg}`,"_blank");};
-let idG=localStorage.getItem('temo_id');if(idG)actualizarUI(idG,localStorage.getItem('temo_saldo')||0);
-</script>
-
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getFirestore,collection,doc,setDoc,getDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"};
-const app=initializeApp(firebaseConfig),db=getFirestore(app);
-window.guardarFB=async(id)=>{try{await setDoc(doc(db,"users",id),{saldo:0,creado:Date.now(),historial:[]},{merge:true});}catch(e){}};
-async function cargarFB(id){try{let s=await getDoc(doc(db,"users",id));if(!s.exists())return;localStorage.setItem('temo_saldo',s.data().saldo||0);localStorage.setItem('temo_historial',JSON.stringify(s.data().historial||[]));actualizarUI(id,s.data().saldo||0);}catch(e){}}
-let id=localStorage.getItem('temo_id');if(id)cargarFB(id);
-try{onSnapshot(collection(db,"temo_precios"),snap=>{ if(!snap.empty){ let tmp={}; snap.forEach(d=>{if(d.data().opciones)tmp[d.id]=d.data()}); if(Object.keys(tmp).length>0){ preciosLocal=tmp; renderTiendaLocal(document.getElementById('buscador').value); if(document.getElementById('panel')&&!document.getElementById('panel').classList.contains('hidden'))renderAdminFirebase(tmp); } } });}catch(e){}
-window.renderAdminFirebase=(precios)=>{let h='';Object.entries(precios).forEach(([id,prod])=>{let o='';(prod.opciones||[]).forEach((op,i)=>{o+=`<div class="bg-zinc-800 rounded p-2 mt-2"><b class="text-[10px] text-yellow-400">${op.dias}D $${op.precio} - ${op.keys?.length||0} keys</b><textarea id="keys_${id}_${i}" class="w-full p-1 rounded text-black text-[10px] h-12 mt-1" placeholder="Pega keys una por linea"></textarea><button onclick="addKeys('${id}',${i})" class="bg-green-500 w-full py-1 rounded-full text-[9px] font-black mt-1">GUARDAR KEYS</button></div>`});h+=`<div class="bg-black p-2 rounded border border-zinc-700"><b>${prod.nombre} (${id})</b>${o}</div>`});document.getElementById('lista').innerHTML=h;};
-window.addKeys=async(id,i)=>{let txt=document.getElementById('keys_'+id+'_'+i).value.trim();if(!txt)return;let r=doc(db,"temo_precios",id);let s=await getDoc(r);let p=s.data();let n=txt.split('\n').map(k=>k.trim()).filter(k=>k);p.opciones[i].keys=[...(p.opciones[i].keys||[]),...n];await setDoc(r,p);alert(n.length+" keys guardadas");};
-window.restaurarTodo=async()=>{for(let id in BASE_FIJO){await setDoc(doc(db,"temo_precios",id),BASE_FIJO[id])}alert("Precios restaurados
-if(new URLSearchParams(window.location.search).get('admin')==='Temo2007')
+<body>
+<div id="shop">
+<div class="top"><h1>🔥 TEMO STORE <span class="badge">OFICIAL</span></h1><div style="display:flex;"><div class="saldo">💰 $<span id="
