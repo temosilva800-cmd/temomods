@@ -1,92 +1,58 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head>
 <body class="bg-black text-white">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border">💰 $0</span><button id="btnAdmin" class="bg-black px-2 py-1 rounded-full">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
-<div class="max-w-md mx-auto p-3">
-<div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button id="btnEntrar" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
-<button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID (1 POR CELULAR)</button>
-<p id="bloqueoMsg" class="hidden text-center text-[11px] text-red-400 font-black mt-2 bg-red-900/30 border border-red-600 rounded-full p-2"></p>
-<div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 mt-3">
-<p id="miIdGenerado" class="text-center text-green-400 font-black mb-2"></p>
-<div class="grid grid-cols-2 gap-2 mb-2"><button onclick="mostrarPago('transfer')" class="bg-blue-500 py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button><button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 OXXO</button></div>
-<div id="pagoTransfer" class="bg-black rounded p-2 text-[11px]">CLABE: <b>722969027389252036</b><br>Concepto: <b id="conceptoTxt" class="text-yellow-400"></b><br><button onclick="navigator.clipboard.writeText('722969027389252036');alert('copiada')" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black text-[10px]">COPIAR CLABE</button></div>
-<div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=2242170320800281" class="mx-auto w-48 h-48"><p class="mt-2 font-black">2242 1703 2080 0281</p></div>
-<button onclick="window.open('https://wa.me/523224528803?text='+encodeURIComponent('Hola Temo ID '+usuarioActual),'_blank')" class="bg-[#25D366] w-full mt-3 py-3 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE</button>
-<div id="historialBox" class="mt-3 space-y-2"></div>
-</div></div>
+<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border">💰 $0</span><button onclick="document.getElementById('adminPanel').classList.toggle('hidden')" class="bg-black px-2 py-1 rounded-full">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
+<div class="max-w-md mx-auto p-3"><div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button id="btnEntrar" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div><button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID</button></div>
+<main id="productos" class="max-w-md mx-auto p-3 grid gap-3"><p class="text-center text-zinc-500">Cargando productos...</p></main>
+<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-2 border-green-500 rounded-xl mt-2"><div id="loginDiv"><input id="pass" type="password" placeholder="temo123" class="w-full p-3 rounded text-black"><button id="btnLogin" class="bg-white text-black w-full p-3 rounded-full font-black mt-2">ENTRAR ADMIN</button></div><div id="panel" class="hidden"><button onclick="restaurarTodo()" class="bg-green-500 w-full py-3 rounded-full font-black text-xs">✅ RESTAURAR PRODUCTOS EN FIREBASE</button><div class="bg-yellow-400/10 border border-yellow-400 rounded-xl p-2 mt-2"><input id="newId" placeholder="id ej: vlt" class="w-full p-2 rounded text-black text-xs mt-1"><input id="newNombre" placeholder="Nombre" class="w-full p-2 rounded text-black text-xs mt-1"><div class="flex gap-1 mt-1"><input id="newDias" type="number" placeholder="Dias" class="flex-1 p-2 rounded text-black text-xs"><input id="newPrecio" type="number" placeholder="$" class="flex-1 p-2 rounded text-black text-xs"></div><button onclick="crearNuevoProd()" class="bg-yellow-400 text-black w-full py-1 rounded-full font-black text-xs mt-1">CREAR PRODUCTO</button></div><div class="bg-blue-500/10 border border-blue-500 rounded-xl p-2 mt-2"><div class="flex gap-1"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button id="btnRecarga" class="bg-green-500 px-3 rounded-full">+</button></div></div><div id="lista" class="grid gap-2 mt-3"></div></div></div>
+<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><div id="cartItems"></div><div id="cartTotal" class="font-black mt-2"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs">Cerrar</button></div></div>
+<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 w-full max-w-md rounded-2xl p-5 text-center"><div id="keysEntregadas" class="bg-black rounded-xl p-3 mt-3 text-left"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
 
-<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y border-zinc-800">
-<div id="loginDiv"><input id="email" placeholder="correo (opcional)" class="w-full p-2 rounded text-black mb-2 hidden"><input id="pass" type="password" placeholder="temo123" class="w-full p-2 rounded text-black mb-2"><button id="btnLogin" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar</button></div>
-<div id="panel" class="hidden">
-<b>ADMIN - TEMO</b>
-<button onclick="restaurarTodo()" class="bg-green-600 w-full py-2 rounded-full font-black text-[11px] mt-2">✅ RESTAURAR PRODUCTOS BASE</button>
-
-<div class="bg-yellow-400/10 border-2 border-yellow-400 rounded-xl p-2 mt-3">
-<b class="text-[11px] text-yellow-400">+ CREAR PRODUCTO / DURACIÓN</b>
-<div class="flex flex-col gap-1 mt-1">
-<input id="newId" placeholder="id ej: vlt (minúsculas)" class="p-2 rounded text-black text-xs">
-<input id="newNombre" placeholder="Nombre ej: VLT" class="p-2 rounded text-black text-xs">
-<div class="flex gap-1"><input id="newDias" type="number" placeholder="Días ej: 30" class="flex-1 p-2 rounded text-black text-xs"><input id="newPrecio" type="number" placeholder="Precio $" class="flex-1 p-2 rounded text-black text-xs"></div>
-<button onclick="crearNuevoProd()" class="bg-yellow-400 text-black py-2 rounded-full font-black text-xs">🚀 AGREGAR DURACIÓN / CREAR</button>
-</div></div>
-
-<div class="bg-blue-500/10 border-2 border-blue-500 rounded-xl p-2 mt-3">
-<b class="text-[11px] text-blue-400">💰 RECARGAR SALDO</b>
-<div class="flex gap-1 mt-1"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button id="btnRecarga" class="bg-green-500 px-3 rounded-full">+</button></div>
-<p class="text-[8px] text-zinc-400 mt-1">+20 si recarga 100, +50 si 200, +150 si 500</p>
-</div>
-
-<div id="lista" class="grid gap-2 mt-3"></div>
-<button onclick="adminPanel.classList.add('hidden')" class="w-full mt-3 bg-zinc-700 py-2 rounded-full text-xs">CERRAR ADMIN</button>
-</div></div>
-
-<main id="productos" class="max-w-md mx-auto p-3 grid grid-cols-1 gap-3"></main>
-
-<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><div id="cartItems"></div><div id="cartTotal" class="font-black mt-2"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR - VER KEY AQUI</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs">Cerrar</button></div></div>
-<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 w-full max-w-md rounded-2xl p-5 text-center"><h2 class="font-black text-xl text-green-400">✅ COMPRA EXITOSA</h2><div id="keysEntregadas" class="bg-black border border-zinc-800 rounded-xl p-3 mt-3 text-left space-y-2 max-h-64 overflow-auto"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
+<script>
+// ESTE SCRIPT PINTA PRODUCTOS AUNQUE FIREBASE FALLE - NO NECESITA INTERNET
+const BASE={drip:{nombre:"DRIP",opciones:[{dias:1,precio:4,keys:[]},{dias:7,precio:12,keys:[]},{dias:15,precio:15,keys:[]},{dias:30,precio:20,keys:[]}]},cuban:{nombre:"CUBAN",opciones:[{dias:1,precio:3,keys:[]},{dias:7,precio:5,keys:[]},{dias:30,precio:10,keys:[]}]},hg:{nombre:"HG",opciones:[{dias:1,precio:5,keys:[]},{dias:10,precio:12,keys:[]},{dias:30,precio:18,keys:[]}]},vlt:{nombre:"VLT",opciones:[{dias:1,precio:5,keys:[]},{dias:7,precio:12,keys:[]},{dias:30,precio:25,keys:[]}]},pato:{nombre:"PATO",opciones:[{dias:30,precio:14,keys:[]}]},flourite:{nombre:"FLOURITE",opciones:[{dias:7,precio:30,keys:[]},{dias:30,precio:50,keys:[]}]}};
+let preciosLocal=JSON.parse(localStorage.getItem('temo_precios_local')||'null')||BASE;
+function renderTiendaLocal(){
+let c=document.getElementById('productos');
+let data=preciosLocal;
+c.innerHTML='';
+Object.entries(data).forEach(([id,prod])=>{
+let ops=(prod.opciones||[]).sort((a,b)=>a.dias-b.dias);
+let html=''; ops.forEach((op,i)=>{ html+=`<div class="flex justify-between items-center bg-zinc-800 rounded-full p-1 pl-3 mt-2"><div><b class="text-[11px]">${op.dias}D</b><p class="text-green-400 font-black text-xs">$${op.precio} - ${op.keys?.length||0} keys</p></div><button onclick="addCart('${id}','${prod.nombre}',${op.precio},${op.dias},${i})" class="bg-white text-black px-4 py-2 rounded-full font-black text-[10px]">COMPRAR</button></div>`; });
+c.innerHTML+=`<div class="bg-zinc-900 border border-red-600 rounded-2xl p-3"><div class="flex justify-between" onclick="document.getElementById('opts_${id}').classList.toggle('hidden')"><b>${prod.nombre}</b><span class="bg-red-600 px-3 py-1 rounded-full text-[10px]">VER ${ops.length}</span></div><div id="opts_${id}" class="hidden">${html}</div></div>`;
+});
+}
+let cart=[];
+function addCart(id,n,p,d,i){cart.push({id,n,p,d,idx:i});document.getElementById('cartCount').innerText=cart.length}
+renderTiendaLocal();
+document.getElementById('cartBtn').onclick=()=>{let h='',t=0;cart.forEach(i=>{h+=`<div>${i.n} ${i.d}D $${i.p}</div>`;t+=i.p});document.getElementById('cartItems').innerHTML=h;document.getElementById('cartTotal').innerText='Total $'+t;document.getElementById('cartModal').classList.remove('hidden')};
+document.getElementById('checkout').onclick=()=>{let h='';cart.forEach(i=>{h+=`<div><b>${i.n} ${i.d}D</b> - DEMO KEY</div>`});document.getElementById('keysEntregadas').innerHTML=h;document.getElementById('keyModal').classList.remove('hidden');cart=[];document.getElementById('cartCount').innerText=0;document.getElementById('cartModal').classList.add('hidden')};
+</script>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import {getFirestore,collection,doc,setDoc,getDoc,updateDoc,deleteDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+// ESTE ES SOLO PARA FIREBASE - SI FALLA, LO DE ARRIBA YA MOSTRÓ PRODUCTOS
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getFirestore,collection,doc,setDoc,getDoc,deleteDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"};
-let app=initializeApp(firebaseConfig),db=getFirestore(app);
-let cart=[],precios={},usuarioActual=localStorage.getItem('temo_id')||null,saldoActual=Number(localStorage.getItem('saldo_'+(usuarioActual||''))||0);
-const BASE={drip:{nombre:"DRIP",opciones:[{dias:1,precio:4,keys:[]},{dias:7,precio:12,keys:[]},{dias:15,precio:15,keys:[]},{dias:30,precio:20,keys:[]}]},cuban:{nombre:"CUBAN",opciones:[{dias:1,precio:3,keys:[]},{dias:7,precio:5,keys:[]},{dias:30,precio:10,keys:[]}]},hg:{nombre:"HG",opciones:[{dias:1,precio:5,keys:[]},{dias:10,precio:12,keys:[]},{dias:30,precio:18,keys:[]}]},vlt:{nombre:"VLT",opciones:[{dias:1,precio:5,keys:[]},{dias:7,precio:12,keys:[]},{dias:30,precio:25,keys:[]}]},pato:{nombre:"PATO",opciones:[{dias:30,precio:14,keys:[]}]},flourite:{nombre:"FLOURITE",opciones:[{dias:7,precio:30,keys:[]},{dias:30,precio:50,keys:[]}]}};
-
-window.mostrarPago=(t)=>{document.getElementById('pagoOxxo').classList.toggle('hidden',t!=='oxxo');document.getElementById('pagoTransfer').classList.toggle('hidden',t==='oxxo');}
-function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
-function renderTienda(){
-  let c=document.getElementById('productos'); c.innerHTML='';
-  let data = Object.keys(precios).length>0? precios : BASE;
-  Object.entries(data).forEach(([id,prod])=>{
-    if(!prod.opciones) return;
-    let ops = prod.opciones.filter(o=>o.precio>0).sort((a,b)=>a.dias-b.dias);
-    let htmlOps=''; ops.forEach((op,i)=>{ htmlOps+=`<div class="flex justify-between items-center bg-zinc-800 rounded-full p-1 pl-3 mt-2"><div><b class="text-[11px]">${op.dias} DÍAS</b> <span class="text-[9px] text-zinc-400">- ${op.keys?.length||0} keys</span><p class="text-green-400 font-black text-xs">$${op.precio}</p></div><button onclick="add('${id}','${prod.nombre}',${op.precio},${op.dias},${i})" class="bg-white text-black px-4 py-2 rounded-full font-black text-[10px]">COMPRAR</button></div>`; });
-    c.innerHTML+=`<div class="bg-zinc-900 border border-red-600 rounded-2xl p-3"><div class="flex justify-between items-center" onclick="document.getElementById('opts_${id}').classList.toggle('hidden')"><div><b class="text-sm">${prod.nombre}</b><p class="text-[10px] text-zinc-400">${ops.length} duraciones</p></div><button class="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black">👁️ VER</button></div><div id="opts_${id}" class="hidden
-<!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head>
-<body class="bg-black text-white">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border">💰 $0</span><button id="btnAdmin" class="bg-black px-2 py-1 rounded-full">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
-
-<div class="max-w-md mx-auto p-3">
-<div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button id="btnEntrar" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
-<button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID (1 POR CELULAR)</button>
-<p id="bloqueoMsg" class="hidden text-center text-[11px] text-red-400 font-black mt-2 bg-red-900/30 border border-red-600 rounded-full p-2"></p>
-<div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 mt-3"><p id="miIdGenerado" class="text-center text-green-400 font-black mb-2"></p><div id="historialBox" class="mt-3 space-y-2"></div></div>
-</div>
-
-<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y-2 border-green-500 rounded-xl">
-<div id="loginDiv"><input id="pass" type="password" placeholder="temo123" class="w-full p-3 rounded text-black"><button id="btnLogin" class="bg-white text-black w-full p-3 rounded-full font-black mt-2">ENTRAR ADMIN</button></div>
-<div id="panel" class="hidden">
-<b>ADMIN TEMO - TODO AQUI</b>
-<button onclick="restaurarTodo()" class="bg-green-500 w-full py-3 rounded-full font-black text-xs mt-2">✅ 1. RESTAURAR PRODUCTOS SI NO VES NADA</button>
-<div class="bg-yellow-400/10 border border-yellow-400 rounded-xl p-2 mt-3">
-<b class="text-[10px] text-yellow-400">+ CREAR PRODUCTO / DURACIÓN</b>
-<input id="newId" placeholder="id ej: vlt" class="w-full p-2 rounded text-black text-xs mt-1">
-<input id="newNombre" placeholder="Nombre ej: VLT" class="w-full p-2 rounded text-black text-xs mt-1">
-<div class="flex gap-1 mt-1"><input id="newDias" type="number" placeholder="Días" class="flex-1 p-2 rounded text-black text-xs"><input id="newPrecio" type="number" placeholder="$" class="flex-1 p-2 rounded text-black text-xs"></div>
-<button onclick="crearNuevoProd()" class="bg-yellow-400 text-black w-full py-2 rounded-full font-black text-xs mt-1">🚀 CREAR / AGREGAR DURACIÓN</button>
-</div>
-<div class="bg-blue-500/10 border border-blue-500 rounded-xl p-2 mt-3">
-<b class="text-[10px] text-blue-400">💰 RECARGAR SALDO (como lo tenías)</b>
-<div class="flex gap-1 mt-1"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black
+let app,db; try{app=initializeApp(firebaseConfig);db=getFirestore(app);
+onSnapshot(collection(db,"temo_precios"),snap=>{
+let tmp={}; snap.forEach(d=>{if(d.data().opciones)tmp[d.id]=d.data()});
+if(Object.keys(tmp).length>0){ preciosLocal=tmp; localStorage.setItem('temo_precios_local',JSON.stringify(tmp)); renderTiendaLocal(); renderAdminFirebase(tmp); }
+});
+}catch(e){console.log("firebase fail",e)}
+window.renderAdminFirebase=(precios)=>{
+let h='',data=precios; Object.entries(data).forEach(([id,prod])=>{
+let o='';(prod.opciones||[]).forEach((op,i)=>{o+=`<div class="bg-zinc-800 rounded p-2 mt-2"><b class="text-[10px] text-yellow-400">${op.dias}D $${op.precio} - ${op.keys?.length||0} keys</b><textarea id="keys_${id}_${i}" class="w-full p-1 rounded text-black text-[10px] h-12 mt-1" placeholder="AQUI VAN KEYS una por linea"></textarea><button onclick="addKeys('${id}',${i})" class="bg-green-500 w-full py-1 rounded-full text-[9px] font-black mt-1">💾 GUARDAR KEYS ${op.dias}D</button></div>`});
+h+=`<div class="bg-black p-2 rounded border border-zinc-800"><b class="text-[11px]">${prod.nombre} (${id})</b><button onclick="eliminarProd('${id}')" class="bg-red-600 px-2 rounded-full text-[8px]">BORRAR</button>${o}</div>`;
+});document.getElementById('lista').innerHTML=h;
+};
+window.addKeys=async(id,i)=>{let txt=document.getElementById('keys_'+id+'_'+i).value.trim();if(!txt)return;let r=doc(db,"temo_precios",id);let s=await getDoc(r);let p=s.data();let n=txt.split('\n').map(k=>k.trim()).filter(k=>k);p.opciones[i].keys=[...(p.opciones[i].keys||[]),...n];await setDoc(r,p);alert(n.length+" guardadas");};
+window.crearNuevoProd=async()=>{let id=document.getElementById('newId').value.toLowerCase();let nom=document.getElementById('newNombre').value;let d=Number(document.getElementById('newDias').value);let pr=Number(document.getElementById('newPrecio').value);if(!id||!nom||!pr)return alert("llena");let r=doc(db,"temo_precios",id);let s=await getDoc(r);let p=s.exists()?s.data():{nombre:nom.toUpperCase(),opciones:[]};p.nombre=nom.toUpperCase();let ex=p.opciones.findIndex(o=>o.dias===d);if(ex>=0)p.opciones[ex].precio=pr;else p.opciones.push({dias:d,precio:pr,keys:[]});await setDoc(r,p);alert("creado");};
+window.eliminarProd=async(id)=>{if(!confirm("borrar "+id))return;await deleteDoc(doc(db,"temo_precios",id))};
+window.restaurarTodo=async()=>{for(let id in BASE){await setDoc(doc(db,"temo_precios",id),BASE[id])}alert("Restaurado");location.reload()};
+document.getElementById('btnLogin').onclick=()=>{if(document.getElementById('pass').value==='temo123'){document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdminFirebase(preciosLocal)}};
+document.getElementById('btnCrear').onclick=()=>{let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];let id="TEMO-"+r;localStorage.setItem('temo_id',id);location.reload()};
+document.getElementById('btnEntrar').onclick=()=>{let id=document.getElementById('userId').value.trim().toUpperCase();localStorage.setItem('temo_id',id);location.reload()};
+document.getElementById('btnRecarga').onclick=async()=>{let id=document.getElementById('recargaId').value.toUpperCase();let m=Number(document.getElementById('recargaMonto').value);let ref=doc(db,"users",id);let s=await getDoc(ref);let tot=(s.exists()?s.data().saldo:0)+m;if(s.exists()){let {updateDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");await updateDoc(ref,{saldo:tot})}else await setDoc(ref,{saldo:tot});alert("Recargado $"+m)};
+</script>
+</body></html>
