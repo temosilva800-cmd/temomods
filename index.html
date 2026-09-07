@@ -62,3 +62,36 @@ document.getElementById('checkout').onclick=()=>{ let t=0; let msg='Hola Temo! �
 </script>
 </body>
 </html>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Temo Store - Oficial</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-black text-white">
+<header class="bg-gradient-to-r from-red-600 to-black p-4 flex justify-between items-center sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><button onclick="document.getElementById('adminPanel').classList.toggle('hidden')" class="bg-zinc-800 px-3 py-1 rounded-full text-xs">⚙️ Admin</button><button id="cartBtn" class="bg-white text-black px-4 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
+<div class="bg-yellow-400 text-black text-center p-2 font-black text-xs">PAGO INMEDIATO | ENTREGA RAPIDA | WHATSAPP 3224528803</div>
+
+<!-- TU PANEL ADMIN (oculto) -->
+<div id="adminPanel" class="hidden bg-zinc-900 border-b-2 border-red-600 p-4"><h2 class="font-black">PANEL ADMIN - EDITAR PRECIOS</h2><p class="text-xs text-zinc-400 mb-3">Inicia sesión para editar. Solo tú puedes ver esto.</p><div id="loginDiv"><input id="email" placeholder="Tu correo admin" class="w-full p-2 rounded text-black mb-2 text-sm"><input id="pass" type="password" placeholder="Contraseña" class="w-full p-2 rounded text-black mb-2 text-sm"><button onclick="login()" class="bg-white text-black w-full p-2 rounded-full font-black text-sm">Entrar Admin</button></div><div id="panel" class="hidden"><p id="userEmail" class="text-green-400 text-xs mb-2"></p><div id="lista" class="grid grid-cols-1 gap-2"></div><button onclick="logout()" class="bg-red-600 w-full p-2 rounded-full mt-3 text-sm">Salir Admin</button></div></div>
+
+<main id="productos" class="p-4 grid grid-cols-2 md:grid-cols-3 gap-3 max-w-5xl mx-auto"></main>
+
+<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end"><div class="bg-white text-black w-full rounded-t-3xl p-5"><h3 class="font-black">Tu Pedido</h3><div id="cartItems" class="my-3"></div><div id="cartTotal" class="font-black text-2xl"></div><button id="checkout" class="bg-[#25D366] text-white w-full p-4 rounded-full mt-4 font-black">PEDIR POR WHATSAPP</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-zinc-500 text-sm">Cerrar</button></div></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {getFirestore, collection, doc, setDoc, onSnapshot} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"};
+const app=initializeApp(firebaseConfig); const auth=getAuth(app); const db=getFirestore(app);
+let cart=[]; let precios={};
+const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
+onSnapshot(collection(db,"temo_precios"), snap=>{
+  snap.forEach(d=>precios[d.id]=d.data());
+  if(Object.keys(precios).length==0){ base.forEach(b=>precios[b.id]={nombre:b.n,precio:b.p}); }
+  renderTienda(); renderAdmin();
+});
+function renderTienda(){ let c=document.getElementById('productos'); c.innerHTML=''; Object.entries(precios).forEach(([id,p])=>{ c.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3"><b class="text-xs">${p.nombre}</b><p class="text-green-400 font-black text-xl">$${p.precio} USD</p><button onclick="add('${p.nombre}',${p.precio})" class="bg-white text-black w-full mt-2 py-2 rounded-full font-bold text-sm">🛒 Comprar</button></div>`; }); }
+function renderAdmin(){ let m={}; Object.entries(precios).forEach(([id,d])=>m[id]=d.precio); let h=''; base.forEach(x=>{let pr=m[x.id]??x.p; h+=`<div class="bg-black p-2 rounded flex justify-between items-center"><b class="text-xs">${x.n}</b><div class="flex gap-1"><input id="edit_${x.id}" type="number" value="${pr}" class="w-16 p-1 rounded text-black text-center text-sm"><button onclick="save('${x.id}','${x.n}')" class="bg-green-500 text-black px-2 rounded-full font-bold text-xs">Guardar</button></div></div>`;}); document.getElementById('lista').innerHTML=h; }
+window.add=(n,p)=>{cart.push({n,p}); document.getElementById('cartCount').innerText=cart.length;};
+document.getElementById('cartBtn').onclick=()=>{ if(!cart.length)return alert('Carrito vacío'); let h='',t=0; cart.forEach(i=>{h+=`<div class="flex justify-between py-1 border-b text-sm"><span>${i.n}</span><b>$${i.p}</b></div>`; t+=i.p;}); document.getElementById('cartItems').innerHTML=h; document.getElementById('cartTotal').innerText='Total: $'+t+' USD'; document.getElementById('cartModal').classList.remove('hidden'); };
+document.getElementById('checkout').onclick=()=>{ let t=0,msg='Hola Temo! 🔥%0AQuiero:%0A'; cart.forEach(i=>{msg+=`✅ ${i.n} $${i.p} USD%0A`; t+=i.p;}); msg+=`%0ATOTAL: $${t} USD`; window.open('https://wa.me/523224528803?text='+msg,'_blank'); };
+window.login=async()=>{try{await signInWithEmailAndPassword(auth,email.value,pass.value)}catch(e){alert(e.message)}}; window.logout=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{ if(u){ loginDiv.classList.add('hidden'); panel.classList.remove('hidden'); userEmail.innerText="Admin: "+u.email; }else{ loginDiv.classList.remove('hidden'); panel.classList.add('hidden'); } });
+window.save=async(id,nom)=>{ let v=Number(document.getElementById('edit_'+id).value); await setDoc(doc(db,"temo_precios",id),{nombre:nom,precio:v}); alert(nom+" actualizado a $"+v); };
+</script></body></html>
