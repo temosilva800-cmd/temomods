@@ -1,124 +1,4 @@
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-black text-white">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2 items-center"><span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border">💰 $0</span><button onclick="document.getElementById('adminPanel').classList.toggle('hidden')" class="bg-black px-3 py-1 rounded-full text-xs">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
-
-<div class="bg-zinc-900 p-3 flex flex-col gap-2">
-  <div class="flex gap-2"><input id="userId" placeholder="Tu ID: TEMO-XXXX" class="flex-1 p-2 rounded-full text-black text-xs font-bold uppercase"><button onclick="cargarSaldo()" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
-  <button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
-
-  <!-- ESTO APARECE AL CREAR ID -->
-  <div id="boxNuevoId" class="hidden bg-black border-2 border-green-500 rounded-xl p-3 text-center">
-    <p id="miIdGenerado" class="text-green-400 font-black text-sm mb-2"></p>
-    <p class="text-[10px] text-zinc-400 mb-2">Guarda tu ID, lo necesitarás para recargar</p>
-    <button onclick="enviarComprobante()" class="bg-[#25D366] text-white w-full py-3 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE PARA RECARGAR SALDO</button>
-  </div>
-</div>
-
-<div id="adminPanel" class="hidden bg-zinc-900 p-3"><div id="loginDiv"><input id="email" placeholder="correo admin" class="w-full p-2 rounded text-black mb-1 text-sm"><input id="pass" type="password" placeholder="pass" class="w-full p-2 rounded text-black mb-1 text-sm"><button onclick="login()" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar Admin</button></div><div id="panel" class="hidden"><p id="userEmail" class="text-green-400 text-xs"></p><div id="lista" class="grid gap-2 mt-2"></div><button onclick="logout()" class="bg-red-600 w-full p-2 rounded-full mt-2">Salir</button></div></div>
-
-<main id="productos" class="p-3 grid grid-cols-2 gap-3"></main>
-<div class="text-center p-4"><button onclick="seed()" class="bg-zinc-800 px-4 py-2 rounded-full text-xs">⚠️ Si no ves productos pica aquí</button></div>
-
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import {getFirestore,collection,doc,setDoc,onSnapshot,getDoc} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"};
-const app=initializeApp(firebaseConfig); const auth=getAuth(app); const db=getFirestore(app);
-let cart=[], precios={}, usuarioActual=localStorage.getItem('temo_id')||null, saldoActual=0;
-const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
-
-function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
-
-window.crearAleatorio=async()=>{
-  let id=generarId();let ref=doc(db,"users",id);let s=await getDoc(ref);
-  while(s.exists()){id=generarId();ref=doc(db,"users",id);s=await getDoc(ref);}
-  await setDoc(ref,{saldo:0});
-  usuarioActual=id;saldoActual=0;localStorage.setItem('temo_id',id);
-  document.getElementById('userId').value=id;
-  document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${id}`;
-  document.getElementById('boxNuevoId').classList.remove('hidden');
-  document.getElementById('miIdGenerado').innerText=`TU ID ES: ${id}`;
-};
-
-window.enviarComprobante=()=>{
-  if(!usuarioActual) return alert("Crea tu ID primero");
-  let msg=`Hola Temo! 🔥%0A%0AMi ID es: ${usuarioActual}%0AQuiero recargar saldo.%0A%0AAquí dejo mi comprobante de pago 👇 (adjunta foto)`;
-  window.open('https://wa.me/523224528803?text='+msg,'_blank');
-};
-
-window.cargarSaldo=async()=>{let id=document.getElementById('userId').value.trim().toUpperCase();if(!id)return alert("Pon ID");let ref=doc(db,"users",id);let s=await getDoc(ref);if(!s.exists())return alert("ID no existe, crea uno");usuarioActual=id;saldoActual=s.data().saldo||0;localStorage.setItem('temo_id',id);document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${id}`;};
-
-function renderTienda(){
-  let c=document.getElementById('productos'); c.innerHTML='';
-  let lista = Object.keys(precios).length>0? Object.entries(precios).map(([k,v])=>({id:k,...v})) : base.map(b=>({id:b.id, nombre:b.n, precio:b.p, keys:[]}));
-  lista.forEach(p=>{ let stock=p.keys?p.keys.length:0; c.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3"><b class="text-xs">${p.nombre}</b><p class="text-green-400 font-black">$${p.precio} USD</p><p class="text-[10px] ${stock>0?'text-green-400':'text-red-400'}">${stock>0?stock+' keys':'Sin stock'}</p><button onclick="add('${p.id}','${p.nombre}',${p.precio})" class="bg-white text-black w-full mt-2 py-1 rounded-full font-bold text-xs">Comprar</button></div>`; });
-}
-onSnapshot(collection(db,"temo_precios"), snap=>{
-  if(snap.empty){ renderTienda(); return; }
-  snap.forEach(d=>precios[d.id]=d.data()); renderTienda(); renderAdmin();
-});
-function renderAdmin(){let h=''; base.forEach(x=>{let d=precios[x.id]||{precio:x.p,keys:[]};h+=`<div class="bg-black p-2 rounded"><b class="text-xs">${x.n} - ${d.keys?d.keys.length:0} keys</b><div class="flex gap-1 mt-1"><input id="price_${x.id}" type="number" value="${d.precio||x.p}" class="w-16 p-1 rounded text-black text-xs"><button onclick="savePrice('${x.id}','${x.n}')" class="bg-white text-black px-2 rounded-full text-xs">OK</button></div><textarea id="keys_${x.id}" placeholder="keys 1 por linea" class="w-full mt-1 p-1 rounded text-black text-xs h-12"></textarea><button onclick="addKeys('${x.id}','${x.n}')" class="bg-green-500 w-full mt-1 py-1 rounded-full text-xs font-black">+ KEYS</button></div>`;}); document.getElementById('lista').innerHTML=h;}
-window.add=(id,n,p)=>{cart.push({id,n,p}); document.getElementById('cartCount').innerText=cart.length;};
-window.login=async()=>{try{await signInWithEmailAndPassword(auth,email.value,pass.value)}catch(e){alert(e.message)}}; window.logout=()=>signOut(auth);
-onAuthStateChanged(auth,u=>{if(u){document.getElementById('panel').classList.remove('hidden');userEmail.innerText=u.email;renderAdmin();}});
-window.savePrice=async(id,nom)=>{let v=Number(document.getElementById('price_'+id).value);let ref=doc(db,"temo_precios",id);let snap=await getDoc(ref);let keys=snap.exists()?snap.data().keys||[]:[];await setDoc(ref,{nombre:nom,precio:v,keys});};
-window.addKeys=async(id,nom)=>{let txt=document.getElementById('keys_'+id).value.trim();if(!txt)return;let nuevas=txt.split('\n').map(s=>s.trim()).filter(s=>s);let ref=doc(db,"temo_precios",id);let snap=await getDoc(ref);let data=snap.exists()?snap.data():{nombre:nom,precio:0,keys:[]};let todas=[...(data.keys||[]),...nuevas];await setDoc(ref,{nombre:nom,precio:data.precio||0,keys:todas});document.getElementById('keys_'+id).value='';};
-window.seed=async()=>{for(let b of base){let ref=doc(db,"temo_precios",b.id);let snap=await getDoc(ref);if(!snap.exists()){await setDoc(ref,{nombre:b.n,precio:b.p,keys:[]});}}alert("Productos restaurados");};
-if(usuarioActual){document.getElementById('userId').value=usuarioActual; cargarSaldo();}
-renderTienda();
-</script></body></html>
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-black text-white">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border">💰 $0</span></header>
-
-<div class="bg-zinc-900 p-3 flex flex-col gap-2">
-  <div class="flex gap-2"><input id="userId" placeholder="Tu ID: TEMO-XXXX" class="flex-1 p-2 rounded-full text-black text-xs font-bold uppercase"><button onclick="cargarSaldo()" class="bg-red-600 px-4 rounded-full font-black text-[10px]">ENTRAR</button></div>
-  <button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
-
-  <div id="boxNuevoId" class="hidden bg-black border-2 border-yellow-400 rounded-xl p-3">
-    <p id="miIdGenerado" class="text-center text-green-400 font-black text-sm mb-3"></p>
-
-    <!-- PAGOS -->
-    <div class="bg-white rounded-xl p-3 text-black">
-      <p class="font-black text-center text-[12px] mb-3">💳 MERCADO PAGO</p>
-
-      <div class="bg-zinc-100 rounded-lg p-3 mb-3">
-        <p class="font-black text-[10px] mb-1">🏦 TRANSFERENCIA SPEI</p>
-        <div class="text-[11px] space-y-1">
-          <div class="flex justify-between"><span class="text-zinc-500">CLABE:</span><b class="select-all">722969027389252036</b></div>
-          <div class="flex justify-between"><span class="text-zinc-500">Titular:</span><b>Cuauhtémoc Martínez Silva</b></div>
-          <div class="flex justify-between"><span class="text-zinc-500">Concepto:</span><b id="conceptoTxt" class="text-red-600">TEMO-XXXX</b></div>
-        </div>
-        <button onclick="copiarClabe()" class="bg-black text-white w-full mt-2 py-1 rounded-full text-[9px]">COPIAR CLABE</button>
-      </div>
-
-      <div class="bg-zinc-100 rounded-lg p-3 text-center">
-        <p class="font-black text-[10px] mb-2">🏪 DEPOSITO EN OXXO</p>
-        <img src="./oxxo_qr.png" class="mx-auto w-48 h-48 rounded-lg border">
-        <p class="text-[10px] mt-2 text-zinc-500">Muestra este QR en OXXO</p>
-        <div class="bg-white border-2 border-dashed rounded-lg p-2 mt-2">
-          <p class="text-[9px] text-zinc-500">Número para dictar:</p>
-          <b class="text-[14px] tracking-widest">2242 1703 2080 0281</b>
-        </div>
-        <p class="text-[8px] mt-2 text-zinc-500">Deposita hasta $5,000 por operación</p>
-      </div>
-    </div>
-
-    <button onclick="enviarComprobante()" class="bg-[#25D366] text-white w-full py-3 rounded-full font-black text-xs mt-3">📤 ENVIAR COMPROBANTE POR WHATSAPP</button>
-  </div>
-</div>
-
-<main id="productos" class="p-3 grid grid-cols-2 gap-3"></main>
-
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import {getFirestore,collection,doc,setDoc,onSnapshot,getDoc,updateDoc} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"};
-const db=getFirestore(initializeApp(firebaseConfig));
-let cart=[], precios={}, usuarioActual=localStorage.getItem('temo_id')||null, saldoActual=0;
-const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
-function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
-window.crearAleatorio=async()=>{let id=generarId();let ref=doc(db,"users",id);let s=await getDoc(ref);while(s.exists()){id=generarId();ref=doc(db,"users",id);s=await getDoc(ref);}await setDoc(ref,{saldo:0});usuarioActual=id;saldoActual=0;localStorage.setItem('temo_id',id);userId.value=id;saldoDisplay.innerText=`💰 $${saldoActual} | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-black text-white">
 <header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border">💰 $0</span></header>
 <div class="bg-zinc-900 p-3 flex flex-col gap-2">
 <div class="flex gap-2"><input id="userId" placeholder="Tu ID: TEMO-XXXX" class="flex-1 p-2 rounded-full text-black text-xs font-bold uppercase"><button onclick="cargarSaldo()" class="bg-red-600 px-4 py-2 rounded-full font-black text-[10px]">ENTRAR</button></div>
@@ -142,4 +22,26 @@ window.crearAleatorio=async()=>{let id=generarId();let ref=doc(db,"users",id);le
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=2242170320800281" class="mx-auto w-56 h-56 rounded-lg border-2 border-black">
 <p class="text-[10px] text-zinc-500 mt-3">También puedes dictar este número:</p>
 <div class="bg-zinc-100 border-2 border-dashed rounded-lg p-2 mt-1"><b class="text-[16px] tracking-widest">2242 1703 2080 0281</b></div>
-<p
+<p class="text-[8px] mt-2 text-zinc-500">Deposita hasta $5,000 por operación - Mercado Pago</p>
+</div>
+<button onclick="enviarComprobante()" class="bg-[#25D366] text-white w-full py-3 rounded-full font-black text-xs mt-3">📤 ENVIAR COMPROBANTE</button>
+</div>
+</div>
+<main id="productos" class="p-3 grid grid-cols-2 gap-3"></main>
+<div class="p-4 text-center"><button onclick="seed()" class="bg-zinc-800 text-xs px-4 py-2 rounded-full">⚠️ Restaurar productos</button></div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getFirestore,collection,doc,setDoc,onSnapshot,getDoc} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+const db=getFirestore(initializeApp({apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"}));
+let precios={}, usuarioActual=localStorage.getItem('temo_id')||null;
+const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
+function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
+window.mostrarPago=(t)=>{if(t=='oxxo'){pagoOxxo.classList.remove('hidden');pagoTransfer.classList.add('hidden');}else{pagoOxxo.classList.add('hidden');pagoTransfer.classList.remove('hidden');}};
+window.crearAleatorio=async()=>{let id=generarId();let ref=doc(db,"users",id);let s=await getDoc(ref);while(s.exists()){id=generarId();ref=doc(db,"users",id);s=await getDoc(ref);}await setDoc(ref,{saldo:0});usuarioActual=id;localStorage.setItem('temo_id',id);userId.value=id;saldoDisplay.innerText=`💰 $0 | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID: ${id}`;conceptoTxt.innerText=id;mostrarPago('transfer');};
+window.copiarClabe=()=>{navigator.clipboard.writeText("722969027389252036");alert("CLABE copiada");};
+window.enviarComprobante=()=>{let msg=`Hola Temo! 🔥%0AID: ${usuarioActual}%0AConcepto: ${usuarioActual}%0APagué a CLABE 722969027389252036 / OXXO 2242 1703 2080 0281%0AMonto: $%0AAdjunto comprobante 👇`;window.open('https://wa.me/523224528803?text='+msg,'_blank');};
+window.cargarSaldo=async()=>{let id=userId.value.trim().toUpperCase();let ref=doc(db,"users",id);let s=await getDoc(ref);if(!s.exists())return alert("ID no existe");usuarioActual=id;localStorage.setItem('temo_id',id);let saldo=s.data().saldo||0;saldoDisplay.innerText=`💰 ${saldo} | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID: ${id} | Saldo: $${saldo}`;conceptoTxt.innerText=id;};
+function renderTienda(){let c=document.getElementById('productos');c.innerHTML='';let lista=Object.keys(precios).length>0?Object.entries(precios).map(([k,v])=>({id:k,...v})):base.map(b=>({id:b.id,nombre:b.n,precio:b.p,keys:[]}));lista.forEach(p=>{let st=p.keys?p.keys.length:0;c.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3"><b class="text-xs">${p.nombre}</b><p class="text-green-400 font-black">$${p.precio}</p><p class="text-[10px] ${st>0?'text-green-400':'text-red-400'}">${st>0?st+' keys':'Sin stock'}</p></div>`;});}
+onSnapshot(collection(db,"temo_precios"),snap=>{if(snap.empty){renderTienda();return;}precios={};snap.forEach(d=>precios[d.id]=d.data());renderTienda();});
+renderTienda();
+</script></body></html>
