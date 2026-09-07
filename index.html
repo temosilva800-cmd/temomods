@@ -1,47 +1,26 @@
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-black text-white">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border">💰 $0</span></header>
-<div class="bg-zinc-900 p-3 flex flex-col gap-2">
-<div class="flex gap-2"><input id="userId" placeholder="Tu ID: TEMO-XXXX" class="flex-1 p-2 rounded-full text-black text-xs font-bold uppercase"><button onclick="cargarSaldo()" class="bg-red-600 px-4 py-2 rounded-full font-black text-[10px]">ENTRAR</button></div>
-<button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
-<div id="boxNuevoId" class="hidden bg-black border-2 border-yellow-400 rounded-xl p-3">
-<p id="miIdGenerado" class="text-center text-green-400 font-black text-sm mb-3"></p>
-<div class="grid grid-cols-2 gap-2 mb-3">
-<button onclick="mostrarPago('transfer')" class="bg-[#009EE3] text-white py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button>
-<button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 PAGAR EN OXXO</button>
-</div>
-<div id="pagoTransfer" class="bg-zinc-900 rounded-xl p-3 text-[11px]">
-<p class="font-black text-yellow-400 text-center mb-2">TRANSFERENCIA SPEI - MERCADO PAGO</p>
-<div class="flex justify-between"><span class="text-zinc-400">CLABE:</span><b class="select-all">722969027389252036</b></div>
-<div class="flex justify-between"><span class="text-zinc-400">Banco:</span><b>STP / Mercado Pago</b></div>
-<div class="flex justify-between"><span class="text-zinc-400">Titular:</span><b>Cuauhtémoc Martínez Silva</b></div>
-<div class="flex justify-between"><span class="text-zinc-400">Concepto:</span><b id="conceptoTxt" class="text-yellow-400">TEMO-XXXX</b></div>
-<button onclick="copiarClabe()" class="bg-white text-black w-full mt-2 py-1 rounded-full text-[9px] font-black">COPIAR CLABE</button>
-</div>
-<div id="pagoOxxo" class="hidden bg-white rounded-xl p-3 text-center text-black">
-<p class="font-black text-[11px] mb-2">Muestra este código en OXXO para depositar</p>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=2242170320800281" class="mx-auto w-56 h-56 rounded-lg border-2 border-black">
-<p class="text-[10px] text-zinc-500 mt-3">También puedes dictar este número:</p>
-<div class="bg-zinc-100 border-2 border-dashed rounded-lg p-2 mt-1"><b class="text-[16px] tracking-widest">2242 1703 2080 0281</b></div>
-<p class="text-[8px] mt-2 text-zinc-500">Deposita hasta $5,000 por operación - Mercado Pago</p>
-</div>
-<button onclick="enviarComprobante()" class="bg-[#25D366] text-white w-full py-3 rounded-full font-black text-xs mt-3">📤 ENVIAR COMPROBANTE</button>
-</div>
-</div>
-<main id="productos" class="p-3 grid grid-cols-2 gap-3"></main>
-<div class="p-4 text-center"><button onclick="seed()" class="bg-zinc-800 text-xs px-4 py-2 rounded-full">⚠️ Restaurar productos</button></div>
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import {getFirestore,collection,doc,setDoc,onSnapshot,getDoc} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-const db=getFirestore(initializeApp({apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"}));
-let precios={}, usuarioActual=localStorage.getItem('temo_id')||null;
-const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
-function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
-window.mostrarPago=(t)=>{if(t=='oxxo'){pagoOxxo.classList.remove('hidden');pagoTransfer.classList.add('hidden');}else{pagoOxxo.classList.add('hidden');pagoTransfer.classList.remove('hidden');}};
-window.crearAleatorio=async()=>{let id=generarId();let ref=doc(db,"users",id);let s=await getDoc(ref);while(s.exists()){id=generarId();ref=doc(db,"users",id);s=await getDoc(ref);}await setDoc(ref,{saldo:0});usuarioActual=id;localStorage.setItem('temo_id',id);userId.value=id;saldoDisplay.innerText=`💰 $0 | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID: ${id}`;conceptoTxt.innerText=id;mostrarPago('transfer');};
-window.copiarClabe=()=>{navigator.clipboard.writeText("722969027389252036");alert("CLABE copiada");};
-window.enviarComprobante=()=>{let msg=`Hola Temo! 🔥%0AID: ${usuarioActual}%0AConcepto: ${usuarioActual}%0APagué a CLABE 722969027389252036 / OXXO 2242 1703 2080 0281%0AMonto: $%0AAdjunto comprobante 👇`;window.open('https://wa.me/523224528803?text='+msg,'_blank');};
-window.cargarSaldo=async()=>{let id=userId.value.trim().toUpperCase();let ref=doc(db,"users",id);let s=await getDoc(ref);if(!s.exists())return alert("ID no existe");usuarioActual=id;localStorage.setItem('temo_id',id);let saldo=s.data().saldo||0;saldoDisplay.innerText=`💰 ${saldo} | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID: ${id} | Saldo: $${saldo}`;conceptoTxt.innerText=id;};
-function renderTienda(){let c=document.getElementById('productos');c.innerHTML='';let lista=Object.keys(precios).length>0?Object.entries(precios).map(([k,v])=>({id:k,...v})):base.map(b=>({id:b.id,nombre:b.n,precio:b.p,keys:[]}));lista.forEach(p=>{let st=p.keys?p.keys.length:0;c.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3"><b class="text-xs">${p.nombre}</b><p class="text-green-400 font-black">$${p.precio}</p><p class="text-[10px] ${st>0?'text-green-400':'text-red-400'}">${st>0?st+' keys':'Sin stock'}</p></div>`;});}
-onSnapshot(collection(db,"temo_precios"),snap=>{if(snap.empty){renderTienda();return;}precios={};snap.forEach(d=>precios[d.id]=d.data());renderTienda();});
-renderTienda();
-</script></body></html>
+<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2 items-center"><span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border">💰 $0</span><button onclick="document.getElementById('adminPanel').classList.toggle('hidden')" class="bg-black px-3 py-1 rounded-full text-xs">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
+
+<div class="bg-zinc-900 p-3 flex flex-col gap-2 border-b border-zinc-800">
+  <div class="flex gap-2"><input id="userId" placeholder="Tu ID: TEMO-XXXX" class="flex-1 p-2 rounded-full text-black text-xs font-bold uppercase"><button onclick="cargarSaldo()" class="bg-red-600 px-4 py-2 rounded-full font-black text-[10px]">ENTRAR</button></div>
+  <button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
+
+  <div id="boxNuevoId" class="hidden bg-black border-2 border-yellow-400 rounded-xl p-3">
+    <p id="miIdGenerado" class="text-center text-green-400 font-black text-sm mb-3"></p>
+    <div class="grid grid-cols-2 gap-2 mb-3">
+      <button onclick="mostrarPago('transfer')" class="bg-[#009EE3] text-white py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button>
+      <button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 PAGAR EN OXXO</button>
+    </div>
+
+    <div id="pagoTransfer" class="bg-zinc-900 rounded-xl p-3 text-[11px]">
+      <p class="font-black text-yellow-400 text-center mb-2">TRANSFERENCIA SPEI</p>
+      <div class="flex justify-between"><span class="text-zinc-400">CLABE:</span><b class="select-all">722969027389252036</b></div>
+      <div class="flex justify-between"><span class="text-zinc-400">Banco:</span><b>STP / Mercado Pago</b></div>
+      <div class="flex justify-between"><span class="text-zinc-400">Titular:</span><b>Cuauhtémoc Martínez Silva</b></div>
+      <div class="flex justify-between"><span class="text-zinc-400">Concepto:</span><b id="conceptoTxt" class="text-yellow-400">TEMO-XXXX</b></div>
+      <button onclick="copiarClabe()" class="bg-white text-black w-full mt-2 py-1 rounded-full text-[9px] font-black">COPIAR CLABE</button>
+    </div>
+
+    <div id="pagoOxxo" class="hidden bg-white rounded-xl p-3 text-center text-black">
+      <p class="font-black text-[11px] mb-2">Muestra este código en OXXO</p>
+      <img src="data:image/jpeg;base64,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
