@@ -63,3 +63,30 @@ function renderTienda(){
     let ops = prod.opciones.filter(o=>o.precio>0).sort((a,b)=>a.dias-b.dias);
     let htmlOps=''; ops.forEach((op,i)=>{ htmlOps+=`<div class="flex justify-between items-center bg-zinc-800 rounded-full p-1 pl-3 mt-2"><div><b class="text-[11px]">${op.dias} DÍAS</b> <span class="text-[9px] text-zinc-400">- ${op.keys?.length||0} keys</span><p class="text-green-400 font-black text-xs">$${op.precio}</p></div><button onclick="add('${id}','${prod.nombre}',${op.precio},${op.dias},${i})" class="bg-white text-black px-4 py-2 rounded-full font-black text-[10px]">COMPRAR</button></div>`; });
     c.innerHTML+=`<div class="bg-zinc-900 border border-red-600 rounded-2xl p-3"><div class="flex justify-between items-center" onclick="document.getElementById('opts_${id}').classList.toggle('hidden')"><div><b class="text-sm">${prod.nombre}</b><p class="text-[10px] text-zinc-400">${ops.length} duraciones</p></div><button class="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black">👁️ VER</button></div><div id="opts_${id}" class="hidden
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-black text-white">
+<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border">💰 $0</span><button id="btnAdmin" class="bg-black px-2 py-1 rounded-full">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
+
+<div class="max-w-md mx-auto p-3">
+<div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button id="btnEntrar" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
+<button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID (1 POR CELULAR)</button>
+<p id="bloqueoMsg" class="hidden text-center text-[11px] text-red-400 font-black mt-2 bg-red-900/30 border border-red-600 rounded-full p-2"></p>
+<div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 mt-3"><p id="miIdGenerado" class="text-center text-green-400 font-black mb-2"></p><div id="historialBox" class="mt-3 space-y-2"></div></div>
+</div>
+
+<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y-2 border-green-500 rounded-xl">
+<div id="loginDiv"><input id="pass" type="password" placeholder="temo123" class="w-full p-3 rounded text-black"><button id="btnLogin" class="bg-white text-black w-full p-3 rounded-full font-black mt-2">ENTRAR ADMIN</button></div>
+<div id="panel" class="hidden">
+<b>ADMIN TEMO - TODO AQUI</b>
+<button onclick="restaurarTodo()" class="bg-green-500 w-full py-3 rounded-full font-black text-xs mt-2">✅ 1. RESTAURAR PRODUCTOS SI NO VES NADA</button>
+<div class="bg-yellow-400/10 border border-yellow-400 rounded-xl p-2 mt-3">
+<b class="text-[10px] text-yellow-400">+ CREAR PRODUCTO / DURACIÓN</b>
+<input id="newId" placeholder="id ej: vlt" class="w-full p-2 rounded text-black text-xs mt-1">
+<input id="newNombre" placeholder="Nombre ej: VLT" class="w-full p-2 rounded text-black text-xs mt-1">
+<div class="flex gap-1 mt-1"><input id="newDias" type="number" placeholder="Días" class="flex-1 p-2 rounded text-black text-xs"><input id="newPrecio" type="number" placeholder="$" class="flex-1 p-2 rounded text-black text-xs"></div>
+<button onclick="crearNuevoProd()" class="bg-yellow-400 text-black w-full py-2 rounded-full font-black text-xs mt-1">🚀 CREAR / AGREGAR DURACIÓN</button>
+</div>
+<div class="bg-blue-500/10 border border-blue-500 rounded-xl p-2 mt-3">
+<b class="text-[10px] text-blue-400">💰 RECARGAR SALDO (como lo tenías)</b>
+<div class="flex gap-1 mt-1"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black
