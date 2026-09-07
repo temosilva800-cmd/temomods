@@ -81,3 +81,7 @@ window.addKeys=async(id,nom)=>{ let txt=document.getElementById('keys_'+id).valu
 window.seed=async()=>{ for(let b of base){ let ref=doc(db,"temo_precios",b.id); let snap=await getDoc(ref); if(!snap.exists()){ await setDoc(ref,{nombre:b.n,precio:b.p,keys:[]}); } } alert("Productos restaurados! Recarga la página"); };
 renderTienda();
 </script></body></html>
+<div class="bg-black p-2 flex gap-2">
+  <input id="newUserId" placeholder="Crea tu ID nuevo" class="flex-1 p-2 rounded-full text-black text-xs font-bold px-3">
+  <button onclick="registrar()" class="bg-white text-black px-4 py-2 rounded-full font-black text-[10px]">REGISTRARSE +$20</button>
+</div>
