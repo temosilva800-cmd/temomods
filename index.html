@@ -1,24 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEMO STORE</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#080808;color:#fff;font-family:Arial,sans-serif}
-.hdr{background:#000;border-bottom:3px solid #ff0000;padding:15px;text-align:center;font-weight:900;font-size:22px;letter-spacing:1px}
-.hdr span{color:#ff0000}
-.box{max-width:480px;margin:12px auto;background:#121212;border-radius:14px;padding:14px;border:1px solid #222}
-.green{border:2px solid #00ff00;box-shadow:0 0 15px #00ff0040}
-input,select{width:100%;padding:13px;margin:5px 0;background:#000;color:#fff;border:1px solid #333;border-radius:10px;font-size:15px}
-.btn{width:100%;padding:14px;border-radius:10px;font-weight:900;border:none;margin-top:7px;cursor:pointer;font-size:15px}
-.btn-g{background:#00ff00;color:#000}
-.btn-r{background:#ff0000;color:#fff}
-.btn-d{background:#333;color:#fff}
-.btn-y{background:#ffeb00;color:#000}
-.prod{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;text-align:center}
-.card b{font-size:14px}
-#ADMIN{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;overflow:auto;padding:12px}
-.item{background:#1a1a1a;margin:4px 0;padding:8px;border-radius:8px;display:flex
+"use client";
+import { useState, useEffect } from "react";
+
+export default function Page() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [users, setUsers] = useState<any>({});
+  const [keys, setKeys] = useState<any[]>([]);
+  const [ses, setSes] = useState("");
+  const [tap, setTap] = useState(0);
+
+  const [nu, setNu] = useState("");
+  const [np, setNp] = useState("");
+  const [ns, setNs] = useState("");
+  const [au, setAu] = useState("");
+  const [am, setAm] = useState("");
+  const [kt, setKt] = useState("DRIP 30 DIAS");
+  const [kc, setKc] = useState("1");
+  const [lu, setLu] = useState("");
+  const [lp, setLp] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.location.search.includes("admin=Temo2007")) setIsAdmin(true);
+      const u = JSON.parse(localStorage.getItem("temo_users") || "{}");
+      const k = JSON.parse(localStorage.getItem("temo_keys") || "[]");
+      const s = localStorage.getItem("temo_ses") || "";
+      setUsers(u); setKeys(k); setSes(s);
+    }
+  }, []);
+
+  const saveU = (o:any)=>{localStorage.setItem("temo_users",JSON.stringify(o)); setUsers(o)}
+  const saveK = (a:any)=>{localStorage.setItem("temo_keys",JSON.stringify(a)); setKeys(a)}
+
+  const crearCliente = () => {
+    if(!nu || !np) return alert("Falta usuario/pass");
+    const u={...users}; u[nu.toLowerCase()]={pass:np, saldo: parseInt(ns)||0};
+    saveU(u); alert(`✅ ${nu} creado con $${ns}`); setNu(""); setNp(""); setNs("");
+  }
+  const addSaldo = () => {
+    if(!au || !am) return alert("Falta");
+    const u={...users}; if(!u[au.toLowerCase()]) return alert("No existe");
+    u[au.toLowerCase()].saldo += parseInt(am); saveU(u);
+    alert(`✅ ${au} saldo: $${u[au.toLowerCase()].saldo}`);
+  }
+  const crearKeys = () => {
+    const arr=[...keys];
+    for(let i=0;i<parseInt(kc||"1");i++){
+      const code=kt.replace(/\s/g,"").substring(0,4)+"-"+Math.random().toString(36).substring(2,8).toUpperCase()+"-"+Math.random().toString(36).substring(2,5).toUpperCase();
+      arr.push({key:code,tipo:kt,dueno:"",fecha:new Date().toLocaleString()});
+    }
+    saveK(arr); alert(`✅ ${kc} keys de ${kt} creadas`);
+  }
+  const login = () => {
+    if(!users[lu.toLowerCase()]) return alert("No existe");
+    if(users[lu.toLowerCase()].pass !== lp) return alert("Pass mal");
+    localStorage.setItem("temo_ses", lu.toLowerCase());
