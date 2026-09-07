@@ -1,61 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TEMO STORE</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#fff;font-family:Arial}
-.h{background:#000;border-bottom:3px solid red;padding:15px;text-align:center;font-weight:900;font-size:22px;cursor:pointer}
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#fff;font-family:Arial}
+.h{background:#000;border-bottom:3px solid red;padding:15px;text-align:center;font-weight:900;font-size:22px}
 .h span{color:red}.c{max-width:480px;margin:12px auto;background:#111;border-radius:14px;padding:14px;border:1px solid #222}
-.b{width:100%;padding:14px;border-radius:10px;font-weight:900;border:none;margin-top:8px;cursor:pointer}
+.b{width:100%;padding:14px;border-radius:10px;font-weight:900;border:none;margin-top:8px}
 input,select{width:100%;padding:13px;margin:5px 0;background:#000;color:#fff;border:1px solid #333;border-radius:10px}
-.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.p{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;text-align:center}
 #ADM{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow:auto;padding:12px}
 .i{background:#1a1a1a;margin:4px 0;padding:8px;border-radius:8px;display:flex;justify-content:space-between;font-size:13px}
-</style>
-</head>
-<body>
-<div id="ADM">
-<h1 style="color:red;text-align:center">👑 ADMIN TEMO</h1>
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.p{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;text-align:center}
+</style></head><body>
+<div id="ADM"><h1 style="color:red;text-align:center">👑 ADMIN TEMO</h1>
 <div class="c" style="border-color:#0f0">
-<h3 style="color:#0f0;text-align:center">👤 CREAR CLIENTE</h3>
-<input id="nu" placeholder="Usuario ej: juan"><input id="np" placeholder="Contraseña ej: 1234"><input id="ns" type="number" placeholder="Saldo inicial ej: 80">
-<button onclick="CU()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900;margin-top:6px">✅ CREAR CLIENTE</button>
-<hr style="margin:15px 0">
-<h3 style="color:#0f0;text-align:center">💰 AGREGAR / QUITAR SALDO</h3>
-<input id="au" placeholder="Usuario"><input id="am" type="number" placeholder="Monto 100 o -50">
-<button onclick="AS()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900;margin-top:6px">💰 APLICAR SALDO</button>
-<hr style="margin:15px 0">
-<h3 style="color:#ff0;text-align:center">🔑 CREAR KEYS</h3>
-<select id="kt"><option>DRIP 1 DIA</option><option>DRIP 7 DIAS</option><option>DRIP 15 DIAS</option><option>DRIP 30 DIAS</option><option>CUBAN 30 DIAS</option><option>PATO 30 DIAS</option></select>
-<input id="kc" type="number" value="1">
-<button onclick="CK()" style="width:100%;padding:14px;background:#ff0;color:#000;border:none;border-radius:10px;font-weight:900;margin-top:6px">🔑 GENERAR</button>
-<div id="kl" style="background:#000;padding:8px;border-radius:10px;margin-top:10px;max-height:200px;overflow:auto;font-size:11px"></div>
-<hr style="margin:15px 0">
-<h3 style="text-align:center">CLIENTES</h3>
-<div id="ul" style="background:#000;padding:8px;border-radius:10px;max-height:200px;overflow:auto"></div>
-</div>
-<button onclick="location.href='/'" class="b" style="background:#333;max-width:480px;margin:10px auto;display:block">❌ CERRAR ADMIN</button>
-</div>
-
-<div class="h" onclick="T()">TEMO <span>STORE</span> - Privado</div>
-<div class="c" style="border-color:#0f0" id="LB"><h3 style="color:#0f0;text-align:center">🔐 LOGIN CLIENTES</h3><input id="u" placeholder="Usuario"><input id="p" type="password" placeholder="Contraseña"><button onclick="LG()" class="b" style="background:#0f0;color:#000">ENTRAR</button><a href="https://wa.me/523224528803?text=Hola%20quiero%20cuenta%20TEMO%20STORE" style="display:block;text-align:center;text-decoration:none;background:#25D366;color:#fff;padding:14px;border-radius:10px;margin-top:10px;font-weight:900">📲 PEDIR CUENTA</a><p style="text-align:center;color:#444;font-size:11px;margin-top:8px">Toca 5 veces el titulo para admin</p></div>
-<div id="SH" style="display:none"><div class="c" style="text-align:center;border-color:#0f0"><div id="MI" style="background:#000;padding:10px;border-radius:10px"></div><button onclick="LO()" class="b" style="background:#333;margin-top:8px">SALIR</button></div>
+<h3 style="color:#0f0;text-align:center">CREAR CLIENTE</h3>
+<input id="nu" placeholder="Usuario"><input id="np" placeholder="Pass"><input id="ns" type="number" placeholder="Saldo ej 80">
+<button onclick="CU()" class="b" style="background:#0f0;color:#000">✅ CREAR</button><hr style="margin:12px 0">
+<h3 style="color:#0f0;text-align:center">AGREGAR SALDO</h3><input id="au" placeholder="Usuario"><input id="am" type="number" placeholder="100 o -50">
+<button onclick="AS()" class="b" style="background:#0f0;color:#000">💰 APLICAR</button><hr style="margin:12px 0">
+<h3 style="color:#ff0;text-align:center">CREAR KEYS</h3><select id="kt"><option>DRIP 1 DIA</option><option>DRIP 7 DIAS</option><option>DRIP 15 DIAS</option><option>DRIP 30 DIAS</option><option>CUBAN 30 DIAS</option><option>PATO 30 DIAS</option></select><input id="kc" type="number" value="1"><button onclick="CK()" class="b" style="background:#ff0;color:#000">🔑 GENERAR</button>
+<div id="kl" style="background:#000;padding:8px;border-radius:10px;margin-top:8px;max-height:150px;overflow:auto;font-size:11px"></div><hr style="margin:12px 0">
+<div id="ul" style="background:#000;padding:8px;border-radius:10px;max-height:150px;overflow:auto;font-size:12px"></div></div>
+<button onclick="document.getElementById('ADM').style.display='none'" class="b" style="background:#333;max-width:480px;margin:10px auto;display:block">❌ CERRAR</button></div>
+<div class="h" id="TOP">TEMO <span>STORE</span> - Privado</div>
+<div class="c" style="border:2px solid #0f0" id="LB"><h3 style="color:#0f0;text-align:center">🔐 LOGIN CLIENTES</h3><input id="u" placeholder="Usuario"><input id="p" type="password" placeholder="Contraseña"><button onclick="LG()" class="b" style="background:#0f0;color:#000">ENTRAR</button><a href="https://wa.me/523224528803" style="display:block;text-align:center;background:#25D366;color:#fff;padding:14px;border-radius:10px;margin-top:10px;font-weight:900;text-decoration:none">📲 PEDIR CUENTA</a><p style="text-align:center;color:#555;font-size:11px;margin-top:6px">Toca 5 veces el titulo para admin</p></div>
+<div id="SH" style="display:none"><div class="c" style="text-align:center;border-color:#0f0"><div id="MI"></div><button onclick="LO()" class="b" style="background:#333">SALIR</button></div>
 <div style="max-width:480px;margin:0 auto;padding:0 12px"><div class="g">
 <div class="p"><b>DRIP 1 DIA</b><br>$80<br><button onclick="BY('DRIP 1 DIA',80)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
 <div class="p"><b>DRIP 7 DIAS</b><br>$240<br><button onclick="BY('DRIP 7 DIAS',240)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
 <div class="p"><b>DRIP 15 DIAS</b><br>$350<br><button onclick="BY('DRIP 15 DIAS',350)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
 <div class="p"><b>DRIP 30 DIAS</b><br>$500<br><button onclick="BY('DRIP 30 DIAS',500)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>CUBAN 30 DIAS</b><br>$200<br><button onclick="BY('CUBAN 30 DIAS',200)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>PATO 30 DIAS</b><br>$280<br><button onclick="BY('PATO 30 DIAS',280)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-</div><div id="MK" class="c" style="margin-top:12px"></div></div></div>
+<div class="p"><b>CUBAN</b><br>$200<br><button onclick="BY('CUBAN 30 DIAS',200)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
+<div class="p"><b>PATO</b><br>$280<br><button onclick="BY('PATO 30 DIAS',280)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
+</div><div id="MK" class="c"></div></div></div>
 <script>
-let tc=0;function T(){tc++;if(tc>=5){ADM.style.display='block';R();}setTimeout(()=>tc=0,3000)}
 function GU(){try{return JSON.parse(localStorage.getItem('tu')||'{}')}catch(e){return{}}}
 function SU(o){localStorage.setItem('tu',JSON.stringify(o))}
 function GK(){try{return JSON.parse(localStorage.getItem('tk')||'[]')}catch(e){return[]}}
 function SK(a){localStorage.setItem('tk',JSON.stringify(a))}
-function CU(){let u=nu.value.toLowerCase().trim(),p=np.value.trim(),s=parseInt(ns.value)||0;if(!u||!p)return alert('Falta');let x=GU();x[u]={pass:p,saldo:s};SU(x);alert('✅ '+u+' creado $'+s);nu.value='';np.value='';ns.value='';R();}
-function AS(){let u=au.value.toLowerCase().trim(),m=parseInt(am.value);if(!u||!m)return alert('Falta');let x=GU();if(!x[u])return alert('No existe');x[u].saldo+=m;SU(x);alert('✅ '+u+' saldo $'+x[u].saldo);R();if(localStorage.getItem('ts'))S();}
-function CK(){let t=kt.value,c=parseInt(kc.value)||1,a=GK();for(let i=0;i<c;i++){let k=t.replace(/\s/g,'').slice(0,4)+'-'+Math.random().toString(36).substr
+function CU(){let u=document.getElementById('nu').value.toLowerCase().trim(),p=document.getElementById('np').value.trim(),s=parseInt(document.getElementById('ns').value)||0;if(!u||!p)return alert('Falta');let x=GU();x[u]={pass:p,saldo:s};SU(x);alert('✅ '+u+' $'+s);R();}
+function AS(){let u=document.getElementById('au').value.toLowerCase().trim(),m=parseInt(document.getElementById('am').value);let x=GU();if(!x[u])return alert('No existe');x[u].saldo+=m;SU(x);alert('✅ '+u+' $'+x[u].saldo);R();}
+function CK(){let t=document.getElementById('kt').value,c=parseInt(document.getElementById('kc').value)||1,a=GK();for(let i=0;i<c;i++){let k=t.replace(/\s/g,'').slice(0,4)+'-'+Math.random().toString(36).substr(2,7).toUpperCase();a.push({key:k,tipo:t,dueno:''})}SK(a);R();}
+function LG(){let u=document.getElementById('u').value.toLowerCase().trim(),p=document.getElementById('p').value;let x=GU();if(!x[u])return alert('No existe');if(x[u].pass!=p)return alert('Mal pass');localStorage.setItem('ts',u);S();}
+function S(){let s=localStorage.getItem('ts');let x=GU();if(!x[s])return;document.getElementById('LB').style.display='none';document.getElementById('SH').style.display='block';document.getElementById('MI').innerHTML='👤 '+s+' | Saldo <b style=color:#0f0>$'+x[s].saldo+'</b>';let ks=GK().filter(k=>k.dueno===s);let h='<h3 style=color:#ff0;text-align:center>🔑 Tus Keys</h3>';if(!ks.length)h+='<p style=color:#888;text-align:center>Sin keys</p>';else ks.reverse().forEach(k=>h+=`<div class=i><span>${k.tipo}</span><b style=color:#ff0>${k.key}</b></div>`);document.getElementById('MK').innerHTML=h;R();}
+function BY(pr,pc){let s=localStorage.getItem('ts'),x=GU();if(x[s].saldo<pc)return alert('Sin saldo');x[s].saldo-=pc;SU(x);let a=GK();let k=pr.replace(/\s/g,'').slice(0,4)+'-'+Math.random().toString(36).substr
