@@ -1,23 +1,51 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head>
-<body class="bg-black text-white overflow-x-hidden">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2 items-center"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border font-black">💰 $0</span><button onclick="adminPanel.classList.toggle('hidden')" class="bg-black px-2 py-1 rounded-full text-xs">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black text-xs">🛒 <span id="cartCount">0</span></button></div></header>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEMO STORE</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#000}
+.neon{box-shadow:0 0 10px #ff0000,0 0 20px #ff0000; border:1px solid #ff0000}
+.neon-btn{background:#ff0000; box-shadow:0 0 15px #ff0000; color:white}
+.card{background:#0a0a0a; border:1px solid #ff0000; box-shadow:0 0 8px #ff0000a0}
+</style>
+</head>
+<body class="text-white">
+
+<header class="bg-[#ff0000] p-3 flex justify-between items-center sticky top-0 z-50 shadow-[0_0_20px_red]">
+<b class="font-black tracking-widest">TEMO STORE 🔥</b>
+<div class="flex gap-2 items-center">
+<span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border border-red-500">💰 $0</span>
+<button onclick="adminPanel.classList.toggle('hidden')" class="bg-black px-2 py-1 rounded-full border border-red-500 text-xs">⚙️</button>
+<button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button>
+</div>
+</header>
 
 <div class="max-w-md mx-auto p-3 space-y-3">
-  <div class="flex gap-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button onclick="cargarSaldo()" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
-  <button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
-  <div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3">
-    <p id="miIdGenerado" class="text-center text-green-400 font-black text-sm mb-3"></p>
-    <div class="grid grid-cols-2 gap-2 mb-3"><button onclick="mostrarPago('transfer')" class="bg-[#009EE3] py-3 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button><button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-3 rounded-full font-black text-[10px]">🏪 OXXO</button></div>
-    <div id="pagoTransfer" class="bg-black rounded-xl p-3 text-[11px]"><p class="font-black text-yellow-400 text-center mb-2">TRANSFERENCIA SPEI</p><p>CLABE: <b>722969027389252036</b></p><p>Titular: <b>Cuauhtémoc Martínez Silva</b></p><p>Concepto: <b id="conceptoTxt" class="text-yellow-400"></b></p><button onclick="navigator.clipboard.writeText('722969027389252036');alert('CLABE copiada')" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black text-[10px]">COPIAR CLABE</button></div>
-    <div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center"><p class="font-black text-xs mb-2">MUESTRA ESTO EN OXXO</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=2242170320800281" class="mx-auto w-56 h-56 rounded-lg border"><div class="bg-zinc-100 border-2 border-dashed rounded-lg p-2 mt-2"><b class="text-lg tracking-widest">2242 1703 2080 0281</b></div></div>
-    <button onclick="enviarComprobante()" class="bg-[#25D366] w-full mt-3 py-3 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE (WhatsApp)</button>
+  <div class="flex gap-2"><input id="userId" placeholder="TU ID: TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button onclick="cargarSaldo()" class="neon-btn px-5 rounded-full font-black text-xs">ENTRAR</button></div>
+  <button onclick="crearAleatorio()" class="w-full py-3 rounded-full font-black bg-yellow-400 text-black shadow-[0_0_15px_yellow]">🎲 CREAR TU ID ALEATORIO</button>
+
+  <div id="boxNuevoId" class="hidden card rounded-xl p-3">
+    <p id="miIdGenerado" class="text-center text-red-500 font-black text-sm mb-3 drop-shadow-[0_0_10px_red]"></p>
+    <div class="grid grid-cols-2 gap-2 mb-3">
+      <button onclick="mostrarPago('transfer')" class="neon-btn py-3 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button>
+      <button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-3 rounded-full font-black text-[10px] shadow-[0_0_10px_yellow]">🏪 OXXO</button>
+    </div>
+    <div id="pagoTransfer" class="bg-black rounded-xl p-3 text-[11px] border border-red-600">
+      <p class="font-black text-red-500 text-center mb-2">TRANSFERENCIA SPEI</p>
+      CLABE: <b class="text-white">722969027389252036</b><br>
+      Banco: STP / Mercado Pago<br>
+      Titular: Cuauhtémoc Martínez Silva<br>
+      Concepto: <b id="conceptoTxt" class="text-red-500"></b><br>
+      <button onclick="navigator.clipboard.writeText('722969027389252036');alert('CLABE copiada')" class="bg-white text-black w-full mt-3 py-2 rounded-full font-black">COPIAR CLABE</button>
+    </div>
+    <div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=2242170320800281" class="mx-auto w-56 h-56">
+      <div class="bg-black text-white border-2 border-dashed border-red-500 rounded-lg p-2 mt-2"><b class="tracking-widest">2242 1703 2080 0281</b></div>
+    </div>
+    <button onclick="enviarComprobante()" class="bg-[#25D366] w-full mt-3 py-3 rounded-full font-black text-xs shadow-[0_0_10px_green]">📤 ENVIAR COMPROBANTE</button>
   </div>
 </div>
 
-<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3"><div id="loginDiv"><input id="email" placeholder="admin correo" class="w-full p-2 rounded text-black mb-2 text-sm"><input id="pass" type="password" placeholder="pass" class="w-full p-2 rounded text-black mb-2 text-sm"><button onclick="login()" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar</button></div><div id="panel" class="hidden"><div class="flex justify-between"><b class="text-xs">ADMIN - AGREGA KEYS AQUÍ</b><button onclick="logout()" class="bg-red-600 px-2 py-1 rounded-full text-[10px]">Salir</button></div><div id="lista" class="grid gap-2 mt-3"></div><div class="flex gap-1 mt-3"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-20 p-2 rounded text-black"><button onclick="recargar()" class="bg-green-500 px-3 rounded-full font-black">+</button></div></div></div>
-
-<main id="productos" class="max-w-md mx-auto p-3 grid grid-cols-2 gap-3"></main>
-
-<!-- MODAL CARRITO -->
-<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><h3 class="font-black">Tu Pedido</h3><div id="cartItems" class="mt-2"></div><div id="cartTotal" class="font-black text-xl mt-2"></div><button id="checkout" class="bg-black text-white w-full p-3 rounded-full mt-3 font
+<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-950 p-3 border-y
