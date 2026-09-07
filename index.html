@@ -34,20 +34,6 @@ body{background:#000;color:#fff;padding-bottom:40px}
 <input id="aUser" placeholder="Usuario" style="width:100%;padding:12px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:8px">
 <input id="aPass" type="password" placeholder="Contraseña" style="width:100%;padding:12px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:8px">
 <button onclick="loginA()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900">ENTRAR</button>
-<p id="aErr" style="color:red;display:none;margin-top:10px">Datos incorrectos</p>
+<p id="aErr" style="color:red;display:none">Datos mal</p>
 </div>
-<div id="aContent" style="display:none;max-width:650px;margin:0 auto">
-<h2 style="color:#0f0;text-align:center">PANEL ADMIN 🔥</h2>
-<button onclick="restaurarTodo()" style="width:100%;padding:12px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900;margin:10px 0">✅ RESTAURAR PRODUCTOS</button>
-<div class="cardA">
-<h3 style="color:yellow">💰 RECARGAR SALDO</h3>
-<input id="recId" placeholder="ID TEMO-XXXX" style="width:100%;padding:10px;background:#000;border:1px solid #333;color:#fff;border-radius:6px;margin:8px 0">
-<input id="recMonto" type="number" placeholder="Monto" style="width:100%;padding:10px;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<button onclick="addSaldo()" style="width:100%;padding:10px;background:#0f0;color:#000;border:none;border-radius:6px;font-weight:900;margin-top:8px">+ AGREGAR SALDO</button>
-</div>
-<div id="aList"></div>
-</div>
-</div>
-<script>
-let ID="";try{ID=localStorage.getItem('temo_myID')||""}catch(e){}ID=(ID+"").trim().toUpperCase();if(!ID||ID.length<6||ID==="|"||ID.includes("|")||ID.includes(" ")){ID='TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase();localStorage.setItem('temo_myID',ID)}
-const BASE=[{n:'DRIP CLIENT',i:'💧',id:'d
+<div id="
