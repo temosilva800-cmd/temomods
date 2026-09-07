@@ -1,53 +1,92 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TEMO STORE</title>
-<script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="background:#000;color:#fff">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0"><b>✅ANDROID TEMO</b><button onclick="document.getElementById('adminPanel').classList.toggle('hidden')" class="bg-black px-3 py-1 rounded-full text-xs">⚙️ ADMIN</button></header>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-black text-white">
+<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border">💰 $0</span><button onclick="adminPanel.classList.toggle('hidden')" class="bg-black px-2 py-1 rounded-full">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
 
-<div class="max-w-md mx-auto p-3 space-y-2">
-<p id="saldoTxt" class="text-center font-black text-red-500">💰 $0</p>
-<input id="userId" placeholder="TEMO-XXXX" class="w-full p-3 rounded-full text-black font-bold text-xs uppercase">
-<button onclick="crear()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR ID (1 POR CELULAR)</button>
-<button onclick="entrar()" class="bg-red-600 w-full py-3 rounded-full font-black">ENTRAR</button>
-<p id="msg" class="text-center text-xs text-red-500 font-black"></p>
-
-<div id="pagos" class="hidden bg-zinc-900 border border-red-600 rounded-xl p-3 text-xs">
-<p>CLABE: <b>722969027389252036</b></p>
-<p>OXXO: <b>2242 1703 2080 0281</b></p>
-<p>Concepto: <b id="concepto"></b></p>
-<p>ASEPTO CUALQUIER METODO DE PAGO ✅</p>
-<button onclick="verHist()" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black">📜 VER HISTORIAL</button>
-<div id="hist" class="mt-2 space-y-2"></div>
-</div>
+<div class="max-w-md mx-auto p-3">
+  <div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button onclick="cargarSaldo()" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
+  <button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
+  <div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 mt-3">
+    <p id="miIdGenerado" class="text-center text-green-400 font-black mb-2"></p>
+    <div class="grid grid-cols-2 gap-2 mb-2"><button onclick="mostrarPago('transfer')" class="bg-blue-500 py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button><button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 OXXO</button></div>
+    <div id="pagoTransfer" class="bg-black rounded p-2 text-[11px]">CLABE: <b>722969027389252036</b><br>Banco: STP / Mercado Pago<br>Titular: Cuauhtémoc Mtz Silva<br>Concepto: <b id="conceptoTxt" class="text-yellow-400"></b><br><button onclick="navigator.clipboard.writeText('722969027389252036');alert('copiada')" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black text-[10px]">COPIAR CLABE</button></div>
+    <div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=2242170320800281" class="mx-auto w-48 h-48"><p class="mt-2 font-black tracking-widest">2242 1703 2080 0281</p></div>
+    <button onclick="window.open('https://wa.me/523224528803?text='+encodeURIComponent('Hola Temo ID '+usuarioActual),'_blank')" class="bg-[#25D366] w-full mt-3 py-3 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE</button>
+    <div id="historialBox" class="mt-3 space-y-2"></div>
+  </div>
 </div>
 
-<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 border-2 border-red-600 rounded-xl p-3 m-3">
-<input id="adminPass" type="password" placeholder="Pass admin" class="w-full p-2 rounded text-black text-xs mb-2">
-<button onclick="loginAdmin()" class="bg-red-600 w-full py-2 rounded-full font-black text-xs mb-2">ENTRAR ADMIN temo123</button>
-<div id="adminContent" class="hidden space-y-2">
-<textarea id="keysInput" placeholder="Pega keys 1 por linea con formato: drip1|KEY123" class="w-full p-2 rounded text-black text-xs h-24"></textarea>
-<button onclick="guardarKeys()" class="bg-red-600 w-full py-2 rounded-full font-black text-xs">GUARDAR KEYS LOCAL</button>
-<input id="recargaId" placeholder="TEMO-XXXX" class="w-full p-2 rounded text-black text-xs mt-2">
-<input id="recargaMonto" type="number" placeholder="Monto" class="w-full p-2 rounded text-black text-xs">
-<button onclick="recargar()" class="bg-yellow-400 text-black w-full py-2 rounded-full font-black text-xs">RECARGAR SALDO</button>
-<div id="listaUsers" class="text-[10px] mt-2"></div>
-</div>
-</div>
+<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y border-zinc-800"><div id="loginDiv"><input id="email" placeholder="correo admin" class="w-full p-2 rounded text-black mb-2"><input id="pass" type="password" placeholder="pass" class="w-full p-2 rounded text-black mb-2"><button onclick="login()" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar</button></div><div id="panel" class="hidden"><b>ADMIN</b><div id="lista" class="grid gap-2 mt-3"></div><div class="flex gap-1 mt-3"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button onclick="recargar()" class="bg-green-500 px-3 rounded-full">+</button></div></div></div>
 
-<div class="max-w-md mx-auto p-3 grid grid-cols-2 gap-3">
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 1 DIA 4usd 🛒</b><p class="text-red-500 font-black">$4</p><button onclick="buy('drip1','DRIP 1 DIA',4)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 7 DIAS 12usd</b><p class="text-red-500 font-black">$12</p><button onclick="buy('drip7','DRIP 7 DIAS',12)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 15 DIAS 15usd</b><p class="text-red-500 font-black">$15</p><button onclick="buy('drip15','DRIP 15 DIAS',15)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 30 DIAS 20usd</b><p class="text-red-500 font-black">$20</p><button onclick="buy('drip30','DRIP 30 DIAS',20)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">FLOURITE 7 DIAS 30usd</b><p class="text-red-500 font-black">$30</p><button onclick="buy('flou7','FLOURITE 7 DIAS',30)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">FLOURITE 30 DIAS 50usd</b><p class="text-red-500 font-black">$50</p><button onclick="buy('flou30','FLOURITE 30 DIAS',50)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">CUBAN 1 dia 3</b><p class="text-red-500 font-black">$3</p><button onclick="buy('cuban1','CUBAN 1 DIA',3)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">CUBAN 7 dias 5 USD</b><p class="text-red-500 font-black">$5</p><button onclick="buy('cuban7','CUBAN 7 DIAS',5)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><b class="text-xs">CUBAN 30 dias 10 USD</b><p class="text-red-500 font-black">$10</p><button onclick="buy('cuban30','CUBAN 30 DIAS',10)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">HG 1 DIA 5 USD</b><p class="text-red-500 font-black">$5</p><button onclick="buy('hg1','HG 1 DIA',5)" class="bg-red-600 w-full mt-2 py
-<button onclick="alert('SI SIRVE')">PROBAR BOTON</button>
-<h1>DRIP 1 DIA $4</h1>
+<main id="productos" class="max-w-md mx-auto p-3 grid grid-cols-2 gap-3"></main>
+<div class="text-center pb-10"><button onclick="seed()" class="bg-zinc-800 px-4 py-2 rounded-full text-[10px] mt-4">⚠️ Si no aparecen dale aquí para crearlos en Firebase</button></div>
+
+<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><div id="cartItems"></div><div id="cartTotal" class="font-black mt-2"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR CON SALDO - VER KEY AQUI</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs">Cerrar</button></div></div>
+
+<!-- MODAL NUEVO DE KEYS - AQUI SE ENTREGAN SIN WHATSAPP -->
+<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 shadow-[0_0_30px_red] w-full max-w-md rounded-2xl p-5 text-center"><h2 class="font-black text-xl text-green-400">✅ COMPRA EXITOSA</h2><p class="text-xs text-zinc-400 mt-1">Tus keys se guardaron en tu historial</p><div id="keysEntregadas" class="bg-black border border-zinc-800 rounded-xl p-3 mt-3 text-left space-y-2 max-h-64 overflow-auto"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {getFirestore,collection,doc,setDoc,getDoc,updateDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+const app=initializeApp({apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"});
+const auth=getAuth(app); const db=getFirestore(app);
+let cart=[], precios={}, usuarioActual=localStorage.getItem('temo_id')||null, saldoActual=0;
+const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
+
+window.mostrarPago=(t)=>{pagoOxxo.classList.toggle('hidden',t!=='oxxo');pagoTransfer.classList.toggle('hidden',t==='oxxo');}
+function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
+window.crearAleatorio=async()=>{let id=generarId();try{await setDoc(doc(db,"users",id),{saldo:0,creado:new Date().toISOString()});}catch(e){}usuarioActual=id;localStorage.setItem('temo_id',id);userId.value=id;saldoDisplay.innerText=`💰 $0 | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID: ${id}`;conceptoTxt.innerText=id;renderHistorial();}
+window.cargarSaldo=async()=>{let id=userId.value.trim().toUpperCase();try{let s=await getDoc(doc(db,"users",id));if(!s.exists())return alert("ID no existe");saldoActual=s.data().saldo||0;}catch(e){saldoActual=Number(localStorage.getItem('saldo_'+id)||0);}usuarioActual=id;localStorage.setItem('temo_id',id);saldoDisplay.innerText=`💰 $${saldoActual} | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`${id} | Saldo $${saldoActual}`;conceptoTxt.innerText=id;renderHistorial();}
+
+function renderTienda(){
+  let c=document.getElementById('productos'); c.innerHTML='';
+  let lista = Object.keys(precios).length>0? Object.entries(precios).map(([k,v])=>({id:k,...v})) : base.map(b=>({id:b.id,nombre:b.n,precio:b.p,keys:[]}));
+  lista.forEach(p=>{
+    c.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3"><b class="text-[11px]">${p.nombre}</b><p class="text-green-400 font-black">$${p.precio}</p><p class="text-[9px] text-zinc-500">${p.keys?p.keys.length:0} keys</p><button onclick="add('${p.id}','${p.nombre}',${p.precio})" class="bg-white text-black w-full mt-2 py-2 rounded-full font-bold text-[10px]">Comprar</button></div>`;
+  });
+}
+onSnapshot(collection(db,"temo_precios"),snap=>{snap.forEach(d=>precios[d.id]=d.data());renderTienda(); renderAdmin();});
+function renderAdmin(){let h='';base.forEach(x=>{let d=precios[x.id]||{precio:x.p,keys:[]};h+=`<div class="bg-black p-2 rounded border border-zinc-800"><b class="text-[10px]">${x.n}</b><div class="flex gap-1 mt-1"><input id="price_${x.id}" type="number" value="${d.precio||x.p}" class="w-16 p-1 rounded text-black text-xs"><button onclick="savePrice('${x.id}','${x.n}')" class="bg-white text-black px-2 rounded-full text-[10px]">OK</button></div><textarea id="keys_${x.id}" class="w-full mt-1 p-1 rounded text-black text-xs h-10" placeholder="keys"></textarea><button onclick="addKeys('${x.id}','${x.n}')" class="bg-green-500 w-full mt-1 py-1 rounded-full text-[10px] font-black">+ KEYS</button></div>`});document.getElementById('lista').innerHTML=h;}
+
+window.add=(id,n,p)=>{cart.push({id,n,p});cartCount.innerText=cart.length;}
+cartBtn.onclick=()=>{let h='',t=0;cart.forEach(i=>{h+=`<div class="flex justify-between text-sm"><span>${i.n}</span><b>$${i.p}</b></div>`;t+=i.p;});cartItems.innerHTML=h;cartTotal.innerText='Total $'+t;cartModal.classList.remove('hidden');}
+
+// NUEVO CHECKOUT - ENTREGA DIRECTA SIN WHATSAPP
+checkout.onclick=async()=>{
+  let t=cart.reduce((a,b)=>a+b.p,0);if(!usuarioActual)return alert("Entra con ID");if(saldoActual<t)return alert("Saldo insuficiente");
+  let htmlKeys='';
+  for(let it of cart){
+    let ref=doc(db,"temo_precios",it.id);let sn=await getDoc(ref);let key="SIN-STOCK - CONTACTA A TEMO";
+    if(sn.exists()&&sn.data().keys?.length){key=sn.data().keys[0];await updateDoc(ref,{keys:sn.data().keys.slice(1)});}
+    htmlKeys+=`<div class="border-b border-zinc-800 py-2"><b class="text-white text-xs">${it.n}</b><br><span class="font-mono text-green-400 text-sm select-all">${key}</span></div>`;
+    // Guardar en historial del usuario
+    let hist = JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]');
+    hist.unshift({producto:it.n, key:key, fecha:new Date().toLocaleString()});
+    localStorage.setItem('hist_'+usuarioActual, JSON.stringify(hist));
+  }
+  await updateDoc(doc(db,"users",usuarioActual),{saldo:saldoActual-t});saldoActual-=t;saldoDisplay.innerText=`💰 $${saldoActual} | ${usuarioActual}`;localStorage.setItem('saldo_'+usuarioActual, saldoActual);
+  cart=[];cartCount.innerText=0;cartModal.classList.add('hidden');
+  document.getElementById('keysEntregadas').innerHTML=htmlKeys;
+  document.getElementById('keyModal').classList.remove('hidden');
+  renderHistorial();
+}
+
+function renderHistorial(){
+  if(!usuarioActual) return;
+  let hist = JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]');
+  let h='<p class="text-[11px] font-black mt-3 border-t border-zinc-800 pt-2">📜 TU HISTORIAL DE KEYS</p>';
+  hist.forEach(v=>{h+=`<div class="bg-black border border-zinc-800 p-2 rounded text-[10px]"><b>${v.producto}</b><br><span class="font-mono text-green-400">${v.key}</span><br><span class="text-[9px] text-zinc-500">${v.fecha}</span></div>`});
+  document.getElementById('historialBox').innerHTML=h;
+}
+
+window.login=async()=>{await signInWithEmailAndPassword(auth,email.value,pass.value)}; window.logout=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{if(u){loginDiv.classList.add('hidden');panel.classList.remove('hidden');renderAdmin();}else{loginDiv.classList.remove('hidden');panel.classList.add('hidden');}});
+window.savePrice=async(id,nom)=>{let v=Number(document.getElementById('price_'+id).value);let ref=doc(db,"temo_precios",id);let s=await getDoc(ref);let k=s.exists()?s.data().keys||[]:[];await setDoc(ref,{nombre:nom,precio:v,keys:k});}
+window.addKeys=async(id,nom)=>{let txt=document.getElementById('keys_'+id).value.trim();if(!txt)return;let ns=txt.split('\n').map(s=>s.trim());let ref=doc(db,"temo_precios",id);let s=await getDoc(ref);let d=s.exists()?s.data():{nombre:nom,precio:0,keys:[]};await setDoc(ref,{nombre:nom,precio:d.precio||0,keys:[...(d.keys||[]),...ns]});document.getElementById('keys_'+id).value='';}
+window.recargar=async()=>{let id=recargaId.value.trim().toUpperCase();let m=Number(recargaMonto.value);let ref=doc(db,"users",id);let s=await getDoc(ref);if(!s.exists())return alert("No existe");await updateDoc(ref,{saldo:(s.data().saldo||0)+m});alert("Recargado");}
+window.seed=async()=>{for(let b of base){let ref=doc(db,"temo_precios",b.id);let s=await getDoc(ref);if(!s.exists())await setDoc(ref,{nombre:b.n,precio:b.p,keys:[]});}alert("Productos creados, recarga la página"); renderTienda();}
+renderTienda();
+if(usuarioActual){userId.value=usuarioActual;cargarSaldo();}
+</script></body></html>
