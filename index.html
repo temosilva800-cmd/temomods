@@ -3,196 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TEMO STORE OFICIAL</title>
+<title>TEMO STORE OFICIAL 🔥</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#000;color:#fff;padding-bottom:20px}
-.top{background:red;padding:12px;display:flex;justify-content:space-between;font-weight:bold;position:sticky;top:0;z-index:10}
-.banner{margin:12px;border:2px solid red;border-radius:12px;padding:12px;background:#140000;text-align:center}
-.box{margin:12px;background:#111;border:1px solid #333;border-radius:12px;padding:12px;text-align:center}
-.box input{width:100%;padding:12px;background:#000;color:#fff;border:1px solid #333;border-radius:8px;text-align:center;font-weight:bold}
-.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center}
-.btn{background:red;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:bold}
-#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:15px}
+body{background:#000;color:#fff;padding-bottom:40px}
+.top{background:red;padding:14px;display:flex;justify-content:space-between;font-weight:900;position:sticky;top:0;z-index:10}
+.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;background:#140000;text-align:center;font-weight:900}
+.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}
+.box input{width:100%;padding:12px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;text-align:center;font-weight:900}
+.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.btn{background:red;color:#fff;border:none;padding:9px 18px;border-radius:20px;font-weight:900}
+.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}
+#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}
+.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}
+.cardA textarea{width:100%;min-height:70px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}
+.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}
+.row{display:flex;gap:6px}.row.in{flex:1}
+.editBtn{background:#222;border:1px solid #555;color:#fff;padding:7px 12px;border-radius:6px;font-weight:900}
+.saveBtn{background:#ff0;color:#000;border:none;padding:7px 12px;border-radius:6px;font-weight:900}
 </style>
 </head>
 <body>
 <div class="top"><span>🔥 TEMO STORE</span><span>💰 $<span id="sTop">0</span></span></div>
-<div class="banner"><h3 style="color:red">BIENVENIDO A TEMO STORE 🔥</h3><small style="color:#888">ID único - entrega auto</small></div>
+<div class="banner">🔥 BIENVENIDO A TEMO STORE OFICIAL 🔥</div>
 <div class="box">
 <input id="idIn" readonly>
-<div style="margin-top:8px">ID: <b id="idTxt"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div>
-<div style="display:flex;gap:6px;margin-top:8px"><button onclick="navigator.clipboard.writeText(ID);alert('Copiado '+ID)" style="flex:1;padding:10px;background:#222;border:1px solid #444;border-radius:8px;color:#fff">📋 Copiar ID</button><button onclick="crearID()" style="flex:1;padding:10px;background:#ff0;border:none;border-radius:8px;color:#000;font-weight:bold">🎲 Nuevo ID</button></div>
+<div style="margin-top:10px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div>
+<div style="margin-top:10px"><button onclick="navigator.clipboard.writeText(ID);alert('Copiado: '+ID)" style="width:100%;padding:11px;background:#222;border:1px solid #444;border-radius:8px;color:#fff;font-weight:900">📋 COPIAR MI ID</button></div>
 </div>
 <div id="lista"></div>
-
 <div id="admin">
-<div id="aLogin" style="max-width:360px;margin:60px auto;background:#111;border:2px solid #0f0;border-radius:12px;padding:20px;text-align:center">
+<div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center">
 <h2 style="color:#0f0">ADMIN TEMO</h2>
-<input id="aUser" placeholder="Usuario" style="width:100%;padding:12px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<input id="aPass" type="password" placeholder="Contraseña" style="width:100%;padding:12px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<button onclick="loginA()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:bold">ENTRAR</button>
-<p id="aErr" style="color:red;display:none;margin-top:8px">Datos mal</p>
-<button onclick="document.getElementById('admin').style.display='none';history.replaceState(null,'','/')" style="margin-top:10px;width:100%;padding:8px;background:#333;border:none;border-radius:6px;color:#fff">Cerrar</button>
+<input id="aUser" placeholder="Usuario" class="in"><input id="aPass" type="password" placeholder="Contraseña" class="in">
+<button onclick="loginA()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button>
 </div>
-<div id="aContent" style="display:none;max-width:600px;margin:0 auto">
-<h2 style="color:#0f0;text-align:center;margin-bottom:10px">PANEL ADMIN</h2>
-<button onclick="restaurarTodo()" style="width:100%;padding:12px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900;margin-bottom:10px">✅ RESTAURAR PRODUCTOS ORIGINALES</button>
-
-<div style="background:#111;border:1px solid #ff0;border-radius:10px;padding:10px;margin-bottom:12px">
-<b style="color:#ff0">✏️ CREAR / EDITAR PRODUCTO</b>
-<input id="newId" placeholder="id ej: vlt (sin espacios)" style="width:100%;padding:8px;margin:5px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<input id="newNombre" placeholder="Nombre ej: VLT MODS" style="width:100%;padding:8px;margin:5px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<div style="display:flex;gap:5px"><input id="newDias" type="number" placeholder="Días ej:30" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id="newPrecio" type="number" placeholder="$ ej:20" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"></div>
-<button onclick="crearNuevoProd()" style="width:100%;margin-top:6px;padding:10px;background:#ff0;border:none;border-radius:8px;font-weight:bold;color:#000">GUARDAR / CREAR</button>
-<small style="color:#888">Si el ID existe, cambia nombre/precio. Si no existe, lo crea.</small>
-</div>
-
-<div style="background:#111;border:1px solid #0af;border-radius:10px;padding:10px;margin-bottom:12px">
-<b style="color:#0af">💳 RECARGA SALDO</b>
-<div style="display:flex;gap:5px;margin-top:6px"><input id="rID" placeholder="ID TEMO-XXXX" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id="rM" type="number" placeholder="$" style="width:70px;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><button onclick="recargar()" style="padding:8px 14px;background:#0af;border:none;border-radius:6px;font-weight:bold;color:#fff">+</button></div>
-</div>
-
+<div id="aContent" style="display:none;max-width:700px;margin:0 auto">
+<h2 style="color:#0f0;text-align:center">PANEL ADMIN</h2>
+<div class="row"><button onclick="restaurarTodo()" style="flex:1;padding:12px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">✅ RESTAURAR</button><button onclick="borrarKeys()" style="flex:1;padding:12px;background:red;color:#fff;border:none;border-radius:8px;font-weight:900">🗑️ BORRAR</button></div>
+<div class="cardA"><h3 style="color:yellow">💰 RECARGAR</h3><input id="recId" placeholder="ID TEMO-XXXX" class="in"><input id="recMonto" type="number" placeholder="Monto" class="in"><button onclick="addSaldo()" style="width:100%;padding:10px;background:#0f0;color:#000;border:none;border-radius:6px;font-weight:900;margin-top:6px">+ AGREGAR SALDO</button></div>
 <div id="aList"></div>
+<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button>
 </div>
 </div>
-
 <script>
-const BASE=[
-{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
-{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},
-{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},
-{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},
-{n:'PATO TEAM',i:'🦆',id:'pato',ps:[{id:'pato-30d',d:'30 DIAS',p:14}]},
-{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]}
-];
+let ID="";try{ID=localStorage.getItem('temo_myID')||""}catch(e){}ID=(ID+"").trim().toUpperCase();if(!ID||ID.length<6||ID==="|"||ID.includes("|")||ID.includes(" ")){ID='TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase();localStorage.setItem('temo_myID',ID)}
+const BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},{n:'PATO TEAM',i:'🦆',id:'pato',ps:[{id:'pato-30d',d:'30 DIAS',p:14}]},{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]}];
 function getProds(){try{let c=localStorage.getItem('temo_prods');return c?JSON.parse(c):BASE}catch(e){return BASE}}
 function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
 function getKeys(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}
 function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
 function getUsers(){try{return JSON.parse(localStorage.getItem('temo_users')||'{}')}catch(e){return{}}}
 function setUsers(u){localStorage.setItem('temo_users',JSON.stringify(u))}
-
-let ID=localStorage.getItem('temo_myID');
-if(!ID){ID='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('temo_myID',ID)}
-let users=getUsers(); if(!users[ID]){users[ID]={saldo:0,hist:[]}; setUsers(users)}
-
-function crearID(){
-let n='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();
-localStorage.setItem('temo_myID',n);
-let u=getUsers(); if(!u[n]){u[n]={saldo:0,hist:[]}; setUsers(u)}
-alert('Nuevo ID: '+n); location.reload();
-}
-
-document.getElementById('idIn').value=ID;
-document.getElementById('idTxt').innerText=ID;
-function updSaldo(){let u=getUsers(); let s=u[ID]?u[ID].saldo:0; document.getElementById('sTop').innerText=s; document.getElementById('sTxt').innerText=s}
-updSaldo();
-
-function render(){
-let prods=getProds(); let keys=getKeys();
-let c=document.getElementById('lista'); c.innerHTML='';
-prods.forEach(p=>{
-let stock=0; p.ps.forEach(pl=>{stock+=(keys[pl.id]?keys[pl.id].length:0)});
-let d=document.createElement('div'); d.className='prod';
-d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#777>'+p.ps.length+' planes - '+stock+' keys</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';
-c.appendChild(d);
-});
-}
-render();
-
-function ver(pid){
-let prods=getProds(); let keys=getKeys();
-let p=prods.find(x=>x.id===pid);
-let txt=p.ps.map(pl=>pl.d+' $'+pl.p+' Stock:'+(keys[pl.id]?keys[pl.id].length:0)).join('\n');
-let ans=prompt(p.n+'\n'+txt+'\n\nEscribe ej: 1 DIA, 7 DIAS, 30 DIAS');
-if(!ans)return;
-let plan=p.ps.find(pl=>pl.d.toLowerCase()===ans.toLowerCase())||p.ps.find(pl=>pl.d.toLowerCase().includes(ans.toLowerCase()));
-if(plan) buy(plan.id);
-}
-function buy(id){
-let keys=getKeys(); let u=getUsers(); let prods=getProds();
-let plan=null; prods.forEach(p=>{p.ps.forEach(pl=>{if(pl.id===id) plan=pl})});
-if(!keys[id]||keys[id].length===0) return alert('Sin stock');
-if(u[ID].saldo < plan.p) return alert('Saldo insuficiente: $'+u[ID].saldo);
-let key=keys[id].shift(); setKeys(keys);
-u[ID].saldo-=plan.p; u[ID].hist.push({plan:id,key:key,fecha:new Date().toLocaleString()}); setUsers(u);
-updSaldo(); render(); alert('COMPRADO!\nKEY: '+key); navigator.clipboard.writeText(key);
-}
-
-// ADMIN
-if(location.search.toLowerCase().includes('admin')) document.getElementById('admin').style.display='block';
-function loginA(){
-let us=document.getElementById('aUser').value.trim();
-let ps=document.getElementById('aPass').value.trim();
-if(us==='Temo2007'&&ps==='Temo2007'){
-document.getElementById('aLogin').style.display='none';
-document.getElementById('aContent').style.display='block';
-renderA();
-}else document.getElementById('aErr').style.display='block';
-}
-function renderA(){
-let prods=getProds(); let keys=getKeys();
-let c=document.getElementById('aList'); c.innerHTML='';
-prods.forEach(p=>{
-p.ps.forEach(pl=>{
-let st=keys[pl.id]?keys[pl.id].length:0;
-let d=document.createElement('div');
-d.style.cssText='background:#111;border:1px solid #333;padding:10px;border-radius:8px;margin-bottom:8px';
-d.innerHTML='<div style=display:flex;justify-content:space-between><b style=color:#0f0>'+p.n+' '+pl.d+' $'+pl.p+' - '+st+' keys</b><button onclick=borrarPlan(\''+p.id+'\',\''+pl.id+'\') style=background:#600;color:#fff;border:none;padding:2px 8px;border-radius:10px;font-size:10px>X</button></div><small>'+pl.id+'</small><textarea id=ta-'+pl.id+' style=width:100%;background:#000;color:#0f0;border:1px solid #333;padding:6px;border-radius:6px;margin-top:6px;min-height:60px placeholder=Pega keys></textarea><button onclick=saveK(\''+pl.id+'\') style=width:100%;margin-top:6px;background:#0f0;border:none;padding:8px;border-radius:6px;font-weight:bold>GUARDAR KEYS</button>';
-c.appendChild(d);
-});
-});
-let d2=document.createElement('div'); d2.style.cssText='background:#111;border:1px solid #333;padding:10px;border-radius:8px;margin-bottom:8px';
-d2.innerHTML='<b>PRODUCTOS ACTUALES</b><div id=plist></div>'; c.appendChild(d2);
-let lp=document.getElementById('plist'); if(lp){lp.innerHTML=prods.map(p=>'<div style=display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #222><span>'+p.i+' '+p.n+' ('+p.id+')</span><button onclick=borrarProd(\''+p.id+'\') style=background:red;color:#fff;border:none;padding:2px 6px;border-radius:8px;font-size:10px>BORRAR PROD</button></div>').join('')}
-}
-function saveK(id){
-let t=document.getElementById('ta-'+id).value.trim();
-if(!t)return alert('Pega keys');
-let arr=t.split('\n').map(s=>s.trim()).filter(s=>s);
-let k=getKeys(); if(!k[id])k[id]=[]; k[id]=k[id].concat(arr); setKeys(k); renderA(); render(); alert(arr.length+' keys agregadas a '+id);
-}
-function recargar(){
-let id=document.getElementById('rID').value.trim().toUpperCase();
-let m=parseInt(document.getElementById('rM').value);
-if(!id||!m)return alert('ID y monto');
-let u=getUsers(); if(!u[id])u[id]={saldo:0,hist:[]}; u[id].saldo+=m; setUsers(u); if(id===ID) updSaldo(); alert('Recargado $'+m+' a '+id);
-}
-function crearNuevoProd(){
-let id=document.getElementById('newId').value.toLowerCase().trim();
-let nombre=document.getElementById('newNombre').value.trim().toUpperCase();
-let dias=parseInt(document.getElementById('newDias').value);
-let precio=parseInt(document.getElementById('newPrecio').value);
-if(!id||!nombre)return alert('ID y Nombre obligatorios');
-let prods=getProds();
-let ex=prods.find(p=>p.id===id);
-if(ex){
-if(nombre) ex.n=nombre;
-if(dias&&precio){
-let pl=ex.ps.find(x=>x.d===dias+' DIA'||x.d===dias+' DIAS'||x.d===dias+'D');
-if(pl) pl.p=precio; else ex.ps.push({id:id+'-'+dias+'d',d:dias+' DIAS',p:precio});
-}else if(nombre){ex.n=nombre}
-}else{
-if(!dias||!precio)return alert('Para crear nuevo, pon días y precio');
-prods.push({n:nombre,i:'📦',id:id,ps:[{id:id+'-'+dias+'d',d:dias+' DIAS',p:precio}]});
-}
-setProds(prods); render(); renderA(); alert('Guardado ✅');
-}
-function borrarPlan(pid,plid){
-if(!confirm('¿Borrar plan '+plid+'?'))return;
-let prods=getProds(); let p=prods.find(x=>x.id===pid); p.ps=p.ps.filter(x=>x.id!==plid); if(p.ps.length===0) prods=prods.filter(x=>x.id!==pid); setProds(prods); render(); renderA();
-}
-function borrarProd(pid){
-if(!confirm('¿Borrar producto completo '+pid+'?'))return;
-let prods=getProds(); prods=prods.filter(x=>x.id!==pid); setProds(prods); render(); renderA();
-}
-function restaurarTodo(){
-if(!confirm('¿Seguro restaurar a los 6 originales? Se borrarán ediciones.'))return;
-localStorage.removeItem('temo_prods');
-setProds(BASE);
-render(); renderA(); alert('Restaurado ✅');
-}
+let users=getUsers();if(!users[ID]){users[ID]={saldo:0};setUsers(users)}
+document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;
+function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>{stock+=(keys[pl.id]?keys[pl.id].length:0)});let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#888>'+p.ps.length+' planes - '+stock+' keys</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
+function ver(pid){let prods=getProds();let keys=getKeys();let users=getUsers();let me=users[ID];let p=prods.find(x=>x.id===pid);let txt=p.n+"\n\n";p.ps.forEach(pl=>{txt+=pl.d+" - $"+pl.p+" (Stock:"+(keys[pl.id]?keys[pl.id].length:0)+")\n"});txt+="\nTu saldo $"+me.saldo+"\nEscribe que quieres comprar";let ans=prompt(txt);if(!ans)return;let plan=p.ps.find(pl=>pl.d.toLowerCase()===ans.trim().toLowerCase());if(!plan){alert("Escribe bien");return}if((keys[plan.id]?keys[plan.id].length:0)<=0){alert("Sin stock");return}if(me.saldo<plan.p){alert("Saldo insuficiente");return}let k=keys[plan.id].shift();setKeys(k);users[ID].saldo-=plan.p;setUsers(users);document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;render();alert("✅ "+p.n+" "+plan.d+"\nKey: "+k)}
+if(location.search.toLowerCase().includes('admin'))document.getElementById('admin').style.display='block';
+function loginA(){let u=document.getElementById('aUser').value.trim();let p=document.getElementById('aPass').value.trim();if(u==='Temo2007'&&p==='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';renderAdmin()}else document.getElementById('aErr').style.display='block'}
+function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style="border-left:4px solid red;padding-left:8px;margin-bottom:10px"><div style="display:flex;gap:6px"><input id="icon-'+p.id+'" value="'+p.i+'" style="width:50px" class="in"><input id="name-'+p.id+'" value="'+p.n+'" class="in" style="flex:1"><button class="saveBtn" onclick="saveProdName(\''+p.id+'\')">💾</button></div></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;let st=keys[pl.id]?keys[pl.id].join('\n'):"";html+='<div style="background:#000;padding:10px;border-radius:8px;margin:8px 0"><div class="row"><input id="d-'+pl.id+'" value="'+pl.d+'" class="in"><input id="p-'+pl.id+'" type="number" value="'+pl.p+'" class="in"></div><div class="row" style="margin-top:4px"><button class="editBtn" style="flex:1" onclick="savePlan(\''+p.id+'\',\''+pl.id+'\')">✏️ EDITAR '+pl.d+' $'+pl.p+'</button><span style="color:#0f0;padding:7px;font-size:12px">'+cnt+' keys</span></div><textarea id="ta-'+pl.id+'">'+st+'</textarea><button class="btn2" onclick="saveKeys(\''+pl.id+'\')">💾 GUARDAR KEYS</button></div>'});card.innerHTML=html;c.appendChild(card)})}
+function saveProdName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value.trim();p.i=document.getElementById('icon-'+pid).value.trim();setProds(prods);render();renderAdmin();alert("Producto actualizado")}
+function savePlan(prodId,planId){let prods=getProds();let prod=prods.find(x=>x.id===prodId);let plan=prod.ps.find(x=>x.id===planId);plan.d=document.getElementById('d-'+planId).value.trim().toUpperCase();plan.p=parseInt(document.getElementById('p-'+planId).value)||0;setProds(prods);render();renderAdmin();alert("Plan: "+plan.d+" $"+plan.p)}
+function saveKeys(planId){let keys=getKeys();let ta=document.getElementById('ta-'+planId);let lines=ta.value.split('\n').map(s=>s.trim()).filter(s=>s);keys[planId]=lines;setKeys(keys);render();renderAdmin();alert("Guardado "+lines.length)}
+function restaurarTodo(){if(!confirm("Restaurar?"))return;localStorage.removeItem('temo_prods');location.href=location.pathname+"?admin"}
+function borrarKeys(){if(!confirm("Borrar todo?"))return;setKeys({});render();renderAdmin()}
+function addSaldo(){let id=document.getElementById('recId').value.trim().toUpperCase();let monto=parseInt(document.getElementById('recMonto').value);if(!id||isNaN(monto))return alert("ID y monto");let users=getUsers();if(!users[id])users[id]={saldo:0};users[id].saldo+=monto;setUsers(users);alert("Recargado $"+monto);if(id===ID){document.getElementById('sTop').innerText=users[id].saldo;document.getElementById('sTxt').innerText=users[id].saldo}renderAdmin()}
 </script>
 </body>
 </html>
