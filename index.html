@@ -1,22 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TEMO STORE - ANDROID</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEMO STORE ANDROID</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>body{background:#000;color:#fff}.card{background:#111;border:1px solid #ff0000;box-shadow:0 0 12px #ff0000a0;border-radius:16px}.neon{background:#ff0000;box-shadow:0 0 15px red;color:#fff;font-weight:900}</style>
 </head>
-<body>
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50 shadow-[0_0_20px_red]"><b>✅ANDROID TEMO STORE</b><div class="flex gap-2"><span id="saldoTxt" class="bg-black px-2 py-1 rounded-full text-[10px] border border-red-400 font-black">💰 $0</span><button id="cartBtn" class="bg-white text-black px-3 rounded-full font-black text-xs">🛒 <span id="cartCount">0</span></button></div></header>
+<body style="background:#000;color:#fff;font-family:Arial">
+
+<header style="background:#ff0000;box-shadow:0 0 20px red" class="p-3 flex justify-between sticky top-0 z-50">
+<b>✅ANDROID TEMO STORE</b>
+<span id="saldoTxt" class="bg-black px-3 py-1 rounded-full text-xs border border-white font-black">💰 $0</span>
+</header>
 
 <div class="max-w-md mx-auto p-3 space-y-2">
-<div class="card p-3 text-center"><p class="text-red-500 font-black">👉🏻 ASEPTO CUALQUIER METODO DE PAGO ✅💵💸</p><p class="text-[10px] text-zinc-400">CLABE 722969027389252036 | OXXO 2242 1703 2080 0281 | +523224528803</p></div>
-<div class="flex gap-2"><input id="userId" placeholder="TU ID: TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold text-xs uppercase"><button onclick="entrar()" class="neon px-5 rounded-full text-xs">ENTRAR</button></div>
-<button id="btnCrear" onclick="crear()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR ID (1 POR CELULAR)</button>
-<p id="msgBloqueo" class="hidden text-red-500 text-[11px] text-center font-black"></p>
-<div id="boxPago" class="hidden card p-3">
-<p id="idMostrado" class="text-center text-red-500 font-black mb-2"></p>
-<div class="grid grid-cols-2 gap-2"><div class="bg-black border border-red-900 p-2 rounded-xl text-[11px]">CLABE<br><b>722969027389252036</b><br>Concepto: <b id="concepto" class="text-red-500"></b></div><div class="bg-white text-black p-2 rounded-xl text-center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=2242170320800281" class="w-24 h-24 mx-auto"><b class="text-[9px]">2242 1703 2080 0281</b></div></div>
-<a href="https://wa.me/523224528803" target="_blank" class="bg-[#25D366] block text-center mt-2 py-2 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE</a>
+<input id="userId" placeholder="TU ID: TEMO-XXXX" class="w-full p-3 rounded-full text-black font-bold text-xs">
+<div class="grid grid-cols-2 gap-2">
+<button onclick="crear()" class="bg-yellow-400 text-black py-3 rounded-full font-black text-xs">🎲 CREAR ID (1 SOLO)</button>
+<button onclick="entrar()" class="bg-red-600 text-white py-3 rounded-full font-black text-xs shadow-[0_0_15px_red]">ENTRAR</button>
 </div>
-<button onclick="verHist()" class="bg-zinc-800 w-full py-2 rounded-full text-xs">📜 VER MI HISTORIAL</
+<p id="msg" class="text-center text-red-500 font-black text-xs"></p>
+<div id="pagos" class="hidden bg-zinc-900 border border-red-600 rounded-xl p-3 text-xs">
+<p>CLABE: <b>722969027389252036</b></p>
+<p>OXXO: <b>2242 1703 2080 0281</b></p>
+<p>Concepto: <b id="concepto" class="text-red-500"></b></p>
+<p class="mt-2">👉🏻 ASEPTO CUALQUIER METODO DE PAGO ✅💵💸</p>
+<p>Soporte: +523224528803</p>
+<button onclick="verHist()" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black">📜 VER HISTORIAL</button>
+<div id="hist" class="mt-2 space-y-2"></div>
+</div>
+</div>
+
+<div class="max-w-md mx-auto p-3">
+<p class="text-red-500 font-black border-l-4 border-red-600 pl-2 mb-3">LOS PRODUCTOS QUE TENEMOS SON ✅ANDROID</p>
+
+<!-- DRIP -->
+<p class="text-white font-black text-xs mb-2">PANEL DRIP CLIENT</p>
+<div class="grid grid-cols-2 gap-3 mb-5">
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">1 DIA 4usd 🛒🛍️</p><p class="text-red-500 font-black text-xl">$4</p><button onclick="buy('drip1','DRIP 1 DIA',4)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">7 DIAS 12usd 🛒</p><p class="text-red-500 font-black text-xl">$12</p><button onclick="buy('drip7','DRIP 7 DIAS',12)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">15 DIA 15usd 🛒</p><p class="text-red-500 font-black text-xl">$15</p><button onclick="buy('drip15','DRIP 15 DIAS',15)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">30 DIAS 20usd 🛒</p><p class="text-red-500 font-black text-xl">$20</p><button onclick="buy('drip30','DRIP 30 DIAS',20)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+</div>
+
+<!-- FLOURITE -->
+<p class="text-white font-black text-xs mb-2">PANEL FLOURITE</p>
+<div class="grid grid-cols-2 gap-3 mb-5">
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">7 DIAS 30usd 🛒</p><p class="text-red-500 font-black text-xl">$30</p><button onclick="buy('flou7','FLOURITE 7 DIAS',30)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">30 DIAS 50usd 🛒</p><p class="text-red-500 font-black text-xl">$50</p><button onclick="buy('flou30','FLOURITE 30 DIAS',50)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+</div>
+
+<!-- CUBAN -->
+<p class="text-white font-black text-xs mb-2">Cuban mods</p>
+<div class="grid grid-cols-2 gap-3 mb-5">
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">1 dia 3 🛒</p><p class="text-red-500 font-black text-xl">$3</p><button onclick="buy('cuban1','CUBAN 1 DIA',3)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">7 dias 5 USD 🛒</p><p class="text-red-500 font-black text-xl">$5</p><button onclick="buy('cuban7','CUBAN 7 DIAS',5)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><p class="text-xs font-bold">30 dias 10 USD 🛒</p><p class="text-red-500 font-black text-xl">$10</p><button onclick="buy('cuban30','CUBAN 30 DIAS',10)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+</div>
+
+<!-- HG -->
+<p class="text-white font-black text-xs mb-2">PANEL HG CHEATS 🛒</p>
+<div class="grid grid-cols-2 gap-3 mb-5">
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">1 DIAS 5 USD</p><p class="text-red-500 font-black text-xl">$5</p><button onclick="buy('hg1','HG 1 DIA',5)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">10 DIAS 12 USD</p><p class="text-red-500 font-black text-xl">$12</p><button onclick="buy('hg10','HG 10 DIAS',12)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><p class="text-xs font-bold">30 DIAS 18 USD</p><p class="text-red-500 font-black text-xl">$18</p><button onclick="buy('hg30','HG 30 DIAS',18)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+</div>
+
+<!-- PATO -->
+<p class="text-white font-black text-xs mb-2">PATO TEAM 🛒</p>
+<div class="grid grid-cols-1 gap-3 mb-10">
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><p class="text-xs font-bold">30 DIAS 14 USD</p><p class="text-red-500 font-black text-xl">$14</p><button onclick="buy('pato30','PATO TEAM 30 DIAS',14)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+</div>
+
+<p class="text-center text-xs text-zinc-500">NUMERO SI QUIERES ADQUIRIR: +523224528803</p>
+</div>
+
+<div id="modalKey" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 rounded-2xl p-5 w-full max-w-md text-center shadow-[0_0_30px_red]"><h2 class="text-red-500 font-black text-xl">✅ KEY ENTREGADA</h2><div id="keyBox" class="bg-black border border-red-900 rounded-xl p-3 mt-3 text-left"></div><button onclick="modalKey.classList.add('hidden')" class="bg-red-600 w-full mt-3 py-3 rounded-full font-black">LISTO</button></div></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getFirestore,doc,setDoc,getDoc,updateDoc,collection,addDoc,getDocs,query,orderBy} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+const app=initializeApp({apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025"});
+const db=getFirestore(app);
+let user=localStorage.getItem('temo_id')||null, saldo=0;
+function gen(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
+window.crear=async()=>{
+if(localStorage.getItem('temo_id')){alert("Ya tienes ID: "+localStorage.getItem('temo_id')+" - Solo 1 por celular");return;}
+let id=gen();await setDoc(doc(db,"users",id),{saldo:0,creado:new Date().toISOString()});localStorage.setItem('temo_id',id);user=id;saldo=0;saldoTxt.innerText="💰 $"+saldo+" | "+id;userId.value=id;msg.innerText="TU ID: "+id;concepto.innerText=id;pagos.classList.remove('hidden');
+}
+window.entrar=async()=>{
+let id=userId.value.trim().toUpperCase();if(!id)return alert("Escribe ID");
+let s=await getDoc(doc(db,"users",id));if(!s.exists())return alert("ID no existe");
+user=id;saldo=s.data().saldo||0;localStorage.setItem('temo_id',id);saldoTxt.innerText="💰 $"+saldo+" | "+id;msg.innerText=id+" | Saldo $"+saldo;concepto.innerText=id;pagos.classList.remove('hidden');verHist();
+}
+window.buy=async(pid,nombre,precio)=>{
+if(!user){alert("Primero entra con tu ID");return;}
+if(saldo<precio){alert("Saldo insuficiente. Tienes $"+saldo+" - Recarga por CLABE 722969027389252036 o OXXO 2242 1703 2080 0281. Concepto: "+user);return;}
+let ref=doc(db,"temo_precios",pid);let sn=await getDoc(ref);let key="DEMO-"+Math.random().toString(36).substring(2,8).toUpperCase();
+if(sn.exists()&&sn.data().keys&&sn.data().keys.length>0){key=sn.data().keys[0];await updateDoc(ref,{keys:sn.data().keys.slice(1)});}
+await updateDoc(doc(db,"users",user),{saldo:saldo-precio});
+await addDoc(collection(db,"users",user,"historial"),{producto:nombre,precio:precio,key:key,fecha:new Date().toISOString()});
