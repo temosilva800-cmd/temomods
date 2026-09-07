@@ -40,3 +40,19 @@ window.addKeys=async(id,nom)=>{ let txt=document.getElementById('keys_'+id).valu
 window.seed=async()=>{ for(let b of base){ let ref=doc(db,"temo_precios",b.id); let snap=await getDoc(ref); if(!snap.exists()){ await setDoc(ref,{nombre:b.n,precio:b.p,keys:[]}); } } alert("Productos restaurados! Recarga la página"); };
 renderTienda();
 </script></body></html>
+import { doc, getDoc } from "firebase/firestore";
+
+async function entrar() {
+  let id = document.getElementById("inputID").value; // donde pones temo1
+  
+  let ref = doc(db, "users", id);
+  let snap = await getDoc(ref);
+
+  if (snap.exists()) {
+    let saldo = snap.data().saldo;
+    console.log("Tu saldo es: $" + saldo);
+    document.getElementById("saldo").innerText = "$" + saldo;
+  } else {
+    alert("Usuario no encontrado");
+  }
+}
