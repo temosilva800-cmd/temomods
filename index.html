@@ -1,5 +1,123 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-black text-white">
+<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><div class="flex gap-2"><span id="saldoDisplay" class="bg-black px-2 py-1 rounded-full text-[10px] border">💰 $0</span><button id="btnAdmin" class="bg-black px-2 py-1 rounded-full">⚙️</button><button id="cartBtn" class="bg-white text-black px-3 py-1 rounded-full font-black">🛒 <span id="cartCount">0</span></button></div></header>
+<div class="max-w-md mx-auto p-3"><div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button id="btnEntrar" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div><button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID (1 POR CELULAR)</button><p id="bloqueoMsg" class="hidden text-center text-[11px] text-red-400 font-black mt-2 bg-red-900/30 border border-red-600 rounded-full p-2"></p><div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 mt-3"><p id="miIdGenerado" class="text-center text-green-400 font-black mb-2"></p><div class="grid grid-cols-2 gap-2 mb-2"><button onclick="mostrarPago('transfer')" class="bg-blue-500 py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button><button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 OXXO</button></div><div id="pagoTransfer" class="bg-black rounded p-2 text-[11px]">CLABE: <b>722969027389252036</b><br>Concepto: <b id="conceptoTxt" class="text-yellow-400"></b><br><button onclick="navigator.clipboard.writeText('722969027389252036');alert('copiada')" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black text-[10px]">COPIAR CLABE</button></div><div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=2242170320800281" class="mx-auto w-48 h-48"><p class="mt-2 font-black">2242 1703 2080 0281</p></div><button onclick="window.open('https://wa.me/523224528803?text='+encodeURIComponent('Hola Temo ID '+usuarioActual),'_blank')" class="bg-[#25D366] w-full mt-3 py-3 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE</button><div id="historialBox" class="mt-3 space-y-2"></div></div></div>
+<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y border-zinc-800">
+<div id="loginDiv"><input id="email" placeholder="correo admin" class="w-full p-2 rounded text-black mb-2"><input id="pass" type="password" placeholder="temo123" class="w-full p-2 rounded text-black mb-2"><button id="btnLogin" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar</button></div>
+<div id="panel" class="hidden">
+<b>ADMIN - TEMO</b>
+<button onclick="arreglarDias()" class="bg-red-600 w-full py-3 rounded-full font-black text-[12px] mt-2 border-2 border-white">🔧 ARREGLAR TODO - PONER 1D, 7D, 30D BIEN</button>
+<div class="bg-yellow-400/10 border-2 border-yellow-400 rounded-xl p-2 mt-3">
+<b class="text-[11px] text-yellow-400">+ CREAR PRODUCTO BASE</b>
+<div class="flex flex-col gap-1 mt-1">
+<input id="newId" placeholder="id ej: vlt" class="p-2 rounded text-black text-xs">
+<input id="newNombre" placeholder="Nombre ej: VLT" class="p-2 rounded text-black text-xs">
+<div class="flex gap-1">
+<input id="newDias" type="number" placeholder="Días ej: 30" class="flex-1 p-2 rounded text-black text-xs">
+<input id="newPrecio" type="number" placeholder="Precio $" class="flex-1 p-2 rounded text-black text-xs">
+</div>
+<button onclick="crearNuevoProd()" class="bg-yellow-400 text-black py-2 rounded-full font-black text-xs">🚀 AGREGAR DURACIÓN</button>
+</div>
+</div>
+<div id="lista" class="grid gap-2 mt-3"></div>
+<div class="flex gap-1 mt-3"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button id="btnRecarga" class="bg-green-500 px-3 rounded-full">+</button></div>
+<button onclick="adminPanel.classList.add('hidden')" class="w-full mt-3 bg-zinc-700 py-2 rounded-full text-xs">CERRAR</button>
+</div></div>
+<main id="productos" class="max-w-md mx-auto p-3 grid grid-cols-1 gap-3"></main>
+<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><div id="cartItems"></div><div id="cartTotal" class="font-black mt-2"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR - VER KEY AQUI</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs">Cerrar</button></div></div>
+<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 w-full max-w-md rounded-2xl p-5 text-center"><h2 class="font-black text-xl text-green-400">✅ COMPRA EXITOSA</h2><div id="keysEntregadas" class="bg-black border border-zinc-800 rounded-xl p-3 mt-3 text-left space-y-2 max-h-64 overflow-auto"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {getFirestore,collection,doc,setDoc,getDoc,updateDoc,deleteDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa"};
+let app,auth,db; try{app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);}catch(e){}
+let cart=[],precios={},usuarioActual=localStorage.getItem('temo_id')||null,saldoActual=Number(localStorage.getItem('saldo_'+(usuarioActual||''))||0);
+const base={drip:{nombre:"Drip",opciones:[{dias:1,precio:4,keys:[]},{dias:7,precio:12,keys:[]},{dias:15,precio:15,keys:[]},{dias:30,precio:20,keys:[]}]},cuban:{nombre:"Cuban",opciones:[{dias:1,precio:3,keys:[]},{dias:7,precio:5,keys:[]},{dias:30,precio:10,keys:[]}]},hg:{nombre:"HG",opciones:[{dias:1,precio:5,keys:[]},{dias:10,precio:12,keys:[]},{dias:30,precio:18,keys:[]}]},vlt:{nombre:"VLT",opciones:[{dias:1,precio:5,keys:[]},{dias:7,precio:12,keys:[]},{dias:30,precio:25,keys:[]}]},pato:{nombre:"Pato Team",opciones:[{dias:30,precio:14,keys:[]}]}};
+window.mostrarPago=(t)=>{document.getElementById('pagoOxxo').classList.toggle('hidden',t!=='oxxo');document.getElementById('pagoTransfer').classList.toggle('hidden',t==='oxxo');}
+function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
+function renderTienda(){
+  let c=document.getElementById('productos'); c.innerHTML='';
+  let data = Object.keys(precios).length>0? precios : base;
+  Object.entries(data).forEach(([id,prod])=>{
+    if(!prod.opciones||prod.nombre==="BORRADO")return;
+    let ops = prod.opciones.filter(o=>o.precio>0).sort((a,b)=>a.dias-b.dias);
+    let htmlOps='';
+    ops.forEach((op,i)=>{
+      htmlOps+=`<div class="flex justify-between items-center bg-zinc-800 rounded-full p-1 pl-3 mt-2"><div><b class="text-[11px]">${op.dias} DÍAS</b> <span class="text-[9px] text-zinc-400">- ${op.keys?.length||0} keys</span><p class="text-green-400 font-black text-xs">$${op.precio}</p></div><button onclick="add('${id}','${prod.nombre}',${op.precio},${op.dias},${i})" class="bg-white text-black px-4 py-2 rounded-full font-black text-[10px]">COMPRAR</button></div>`;
+    });
+    c.innerHTML+=`<div class="bg-zinc-900 border border-red-600 rounded-2xl p-3"><div class="flex justify-between items-center" onclick="document.getElementById('opts_${id}').classList.toggle('hidden')"><div><b class="text-sm">${prod.nombre}</b><p class="text-[10px] text-zinc-400">${ops.length} duraciones disponibles</p></div><button class="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black">👁️ VER</button></div><div id="opts_${id}" class="hidden">${htmlOps}</div></div>`;
+  });
+}
+renderTienda(); if(db){onSnapshot(collection(db,"temo_precios"),snap=>{precios={};snap.forEach(d=>{let data=d.data(); if(data.opciones) precios[d.id]=data; }); if(Object.keys(precios).length===0) precios=base; renderTienda(); renderAdmin();},()=>{});}
+function renderAdmin(){
+  let h='';let data = Object.keys(precios).length>0? precios : base;
+  Object.entries(data).forEach(([id,prod])=>{
+    if(prod.nombre==="BORRADO")return;
+    let opsHtml='';
+    (prod.opciones||[]).forEach((op,idx)=>{
+      opsHtml+=`<div class="flex gap-1 items-center bg-zinc-800 rounded p-1 mt-1"><span class="text-[10px] flex-1">${op.dias}D - $${op.precio} - ${op.keys?.length||0}k</span><textarea id="keys_${id}_${idx}" class="w-20 p-1 rounded text-black text-[9px] h-6" placeholder="keys"></textarea><button onclick="addKeys('${id}',${idx})" class="bg-green-500 px-1 rounded text-[9px]">+</button><button onclick="delOpcion('${id}',${idx})" class="bg-red-600 px-1 rounded text-[9px]">X</button></div>`;
+    });
+    h+=`<div class="bg-black p-2 rounded border border-zinc-800"><div class="flex justify-between"><b class="text-[11px]">${prod.nombre} (${id})</b><button onclick="eliminarProd('${id}')" class="bg-red-600 text-white px-2 rounded-full text-[9px] font-black">🗑️ ELIMINAR TODO</button></div><div class="flex gap-1 mt-1"><input id="dias_${id}" type="number" placeholder="D" class="w-12 p-1 rounded text-black text-xs"><input id="price_${id}" type="number" placeholder="$" class="w-12 p-1 rounded text-black text-xs"><button onclick="addDuracion('${id}')" class="bg-yellow-400 text-black px-2 rounded-full text-[9px] font-black">+D</button></div>${opsHtml}</div>`;
+  });
+  document.getElementById('lista').innerHTML=h;
+}
+window.add=(id,n,p,d,idx)=>{cart.push({id,n,p,d,idx});document.getElementById('cartCount').innerText=cart.length;}
+document.getElementById('cartBtn').onclick=()=>{let h='',t=0;cart.forEach(i=>{h+=`<div class="flex justify-between text-sm"><span>${i.n} ${i.d}D</span><b>$${i.p}</b></div>`;t+=i.p;});document.getElementById('cartItems').innerHTML=h;document.getElementById('cartTotal').innerText='Total $'+t;document.getElementById('cartModal').classList.remove('hidden');}
+document.getElementById('checkout').onclick=async()=>{let t=cart.reduce((a,b)=>a+b.p,0);if(!usuarioActual)return alert("Entra con ID");if(saldoActual<t)return alert("Saldo insuficiente $"+saldoActual);let htmlKeys='';for(let it of cart){let key="SIN-STOCK"; try{if(db){let ref=doc(db,"temo_precios",it.id);let sn=await getDoc(ref);if(sn.exists()){let ops=sn.data().opciones||[]; if(ops[it.idx]&&ops[it.idx].keys?.length){key=ops[it.idx].keys[0]; ops[it.idx].keys=ops[it.idx].keys.slice(1); await updateDoc(ref,{opciones:ops});}else key="DEMO-"+Math.random().toString(36).substring(2,4).toUpperCase();}}}catch(e){key="DEMO-"+Math.random().toString(36).substring(2,4).toUpperCase();}let venc=new Date(); venc.setDate(venc.getDate()+(it.d||30)); htmlKeys+=`<div class="border-b border-zinc-800 py-2"><b class="text-white text-xs">${it.n} - ${it.d} DIAS</b><br><span class="font-mono text-green-400 text-sm">${key}</span><br><span class="text-[10px] text-yellow-400">Vence: ${venc.toLocaleDateString()}</span></div>`;let hist=JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]'); hist.unshift({producto:it.n,key:key,fecha:new Date().toLocaleString(),vence:venc.toLocaleDateString(),dias:it.d}); localStorage.setItem('hist_'+usuarioActual,JSON.stringify(hist));}try{if(db)await updateDoc(doc(db,"users",usuarioActual),{saldo:saldoActual-t});}catch(e){} saldoActual-=t; localStorage.setItem('saldo_'+usuarioActual,saldoActual);document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${usuarioActual}`; cart=[];document.getElementById('cartCount').innerText=0;document.getElementById('cartModal').classList.add('hidden');document.getElementById('keysEntregadas').innerHTML=htmlKeys; document.getElementById('keyModal').classList.remove('hidden'); renderHistorial();}
+function renderHistorial(){if(!usuarioActual)return;let hist=JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]');let h='<p class="text-[11px] font-black mt-3 border-t border-zinc-800 pt-2">📜 HISTORIAL</p>';hist.forEach(v=>{h+=`<div class="bg-black border border-zinc-800 p-2 rounded text-[10px]"><b>${v.producto} - ${v.dias}D</b><br><span class="font-mono text-green-400">${v.key}</span><br><span class="text-[9px] text-yellow-400">Vence: ${v.vence}</span></div>`});document.getElementById('historialBox').innerHTML=h;}
+function bloquearBotonCrear(){let idGuardado=localStorage.getItem('temo_id');let bloqueado=localStorage.getItem('temo_locked');if(idGuardado&&bloqueado){document.getElementById('btnCrear').classList.add('hidden');let msg=document.getElementById('bloqueoMsg');msg.classList.remove('hidden');msg.innerText="⛔ YA TIENES ID: "+idGuardado;document.getElementById('userId').value=idGuardado;}}
+bloquearBotonCrear();
+document.getElementById('btnCrear').onclick=async()=>{if(localStorage.getItem('temo_id')){bloquearBotonCrear();return;}let id=generarId();usuarioActual=id;localStorage.setItem('temo_id',id);localStorage.setItem('temo_locked','1');localStorage.setItem('saldo_'+id,'0');saldoActual=0;document.getElementById('userId').value=id;document.getElementById('saldoDisplay').innerText=`💰 $0 | ${id}`;document.getElementById('boxNuevoId').classList.remove('hidden');document.getElementById('miIdGenerado').innerText=`TU ID: ${id}`;document.getElementById('conceptoTxt').innerText=id;bloquearBotonCrear();if(db){try{await setDoc(doc(db,"users",id),{saldo:0});}catch(e){}}renderHistorial();}
+document.getElementById('btnEntrar').onclick=async()=>{let id=document.getElementById('userId').value.trim().toUpperCase();if(!id)return;try{if(db){let s=await getDoc(doc(db,"users",id));if(s.exists())saldoActual=s.data().saldo||0;}}catch(e){}usuarioActual=id;localStorage.setItem('temo_id',id);document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${id}`;document.getElementById('boxNuevoId').classList.remove('hidden');document.getElementById('miIdGenerado').innerText=`${id} | $${saldoActual}`;document.getElementById('conceptoTxt').innerText=id;renderHistorial();bloquearBotonCrear();}
+document.getElementById('btnAdmin').onclick=()=>document.getElementById('adminPanel').classList.toggle('hidden');
+document.getElementById('btnLogin').onclick=async()=>{let p=document.getElementById('pass').value;if(p==='temo123'){document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdmin();return;}try{await signInWithEmailAndPassword(auth,document.getElementById('email').value,p);document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdmin();}catch(e){alert("Pass mala");}}
+window.crearNuevoProd=async()=>{
+  try{
+    let id=document.getElementById('newId').value.trim().toLowerCase().replace(/[^a-z0-9]/g,'');
+    let nom=document.getElementById('newNombre').value.trim();
+    let dias=Number(document.getElementById('newDias').value)||30;
+    let pre=Number(document.getElementById('newPrecio').value);
+    if(!id||!nom||!pre)return alert("Llena todo");
+    let ref=doc(db,"temo_precios",id);
+    let s=await getDoc(ref);
+    let prod = s.exists()? s.data() : {nombre:nom,opciones:[]};
+    prod.nombre=nom;
+    if(!prod.opciones) prod.opciones=[];
+    let existente = prod.opciones.findIndex(o=>o.dias===dias);
+    if(existente>=0) prod.opciones[existente].precio=pre;
+    else prod.opciones.push({dias:dias,precio:pre,keys:[]});
+    await setDoc(ref,prod);
+    document.getElementById('newId').value='';document.getElementById('newNombre').value='';document.getElementById('newPrecio').value='';document.getElementById('newDias').value='';
+    alert("✅ Agregado");
+  }catch(e){alert(e.message);}
+}
+window.addDuracion=async(id)=>{
+  let d=Number(document.getElementById('dias_'+id).value); let p=Number(document.getElementById('price_'+id).value);
+  if(!d||!p)return alert("Pon días y precio");
+  let ref=doc(db,"temo_precios",id); let s=await getDoc(ref); let prod=s.data();
+  if(!prod.opciones) prod.opciones=[];
+  prod.opciones.push({dias:d,precio:p,keys:[]});
+  await setDoc(ref,prod);
+}
+window.addKeys=async(id,idx)=>{
+  let txt=document.getElementById('keys_'+id+'_'+idx).value.trim(); if(!txt)return;
+  let ref=doc(db,"temo_precios",id); let s=await getDoc(ref); let prod=s.data();
+  let nuevas=txt.split('\n').map(k=>k.trim()).filter(k=>k);
+  prod.opciones[idx].keys=[...(prod.opciones[idx].keys||[]),...nuevas];
+  await setDoc(ref,prod);
+  document.getElementById('keys_'+id+'_'+idx).value=''; alert("Keys agregadas");
+}
+window.delOpcion=async(id,idx)=>{
+  if(!confirm("¿Borrar esa duración?"))return;
+  let ref=doc(db,"temo_precios",id); let s=await getDoc(ref); let prod=s.data();
+  prod.opciones.splice(idx,1);
+  await setDoc(ref,prod);
+}
+window.eliminarProd=async(id)=>{if(!confirm("¿BORRAR TODO "+id+"?"))return;await deleteDoc(doc(db,"temo_precios",id));}
 window.arreglarDias=async()=>{
-  let ok = confirm("¿Arreglar todo a 1D, 7D, 30D? Se borra lo mal puesto");
+  let ok=confirm("¿Arreglar? Esto borra todo lo mal y lo pone bien: DRIP 1/7/15/30, CUBAN 1/7/30, etc");
   if(!ok) return;
   let datos={
     drip:{nombre:"DRIP",opciones:[{dias:1,precio:4,keys:[]},{dias:7,precio:12,keys:[]},{dias:15,precio:15,keys:[]},{dias:30,precio:20,keys:[]}]},
@@ -10,6 +128,4 @@ window.arreglarDias=async()=>{
     vlt:{nombre:"VLT",opciones:[{dias:1,precio:5,keys:[]},{dias:7,precio:12,keys:[]},{dias:30,precio:25,keys:[]}]},
   };
   for(let id in datos){ await setDoc(doc(db,"temo_precios",id), datos[id]); }
-  alert("✅ LISTO YA QUEDÓ");
-  location.reload();
-}
+  alert("✅ LISTO YA QUEDÓ AR
