@@ -1,32 +1,160 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE OFICIAL</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#0a0a0a;color:#fff}.top{background:linear-gradient(90deg,red,#800);padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:10}.banner{margin:12px;border:1px solid red;border-radius:12px;padding:14px;background:#120000;box-shadow:0 0 15px red}.box{margin:12px;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px}.id{width:100%;background:#000;color:#fff;padding:10px;border:1px solid #333;border-radius:8px}.product{margin:10px 12px;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;padding:8px 14px;border-radius:20px;border:none;font-weight:bold} #adminPanel{display:none;position:fixed;inset:0;background:#000;z-index:9999;padding:12px;overflow:auto}</style>
-</head><body>
-<div class="top"><b>🔥 TEMO STORE OFICIAL</b><span>💰 $<span id="sal">0</span></span></div>
-<div class="banner"><h2 style="color:red">BIENVENIDO A TEMO STORE 🔥</h2><p style="color:#888;font-size:13px">Entrega automática - ID único</p></div>
-<div class="box"><input id="myid" class="id" readonly><div style="text-align:center;margin-top:8px">ID: <b id="idd"></b> | Saldo: $<span id="sal2">0</span></div><button onclick="navigator.clipboard.writeText(document.getElementById('myid').value);alert('ID copiado')" style="width:100%;margin-top:8px;padding:8px;background:#222;color:#fff;border:1px solid #333;border-radius:8px">📋 Copiar ID</button></div>
-<div id="lista"></div>
-<div id="adminPanel">
-<div id="alogin" style="max-width:350px;margin:40px auto;background:#111;padding:20px;border-radius:12px;border:1px solid red;text-align:center"><h2 style="color:#0f0">ADMIN TEMO</h2><input id="au" placeholder="Usuario" style="width:100%;padding:10px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id="ap" type="password" placeholder="Pass" style="width:100%;padding:10px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><button onclick="loginA()" style="width:100%;padding:10px;background:#0f0;border:none;border-radius:6px;font-weight:bold">ENTRAR</button><button onclick="document.getElementById('adminPanel').style.display='none';history.replaceState(null,'','/')" style="width:100%;margin-top:8px;background:#333;color:#fff;padding:8px;border-radius:6px;border:none">Cerrar</button></div>
-<div id="acont" style="display:none"><h2 style="color:#0f0;text-align:center">GESTION KEYS + SALDO</h2><div style="display:flex;gap:6px;margin:12px 0"><input id="rid" placeholder="ID TEMO-XXXX" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id="rm" type="number" placeholder="$" style="width:70px;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><button onclick="rec()" style="padding:8px 12px;background:#0f0;border:none;border-radius:6px;font-weight:bold">+</button></div><div id="adminList"></div></div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEMO STORE OFICIAL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#080808;color:#fff}
+.top{background:red;padding:12px;display:flex;justify-content:space-between;font-weight:bold;position:sticky;top:0}
+.banner{margin:12px;border:2px solid red;border-radius:12px;padding:14px;background:#140000;box-shadow:0 0 15px red}
+.box{margin:12px;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:14px;text-align:center}
+.box input{width:100%;padding:12px;background:#000;color:#fff;border:1px solid #333;border-radius:8px;text-align:center;font-weight:bold}
+.product{margin:10px 12px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:12px;display:flex;justify-content:space-between}
+.btn{background:red;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:bold}
+#adminPanel{display:none;position:fixed;inset:0;background:#000;z-index:9999;padding:15px;overflow:auto}
+</style>
 <script>
+// FIX ADMIN - se ejecuta antes de cargar la pagina
+if(window.location.search.toLowerCase().includes('admin') || window.location.href.toLowerCase().includes('admin')){
+  window.ADDRESS_ADMIN = true;
+}
+</script>
+</head>
+<body>
+<div class="top"><span>🔥 TEMO STORE OFICIAL</span><span>💰 $<span id="sTop">0</span></span></div>
+<div class="banner"><h2 style="color:red">BIENVENIDO A TEMO STORE 🔥</h2><small style="color:#999">Entrega automática - ID único</small></div>
+<div class="box">
+<input id="idIn" readonly>
+<div style="margin-top:8px">ID: <b id="idTxt">CARGANDO...</b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div>
+<button onclick="navigator.clipboard.writeText(document.getElementById('idIn').value);alert('Copiado: '+document.getElementById('idIn').value)" style="margin-top:8px;width:100%;padding:10px;background:#222;color:#fff;border:1px solid #444;border-radius:8px">📋 Copiar ID</button>
+</div>
+<div id="lista"></div>
+
+<div id="adminPanel">
+<div id="aLogin" style="max-width:350px;margin:60px auto;background:#111;border:2px solid #0f0;border-radius:12px;padding:20px;text-align:center">
+<h2 style="color:#0f0">ADMIN TEMO</h2>
+<input id="aUser" placeholder="Usuario" style="width:100%;padding:12px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
+<input id="aPass" type="password" placeholder="Contraseña" style="width:100%;padding:12px;margin:6px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
+<button onclick="loginA()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:bold">ENTRAR</button>
+<p id="aErr" style="color:red;display:none;margin-top:8px">Datos mal</p>
+<button onclick="document.getElementById('adminPanel').style.display='none';history.replaceState(null,'','/')" style="margin-top:10px;background:#333;color:#fff;padding:8px;width:100%;border:none;border-radius:6px">Cerrar</button>
+</div>
+<div id="aContent" style="display:none">
+<h2 style="color:#0f0;text-align:center">PANEL ADMIN</h2>
+<div style="display:flex;gap:6px;margin:12px 0"><input id="rID" placeholder="ID TEMO-XXXX" style="flex:1;padding:10px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id="rM" type="number" placeholder="$" style="width:70px;padding:10px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><button onclick="recargar()" style="padding:10px;background:#0f0;border:none;border-radius:6px;font-weight:bold">+Saldo</button></div>
+<div id="aList"></div>
+</div>
+</div>
+
+<script>
+console.log("TEMO STORE CARGANDO");
 let prods=[
-{n:'DRIP CLIENT',id:'drip',icon:'💧',plans:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
-{n:'FLOURITE',id:'flou',icon:'💎',plans:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},
-{n:'CUBAN MODS',id:'cuban',icon:'🇨🇺',plans:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},
-{n:'HG CHEATS',id:'hg',icon:'⚡',plans:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},
-{n:'PATO TEAM',id:'pato',icon:'🦆',plans:[{id:'pato-30d',d:'30 DIAS',p:14}]},
-{n:'CAKE',id:'cake',icon:'🎂',plans:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]}
+{icon:'💧',n:'DRIP CLIENT',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
+{icon:'💎',n:'FLOURITE',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},
+{icon:'🇨🇺',n:'CUBAN MODS',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},
+{icon:'⚡',n:'HG CHEATS',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},
+{icon:'🦆',n:'PATO TEAM',id:'pato',ps:[{id:'pato-30d',d:'30 DIAS',p:14}]},
+{icon:'🎂',n:'CAKE',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]}
 ];
-let Gk=()=>JSON.parse(localStorage.getItem('temo_keys')||'{}'),Sk=k=>localStorage.setItem('temo_keys',JSON.stringify(k)),Gu=()=>JSON.parse(localStorage.getItem('temo_users')||'{}'),Su=u=>localStorage.setItem('temo_users',JSON.stringify(u));
-let my=localStorage.getItem('temo_myID')||'TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('temo_myID',my);
-let u=Gu();if(!u[my])u[my]={saldo:0,historial:[]};Su(u);
-document.getElementById('myid').value=my;document.getElementById('idd').innerText=my;
-function upd(){let users=Gu();document.getElementById('sal').innerText=users[my].saldo;document.getElementById('sal2').innerText=users[my].saldo}upd();
-function render(){let c=document.getElementById('lista');let k=Gk();c.innerHTML='';prods.forEach(p=>{let stock=0;p.plans.forEach(pl=>stock+=(k[pl.id]?.length||0));let d=document.createElement('div');d.className='product';d.innerHTML=`<div><b>${p.icon} ${p.n}</b><br><small style="color:#666">${p.plans.length} planes - ${stock} keys</small></div><button class="btn" onclick="ver('${p.id}')">VER</button>`;c.appendChild(d)})}render();
-function ver(id){let p=prods.find(x=>x.id===id);let k=Gk();let txt=p.plans.map(pl=>`${pl.d} - $${pl.p} - Stock: ${k[pl.id]?.length||0}`).join('\n');let r=prompt(`${p.n}\n${txt}\n\nEscribe: 1 DIA, 7 DIAS, 15 DIAS, etc`);if(!r)return;let plan=p.plans.find(pl=>pl.d.toLowerCase()===r.toLowerCase()||pl.d.toLowerCase().includes(r.toLowerCase()));if(!plan)return alert('No encontrado');buy(plan.id)}
-function buy(pid){let users=Gu();let k=Gk();let all=prods.flatMap(x=>x.plans).find(x=>x.id===pid);if((k[pid]?.length||0)==0)return alert('Sin stock');if(users[my].saldo<all.p)return alert('Saldo insuficiente: $'+users[my].saldo);let key=k[pid].shift();Sk(k);users[my].saldo-=all.p;users[my].historial.push({plan:pid,key:key,fecha:new Date().toLocaleString()});Su(users);upd();render();alert('COMPRA OK\nKEY: '+key);navigator.clipboard.writeText(key)}
-if(location.href.toLowerCase().includes('admin'))document.getElementById('adminPanel').style.display='block';
-function loginA(){if(document.getElementById('au').value==='Temo2007'&&document.getElementById('ap').value==='Temo2007'){document.getElementById('alogin').style.display='none';document.getElementById('acont').style.display='block';renderA()}else alert('Incorrecto')}
-function renderA(){let c=document.getElementById('adminList');let k=Gk();c.innerHTML='';prods.forEach(p=>{p.plans.forEach(pl=>{let s=k[pl.id]?.length||0;let d=document.createElement('div');d.style.cssText='background:#111;border:1px solid #333;padding:10px;border-radius:8px;margin-bottom:8px';d.innerHTML=`<b style="color:#0f0">${p.n} ${pl.d} $${pl.p} - ${s} keys</b><br><small>${pl.id}</small><textarea id="ta-${pl.id}" style="width:100%;background:#000;color:#0f0;border:1px solid #333;padding:6px;border-radius:6px;margin-top:6px;min-height:60px" placeholder="Pega keys una por linea"></textarea><button onclick="saveK('${pl.id}')" style="width:100%;margin-top:6px;background:#0f0;border:none;padding:8px;border-radius:6px;font-weight:bold">GUARDAR KEYS</button>`;c.appendChild(d)})})}
-function saveK(id){let t=document.getElementById('ta-'+id).value.trim();if(!t)return;let arr=t.split('\n').map(s=>s.trim()).filter(s=>s);let k=Gk();if(!k[id])k[id]=[];k
+function GK(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}
+function SK(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
+function GU(){try{return JSON.parse(localStorage.getItem('temo_users')||'{}')}catch(e){return{}}}
+function SU(u){localStorage.setItem('temo_users',JSON.stringify(u))}
+
+let myID = localStorage.getItem('temo_myID');
+if(!myID || myID.length < 5){
+  myID = 'TEMO-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  localStorage.setItem('temo_myID', myID);
+}
+let users = GU();
+if(!users[myID]){ users[myID]={saldo:0,historial:[]}; SU(users); }
+
+document.getElementById('idIn').value = myID;
+document.getElementById('idTxt').innerText = myID;
+
+function updS(){
+  let u = GU();
+  let s = u[myID]? u[myID].saldo : 0;
+  document.getElementById('sTop').innerText = s;
+  document.getElementById('sTxt').innerText = s;
+}
+updS();
+
+function render(){
+  let c=document.getElementById('lista');
+  let k=GK();
+  c.innerHTML='';
+  prods.forEach(p=>{
+    let stock=0;
+    p.ps.forEach(pl=>{ stock += (k[pl.id]? k[pl.id].length : 0) });
+    let d=document.createElement('div');
+    d.className='product';
+    d.innerHTML='<div><b>'+p.icon+' '+p.n+'</b><br><small style=color:#777>'+p.ps.length+' planes - '+stock+' keys</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';
+    c.appendChild(d);
+  });
+}
+render();
+
+function ver(pid){
+  let p=prods.find(x=>x.id===pid);
+  let k=GK();
+  let txt=p.ps.map(pl=>pl.d+' $'+pl.p+' Stock:'+(k[pl.id]?k[pl.id].length:0)).join('\n');
+  let ans=prompt(p.n+'\n'+txt+'\n\nEscribe: 1 DIA, 7 DIAS, etc');
+  if(!ans)return;
+  let plan=p.ps.find(pl=>pl.d.toLowerCase()==ans.toLowerCase());
+  if(!plan) plan=p.ps.find(pl=>pl.d.toLowerCase().includes(ans.toLowerCase()));
+  if(plan) buy(plan.id);
+}
+function buy(id){
+  let k=GK(); let u=GU();
+  let plan=null; prods.forEach(p=>{ p.ps.forEach(pl=>{ if(pl.id==id) plan=pl }) });
+  if(!k[id] || k[id].length==0) return alert('Sin stock');
+  if(u[myID].saldo < plan.p) return alert('Saldo insuficiente: $'+u[myID].saldo);
+  let key=k[id].shift(); SK(k);
+  u[myID].saldo -= plan.p; u[myID].historial.push({plan:id,key:key,fecha:new Date().toLocaleString()}); SU(u);
+  updS(); render(); alert('COMPRADO!\nKEY: '+key); navigator.clipboard.writeText(key);
+}
+
+// ADMIN FIX
+if(window.ADDRESS_ADMIN){
+  document.getElementById('adminPanel').style.display='block';
+}
+function loginA(){
+  let u=document.getElementById('aUser').value;
+  let p=document.getElementById('aPass').value;
+  if(u=='Temo2007' && p=='Temo2007'){
+    document.getElementById('aLogin').style.display='none';
+    document.getElementById('aContent').style.display='block';
+    renderA();
+  }else document.getElementById('aErr').style.display='block';
+}
+function renderA(){
+  let c=document.getElementById('aList');
+  let k=GK(); c.innerHTML='';
+  prods.forEach(p=>{
+    p.ps.forEach(pl=>{
+      let st=k[pl.id]?k[pl.id].length:0;
+      let d=document.createElement('div');
+      d.style.cssText='background:#111;border:1px solid #333;padding:10px;border-radius:8px;margin-bottom:8px';
+      d.innerHTML='<b style=color:#0f0>'+p.n+' '+pl.d+' $'+pl.p+' - '+st+' keys</b><br><small>'+pl.id+'</small><textarea id=ta-'+pl.id+' style=width:100%;background:#000;color:#0f0;border:1px solid #333;padding:6px;border-radius:6px;margin-top:6px;min-height:60px placeholder=Pega keys></textarea><button onclick=saveK(\''+pl.id+'\') style=width:100%;margin-top:6px;background:#0f0;border:none;padding:8px;border-radius:6px;font-weight:bold>GUARDAR</button>';
+      c.appendChild(d);
+    });
+  });
+}
+function saveK(id){
+  let t=document.getElementById('ta-'+id).value.trim();
+  if(!t)return alert('Pega keys');
+  let arr=t.split('\n').map(s=>s.trim()).filter(s=>s);
+  let k=GK(); if(!k[id])k[id]=[]; k[id]=k[id].concat(arr); SK(k); renderA(); render(); alert(arr.length+' keys agregadas');
+}
+function recargar(){
+  let id=document.getElementById('rID').value.trim().toUpperCase();
+  let m=parseInt(document.getElementById('rM').value);
+  if(!id||!m)return alert('ID y monto');
+  let u=GU(); if(!u[id])u[id]={saldo:0,historial:[]}; u[id].saldo+=m; SU(u); if(id==myID) updS(); alert('Recargado $'+m+' a '+id);
+}
+</script>
+</body>
+</html>
