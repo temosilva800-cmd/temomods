@@ -1,75 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TEMO STORE - TIENDA OFICIAL</title>
-<style>
-body{background:#000;color:#fff;font-family:Arial, sans-serif;padding:10px;text-align:center;margin:0}
-h1{color:#ff0000;text-shadow:0 0 15px red;font-size:28px}
-h2{color:#ff0000;border:1px solid #ff0000;border-radius:10px;padding:8px;background:#110000;font-size:14px;margin-top:20px}
-.card{background:#111;border:1px solid #333;border-radius:12px;padding:12px;margin:12px auto;max-width:520px;text-align:left}
-.i{display:flex;justify-content:space-between;background:#1a1a1a;padding:8px 10px;border-radius:6px;margin:5px 0;font-size:13px;align-items:center}
-.p{color:#00ff00;font-weight:900}
-.b{padding:12px;border-radius:8px;font-weight:900;width:100%;display:block;text-align:center;text-decoration:none;margin-top:6px;border:none;cursor:pointer;font-size:13px}
-.buy{background:linear-gradient(90deg,#ff0000,#ff6600);color:#fff}
-.n{background:#000;padding:10px;border-radius:8px;font-weight:900;border:1px dashed #555;text-align:center;color:#fff;word-break:break-all}
-.w{background:#25D366;color:#fff}
-input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #444;background:#111;color:#fff;margin:6px 0;box-sizing:border-box;font-size:13px}
-#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;overflow:auto;padding:12px;box-sizing:border-box}
-.stock{font-size:10px;color:#ff0;background:#222;padding:2px 6px;border-radius:10px}
-</style>
-</head>
-<body>
-
-<div id="adminPanel">
-<h1 style="color:red">🔐 ADMIN PANEL<br><span style="font-size:14px;color:#fff">Pass: Temo2007</span></h1>
-<div style="display:flex;gap:6px">
-<button class="b" style="background:#00ff00;color:#000" onclick="showTab('saldos')">💰 SALDOS</button>
-<button class="b" style="background:#ff0000;color:#fff" onclick="showTab('keys')">🔑 KEYS STOCK</button>
-</div>
-<div id="tabSaldos" class="card">
-<h2 style="text-align:center">💰 AGREGAR SALDO</h2>
-<input id="uid" placeholder="WhatsApp o UID del cliente ej: 3224528803">
-<input id="monto" type="number" placeholder="Monto ej: 100">
-<input id="nota" placeholder="Nota ej: Pago OXXO">
-<button class="b" style="background:#00ff00;color:#000" onclick="addSaldo()">✅ AGREGAR SALDO</button>
-<div id="listaS" style="margin-top:12px;font-size:12px;line-height:18px"></div>
-</div>
-<div id="tabKeys" class="card" style="display:none">
-<h2 style="text-align:center">🔑 GESTION DE KEYS</h2>
-<select id="prod">
-<option>DRIP 1 DÍA</option><option>DRIP 7 DÍAS</option><option>DRIP 15 DÍAS</option><option>DRIP 30 DÍAS</option>
-<option>FLOURITE 7 DÍAS</option><option>FLOURITE 30 DÍAS</option>
-<option>CUBAN 1 DÍA</option><option>CUBAN 7 DÍAS</option><option>CUBAN 30 DÍAS</option>
-<option>HG CHEATS 1 DÍA</option><option>HG CHEATS 10 DÍAS</option><option>HG CHEATS 30 DÍAS</option>
-<option>PATO TEAM 30 DÍAS</option>
-</select>
-<textarea id="keysIn" rows="6" placeholder="Pega 1 KEY por linea"></textarea>
-<button class="b" style="background:#ff0000;color:#fff" onclick="addKeys()">➕ GUARDAR KEYS EN STOCK</button>
-<div style="margin-top:12px;border-top:1px dashed #333;padding-top:10px">
-<input id="entregaUser" placeholder="Entregar a: WhatsApp del cliente">
-<button class="b" style="background:#ffff00;color:#000" onclick="entregarKey()">🎁 ENTREGAR 1 KEY AL CLIENTE</button>
-</div>
-<div id="listaK" style="margin-top:12px;font-size:11px;line-height:16px;max-height:300px;overflow:auto"></div>
-</div>
-<button class="b" style="background:#333;color:#fff;margin-top:12px" onclick="location.href='/'">❌ CERRAR ADMIN Y VOLVER A TIENDA</button>
-</div>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><style>body{background:#000;color:#fff;font-family:Arial;padding:10px;text-align:center}h1{color:#f00;text-shadow:0 0 15px red}h2{color:#f00;border:1px solid #f00;border-radius:10px;padding:8px;background:#110000;font-size:13px} .card{background:#111;border:1px solid #333;border-radius:12px;padding:10px;margin:10px auto;max-width:520px;text-align:left}.i{display:flex;justify-content:space-between;background:#1a1a1a;padding:8px;border-radius:6px;margin:4px 0;font-size:13px}.p{color:#0f0;font-weight:900}.b{padding:12px;border-radius:8px;font-weight:900;width:100%;display:block;text-align:center;text-decoration:none;margin-top:5px;border:none;cursor:pointer}.buy{background:red;color:#fff}.n{background:#000;padding:10px;border-radius:8px;font-weight:900;border:1px dashed #555;text-align:center}.w{background:#25D366;color:#fff}input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #444;background:#111;color:#fff;margin:5px 0;box-sizing:border-box}#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;overflow:auto;padding:10px;box-sizing:border-box}</style></head><body>
+<div id="adminPanel"><h1>🔐 ADMIN Temo2007</h1><div style="display:flex;gap:5px"><button class="b" style="background:#0f0;color:#000" onclick="showTab('saldos')">💰 SALDOS</button><button class="b" style="background:red;color:#fff" onclick="showTab('keys')">🔑 KEYS</button></div><div id="tabSaldos" class="card"><input id="uid" placeholder="WhatsApp cliente"><input id="monto" type="number" placeholder="Monto"><button class="b" style="background:#0f0;color:#000" onclick="addSaldo()">AGREGAR SALDO</button><div id="listaS" style="font-size:12px"></div></div><div id="tabKeys" class="card" style="display:none"><select id="prod"><option>DRIP 1 DÍA</option><option>DRIP 7 DÍAS</option><option>DRIP 15 DÍAS</option><option>DRIP 30 DÍAS</option><option>FLOURITE 7 DÍAS</option><option>FLOURITE 30 DÍAS</option><option>CUBAN 1 DÍA</option><option>CUBAN 7 DÍAS</option><option>CUBAN 30 DÍAS</option><option>HG CHEATS 1 DÍA</option><option>HG CHEATS 10 DÍAS</option><option>HG CHEATS 30 DÍAS</option><option>PATO TEAM 30 DÍAS</option></select><textarea id="keysIn" rows="5" placeholder="Pega 1 KEY por linea"></textarea><button class="b" style="background:red;color:#fff" onclick="addKeys()">GUARDAR KEYS</button><input id="entregaUser" placeholder="Entregar a WhatsApp"><button class="b" style="background:yellow;color:#000" onclick="entregarKey()">ENTREGAR 1 KEY</button><div id="listaK" style="font-size:11px"></div></div><button class="b" style="background:#333;color:#fff" onclick="location.href='/'">CERRAR ADMIN</button></div>
 
 <h1>TEMO STORE 🔥</h1>
-<p style="color:#888;font-size:12px">TIENDA OFICIAL - ENTREGA INMEDIATA 24/7</p>
+<div class="card" style="border-color:#0f0"><h2 style="color:#0f0;border-color:#0f0;text-align:center">💰 MI CUENTA</h2><input id="user" placeholder="Tu WhatsApp"><button class="b" style="background:#0f0;color:#000" onclick="verCuenta()">VER SALDO Y KEYS</button><div id="saldoRes" style="text-align:center;margin-top:10px"></div></div>
 
-<div class="card" style="border-color:#00ff00;border-width:2px">
-<h2 style="color:#00ff00;border-color:#00ff00;text-align:center">💰 CONSULTAR MI SALDO Y MIS KEYS</h2>
-<input id="user" placeholder="Pon tu WhatsApp o UID ej: 3224528803">
-<button class="b" style="background:#00ff00;color:#000" onclick="verCuenta()">🔍 VER MI CUENTA</button>
-<div id="saldoRes" style="text-align:center;margin-top:12px;font-size:14px;line-height:20px;word-break:break-all"></div>
-</div>
-
-<h2>🔥 PANELES ANDROID - TODAS LAS DURACIONES 🔥</h2>
-<div class="card">
-<div class="i"><span>DRIP 1 DÍA <span class="stock">Stock: <b id="s-DRIP 1 DÍA">0</b></span></span><span class="p">4 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=Quiero%20DRIP%201%20DIA">COMPRAR 1D</a>
-<div class="i"><span>DRIP 7 DÍAS <span class="stock">Stock: <b id="s-DRIP 7 DÍAS">0</b></span></span><span class="p">12 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=Quiero%20DRIP%207%20DIAS">COMPRAR 7D</a>
-<div class="i"><span>DRIP 15 DÍAS <span class="stock">Stock: <b id="s-DRIP 15 DÍAS">0</b></span></span><span class="p">15 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=Quiero%20DRIP%2015%20DIAS">COMPRAR 15D</a>
-<div class="i"><span>DRIP 30 DÍAS <span class="stock">Stock: <b id="s-DRIP 30 DÍAS">0</b></span></span><span class="p">20 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=Quiero%20DRIP%2030%20DIAS">COMPRAR 30D</a>
-<div class="i"><span>FLOURITE 7 DÍAS <span class="stock">Stock: <b id="s-FLOURITE 7 DÍAS">0</b></span></span><span class="p">30 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=Quiero%
+<h2>🔥 PANELES - DURACIONES COMPLETAS 🔥</h2><div class="card">
+<div class="i"><span>DRIP 1 DÍA (Stock: <b id="s-DRIP 1 DÍA">0</b>)</span><span class="p">4 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%201D">COMPRAR 1D</a>
+<div class="i"><span>DRIP 7 DÍAS (Stock: <b id="s-DRIP 7 DÍAS">0</b>)</span><span class="p">12 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%207D">COMPRAR 7D</a>
+<div class="i"><span>DRIP 15 DÍAS (Stock: <b id="s-DRIP 15 DÍAS">0</b>)</span><span class="p">15 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%2015D">COMPRAR 15D</a>
+<div class="i"><span>DRIP 30 DÍAS (Stock: <b id="s-DRIP 30 DÍAS">0</b>)</span><span class="p">20 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%2030D">COMPRAR 30D</a>
+<div class="i"><span>FLOURITE 7 DÍAS (Stock: <b id="s-FLOURITE 7 DÍAS">0</b>)</span><span class="p">30 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=FLOURITE%207D">COMPRAR 7D</a>
+<div class="i"><span>FLOURITE 30 DÍAS (Stock: <b id="s-FLOURITE 30 DÍAS">0</b>)</span><span class="p">50 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=FLOURITE%2030D">COMPRAR 30D</a>
+<div class="i"><span>CUBAN 1 DÍA</span><span class="p">3 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=CUBAN%201D">COMPRAR 1D</a>
+<div class="i"><span>CUBAN 7 DÍAS</span><span class="p">5 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=CUBAN%207D">COMPRAR 7D</a>
+<div class="i"><span>CUBAN 30 DÍAS</span><span class="p">10 USD</span></div><a class
