@@ -10,7 +10,7 @@ body{background:#000;color:#fff;padding-bottom:20px}
 .top{background:red;padding:12px;display:flex;justify-content:space-between;font-weight:bold;position:sticky;top:0;z-index:10}
 .banner{margin:12px;border:2px solid red;border-radius:12px;padding:12px;background:#140000;text-align:center}
 .box{margin:12px;background:#111;border:1px solid #333;border-radius:12px;padding:12px;text-align:center}
-.box input{width:100%;padding:12px;background:#000;color:#fff;border:1px solid #333;border-radius:8px;text-align:center;font-weight:bold}
+.box input{width:100%;padding:12px;background:#000;color:#fff;border:1px solid #333;border-radius:8px;text-align:center;font-weight:bold;letter-spacing:1px}
 .prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center}
 .btn{background:red;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:bold}
 #admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:15px}
@@ -18,7 +18,7 @@ body{background:#000;color:#fff;padding-bottom:20px}
 </style>
 </head>
 <body>
-<div id="baneado"><h1 style="color:red;font-size:50px">🚫 BANEADO</h1><p style="margin-top:12px">Tu ID <b id="banIdTxt"></b> fue baneado</p><p style="color:#666;margin-top:8px;font-size:12px">Contacta a @Temo en Telegram</p></div>
+<div id="baneado"><h1 style="color:red;font-size:50px">🚫 BANEADO</h1><p style="margin-top:12px">Tu ID <b id="banIdTxt"></b> fue baneado</p><p style="color:#888;margin-top:8px;font-size:12px">Contacta a @Temo</p></div>
 
 <div class="top"><span>🔥 TEMO STORE</span><span>💰 $<span id="sTop">0</span></span></div>
 <div class="banner"><h3 style="color:red">BIENVENIDO A TEMO STORE 🔥</h3><small style="color:#888">ID único - No se puede cambiar</small></div>
@@ -38,18 +38,4 @@ body{background:#000;color:#fff;padding-bottom:20px}
 <p id="aErr" style="color:red;display:none;margin-top:8px">Datos mal</p>
 <button onclick="document.getElementById('admin').style.display='none';history.replaceState(null,'','/')" style="margin-top:10px;width:100%;padding:8px;background:#333;border:none;border-radius:6px;color:#fff">Cerrar</button>
 </div>
-<div id="aContent" style="display:none;max-width:600px;margin:0 auto">
-<h2 style="color:#0f0;text-align:center;margin-bottom:10px">PANEL ADMIN</h2>
-<button onclick="restaurarTodo()" style="width:100%;padding:12px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900;margin-bottom:10px">✅ RESTAURAR PRODUCTOS</button>
-
-<div style="background:#111;border:1px solid #ff0;border-radius:10px;padding:10px;margin-bottom:12px">
-<b style="color:#ff0">✏️ CREAR / EDITAR</b>
-<input id="newId" placeholder="id ej: vlt" style="width:100%;padding:8px;margin:5px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<input id="newNombre" placeholder="Nombre ej: VLT MODS" style="width:100%;padding:8px;margin:5px 0;background:#000;border:1px solid #333;color:#fff;border-radius:6px">
-<div style="display:flex;gap:5px"><input id="newDias" type="number" placeholder="Días" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id="newPrecio" type="number" placeholder="$" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"></div>
-<button onclick="crearNuevoProd()" style="width:100%;margin-top:6px;padding:10px;background:#ff0;border:none;border-radius:8px;font-weight:bold;color:#000">GUARDAR / CREAR</button>
-</div>
-
-<div style="background:#111;border:1px solid #0af;border-radius:10px;padding:10px;margin-bottom:12px">
-<b style="color:#0af">💳 RECARGA SALDO</b>
-<div style="display:flex;gap:5px;margin-top:6px"><input id="rID" placeholder="ID TEMO-XXXX" style="flex:1;padding:8px;background:#000;border:1px solid #333;color:#fff;border-radius:6px"><input id
+<div id="aContent" style="display:none;max-width:600px
