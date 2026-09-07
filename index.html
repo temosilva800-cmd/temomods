@@ -1,36 +1,24 @@
-<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TEMO STORE</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#fff;font-family:Arial}.h{background:#000;border-bottom:3px solid red;padding:14px;text-align:center;font-weight:900;font-size:20px;cursor:pointer}.h span{color:red}.c{max-width:500px;margin:10px auto;background:#111;border-radius:12px;padding:12px;border:1px solid #222}.cg{border:2px solid #0f0}.b{width:100%;padding:12px;border-radius:10px;font-weight:900;border:none;margin-top:6px;cursor:pointer}.buy{background:red;color:#fff}.w{background:#25D366;color:#fff}input,select{width:100%;padding:12px;margin:4px 0;background:#000;color:#fff;border:1px solid #333;border-radius:8px}.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.p{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:8px;text-align:center;font-size:12px}#adm{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow:auto;padding:12px}</style></head><body>
-<div id=adm><h1 style="color:red;text-align:center">👑 ADMIN TEMO</h1>
-<div class=c style="border-color:#0f0"><h3 style="color:#0f0;text-align:center">CREAR CLIENTE + SALDO</h3><input id=nu placeholder="Usuario ej: juan"><input id=np placeholder="Pass ej: 1234"><input id=nm type=number placeholder="Saldo inicial ej: 80"><button onclick="cu()" class=b style=background:#0f0;color:#000>✅ CREAR CLIENTE</button>
-<hr style="margin:12px 0">
-<h3 style="color:#0f0;text-align:center">DAR / QUITAR SALDO</h3><input id=au placeholder="Usuario"><input id=am type=number placeholder="Monto ej: 100 o -20"><button onclick="as()" class=b style=background:#0f0;color:#000>💰 APLICAR SALDO</button>
-<hr style="margin:12px 0">
-<h3 style="color:#ff0;text-align:center">🔑 CREAR KEYS</h3><select id=kt><option value="DRIP 1 DIA">DRIP 1 DIA</option><option value="DRIP 7 DIAS">DRIP 7 DIAS</option><option value="DRIP 15 DIAS">DRIP 15 DIAS</option><option value="DRIP 30 DIAS">DRIP 30 DIAS</option><option value="CUBAN 30 DIAS">CUBAN 30 DIAS</option><option value="PATO 30 DIAS">PATO 30 DIAS</option></select><input id=kc type=number value=1 placeholder="Cuantas"><button onclick="ck()" class=b style=background:#ff0;color:#000>🔑 GENERAR KEYS</button>
-<div id=kl style="font-size:11px;margin-top:10px;background:#000;padding:8px;border-radius:8px;max-height:200px;overflow:auto"></div>
-<hr style="margin:12px 0">
-<div id=lu style="font-size:11px;margin-top:10px;background:#000;padding:8px;border-radius:8px"></div>
-</div><button onclick="location.href='/'" class=b style=background:#333>❌ CERRAR ADMIN</button></div>
-<div class=h onclick="toc()">TEMO <span>STORE</span> - Privado</div>
-<div class="c cg" id=lc><h3 style="color:#0f0;text-align:center">🔐 LOGIN CLIENTES</h3><p style="text-align:center;color:#888;font-size:12px">Pide tu cuenta por WhatsApp</p><input id=u placeholder="Usuario"><input id=p type=password placeholder="Contraseña"><button onclick="lg()" class=b style=background:#0f0;color:#000>ENTRAR</button><a class=b style="display:block;text-align:center;text-decoration:none;background:#25D366;color:#fff;padding:12px;border-radius:10px;margin-top:10px;font-weight:900" href="https://wa.me/523224528803">📲 PEDIR CUENTA</a></div>
-<div id=shop style=display:none><div class=c><div id=info style=background:#000;padding:10px;border-radius:8px;text-align:center;border:1px solid #0f0></div><button onclick="localStorage.removeItem('ts');location.reload()" class=b style=background:#333>SALIR</button></div><div style="max-width:500px;margin:0 auto;padding:0 10px"><div class=g>
-<div class=p><b>DRIP 1 DIA</b><br>$80<br><button onclick="by('DRIP 1 DIA',80)" class="b buy">COMPRAR</button></div>
-<div class=p><b>DRIP 7 DIAS</b><br>$240<br><button onclick="by('DRIP 7 DIAS',240)" class="b buy">COMPRAR</button></div>
-<div class=p><b>DRIP 15 DIAS</b><br>$350<br><button onclick="by('DRIP 15 DIAS',350)" class="b buy">COMPRAR</button></div>
-<div class=p><b>DRIP 30 DIAS</b><br>$500<br><button onclick="by('DRIP 30 DIAS',500)" class="b buy">COMPRAR</button></div>
-<div class=p><b>CUBAN 30 DIAS</b><br>$200<br><button onclick="by('CUBAN 30 DIAS',200)" class="b buy">COMPRAR</button></div>
-<div class=p><b>PATO 30 DIAS</b><br>$280<br><button onclick="by('PATO 30 DIAS',280)" class="b buy">COMPRAR</button></div>
-</div><div id=myk style="margin-top:10px;background:#111;padding:10px;border-radius:10px;border:1px solid #333"></div></div></div>
-<script>
-var cc=0;function toc(){cc++;if(cc>=5){adm.style.display='block';cc=0;up()}setTimeout(()=>cc=0,3000)}
-function gu(){try{return JSON.parse(localStorage.getItem('tu')||'{}')}catch(e){return{}}}
-function su(o){localStorage.setItem('tu',JSON.stringify(o))}
-function gk(){try{return JSON.parse(localStorage.getItem('tk')||'[]')}catch(e){return[]}}
-function sk(a){localStorage.setItem('tk',JSON.stringify(a))}
-function cu(){var u=nu.value.toLowerCase().trim(),p=np.value.trim(),m=+nm.value||0;if(!u||!p)return alert('Falta usuario/pass');var x=gu();x[u]={pass:p,saldo:m};su(x);alert('✅ Cliente '+u+' creado con $'+m);nu.value='';np.value='';nm.value='';up()}
-function as(){var u=au.value.toLowerCase().trim(),m=+am.value;if(!u||!m)return alert('Falta');var x=gu();if(!x[u])return alert('No existe '+u);x[u].saldo+=m;su(x);alert('✅ '+u+' ahora $'+x[u].saldo);up()}
-function ck(){var t=kt.value,c=+kc.value||1,a=gk();for(var i=0;i<c;i++){var k=t.replace(/\s/g,'')+'-'+Math.random().toString(36).substr(2,8).toUpperCase();a.push({key:k,tipo:t,usada:false,creada:new Date().toLocaleString()})}sk(a);up();alert('✅ '+c+' keys creadas de '+t)}
-function lg(){var u=document.getElementById('u').value.toLowerCase().trim(),p=document.getElementById('p').value.trim(),x=gu();if(!x[u])return alert('No existe, pide cuenta');if(x[u].pass!=p)return alert('Pass mal');localStorage.setItem('ts',u);sh()}
-function sh(){var s=localStorage.getItem('ts');if(!s)return;var x=gu(),u=x[s];if(!u)return;lc.style.display='none';shop.style.display='block';info.innerHTML='👤 '+s+' | Saldo: <b style=color:#0f0>$'+u.saldo+'</b>';var a=gk(),h='<h3 style=color:#ff0>🔑 Tus Keys</h3>';var cnt=0;for(var i of a){if(i.usada)continue;h+='<div style=background:#000;margin:3px 0;padding:6px;border-radius:6px;display:flex;justify-content:space-between><span>'+i.tipo+'</span><b style=color:#ff0>'+i.key+'</b></div>';cnt++}if(!cnt)h+='<p style=color:#888>Sin keys, compra</p>';myk.innerHTML=h;up()}
-function by(pr,prc){var s=localStorage.getItem('ts'),x=gu();if(x[s].saldo<prc)return alert('❌ Sin saldo $'+x[s].saldo);x[s].saldo-=prc;su(x);var a=gk(),k=pr.replace(/\s/g,'')+'-'+Math.random().toString(36).substr(2,8).toUpperCase();a.push({key:k,tipo:pr,usada:false,creada:new Date().toLocaleString(),dueño:s});sk(a);alert('✅ Compra '+pr+' OK\nKEY: '+k+'\nSaldo: $'+x[s].saldo);sh()}
-function up(){var x=gu(),h='';for(var k in x)h+='<div style=display:flex;justify-content:space-between;background:#1a1a1a;margin:2px 0;padding:6px;border-radius:6px'><span>'+k+' / '+x[k].pass+'</span><span style=color:#0f0>$'+x[k].saldo+'</span></div>';lu.innerHTML=h||'Sin clientes';var a=gk(),hk='';for(var i=a.length-1;i>=0&&i>a.length-50;i--){var it=a[i];hk+='<div style=background:#1a1a1a;margin:2px 0;padding:4px;border-radius:4px>'+it.tipo+' - <b style=color:#ff0>'+it.key+'</b> '+(it.dueño||'')+' '+(it.usada?'USADA':'')+'</div>'}kl.innerHTML=hk||'Sin keys';}
-if(location.search.includes('admin=Temo2007')){adm.style.display='block'}up();if(localStorage.getItem('ts'))sh();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMO STORE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#fff;font-family:Arial,sans-serif}
+.hdr{background:#000;border-bottom:3px solid #ff0000;padding:15px;text-align:center;font-weight:900;font-size:22px;letter-spacing:1px}
+.hdr span{color:#ff0000}
+.box{max-width:480px;margin:12px auto;background:#121212;border-radius:14px;padding:14px;border:1px solid #222}
+.green{border:2px solid #00ff00;box-shadow:0 0 15px #00ff0040}
+input,select{width:100%;padding:13px;margin:5px 0;background:#000;color:#fff;border:1px solid #333;border-radius:10px;font-size:15px}
+.btn{width:100%;padding:14px;border-radius:10px;font-weight:900;border:none;margin-top:7px;cursor:pointer;font-size:15px}
+.btn-g{background:#00ff00;color:#000}
+.btn-r{background:#ff0000;color:#fff}
+.btn-d{background:#333;color:#fff}
+.btn-y{background:#ffeb00;color:#000}
+.prod{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;text-align:center}
+.card b{font-size:14px}
+#ADMIN{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;overflow:auto;padding:12px}
+.item{background:#1a1a1a;margin:4px 0;padding:8px;border-radius:8px;display:flex
