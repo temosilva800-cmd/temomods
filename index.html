@@ -1,48 +1,15 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#fff;font-family:Arial}
-.h{background:#000;border-bottom:3px solid red;padding:15px;text-align:center;font-weight:900;font-size:22px;cursor:pointer}.h span{color:red}
-.c{max-width:480px;margin:12px auto;background:#111;border-radius:14px;padding:14px;border:1px solid #222}
-.b{width:100%;padding:14px;border-radius:10px;font-weight:900;border:none;margin-top:8px;cursor:pointer}
-input,select{width:100%;padding:13px;margin:5px 0;background:#000;color:#fff;border:1px solid #333;border-radius:10px}
-#ADM{display:none;position:fixed;inset:0;background:#000;z-index:9999;overflow:auto;padding:12px}
-.i{background:#1a1a1a;margin:4px 0;padding:8px;border-radius:8px;display:flex;justify-content:space-between;font-size:13px}
-.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.p{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:10px;text-align:center}
-</style></head><body>
-<!-- ADMIN SOLO, SIN PEDIR CUENTA -->
-<div id="ADM"><h1 style="color:red;text-align:center">👑 ADMIN TEMO</h1>
-<div class="c" style="border-color:#0f0">
-<h3 style="color:#0f0;text-align:center">👤 CREAR CLIENTE</h3><input id="nu" placeholder="Usuario"><input id="np" placeholder="Pass"><input id="ns" type="number" placeholder="Saldo"><button onclick="CU()" class="b" style="background:#0f0;color:#000">✅ CREAR CLIENTE</button>
-<hr style="margin:12px 0"><h3 style="color:#0f0;text-align:center">💰 SALDO</h3><input id="au" placeholder="Usuario"><input id="am" type="number" placeholder="100 o -50"><button onclick="AS()" class="b" style="background:#0f0;color:#000">💰 APLICAR</button>
-<hr style="margin:12px 0"><h3 style="color:#ff0;text-align:center">🔑 KEYS</h3><select id="kt"><option>DRIP 1 DIA</option><option>DRIP 7 DIAS</option><option>DRIP 15 DIAS</option><option>DRIP 30 DIAS</option><option>CUBAN 30 DIAS</option><option>PATO 30 DIAS</option></select><input id="kc" type="number" value="1"><button onclick="CK()" class="b" style="background:#ff0;color:#000">🔑 GENERAR</button><div id="kl" style="background:#000;padding:8px;border-radius:10px;margin-top:8px;max-height:150px;overflow:auto;font-size:11px"></div><hr style="margin:12px 0"><h3 style="text-align:center">CLIENTES</h3><div id="ul" style="background:#000;padding:8px;border-radius:10px;max-height:200px;overflow:auto"></div></div>
-<button onclick="location.href='/'" class="b" style="background:#333;max-width:480px;margin:10px auto;display:block">❌ CERRAR ADMIN</button></div>
-
-<!-- CLIENTES -->
-<div class="h" id="TOP" onclick="tClick()">TEMO <span>STORE</span> - Privado</div>
-<div id="CLIENTE">
-<div class="c" style="border-color:#0f0" id="LB"><h3 style="color:#0f0;text-align:center">🔐 LOGIN CLIENTES</h3><input id="u" placeholder="Usuario"><input id="p" type="password" placeholder="Pass"><button onclick="LG()" class="b" style="background:#0f0;color:#000">ENTRAR</button><a href="https://wa.me/523224528803?text=Hola%20quiero%20cuenta" style="display:block;text-align:center;background:#25D366;color:#fff;padding:14px;border-radius:10px;margin-top:10px;font-weight:900;text-decoration:none">📲 PEDIR CUENTA</a><p style="text-align:center;color:#555;font-size:11px;margin-top:6px">Toca 5 veces titulo para admin</p></div>
-<div id="SH" style="display:none"><div class="c" style="text-align:center;border-color:#0f0"><div id="MI"></div><button onclick="LO()" class="b" style="background:#333">SALIR</button></div>
-<div style="max-width:480px;margin:0 auto;padding:0 12px"><div class="g">
-<div class="p"><b>DRIP 1 DIA</b><br>$80<br><button onclick="BY('DRIP 1 DIA',80)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>DRIP 7 DIAS</b><br>$240<br><button onclick="BY('DRIP 7 DIAS',240)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>DRIP 15 DIAS</b><br>$350<br><button onclick="BY('DRIP 15 DIAS',350)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>DRIP 30 DIAS</b><br>$500<br><button onclick="BY('DRIP 30 DIAS',500)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>CUBAN 30 DIAS</b><br>$200<br><button onclick="BY('CUBAN 30 DIAS',200)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-<div class="p"><b>PATO 30 DIAS</b><br>$280<br><button onclick="BY('PATO 30 DIAS',280)" class="b" style="background:red;color:#fff">COMPRAR</button></div>
-</div><div id="MK" class="c" style="margin-top:12px"></div></div></div>
-</div>
-
-<script>
-let tc=0;function tClick(){tc++;if(tc>=5){document.getElementById('ADM').style.display='block';document.getElementById('CLIENTE').style.display='none';R();}setTimeout(()=>tc=0,3000);}
-function GU(){try{return JSON.parse(localStorage.getItem('tu')||'{}')}catch(e){return{}}}function SU(o){localStorage.setItem('tu',JSON.stringify(o))}function GK(){try{return JSON.parse(localStorage.getItem('tk')||'[]')}catch(e){return[]}}function SK(a){localStorage.setItem('tk',JSON.stringify(a))}
-function CU(){let u=nu.value.toLowerCase().trim(),p=np.value.trim(),s=parseInt(ns.value)||0;if(!u||!p)return alert('Falta');let x=GU();x[u]={pass:p,saldo:s};SU(x);alert('✅ '+u);R();nu.value='';np.value='';ns.value='';}
-function AS(){let u=au.value.toLowerCase().trim(),m=parseInt(am.value);let x=GU();if(!x[u])return alert('No existe');x[u].saldo+=m;SU(x);alert('✅ $'+x[u].saldo);R();if(localStorage.getItem('ts'))S();}
-function CK(){let t=kt.value,c=parseInt(kc.value)||1,a=GK();for(let i=0;i<c;i++){let k=t.replace(/\s/g,'').slice(0,4)+'-'+Math.random().toString(36).substr(2,6).toUpperCase();a.push({key:k,tipo:t,dueno:''})}SK(a);R();alert(c+' keys');}
-function LG(){let u=document.getElementById('u').value.toLowerCase().trim();let x=GU();if(!x[u])return alert('No existe');if(x[u].pass!=document.getElementById('p').value)return alert('Pass mal');localStorage.setItem('ts',u);S();}
-function S(){let s=localStorage.getItem('ts');let x=GU();if(!x[s])return;document.getElementById('LB').style.display='none';document.getElementById('SH').style.display='block';document.getElementById('MI').innerHTML='👤 '+s+' | Saldo <b style=color:#0f0>$'+x[s].saldo+'</b>';let ks=GK().filter(k=>k.dueno===s);let h='<h3 style=color:#ff0;text-align:center>🔑 Tus Keys</h3>';if(!ks.length)h+='<p style=color:#888;text-align:center>Sin keys</p>';else ks.reverse().forEach(k=>h+=`<div class=i><span>${k.tipo}</span><b style=color:#ff0>${k.key}</b></div>`);document.getElementById('MK').innerHTML=h;R();}
-function BY(pr,pc){let s=localStorage.getItem('ts'),x=GU();if(x[s].saldo<pc)return alert('Sin saldo $'+x[s].saldo);x[s].saldo-=pc;SU(x);let a=GK();let k=pr.replace(/\s/g,'').slice(0,4)+'-'+Math.random().toString(36).substr(2,6).toUpperCase();a.push({key:k,tipo:pr,dueno:s});SK(a);alert('KEY: '+k);S();}
-function LO(){localStorage.removeItem('ts');location.reload()}
-function R(){let x=GU(),h='';for(let k in x)h+=`<div class=i><span>${k}/${x[k].pass}</span><b style=color:#0f0>$${x[k].saldo}</b></div>`;document.getElementById('ul').innerHTML=h||'Sin clientes';let a=GK(),hh='';for(let i=a.length-1;i>=0&&i>a.length-25;i--){if(!a[i])continue;hh+=`<div class=i><span>${a[i].tipo}</span><b style=color:#ff0>${a[i].key}</b></div>`}document.getElementById('kl').innerHTML=hh||'Sin keys';}
-if(location.href.toLowerCase().includes('admin')){document.getElementById('ADM').style.display='block';document.getElementById('CLIENTE').style.display='none';}
-if(localStorage.getItem('ts'))S();R();
-</script>
-</body></html>
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Temo Store</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-gray-50">
+<header class="bg-black text-white p-4 flex justify-between"><b>TEMO STORE</b><button id="cartBtn">🛒 <span id="cartCount">0</span></button></header>
+<div class="p-4 bg-yellow-100"><input id="pName" placeholder="Nombre producto" class="border p-2 w-full mb-2 rounded"><input id="pPrice" type="number" placeholder="Precio" class="border p-2 w-full mb-2 rounded"><input id="pImage" placeholder="Link imagen" class="border p-2 w-full mb-2 rounded"><button id="addProduct" class="bg-black text-white p-2 w-full rounded">Agregar</button></div>
+<main id="products" class="p-4 grid grid-cols-2 gap-4"></main>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyDFsZ812v6bExs5VkjOA5T3YIBoW_0zGeU",authDomain:"temo-store-5b025.firebaseapp.com",projectId:"temo-store-5b025",storageBucket:"temo-store-5b025.firebasestorage.app",messagingSenderId:"18400776607",appId:"1:18400776607:web:79cc6e9e716afcd41c6daa",measurementId:"G-XVNNBVCE7Z"};
+const app=initializeApp(firebaseConfig);const db=getFirestore(app);const col=collection(db,"productos");
+let cart=[];onSnapshot(col,s=>{const c=document.getElementById('products');c.innerHTML='';s.forEach(d=>{const p=d.data();c.innerHTML+=`<div class="bg-white rounded shadow p-2"><img src="${p.image||'https://via.placeholder.com/300'}" class="w-full h-32 object-cover"><b>${p.name}</b><p class="text-red-600 font-bold">$${p.price}</p><button onclick="addToCart('${p.name}',${p.price})" class="bg-black text-white w-full py-1 rounded mt-1">Agregar</button><button onclick="del('${d.id}')" class="text-xs text-gray-400">Borrar</button></div>`});if(s.empty)c.innerHTML='<p class="col-span-2 text-center mt-10">No hay productos aún. Agrega uno arriba 👆</p>'});
+window.addToCart=(n,p)=>{cart.push({n,p});document.getElementById('cartCount').innerText=cart.length;alert(n+' agregado')};window.del=async id=>{if(confirm('¿Borrar?'))await deleteDoc(doc(db,"productos",id))};
+document.getElementById('addProduct').onclick=async()=>{const n=document.getElementById('pName').value,pr=document.getElementById('pPrice').value,im=document.getElementById('pImage').value;if(!n||!pr)return alert('Falta nombre/precio');await addDoc(col,{name:n,price:Number(pr),image:im});document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pImage').value='';};
+document.getElementById('cartBtn').onclick=()=>{if(!cart.length)return alert('Carrito vacío');let m='Hola Temo! Quiero:%0A',t=0;cart.forEach(i=>{m+=`- ${i.n} $${i.p}%0A`;t+=i.p});m+=`Total $${t}`;window.open('https://wa.me/523921234567?text='+m)};
+</script></body></html>
