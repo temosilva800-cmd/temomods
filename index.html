@@ -118,3 +118,28 @@ let cart=[], precios={}, usuarioActual=localStorage.getItem('temo_id')||null, sa
 const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{id:"drip15",n:"Drip 15 Dias",p:15},{id:"drip30",n:"Drip 30 Dias",p:20},{id:"flou7",n:"Flourite 7 Dias",p:30},{id:"flou30",n:"Flourite 30 Dias",p:50},{id:"cuban1",n:"Cuban 1 Dia",p:3},{id:"cuban7",n:"Cuban 7 Dias",p:5},{id:"cuban30",n:"Cuban 30 Dias",p:10},{id:"hg1",n:"HG 1 Dia",p:5},{id:"hg10",n:"HG 10 Dias",p:12},{id:"hg30",n:"HG 30 Dias",p:18},{id:"pato30",n:"Pato Team 30 Dias",p:14}];
 function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
 window.crearAleatorio=async()=>{let id=generarId();let ref=doc(db,"users",id);let s=await getDoc(ref);while(s.exists()){id=generarId();ref=doc(db,"users",id);s=await getDoc(ref);}await setDoc(ref,{saldo:0});usuarioActual=id;saldoActual=0;localStorage.setItem('temo_id',id);userId.value=id;saldoDisplay.innerText=`💰 $${saldoActual} | ${id}`;boxNuevoId.classList.remove('hidden');miIdGenerado.innerText=`TU ID
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-black text-white">
+<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>TEMO STORE 🔥</b><span id="saldoDisplay" class="bg-black px-3 py-1 rounded-full text-[10px] font-black border">💰 $0</span></header>
+<div class="bg-zinc-900 p-3 flex flex-col gap-2">
+<div class="flex gap-2"><input id="userId" placeholder="Tu ID: TEMO-XXXX" class="flex-1 p-2 rounded-full text-black text-xs font-bold uppercase"><button onclick="cargarSaldo()" class="bg-red-600 px-4 py-2 rounded-full font-black text-[10px]">ENTRAR</button></div>
+<button onclick="crearAleatorio()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO</button>
+<div id="boxNuevoId" class="hidden bg-black border-2 border-yellow-400 rounded-xl p-3">
+<p id="miIdGenerado" class="text-center text-green-400 font-black text-sm mb-3"></p>
+<div class="grid grid-cols-2 gap-2 mb-3">
+<button onclick="mostrarPago('transfer')" class="bg-[#009EE3] text-white py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button>
+<button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 PAGAR EN OXXO</button>
+</div>
+<div id="pagoTransfer" class="bg-zinc-900 rounded-xl p-3 text-[11px]">
+<p class="font-black text-yellow-400 text-center mb-2">TRANSFERENCIA SPEI - MERCADO PAGO</p>
+<div class="flex justify-between"><span class="text-zinc-400">CLABE:</span><b class="select-all">722969027389252036</b></div>
+<div class="flex justify-between"><span class="text-zinc-400">Banco:</span><b>STP / Mercado Pago</b></div>
+<div class="flex justify-between"><span class="text-zinc-400">Titular:</span><b>Cuauhtémoc Martínez Silva</b></div>
+<div class="flex justify-between"><span class="text-zinc-400">Concepto:</span><b id="conceptoTxt" class="text-yellow-400">TEMO-XXXX</b></div>
+<button onclick="copiarClabe()" class="bg-white text-black w-full mt-2 py-1 rounded-full text-[9px] font-black">COPIAR CLABE</button>
+</div>
+<div id="pagoOxxo" class="hidden bg-white rounded-xl p-3 text-center text-black">
+<p class="font-black text-[11px] mb-2">Muestra este código en OXXO para depositar</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=2242170320800281" class="mx-auto w-56 h-56 rounded-lg border-2 border-black">
+<p class="text-[10px] text-zinc-500 mt-3">También puedes dictar este número:</p>
+<div class="bg-zinc-100 border-2 border-dashed rounded-lg p-2 mt-1"><b class="text-[16px] tracking-widest">2242 1703 2080 0281</b></div>
+<p
