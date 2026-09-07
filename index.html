@@ -5,26 +5,42 @@
 
 <div class="max-w-md mx-auto p-3">
   <div class="flex gap-2 mb-2"><input id="userId" placeholder="TEMO-XXXX" class="flex-1 p-3 rounded-full text-black font-bold uppercase text-xs"><button id="btnEntrar" class="bg-red-600 px-4 rounded-full font-black text-xs">ENTRAR</button></div>
-  <button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID ALEATORIO (1 POR CELULAR)</button>
-  <p id="bloqueoMsg" class="hidden text-center text-[11px] text-red-400 font-black mt-2 bg-red-900/20 border border-red-600 rounded-full p-2"></p>
+  <button id="btnCrear" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR TU ID (1 POR CELULAR)</button>
+  <p id="bloqueoMsg" class="hidden text-center text-[11px] text-red-400 font-black mt-2 bg-red-900/30 border border-red-600 rounded-full p-2"></p>
   <div id="boxNuevoId" class="hidden bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 mt-3">
     <p id="miIdGenerado" class="text-center text-green-400 font-black mb-2"></p>
     <div class="grid grid-cols-2 gap-2 mb-2"><button onclick="mostrarPago('transfer')" class="bg-blue-500 py-2 rounded-full font-black text-[10px]">💳 TRANSFERENCIA</button><button onclick="mostrarPago('oxxo')" class="bg-yellow-400 text-black py-2 rounded-full font-black text-[10px]">🏪 OXXO</button></div>
-    <div id="pagoTransfer" class="bg-black rounded p-2 text-[11px]">CLABE: <b>722969027389252036</b><br>Banco: STP / Mercado Pago<br>Titular: Cuauhtémoc Mtz Silva<br>Concepto: <b id="conceptoTxt" class="text-yellow-400"></b><br><button onclick="navigator.clipboard.writeText('722969027389252036');alert('copiada')" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black text-[10px]">COPIAR CLABE</button></div>
-    <div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=2242170320800281" class="mx-auto w-48 h-48"><p class="mt-2 font-black tracking-widest">2242 1703 2080 0281</p></div>
+    <div id="pagoTransfer" class="bg-black rounded p-2 text-[11px]">CLABE: <b>722969027389252036</b><br>Concepto: <b id="conceptoTxt" class="text-yellow-400"></b><br><button onclick="navigator.clipboard.writeText('722969027389252036');alert('copiada')" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black text-[10px]">COPIAR CLABE</button></div>
+    <div id="pagoOxxo" class="hidden bg-white text-black rounded-xl p-3 text-center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=2242170320800281" class="mx-auto w-48 h-48"><p class="mt-2 font-black">2242 1703 2080 0281</p></div>
     <button onclick="window.open('https://wa.me/523224528803?text='+encodeURIComponent('Hola Temo ID '+usuarioActual),'_blank')" class="bg-[#25D366] w-full mt-3 py-3 rounded-full font-black text-xs">📤 ENVIAR COMPROBANTE</button>
     <div id="historialBox" class="mt-3 space-y-2"></div>
   </div>
 </div>
 
-<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y border-zinc-800"><div id="loginDiv"><input id="email" placeholder="correo admin" class="w-full p-2 rounded text-black mb-2"><input id="pass" type="password" placeholder="pass (temo123)" class="w-full p-2 rounded text-black mb-2"><button id="btnLogin" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar Admin</button></div><div id="panel" class="hidden"><b>ADMIN - TEMO</b><div id="lista" class="grid gap-2 mt-3"></div><div class="flex gap-1 mt-3"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button id="btnRecarga" class="bg-green-500 px-3 rounded-full">+</button></div><button onclick="adminPanel.classList.add('hidden')" class="w-full mt-3 bg-zinc-700 py-2 rounded-full text-xs">CERRAR</button></div></div>
+<!-- ADMIN CON BOTON NUEVO PRODUCTO -->
+<div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 p-3 border-y border-zinc-800">
+<div id="loginDiv"><input id="email" placeholder="correo admin" class="w-full p-2 rounded text-black mb-2"><input id="pass" type="password" placeholder="temo123" class="w-full p-2 rounded text-black mb-2"><button id="btnLogin" class="bg-white text-black w-full p-2 rounded-full font-black">Entrar</button></div>
+<div id="panel" class="hidden">
+<b>ADMIN - TEMO</b>
+<!-- CREAR NUEVO PRODUCTO -->
+<div class="bg-yellow-400/10 border-2 border-yellow-400 rounded-xl p-2 mt-3">
+<b class="text-[11px] text-yellow-400">+ CREAR NUEVO PRODUCTO</b>
+<div class="flex flex-col gap-1 mt-1">
+<input id="newId" placeholder="id sin espacios ej: vlt30" class="p-2 rounded text-black text-xs">
+<input id="newNombre" placeholder="Nombre ej: VLT 30 Dias" class="p-2 rounded text-black text-xs">
+<input id="newPrecio" type="number" placeholder="Precio ej: 25" class="p-2 rounded text-black text-xs">
+<button onclick="crearNuevoProd()" class="bg-yellow-400 text-black py-2 rounded-full font-black text-xs">🚀 CREAR PRODUCTO</button>
+</div>
+</div>
+<div id="lista" class="grid gap-2 mt-3"></div>
+<div class="flex gap-1 mt-3"><input id="recargaId" placeholder="TEMO-XXXX" class="flex-1 p-2 rounded text-black text-xs"><input id="recargaMonto" type="number" placeholder="$" class="w-16 p-2 rounded text-black"><button id="btnRecarga" class="bg-green-500 px-3 rounded-full">+</button></div>
+<button onclick="adminPanel.classList.add('hidden')" class="w-full mt-3 bg-zinc-700 py-2 rounded-full text-xs">CERRAR</button>
+</div></div>
 
 <main id="productos" class="max-w-md mx-auto p-3 grid grid-cols-2 gap-3"></main>
-<div class="text-center pb-10"><button id="btnSeed" class="bg-zinc-800 px-4 py-2 rounded-full text-[10px] mt-4">⚠️ Si no aparecen dale aquí para crearlos en Firebase</button></div>
 
-<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><div id="cartItems"></div><div id="cartTotal" class="font-black mt-2"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR CON SALDO - VER KEY AQUI</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs">Cerrar</button></div></div>
-
-<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 shadow-[0_0_30px_red] w-full max-w-md rounded-2xl p-5 text-center"><h2 class="font-black text-xl text-green-400">✅ COMPRA EXITOSA</h2><div id="keysEntregadas" class="bg-black border border-zinc-800 rounded-xl p-3 mt-3 text-left space-y-2 max-h-64 overflow-auto"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
+<div id="cartModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-end justify-center"><div class="bg-white text-black w-full max-w-md rounded-t-2xl p-4"><div id="cartItems"></div><div id="cartTotal" class="font-black mt-2"></div><button id="checkout" class="bg-green-500 text-white w-full p-3 rounded-full mt-3 font-black">COMPRAR - VER KEY AQUI</button><button onclick="cartModal.classList.add('hidden')" class="w-full mt-2 text-xs">Cerrar</button></div></div>
+<div id="keyModal" class="fixed inset-0 bg-black/95 hidden z-50 flex items-center justify-center p-4"><div class="bg-zinc-900 border-2 border-red-600 w-full max-w-md rounded-2xl p-5 text-center"><h2 class="font-black text-xl text-green-400">✅ COMPRA EXITOSA</h2><div id="keysEntregadas" class="bg-black border border-zinc-800 rounded-xl p-3 mt-3 text-left space-y-2 max-h-64 overflow-auto"></div><button onclick="keyModal.classList.add('hidden')" class="bg-red-600 w-full mt-4 py-3 rounded-full font-black">LISTO</button></div></div>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
@@ -37,79 +53,26 @@ const base=[{id:"drip1",n:"Drip 1 Dia",p:4},{id:"drip7",n:"Drip 7 Dias",p:12},{i
 
 window.mostrarPago=(t)=>{document.getElementById('pagoOxxo').classList.toggle('hidden',t!=='oxxo');document.getElementById('pagoTransfer').classList.toggle('hidden',t==='oxxo');}
 function generarId(){let c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r="";for(let i=0;i<5;i++)r+=c[Math.floor(Math.random()*c.length)];return"TEMO-"+r;}
-function renderTienda(){
-  let c=document.getElementById('productos'); c.innerHTML='';
-  let lista = Object.keys(precios).length>0? Object.entries(precios).map(([k,v])=>({id:k,nombre:v.nombre||k,precio:v.precio,keys:v.keys||[]})) : base.map(b=>({id:b.id,nombre:b.n,precio:b.p,keys:[]}));
-  lista.forEach(p=>{
-    c.innerHTML+=`<div class="bg-zinc-900 border border-red-600 rounded-xl p-3"><b class="text-[11px]">${p.nombre}</b><p class="text-green-400 font-black">$${p.precio}</p><p class="text-[9px] text-zinc-500">${p.keys.length} keys</p><button onclick="add('${p.id}','${p.nombre}',${p.precio})" class="bg-white text-black w-full mt-2 py-2 rounded-full font-bold text-[10px]">Comprar</button></div>`;
-  });
-}
-renderTienda();
-if(db){onSnapshot(collection(db,"temo_precios"),snap=>{snap.forEach(d=>precios[d.id]=d.data());renderTienda();renderAdmin();},()=>{});}
-function renderAdmin(){let h='';base.forEach(x=>{let d=precios[x.id]||{precio:x.p,keys:[]};h+=`<div class="bg-black p-2 rounded border border-zinc-800"><b class="text-[10px]">${x.n}</b><div class="flex gap-1 mt-1"><input id="price_${x.id}" type="number" value="${d.precio||x.p}" class="w-16 p-1 rounded text-black text-xs"><button onclick="savePrice('${x.id}','${x.n}')" class="bg-white text-black px-2 rounded-full text-[10px]">OK</button></div><textarea id="keys_${x.id}" class="w-full mt-1 p-1 rounded text-black text-xs h-10" placeholder="keys"></textarea><button onclick="addKeys('${x.id}','${x.n}')" class="bg-green-500 w-full mt-1 py-1 rounded-full text-[10px] font-black">+ KEYS</button></div>`});document.getElementById('lista').innerHTML=h;}
+function renderTienda(){let c=document.getElementById('productos'); c.innerHTML=''; let lista = Object.keys(precios).length>0? Object.entries(precios).map(([k,v])=>({id:k,nombre:v.nombre||k,precio:v.precio,keys:v.keys||[]})) : base.map(b=>({id:b.id,nombre:b.n,precio:b.p,keys:[]})); lista.forEach(p=>{c.innerHTML+=`<div class="bg-zinc-900 border border-red-600 rounded-xl p-3"><b class="text-[11px]">${p.nombre}</b><p class="text-green-400 font-black">$${p.precio}</p><p class="text-[9px] text-zinc-500">${p.keys.length} keys</p><button onclick="add('${p.id}','${p.nombre}',${p.precio})" class="bg-white text-black w-full mt-2 py-2 rounded-full font-bold text-[10px]">Comprar</button></div>`;});}
+renderTienda(); if(db){onSnapshot(collection(db,"temo_precios"),snap=>{snap.forEach(d=>precios[d.id]=d.data());renderTienda();renderAdmin();},()=>{});}
+function renderAdmin(){let h='';let listaKeys=Object.entries(precios);if(listaKeys.length==0) listaKeys=base.map(b=>[b.id,{nombre:b.n,precio:b.p,keys:[]}]); listaKeys.forEach(([id,data])=>{h+=`<div class="bg-black p-2 rounded border border-zinc-800"><b class="text-[10px]">${data.nombre||id} (${id})</b><div class="flex gap-1 mt-1"><input id="price_${id}" type="number" value="${data.precio||0}" class="w-16 p-1 rounded text-black text-xs"><button onclick="savePrice('${id}','${data.nombre||id}')" class="bg-white text-black px-2 rounded-full text-[10px]">OK</button><button onclick="eliminarProd('${id}')" class="bg-red-600 text-white px-2 rounded-full text-[10px]">X</button></div><textarea id="keys_${id}" class="w-full mt-1 p-1 rounded text-black text-xs h-10" placeholder="keys una por linea"></textarea><button onclick="addKeys('${id}','${data.nombre||id}')" class="bg-green-500 w-full mt-1 py-1 rounded-full text-[10px] font-black">+ KEYS</button></div>`});document.getElementById('lista').innerHTML=h;}
+
 window.add=(id,n,p)=>{cart.push({id,n,p});document.getElementById('cartCount').innerText=cart.length;}
 document.getElementById('cartBtn').onclick=()=>{let h='',t=0;cart.forEach(i=>{h+=`<div class="flex justify-between text-sm"><span>${i.n}</span><b>$${i.p}</b></div>`;t+=i.p;});document.getElementById('cartItems').innerHTML=h;document.getElementById('cartTotal').innerText='Total $'+t;document.getElementById('cartModal').classList.remove('hidden');}
-document.getElementById('checkout').onclick=async()=>{
-  let t=cart.reduce((a,b)=>a+b.p,0);if(!usuarioActual)return alert("Entra con ID");if(saldoActual<t)return alert("Saldo insuficiente $"+saldoActual);
-  let htmlKeys='';
-  for(let it of cart){
-    let key="SIN-STOCK"; try{if(db){let ref=doc(db,"temo_precios",it.id);let sn=await getDoc(ref);if(sn.exists()&&sn.data().keys?.length){key=sn.data().keys[0];await updateDoc(ref,{keys:sn.data().keys.slice(1)});}else{key="DEMO-"+Math.random().toString(36).substring(2,6).toUpperCase();}}else{key="DEMO-"+Math.random().toString(36).substring(2,6).toUpperCase();}}catch(e){key="DEMO-"+Math.random().toString(36).substring(2,6).toUpperCase();}
-    htmlKeys+=`<div class="border-b border-zinc-800 py-2"><b class="text-white text-xs">${it.n}</b><br><span class="font-mono text-green-400 text-sm select-all">${key}</span><br><button onclick="navigator.clipboard.writeText('${key}')" class="bg-white text-black px-2 py-1 rounded-full text-[9px] mt-1">COPIAR</button></div>`;
-    let hist=JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]'); hist.unshift({producto:it.n,key:key,fecha:new Date().toLocaleString()}); localStorage.setItem('hist_'+usuarioActual,JSON.stringify(hist));
-  }
-  try{if(db)await updateDoc(doc(db,"users",usuarioActual),{saldo:saldoActual-t});}catch(e){} saldoActual-=t; localStorage.setItem('saldo_'+usuarioActual,saldoActual);
-  document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${usuarioActual}`; cart=[];document.getElementById('cartCount').innerText=0;document.getElementById('cartModal').classList.add('hidden');
-  document.getElementById('keysEntregadas').innerHTML=htmlKeys; document.getElementById('keyModal').classList.remove('hidden'); renderHistorial();
-}
+document.getElementById('checkout').onclick=async()=>{let t=cart.reduce((a,b)=>a+b.p,0);if(!usuarioActual)return alert("Entra con ID");if(saldoActual<t)return alert("Saldo insuficiente $"+saldoActual);let htmlKeys='';for(let it of cart){let key="SIN-STOCK"; try{if(db){let ref=doc(db,"temo_precios",it.id);let sn=await getDoc(ref);if(sn.exists()&&sn.data().keys?.length){key=sn.data().keys[0];await updateDoc(ref,{keys:sn.data().keys.slice(1)});}else{key="DEMO-"+Math.random().toString(36).substring(2,6).toUpperCase();}}else{key="DEMO-"+Math.random().toString(36).substring(2,6).toUpperCase();}}catch(e){key="DEMO-"+Math.random().toString(36).substring(2,6).toUpperCase();}htmlKeys+=`<div class="border-b border-zinc-800 py-2"><b class="text-white text-xs">${it.n}</b><br><span class="font-mono text-green-400 text-sm">${key}</span><br><button onclick="navigator.clipboard.writeText('${key}')" class="bg-white text-black px-2 py-1 rounded-full text-[9px] mt-1">COPIAR</button></div>`;let hist=JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]'); hist.unshift({producto:it.n,key:key,fecha:new Date().toLocaleString()}); localStorage.setItem('hist_'+usuarioActual,JSON.stringify(hist));}try{if(db)await updateDoc(doc(db,"users",usuarioActual),{saldo:saldoActual-t});}catch(e){} saldoActual-=t; localStorage.setItem('saldo_'+usuarioActual,saldoActual);document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${usuarioActual}`; cart=[];document.getElementById('cartCount').innerText=0;document.getElementById('cartModal').classList.add('hidden');document.getElementById('keysEntregadas').innerHTML=htmlKeys; document.getElementById('keyModal').classList.remove('hidden'); renderHistorial();}
 function renderHistorial(){if(!usuarioActual)return;let hist=JSON.parse(localStorage.getItem('hist_'+usuarioActual)||'[]');let h='<p class="text-[11px] font-black mt-3 border-t border-zinc-800 pt-2">📜 HISTORIAL</p>';hist.forEach(v=>{h+=`<div class="bg-black border border-zinc-800 p-2 rounded text-[10px]"><b>${v.producto}</b><br><span class="font-mono text-green-400">${v.key}</span><br><span class="text-[9px] text-zinc-500">${v.fecha}</span></div>`});document.getElementById('historialBox').innerHTML=h;}
-
-// FUNCION 1 ID POR CELULAR - BLOQUEADO
-function bloquearBotonCrear(){
-  let idGuardado = localStorage.getItem('temo_id');
-  let bloqueado = localStorage.getItem('temo_locked');
-  if(idGuardado && bloqueado){
-    document.getElementById('btnCrear').classList.add('hidden');
-    let msg = document.getElementById('bloqueoMsg');
-    msg.classList.remove('hidden');
-    msg.innerText = "⛔ YA TIENES ID: " + idGuardado + " - Solo 1 por celular";
-    document.getElementById('userId').value = idGuardado;
-  }
-}
+function bloquearBotonCrear(){let idGuardado=localStorage.getItem('temo_id');let bloqueado=localStorage.getItem('temo_locked');if(idGuardado&&bloqueado){document.getElementById('btnCrear').classList.add('hidden');let msg=document.getElementById('bloqueoMsg');msg.classList.remove('hidden');msg.innerText="⛔ YA TIENES ID: "+idGuardado+" - Solo 1 por celular";document.getElementById('userId').value=idGuardado;}}
 bloquearBotonCrear();
-
-document.getElementById('btnCrear').onclick=async()=>{
-  // DOBLE CHEQUEO ANTES DE CREAR
-  if(localStorage.getItem('temo_id') && localStorage.getItem('temo_locked')){
-    bloquearBotonCrear();
-    alert("⚠️ YA TIENES ID: "+localStorage.getItem('temo_id')+"\nSolo se permite 1 ID por celular");
-    return;
-  }
-  try{
-    let id=generarId();
-    usuarioActual=id;
-    localStorage.setItem('temo_id',id);
-    localStorage.setItem('temo_locked','1'); // CANDADO
-    localStorage.setItem('saldo_'+id,'0');
-    saldoActual=0;
-    document.getElementById('userId').value=id;
-    document.getElementById('saldoDisplay').innerText=`💰 $0 | ${id}`;
-    document.getElementById('boxNuevoId').classList.remove('hidden');
-    document.getElementById('miIdGenerado').innerText=`TU ID: ${id}`;
-    document.getElementById('conceptoTxt').innerText=id;
-    document.getElementById('btnCrear').classList.add('hidden');
-    document.getElementById('bloqueoMsg').classList.remove('hidden');
-    document.getElementById('bloqueoMsg').innerText="⛔ ID CREADO: "+id+" - Ya no puedes crear otro en este celular";
-    if(db){try{await setDoc(doc(db,"users",id),{saldo:0,creado:new Date().toISOString()});}catch(e){}}
-    renderHistorial();
-  }catch(e){alert(e.message);}
-}
-
+document.getElementById('btnCrear').onclick=async()=>{if(localStorage.getItem('temo_id')&&localStorage.getItem('temo_locked')){bloquearBotonCrear();alert("⚠️ YA TIENES ID: "+localStorage.getItem('temo_id'));return;}try{let id=generarId();usuarioActual=id;localStorage.setItem('temo_id',id);localStorage.setItem('temo_locked','1');localStorage.setItem('saldo_'+id,'0');saldoActual=0;document.getElementById('userId').value=id;document.getElementById('saldoDisplay').innerText=`💰 $0 | ${id}`;document.getElementById('boxNuevoId').classList.remove('hidden');document.getElementById('miIdGenerado').innerText=`TU ID: ${id}`;document.getElementById('conceptoTxt').innerText=id;bloquearBotonCrear();if(db){try{await setDoc(doc(db,"users",id),{saldo:0});}catch(e){}}renderHistorial();}catch(e){alert(e.message);}}
 document.getElementById('btnEntrar').onclick=async()=>{let id=document.getElementById('userId').value.trim().toUpperCase();if(!id)return alert("ID");try{if(db){let s=await getDoc(doc(db,"users",id));if(s.exists())saldoActual=s.data().saldo||0;else{saldoActual=Number(localStorage.getItem('saldo_'+id)||0);}}else{saldoActual=Number(localStorage.getItem('saldo_'+id)||0);}}catch(e){saldoActual=Number(localStorage.getItem('saldo_'+id)||0);}usuarioActual=id;localStorage.setItem('temo_id',id);document.getElementById('saldoDisplay').innerText=`💰 $${saldoActual} | ${id}`;document.getElementById('boxNuevoId').classList.remove('hidden');document.getElementById('miIdGenerado').innerText=`${id} | Saldo $${saldoActual}`;document.getElementById('conceptoTxt').innerText=id;renderHistorial();bloquearBotonCrear();}
 document.getElementById('btnAdmin').onclick=()=>document.getElementById('adminPanel').classList.toggle('hidden');
-document.getElementById('btnLogin').onclick=async()=>{let p=document.getElementById('pass').value;if(p==='temo123'){document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdmin();return;}try{await signInWithEmailAndPassword(auth,document.getElementById('email').value,p);document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdmin();}catch(e){alert("Pass mala, usa temo123");}}
+document.getElementById('btnLogin').onclick=async()=>{let p=document.getElementById('pass').value;if(p==='temo123'){document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdmin();return;}try{await signInWithEmailAndPassword(auth,document.getElementById('email').value,p);document.getElementById('loginDiv').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');renderAdmin();}catch(e){alert("Pass mala");}}
 window.savePrice=async(id,nom)=>{try{let v=Number(document.getElementById('price_'+id).value);let ref=doc(db,"temo_precios",id);let s=await getDoc(ref);let k=s.exists()?s.data().keys||[]:[];await setDoc(ref,{nombre:nom,precio:v,keys:k});alert("Precio guardado");}catch(e){alert(e.message);}}
 window.addKeys=async(id,nom)=>{try{let txt=document.getElementById('keys_'+id).value.trim();if(!txt)return;let ns=txt.split('\n').map(s=>s.trim());let ref=doc(db,"temo_precios",id);let s=await getDoc(ref);let d=s.exists()?s.data():{nombre:nom,precio:0,keys:[]};await setDoc(ref,{nombre:nom,precio:d.precio||0,keys:[...(d.keys||[]),...ns]});document.getElementById('keys_'+id).value='';alert("Keys agregadas");}catch(e){alert(e.message);}}
-document.getElementById('btnRecarga').onclick=async()=>{try{let id=document.getElementById('recargaId').value.trim().toUpperCase();let m=Number(document.getElementById('recargaMonto').value);if(db){let ref=doc(db,"users",id);let s=await getDoc(ref);if(s.exists())await updateDoc(ref,{saldo:(s.data().saldo||0)+m});}let localS=Number(localStorage.getItem('saldo_'+id)||0);localStorage.setItem('saldo_'+id,localS+m);alert("Recargado");}catch(e){alert(e.message);}}
-document.getElementById('btnSeed').onclick=async()=>{try{for(let b of base){let ref=doc(db,"temo_precios",b.id);let s=await getDoc(ref);if(!s.exists())await setDoc(ref,{nombre:b.n,precio:b.p,keys:[]});}alert("Creados");}catch(e){alert("Pon Rules allow read, write: if true");}}
+window.crearNuevoProd=async()=>{try{let id=document.getElementById('newId').value.trim().toLowerCase().replace(/[^a-z0-9]/g,'');let nom=document.getElementById('newNombre').value.trim();let pre=Number(document.getElementById('newPrecio').value);if(!id||!nom||!pre)return alert("Llena ID, Nombre y Precio");let ref=doc(db,"temo_precios",id);let s=await getDoc(ref);if(s.exists())return alert("Ya existe ese ID");await setDoc(ref,{nombre:nom,precio:pre,keys:[]});document.getElementById('newId').value='';document.getElementById('newNombre').value='';document.getElementById('newPrecio').value='';alert("✅ Producto "+nom+" creado");}catch(e){alert(e.message);}}
+window.eliminarProd=async(id)=>{if(!confirm("¿Borrar "+id+"?"))return;try{let ref=doc(db,"temo_precios",id);await setDoc(ref,{nombre:"BORRADO",precio:0,keys:[]}); // truco para borrar sin permiso delete
+// Si tienes permiso delete usa: import {deleteDoc} y deleteDoc(ref)
+alert("Borrado, recarga");}catch(e){alert(e.message);}}
+document.getElementById('btnRecarga').onclick=async()=>{try{let id=document.getElementById('recargaId').value.trim().toUpperCase();let m=Number(document.getElementById('recargaMonto').value);let bonus=0;if(m>=500)bonus=150;else if(m>=200)bonus=50;else if(m>=100)bonus=20;let total=m+bonus;if(db){let ref=doc(db,"users",id);let s=await getDoc(ref);if(s.exists())await updateDoc(ref,{saldo:(s.data().saldo||0)+total});}let localS=Number(localStorage.getItem('saldo_'+id)||0);localStorage.setItem('saldo_'+id,localS+total);alert("Recargado $"+m+" + BONUS $"+bonus+" = $"+total);}catch(e){alert(e.message);}}
 if(usuarioActual){document.getElementById('userId').value=usuarioActual;document.getElementById('btnEntrar').click();}
 </script></body></html>
