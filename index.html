@@ -6,51 +6,46 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body style="background:#000;color:#fff">
-<header class="bg-red-600 p-3 flex justify-between sticky top-0 z-50"><b>✅ANDROID</b><div class="flex gap-2"><span id="saldoTxt" class="bg-black px-2 py-1 rounded-full text-xs font-black">💰 $0</span><button onclick="abrirAdmin()" class="bg-black px-2 py-1 rounded-full text-xs">⚙️ ADMIN</button></div></header>
+<header class="bg-red-600 p-3 flex justify-between sticky top-0"><b>✅ANDROID TEMO</b><button onclick="document.getElementById('adminPanel').classList.toggle('hidden')" class="bg-black px-3 py-1 rounded-full text-xs">⚙️ ADMIN</button></header>
 
 <div class="max-w-md mx-auto p-3 space-y-2">
+<p id="saldoTxt" class="text-center font-black text-red-500">💰 $0</p>
 <input id="userId" placeholder="TEMO-XXXX" class="w-full p-3 rounded-full text-black font-bold text-xs uppercase">
-<button id="btnCrear" onclick="crear()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black text-xs">🎲 CREAR ID (1 POR CELULAR)</button>
-<button onclick="entrar()" class="bg-red-600 w-full py-3 rounded-full font-black text-xs">ENTRAR</button>
-<p id="msg" class="text-center text-red-500 text-xs font-black"></p>
+<button onclick="crear()" class="bg-yellow-400 text-black w-full py-3 rounded-full font-black">🎲 CREAR ID (1 POR CELULAR)</button>
+<button onclick="entrar()" class="bg-red-600 w-full py-3 rounded-full font-black">ENTRAR</button>
+<p id="msg" class="text-center text-xs text-red-500 font-black"></p>
+
 <div id="pagos" class="hidden bg-zinc-900 border border-red-600 rounded-xl p-3 text-xs">
-<p>CLABE: <b>722969027389252036</b> | OXXO: <b>2242 1703 2080 0281</b></p>
-<p>Concepto: <b id="concepto" class="text-red-500"></b></p>
-<p>👉🏻 ASEPTO CUALQUIER METODO DE PAGO ✅</p>
-<button onclick="verHist()" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black">📜 HISTORIAL</button>
+<p>CLABE: <b>722969027389252036</b></p>
+<p>OXXO: <b>2242 1703 2080 0281</b></p>
+<p>Concepto: <b id="concepto"></b></p>
+<p>ASEPTO CUALQUIER METODO DE PAGO ✅</p>
+<button onclick="verHist()" class="bg-white text-black w-full mt-2 py-2 rounded-full font-black">📜 VER HISTORIAL</button>
 <div id="hist" class="mt-2 space-y-2"></div>
 </div>
 </div>
 
-<!-- ADMIN PANEL -->
 <div id="adminPanel" class="hidden max-w-md mx-auto bg-zinc-900 border-2 border-red-600 rounded-xl p-3 m-3">
-<input id="adminPass" type="password" placeholder="Contraseña admin" class="w-full p-2 rounded text-black text-xs mb-2">
-<button onclick="loginAdmin()" class="bg-red-600 w-full py-2 rounded-full font-black text-xs">ENTRAR ADMIN</button>
-<div id="adminContent" class="hidden mt-3 space-y-2">
-<p class="text-red-500 font-black text-xs">AGREGAR KEYS / RECARGA</p>
-<input id="prodId" placeholder="ID producto ej: drip1" class="w-full p-2 rounded text-black text-xs">
-<textarea id="keysInput" placeholder="Pega keys 1 por linea" class="w-full p-2 rounded text-black text-xs h-20"></textarea>
-<button onclick="guardarKeys()" class="bg-red-600 w-full py-2 rounded-full font-black text-xs">GUARDAR KEYS</button>
-<hr class="border-zinc-700">
-<input id="recargaId" placeholder="TEMO-XXXX" class="w-full p-2 rounded text-black text-xs">
-<input id="recargaMonto" type="number" placeholder="Monto $ ej: 20" class="w-full p-2 rounded text-black text-xs">
+<input id="adminPass" type="password" placeholder="Pass admin" class="w-full p-2 rounded text-black text-xs mb-2">
+<button onclick="loginAdmin()" class="bg-red-600 w-full py-2 rounded-full font-black text-xs mb-2">ENTRAR ADMIN temo123</button>
+<div id="adminContent" class="hidden space-y-2">
+<textarea id="keysInput" placeholder="Pega keys 1 por linea con formato: drip1|KEY123" class="w-full p-2 rounded text-black text-xs h-24"></textarea>
+<button onclick="guardarKeys()" class="bg-red-600 w-full py-2 rounded-full font-black text-xs">GUARDAR KEYS LOCAL</button>
+<input id="recargaId" placeholder="TEMO-XXXX" class="w-full p-2 rounded text-black text-xs mt-2">
+<input id="recargaMonto" type="number" placeholder="Monto" class="w-full p-2 rounded text-black text-xs">
 <button onclick="recargar()" class="bg-yellow-400 text-black w-full py-2 rounded-full font-black text-xs">RECARGAR SALDO</button>
-<button onclick="adminPanel.classList.add('hidden')" class="bg-zinc-700 w-full py-2 rounded-full text-xs mt-2">CERRAR</button>
+<div id="listaUsers" class="text-[10px] mt-2"></div>
 </div>
 </div>
 
-<!-- PRODUCTOS FIJOS -->
 <div class="max-w-md mx-auto p-3 grid grid-cols-2 gap-3">
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 1 DIA 4usd 🛒</b><p class="text-red-500 font-black">$4</p><button onclick="buy('drip1','DRIP 1 DIA',4)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 7 DIAS 12usd</b><p class="text-red-500 font-black">$12</p><button onclick="buy('drip7','DRIP 7 DIAS',12)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 15 DIAS 15usd</b><p class="text-red-500 font-black">$15</p><button onclick="buy('drip15','DRIP 15 DIAS',15)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 30 DIAS 20usd</b><p class="text-red-500 font-black">$20</p><button onclick="buy('drip30','DRIP 30 DIAS',20)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">FLOURITE 7 DIAS 30usd</b><p class="text-red-500 font-black">$30</p><button onclick="buy('flou7','FLOURITE 7 DIAS',30)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">FLOURITE 30 DIAS 50usd</b><p class="text-red-500 font-black">$50</p><button onclick="buy('flou30','FLOURITE 30 DIAS',50)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">CUBAN 1 dia 3</b><p class="text-red-500 font-black">$3</p><button onclick="buy('cuban1','CUBAN 1 DIA',3)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">CUBAN 7 dias 5 USD</b><p class="text-red-500 font-black">$5</p><button onclick="buy('cuban7','CUBAN 7 DIAS',5)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><b class="text-xs">CUBAN 30 dias 10 USD</b><p class="text-red-500 font-black">$10</p><button onclick="buy('cuban30','CUBAN 30 DIAS',10)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">HG 1 DIA 5 USD</b><p class="text-red-500 font-black">$5</p><button onclick="buy('hg1','HG 1 DIA',5)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">HG 10 DIAS 12 USD</b><p class="text-red-500 font-black">$12</p><button onclick="buy('hg10','HG 10 DIAS',12)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><b class="text-xs">HG 30 DIAS 18 USD</b><p class="text-red-500 font-black">$18</p><button onclick="buy('hg30','HG 30 DIAS',18)" class="bg-red-600 w-full mt-2 py-2 rounded-full text-xs font-black">COMPRAR</button></div>
-<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><b class="text-xs">PATO TEAM 30 DIAS 14 USD</b><p class="text-red-500 font-black">$14</p><button onclick="buy('pato30','PATO TEAM 30 DIAS',14)" class="bg-red-600 w-full mt
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 1 DIA 4usd 🛒</b><p class="text-red-500 font-black">$4</p><button onclick="buy('drip1','DRIP 1 DIA',4)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 7 DIAS 12usd</b><p class="text-red-500 font-black">$12</p><button onclick="buy('drip7','DRIP 7 DIAS',12)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 15 DIAS 15usd</b><p class="text-red-500 font-black">$15</p><button onclick="buy('drip15','DRIP 15 DIAS',15)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">DRIP 30 DIAS 20usd</b><p class="text-red-500 font-black">$20</p><button onclick="buy('drip30','DRIP 30 DIAS',20)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">FLOURITE 7 DIAS 30usd</b><p class="text-red-500 font-black">$30</p><button onclick="buy('flou7','FLOURITE 7 DIAS',30)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">FLOURITE 30 DIAS 50usd</b><p class="text-red-500 font-black">$50</p><button onclick="buy('flou30','FLOURITE 30 DIAS',50)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">CUBAN 1 dia 3</b><p class="text-red-500 font-black">$3</p><button onclick="buy('cuban1','CUBAN 1 DIA',3)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">CUBAN 7 dias 5 USD</b><p class="text-red-500 font-black">$5</p><button onclick="buy('cuban7','CUBAN 7 DIAS',5)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center col-span-2"><b class="text-xs">CUBAN 30 dias 10 USD</b><p class="text-red-500 font-black">$10</p><button onclick="buy('cuban30','CUBAN 30 DIAS',10)" class="bg-red-600 w-full mt-2 py-2 rounded-full font-black text-xs">COMPRAR</button></div>
+<div class="bg-zinc-900 border border-red-600 rounded-xl p-3 text-center"><b class="text-xs">HG 1 DIA 5 USD</b><p class="text-red-500 font-black">$5</p><button onclick="buy('hg1','HG 1 DIA',5)" class="bg-red-600 w-full mt-2 py
