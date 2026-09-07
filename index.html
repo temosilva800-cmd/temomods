@@ -1,57 +1,6 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><style>body{background:#000;color:#fff;font-family:Arial;padding:10px;text-align:center}h1{color:#f00;text-shadow:0 0 15px red}h2{color:#f00;border:1px solid #f00;border-radius:10px;padding:8px;background:#110000;font-size:13px}.card{background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:10px;margin:10px auto;max-width:480px;text-align:left}.i{display:flex;justify-content:space-between;background:#151515;padding:6px 8px;border-radius:6px;margin:4px 0;font-size:12px}.p{color:#0f0;font-weight:900}.b{padding:10px;border-radius:8px;font-weight:900;width:100%;display:block;text-align:center;text-decoration:none;margin-top:4px;font-size:12px;border:none;cursor:pointer}.buy{background:linear-gradient(90deg,#f00,#f60);color:#fff}.n{background:#000;padding:10px;border-radius:8px;font-weight:900;border:1px dashed #555;text-align:center}.w{background:#25D366;color:#fff}input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#111;color:#fff;margin:5px 0;box-sizing:border-box}#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow:auto;padding:10px;box-sizing:border-box}</style></head><body>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE</title><style>body{background:#000;color:#fff;font-family:Arial;padding:10px;text-align:center}h1{color:#f00;text-shadow:0 0 15px red}h2{color:#f00;border:1px solid #f00;border-radius:10px;padding:8px;background:#110000;font-size:13px}.card{background:#0f0f0f;border:1px solid #222;border-radius:12px;padding:10px;margin:10px auto;max-width:500px;text-align:left}.i{display:flex;justify-content:space-between;background:#151515;padding:6px 8px;border-radius:6px;margin:4px 0;font-size:12px}.p{color:#0f0;font-weight:900}.b{padding:10px;border-radius:8px;font-weight:900;width:100%;display:block;text-align:center;text-decoration:none;margin-top:4px;font-size:12px;border:none;cursor:pointer}.buy{background:linear-gradient(90deg,#f00,#f60);color:#fff}.n{background:#000;padding:10px;border-radius:8px;font-weight:900;border:1px dashed #555;text-align:center}.w{background:#25D366;color:#fff}input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#111;color:#fff;margin:5px 0;box-sizing:border-box}#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow:auto;padding:10px;box-sizing:border-box}</style></head><body>
 <div id="adminPanel">
-<h1 style="color:red">🔐 ADMIN TEMO2007</h1>
-<div style="display:flex;gap:5px"><button class="b" style="background:#00ff00;color:#000" onclick="showTab('saldos')">💰 SALDOS</button><button class="b" style="background:#f00;color:#fff" onclick="showTab('keys')">🔑 KEYS</button></div>
-
-<div id="tabSaldos" class="card"><h2>SALDOS</h2><input id="uid" placeholder="WhatsApp cliente"><input id="monto" type="number" placeholder="Monto"><button class="b" style="background:#00ff00;color:#000" onclick="addSaldo()">AGREGAR SALDO</button><div id="listaS" style="margin-top:10px;font-size:12px"></div></div>
-
-<div id="tabKeys" class="card" style="display:none"><h2>KEYS - STOCK</h2>
-<select id="prod">
-<option>DRIP 1 DÍA</option><option>DRIP 7 DÍAS</option><option>DRIP 15 DÍAS</option><option>DRIP 30 DÍAS</option>
-<option>FLOURITE 7 DÍAS</option><option>FLOURITE 30 DÍAS</option>
-<option>CUBAN 1 DÍA</option><option>CUBAN 7 DÍAS</option><option>CUBAN 30 DÍAS</option>
-<option>HG CHEATS 1 DÍA</option><option>HG CHEATS 10 DÍAS</option><option>HG CHEATS 30 DÍAS</option>
-<option>PATO TEAM 30 DÍAS</option>
-</select>
-<textarea id="keysIn" rows="4" placeholder="Pega 1 KEY por línea ej:&#10;DRIP-XXXX-123&#10;DRIP-YYYY-456"></textarea>
-<button class="b" style="background:#f00;color:#fff" onclick="addKeys()">➕ AGREGAR KEYS AL STOCK</button>
-<div style="margin-top:10px"><input id="entregaUser" placeholder="Entregar a: WhatsApp cliente"><button class="b" style="background:#ff0;color:#000" onclick="entregarKey()">🎁 ENTREGAR 1 KEY A CLIENTE</button></div>
-<div id="listaK" style="margin-top:10px;font-size:11px"></div>
-</div>
-<button class="b" style="background:#333;color:#fff;margin-top:10px" onclick="location.href='/'">❌ CERRAR ADMIN</button>
-</div>
-
-<h1>TEMO STORE 🔥</h1>
-<div class="card" style="border-color:#00ff00"><h2 style="color:#00ff00;border-color:#00ff00;text-align:center">💰 MI CUENTA</h2><input id="user" placeholder="Tu WhatsApp o UID"><button class="b" style="background:#00ff00;color:#000" onclick="verCuenta()">VER SALDO Y MIS KEYS</button><div id="saldoRes" style="text-align:center;margin-top:10px;font-size:14px"></div></div>
-
-<h2>🔥 PANELES CON DURACIONES</h2><div class="card">
-<div class="i"><span>DRIP 1 DÍA (Stock: <b id="s-DRIP 1 DÍA">0</b>)</span><span class="p">4 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%201D">COMPRAR</a>
-<div class="i"><span>DRIP 7 DÍAS (Stock: <b id="s-DRIP 7 DÍAS">0</b>)</span><span class="p">12 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%207D">COMPRAR</a>
-<div class="i"><span>DRIP 15 DÍAS (Stock: <b id="s-DRIP 15 DÍAS">0</b>)</span><span class="p">15 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%2015D">COMPRAR</a>
-<div class="i"><span>DRIP 30 DÍAS (Stock: <b id="s-DRIP 30 DÍAS">0</b>)</span><span class="p">20 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=DRIP%2030D">COMPRAR</a>
-<div class="i"><span>FLOURITE 7D (Stock: <b id="s-FLOURITE 7 DÍAS">0</b>)</span><span class="p">30 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=FLOURITE%207D">COMPRAR</a>
-<div class="i"><span>FLOURITE 30D (Stock: <b id="s-FLOURITE 30 DÍAS">0</b>)</span><span class="p">50 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=FLOURITE%2030D">COMPRAR</a>
-<div class="i"><span>CUBAN 1/7/30D</span><span class="p">3/5/10 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=CUBAN">COMPRAR</a>
-<div class="i"><span>HG 1/10/30D</span><span class="p">5/12/18 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=HG">COMPRAR</a>
-<div class="i"><span>PATO 30D (Stock: <b id="s-PATO TEAM 30 DÍAS">0</b>)</span><span class="p">14 USD</span></div><a class="b buy" href="https://wa.me/523224528803?text=PATO">COMPRAR</a>
-</div>
-
-<h2>💎 SEC 1-5 + PAGOS</h2>
-<div class="card"><div class="i"><span>(100) 110</span><span class="p">$18</span></div><div class="i"><span>(500) 572</span><span class="p">$68</span></div><div class="i"><span>Tarj Sem</span><span class="p">$35</span></div><div class="i"><span>Pase Booyah</span><span class="p">$50</span></div><div class="i"><span>1k Vistas TT</span><span class="p">$19</span></div><div class="i"><span>100 Likes</span><span class="p">$15</span></div></div>
-
-<div class="card" style="border-color:#f3ba2f"><h2 style="color:#f3ba2f;border-color:#f3ba2f">💳 PAGOS</h2><div class="n">CLABE: 722969027389252036</div><div class="n" style="margin-top:6px;color:#f3ba2f;border-color:#f3ba2f">BINANCE ID: 1150540078</div><a class="b w" href="https://wa.me/523224528803?text=Ya%20pague">📲 YA PAGUE</a></div>
-
-<script>
-const PASS='Temo2007';
-if(new URLSearchParams(location.search).get('admin')===PASS)document.getElementById('adminPanel').style.display='block';
-function showTab(t){document.getElementById('tabSaldos').style.display=t==='saldos'?'block':'none';document.getElementById('tabKeys').style.display=t==='keys'?'block':'none';}
-function getS(){try{return JSON.parse(localStorage.getItem('temo_saldos')||'{}')}catch(e){return{}}}function saveS(o){localStorage.setItem('temo_saldos',JSON.stringify(o))}
-function getK(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}function saveK(o){localStorage.setItem('temo_keys',JSON.stringify(o))}
-function getE(){try{return JSON.parse(localStorage.getItem('temo_entregas')||'{}')}catch(e){return{}}}function saveE(o){localStorage.setItem('temo_entregas',JSON.stringify(o))}
-function addSaldo(){let u=document.getElementById('uid').value.trim(),m=parseFloat(document.getElementById('monto').value);if(!u||!m)return alert('Falta dato');let s=getS();s[u]=(s[u]||0)+m;saveS(s);alert('Saldo $'+m+' a '+u);upd();}
-function verCuenta(){let u=document.getElementById('user').value.trim();if(!u)return alert('Pon tu numero');let s=getS(),e=getE();let html='👤 '+u+'<br>💰 Saldo: $'+(s[u]||0)+' MXN<br><br>🔑 TUS KEYS:<br>';let keys=e[u]||[];if(keys.length==0)html+='(Sin keys aún)';else keys.forEach(k=>html+='• '+k.prod+': <b>'+k.key+'</b><br>');document.getElementById('saldoRes').innerHTML=html;}
-function addKeys(){let p=document.getElementById('prod').value,txt=document.getElementById('keysIn').value.trim();if(!txt)return alert('Pega keys');let list=txt.split('\n').map(x=>x.trim()).filter(x=>x);let k=getK();if(!k[p])k[p]=[];k[p]=k[p].concat(list);saveK(k);document.getElementById('keysIn').value='';alert(list.length+' keys agregadas a '+p);upd();}
-function entregarKey(){let u=document.getElementById('entregaUser').value.trim(),p=document.getElementById('prod').value;if(!u)return alert('Pon usuario');let k=getK();if(!k[p]||k[p].length==0)return alert('Sin stock de '+p);let key=k[p].shift();saveK(k);let e=getE();if(!e[u])e[u]=[];e[u].push({prod:p,key:key,fecha:new Date().toLocaleString()});saveE(e);alert('KEY entregada a '+u+': '+key);upd();}
-function upd(){let s=getS(),k=getK(),e=getE();let hs='';for(let x in s)hs+=x+': $'+s[x]+'<br>';document.getElementById('listaS').innerHTML=hs||'Sin saldos';let hk='STOCK:<br>';for(let x in k)hk+=x+': '+k[x].length+' keys<br>';hk+='<br>ENTREGAS:<br>';for(let u in e){hk+='<b>'+u+'</b>:<br>';e[u].forEach(o=>hk+='- '+o.prod+' : '+o.key+'<br>');}document.getElementById('listaK').innerHTML=hk;for(let x in k){let el=document.getElementById('s-'+x);if(el)el.textContent=k[x].length;}}upd();
-</script>
-</body></html>
+<h1 style="color:red">🔐 ADMIN Temo2007</h1>
+<div style="display:flex;gap:5px"><button class="b" style="background:#00ff00;color:#000" onclick="showTab('saldos')">💰 SALDOS</button><button class="b" style="background:#f00;color:#fff" onclick="showTab('keys')">🔑 KEYS STOCK</button></div>
+<div id="tabSaldos" class="card"><h2>AGREGAR SALDO</h2><input id="uid" placeholder="WhatsApp cliente ej: 3224528803"><input id="monto" type="number" placeholder="Monto ej: 100"><button class="b" style="background:#00ff00;color:#000" onclick="addSaldo()">✅ AGREGAR SALDO</button><div id="listaS" style="margin-top:10px;font-size:11px"></div></div>
+<div id="tabKeys" class="card" style="display:none"><h2>AGREGAR / ENTREGAR KEYS</h2><select id="prod"><option>DRIP 1 DÍA</option><option>DRIP 7 DÍAS</option><option>DRIP
