@@ -1,69 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEMO STORE</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE OFICIAL 🔥 FULL</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#000 url('fondo-rojo-neon.webp') center/cover fixed; color:white; font-family:Arial}
-  .overlay{background:rgba(0,0,0,0.75); min-height:100vh; padding:20px; display:flex; flex-direction:column; align-items:center}
-  h1{font-size: clamp(40px, 12vw, 75px); color:#ff0000; text-shadow:0 0 20px red; text-align:center; margin-top:30px; line-height:0.9}
-  h2{font-size: clamp(20px, 6vw, 32px); margin:15px 0 30px; text-align:center}
-  #tienda{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; width:100%; max-width:1100px}
-  .producto{background:#111; border:1px solid #ff0000; border-radius:15px; padding:15px; text-align:center; box-shadow:0 0 15px #ff000033}
-  .producto img{width:100%; height:180px; object-fit:cover; border-radius:10px}
-  .btn{padding:10px 25px; background:#ff0000; color:white; text-decoration:none; border-radius:30px; display:inline-block; margin-top:10px; font-weight:bold}
-  /* PANEL OCULTO */
-  #admin{display:none; max-width:600px; width:100%; margin:50px auto; background:#1a1a1a; padding:20px; border-radius:15px; border:2px solid red}
-  #admin input{width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none}
-  #admin button{width:100%; padding:12px; background:red; color:white; border:none; border-radius:8px; margin-top:10px; font-weight:bold}
-</style>
-</head>
-<body>
-<div class="overlay">
-  <h1>TEMO<br>STORE</h1>
-  <h2>TEMO NG ⁶⁶⁶</h2>
-  <div id="tienda"></div>
+:root{ --duracion: 0.6s }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#000;color:#fff;padding-bottom:80px}
+.top{background:red;padding:14px;display:flex;justify-content:space-between;font-weight:900;position:sticky;top:0;z-index:50; opacity:0; animation: entrar var(--duracion) ease forwards}
+.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;background:#140000;text-align:center;font-weight:900; opacity:0; animation: entrar var(--duracion) ease forwards 0.5s}
+.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center; opacity:0; animation: entrar var(--duracion) ease forwards 1s}
+#lista{opacity:0; animation: entrar var(--duracion) ease forwards 1.5s}
+@keyframes entrar{from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:translateY(0)}}
 
-  <div id="admin">
-    <h3 style="color:red; text-align:center">PANEL TEMO</h3>
-    <input id="nombre" placeholder="Nombre: Ej Mod Menu">
-    <input id="precio" placeholder="Precio: Ej $99">
-    <input id="imagen" placeholder="Link imagen https://...">
-    <input id="link" value="https://wa.me/523224528803">
-    <input id="duracion" type="number" value="1" placeholder="Duración animación">
-    <button onclick="agregarProducto()">AGREGAR PRODUCTO</button>
-    <button onclick="localStorage.clear(); location.reload()" style="background:#550000">BORRAR TODO</button>
-  </div>
-  <p style="margin-top:30px; font-size:12px; color:#666">Toca 5 veces el título para abrir el panel admin</p>
-</div>
+.box input{width:100%;padding:12px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;text-align:center;font-weight:900;font-size:16px}
+.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900;cursor:pointer}
+.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px;cursor:pointer}
+.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}
+.row{display:flex;gap:6px}
+.editBtn{background:#222;border:1px solid #555;color:#fff;padding:7px 12px;border-radius:6px;font-weight:900}
+.saveBtn{background:#ff0;color:#000;border:none;padding:7px 12px;border-radius:6px;font-weight:900}
+#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}
+.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}
+.cardA textarea{width:100%;min-height:90px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font-size:13px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}
+.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center;max-height:90vh;overflow:auto}
+.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0;font-size:16px}
+.histItem{background:#000;border:1px solid #222;border-radius:8px;padding:10px;margin:8px 0;text-align:left;font-size:13px}
+</style></head><body>
+<div class="top"><span>🔥 TEMO STORE</span><span>💰 $<span id="sTop">0</span></span></div>
+<div class="banner">🔥 BIENVENIDO A TEMO STORE OFICIAL 🔥<br><small style="font-size:11px;color:#ff8888">TEMO NG ⁶⁶⁶ - Toca 5 veces aquí para editar duración</small></div>
+<div class="box"><input id="idIn" readonly><div style="margin-top:10px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="copyID()" style="flex:1;padding:12px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:12px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HISTORIAL</button></div><div class="row" style="margin-top:8px"><button onclick="fixID()" style="width:100%;padding:8px;background:#222;border:1px dashed #ff0;border-radius:8px;color:#ff0;font-size:11px">🔧 FIX ID si sale |</button></div></div>
+<div id="lista"></div>
 
+<div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ COMPRA EXITOSA</h3><p id="modalProd" style="margin:8px 0;color:#fff"></p><div id="modalKey" class="keyBox"></div><button onclick="copyLast()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="resetWA()" style="width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:900;margin-top:8px">♻️ RESET - WHATSAPP</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
+<div id="histModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">📜 HISTORIAL</h3><p id="histID" style="color:#888;font-size:12px"></p><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
+
+<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN TEMO</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="loginA()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div><div id="aContent" style="display:none;max-width:750px;margin:0 auto"><h2 style="color:#0f0;text-align:center">PANEL ADMIN 🔥</h2>
+<div class="cardA"><h3>⏱️ DURACIÓN ANIMACIÓN</h3><div class="row"><input id="durInput" type="number" value="0.6" min="0.2" max="3" step="0.1" class="in"><button onclick="saveDuracion()" class="saveBtn">GUARDAR</button></div><small style="color:#888">0.2 = rápido, 1 = normal, 3 = lento</small></div>
+<div class="cardA" style="border:2px solid #25D366"><h3 style="color:#25D366">📱 WHATSAPP RESETS</h3><div class="row"><input id="waNum" class="in" placeholder="523224528803"><button onclick="saveWA()" style="padding:9px 14px;background:#25D366;color:#fff;border:none;border-radius:6px;font-weight:900">💾</button></div><p id="waActual" style="font-size:12px;color:#0f0"></p></div><div class="row"><button onclick="restaurarTodo()" style="flex:1;padding:12px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">✅ RESTAURAR PRODUCTOS</button><button onclick="borrarKeys()" style="flex:1;padding:12px;background:red;color:#fff;border:none;border-radius:8px;font-weight:900">🗑️ BORRAR KEYS</button></div><div class="row" style="margin-top:8px"><button onclick="exportKeys()" style="flex:1;padding:10px;background:#0af;color:#fff;border:none;border-radius:8px;font-weight:900">📤 EXPORTAR KEYS</button><button onclick="importKeys()" style="flex:1;padding:10px;background:#f90;color:#000;border:none;border-radius:8px;font-weight:900">📥 IMPORTAR KEYS</button></div><div class="cardA"><h3 style="color:yellow">💰 RECARGAR SALDO</h3><input id="recId" placeholder="ID TEMO-XXXX" class="in"><input id="recMonto" type="number" placeholder="Monto" class="in"><button onclick="addSaldo()" style="width:100%;padding:10px;background:#0f0;color:#000;border:none;border-radius:6px;font-weight:900;margin-top:6px">+ AGREGAR SALDO</button></div><div id="aList"></div><button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin:20px 0">← SALIR A TIENDA</button></div></div>
 <script>
-let productos = JSON.parse(localStorage.getItem('temo_productos')) || [
-  {nombre:"MOD MENU VIP", precio:"$150", imagen:"https://via.placeholder.com/300x180/ff0000/ffffff?text=MOD+MENU", link:"https://wa.me/523224528803"},
-  {nombre:"CUENTA CHE TADA", precio:"$250", imagen:"https://via.placeholder.com/300x180/111111/ff0000?text=CUENTA", link:"https://wa.me/523224528803"}
-];
-function mostrarProductos(){
-  document.getElementById('tienda').innerHTML = productos.map((p,i)=>`
-    <div class="producto">
-      <img src="${p.imagen}">
-      <h3 style="color:#ff0000; margin:10px 0">${p.nombre}</h3>
-      <div style="font-weight:bold; font-size:20px">${p.precio}</div>
-      <a href="${p.link}" target="_blank" class="btn">COMPRAR POR WHATSAPP</a>
-    </div>
-  `).join('');
-}
-function agregarProducto(){
-  let n={nombre:nombre.value, precio:precio.value, imagen:imagen.value || "https://via.placeholder.com/300x180/ff0000/ffffff?text=TEMO", link:link.value};
-  if(!n.nombre) return alert("Pon nombre");
-  productos.push(n); localStorage.setItem('temo_productos', JSON.stringify(productos)); mostrarProductos();
-}
-// TRUCO: 5 toques en el titulo para abrir admin
-let toques=0; document.querySelector('h1').addEventListener('click', ()=>{
-  toques++; if(toques>=5){ let pass=prompt("Contraseña:"); if(pass==="temo666"){ document.getElementById('admin').style.display='block'; } toques=0; }
-});
-mostrarProductos();
-</script>
-</body>
-</html>
+function genID(){return 'TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase()}
+let ID="";try{let raw=localStorage.getItem('temo_myID')||"";raw=raw.toString().split('|')[0].trim().toUpperCase();if(raw.startsWith('TEMO-')&&raw.length>=8&&raw.length<=12&&!raw.includes(' '))ID=raw;}catch(e){}
+if(!ID){ID=genID();try{localStorage.setItem('temo_myID',ID)}catch(e){}}
+function fixID(){localStorage.removeItem('temo_myID');location.reload();}
+function copyID(){navigator.clipboard.writeText(ID).then(()=>alert('✅ Copiado: '+ID))}
+const BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},{n:'PATO TEAM',i:'🦆',id:'pato',ps:[{id:'pato-30d',d:'30 DIAS',p:14}]},{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]},{n:'ANDROID PROXY',i:'📦',id:'proxy',ps:[{id:'proxy-30d',d:'30 DIAS',p:8}]}];
+function getProds(){try{let c=localStorage.getItem('temo_prods');return c?JSON.parse(c):BASE}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
+function getKeys(){try{let k=JSON.parse(localStorage.getItem('temo_keys')||'{}');return (k&&typeof k==='object'&&!Array.isArray(k))?k:{}}catch(e){return{}}}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
+function getUsers(){try{return JSON.parse(localStorage.getItem('temo_users')||'{}')}catch(e){return{}}}function setUsers(u){localStorage.setItem('temo_users',JSON.stringify(u))}
+function getHist(){try{return JSON.parse(localStorage.getItem('temo_hist')||'{}')}catch(e){return{}}}function setHist(h){localStorage.setItem('temo_hist',JSON.stringify(h))}
+function getWA(){return localStorage.getItem('temo_wa')||'523224528803'}function setWA(n){localStorage.setItem('temo_wa',n)}
+let users=getUsers();if(!users[ID]){users[ID]={saldo:0};setUsers(users)}
+document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;
+function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>{stock+=(keys[pl.id]?keys[pl.id].length:0)});let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#888>'+p.ps.length+' planes - '+stock+' keys</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
+let lastKey="",lastProd="",lastPlan="";
+function copyLast(){navigator.clipboard.writeText(lastKey).then(()=>alert('✅ Copiada: '+lastKey))}
+function openHist(){let hist=getHist();let my=hist[ID]||[];document.getElementById('histID').innerText='ID: '+ID+' | '+my.length+' compras';let list=document.getElementById('histList');if(my.length==0){list.innerHTML='<p style=color:#888>Sin compras</p>';}else{list.innerHTML='';my.slice().reverse().forEach(h=>{let div=document.createElement('div');div.className='histItem';div.innerHTML='<b style=color:#0f0>'+h.prod+' - '+h.plan+'</b><br><small style=color:#888>'+h.date+'</small><br><span style=color:#0f0;word-break:break-all;font-weight:900>'+h.key+'</span><br><div style=display:flex;gap:6px;margin-top:6px><button onclick=navigator.clipboard.writeText(\''+h.key+'\').then(()=>alert(\'Copiado\')) style=flex:1;padding:6px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;font-size:11px>📋 Copiar</button><button onclick=resetDirect(\''+h.prod+'\',\''+h.plan+'\',\''+h.key+'\') style=flex:1;padding:6px;background:#25D366;border:none;color:#fff;border-radius:6px;font-size:11px>♻️ Reset</button></div>';list.appendChild(div);});}document.getElementById('histModal').style.display='flex';}
+function resetWA(){let wa=getWA();let msg='🔄 HOLA TEMO, NECESITO RESET%0A%0AID: '+ID+'%0AProducto: '+encodeURIComponent(lastProd)+' - '+encodeURIComponent(lastPlan)+'%0AKey: '+encodeURIComponent(lastKey);window.open('https://wa.me/'+wa+'?text='+msg,'_blank');}
+function resetDirect(p,pl,k){let wa=getWA();let msg='🔄 HOLA TEMO, NECESITO RESET%0A%0AID: '+ID+'%0AProducto: '+encodeURIComponent(p)+' - '+encodeURIComponent(pl)+'%0AKey: '+encodeURIComponent(k);window.open('https://wa.me/'+wa+'?text='+msg,'_blank');}
+function ver(pid){let prods=getProds();let keys=getKeys();let users=getUsers();let me=users[ID];let p=prods.find(x=>x.id===pid);let txt=p.n+"\n\n";p.ps.forEach(pl=>{txt+=pl.d+" - $"+pl.p+" (Stock:"+(keys[pl.id]?keys[pl.id].length:0)+")\n"});txt+="\nTu saldo $"+me.saldo+"\nEscribe que quieres comprar (ej: 1 DIA)";let ans=prompt(txt);if(!ans)return;let plan=p.ps.find(pl=>pl.d.toLowerCase()===ans.trim().toLowerCase());if(!plan){alert("Escribe exacto: "+p.ps.map(x=>x.d).join(', '));return}if((keys[plan.id]?keys[plan.id].length:0)<=0){alert("❌ Sin stock");return}if(me.saldo<plan.p){alert("❌ Saldo insuficiente");return}let k=keys[plan.id].shift();setKeys(keys);users[ID].saldo-=plan.p;setUsers(users);document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;let hist=getHist();if(!hist[ID])hist[ID]=[];hist[ID].push({date:new Date().toLocaleString(),prod:p.n,plan:plan.d,key:k});setHist(hist);render();lastKey=k;lastProd=p.n;lastPlan=plan.d;document.getElementById('modalProd').innerText=p.n+" - "+plan.d+" ($"+plan.p+")";document.getElementById('modalKey').innerText=k;document.getElementById('keyModal').style.display='flex';}
+if(location.search.toLowerCase().includes('admin'))document.getElementById('admin').style.display='block';
+function loginA(){let u=document.getElementById('aUser').value.trim();let p=document.getElementById('aPass').value.trim();if(u==='Temo2007'&&p==='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';document.getElementById('waNum').value=getWA();document.getElementById('waActual').innerText='Actual: '+getWA();renderAdmin()}else alert('❌ Mal')}
+function saveWA(){let n=document.getElementById('waNum').value.trim().replace(/[^0-9]/g,'');if(n.length<10)return alert('Numero invalido');setWA(n);document.getElementById('waActual').innerText='Actual: '+n;alert('✅ Guardado: '+n)}
+function saveDuracion(){let d=document.getElementById('durInput').value;document.documentElement.style.setProperty('--duracion', d+'s');localStorage.setItem('temo_dur', d);alert('✅ Duración guardada: '+d+'s'); location.reload();}
+let durSaved=localStorage.getItem('temo_dur'); if(durSaved){document.documentElement.style.setProperty('--duracion', durSaved+'s'); document.getElementById('durInput').value=durSaved;}
+function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style=border-left:4px solid red;padding-left:8px;margin-bottom:10px><div style=display:flex;gap:6px><input id=icon-'+p.id+' value=\''+p.i+'\' style=width:50px class=in><input id=name-'+p.id+' value=\''+p.n+'\' class=in style=flex:1><button class=saveBtn onclick=saveProdName(\''+p.id+'\')>💾 Nombre</button></div></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;let st=keys[pl.id]?keys[pl.id].join('\n'):"";html+='<div style=background:#000;padding:10px;border-radius:8px;margin:8px 0><div class=row><input id=d-'+pl.id+' value=\''+pl.d+'\' class=in><input id=p-'+pl.id+' type=number value=\''+pl.p+'\' class=in></div><div class=row style=margin-top:4px><button class=editBtn style=flex:1 onclick=savePlan(\''+p.id+'\',\''+pl.id+'\')>✏️ EDITAR '+pl.d+' $'+pl.p+'</button><span style=color:#0f0;padding:7px;font-size:12px;font-weight:900>'+cnt+' keys</span></div><textarea id=ta-'+pl.id+' placeholder=\'Una key por linea\'>'+st+'</textarea><button class=btn2 onclick=saveKeys(\''+pl.id+'\')>💾 GUARDAR KEYS - '+pl.d+'</button></div>';});card.innerHTML=html;c.appendChild(card)})}
+function saveProdName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value.trim();p.i=document.getElementById('icon-'+pid).value.trim();setProds(prods);render();renderAdmin();alert('✅ Producto guardado')}
+function savePlan(pid,plid){let prods=getProds();let prod=prods.find(x=>x.id===pid);let plan=prod.ps.find(x=>x.id===plid);let nd=document.getElementById('d-'+plid).value.trim().toUpperCase();let np=parseInt(document.getElementById('p-'+plid).value)||0;if(!nd)return alert('Nombre vacio');plan.d=nd;plan.p=np;setProds(prods);render();renderAdmin();alert('✅ Plan guardado')}
+function saveKeys(id){let ta=document.getElementById('ta-'+id);let lines=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);let keys=getKeys();keys[id]=lines;setKeys(keys);render();renderAdmin();alert('✅ Guardado '+lines.length+' keys en '+id)}
+function restaurarTodo(){if(!confirm('¿Restaurar productos base? No borra keys'))return;localStorage.removeItem('temo_prods');location.href=location.pathname+'?admin'}
+function borrarKeys(){if(!confirm('¿Borrar TODAS las keys? Exporta antes'))return;setKeys({});render();renderAdmin();alert('Borradas')}
+function addSaldo(){let id=document.getElementById('recId').value.trim().toUpperCase();let monto=parseInt(document.getElementById('recMonto').value);if(!id||isNaN(monto))return alert('ID y monto');let u=getUsers();if(!u[id])u[id]={saldo:0};u[id].saldo+=monto;setUsers(u);alert('✅ Recargado $'+monto+' a '+id);if(id===ID){document.getElementById('sTop').innerText=u[id].saldo;document.getElementById('sTxt').innerText=u[id].saldo}renderAdmin();}
+function exportKeys(){let k=getKeys();let b=new Blob([JSON.stringify(k,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='temo_keys_'+new Date().toISOString().slice(0,10)+'.json';a.click();}
+function importKeys(){let j=prompt('Pega el JSON exportado:');if(!j)return;try{let k=JSON.parse(j);setKeys(k);render();renderAdmin();alert('✅ Importado');}catch(e){alert('❌ JSON invalido')}}
+// TRUCO 5 TOQUES PARA DURACION
+let toques=0; document.querySelector('.banner').addEventListener('click', ()=>{ toques++; if(toques>=5){ let d=prompt("Duración animación (0.2 a 3 segundos):", localStorage.getItem('temo_dur')||"0.6"); if(d){document.documentElement.style.setProperty('--duracion', d+'s'); localStorage.setItem('temo_dur', d); location.reload();} toques=0;} setTimeout(()=>toques=0, 2000); });
+</script></body></html>
