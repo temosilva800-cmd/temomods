@@ -116,3 +116,74 @@ if(location.search.toLowerCase().includes('admin'))document.getElementById('admi
     <div class="btns">
       <a href="#mods" class="btn">VER MODS</a>
       <a href="https://wa.me/523224528803?text=Hola%20Temo%20vengo%20de%20tu%20web%20TEMO%20STORE" class="btn btn2" target="_blank
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMO STORE | TEMO NG 666</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background: #000 url('fondo-rojo-neon.webp') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+  }
+  .overlay{
+    background: rgba(0,0,0,0.75);
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  h1{
+    font-size: 80px;
+    color: #ff0000;
+    text-shadow: 0 0 20px #ff0000, 0 0 60px #ff0000;
+    opacity:0;
+    animation: aparecer 1s ease forwards;
+  }
+  h2{
+    font-size: 34px;
+    color: white;
+    margin-top:15px;
+    opacity:0;
+    animation: aparecer 1s ease forwards 1s;
+  }
+  .btns{
+    margin-top:40px;
+    display:flex;
+    gap:20px;
+    opacity:0;
+    animation: aparecer 1s ease forwards 2s;
+  }
+  .btn{
+    padding:16px 35px;
+    background: #ff0000;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:50px;
+    box-shadow: 0 0 25px #ff0000;
+  }
+  .btn2{background:transparent; border:2px solid #ff0000;}
+  @keyframes aparecer{
+    from{opacity:0; transform: translateY(30px);}
+    to{opacity:1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>TEMO STORE</h1>
+    <h2>TEMO NGㅤ⁶⁶⁶</h2>
+    <div class="btns">
+      <a href="#mods" class="btn">VER MODS</a>
+      <a href="https://wa.me/523224528803?text=Hola%20Temo%20vengo%20de%20tu%20web" class="btn btn2" target="_blank">WHATSAPP</a>
+    </div>
+  </div>
+</body>
+</html>
