@@ -1,52 +1,123 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE V10.2 CRUD</title>
-<script>try{var _id=localStorage.getItem('temo_myID')||'';if(!_id||_id=='|'||_id.indexOf('|')!=-1||_id.trim().length<5||_id.toUpperCase().indexOf('TEMO-')!=0){localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase())}var _p=localStorage.getItem('temo_prods');if(_p){var _pp=JSON.parse(_p);if(!_pp||!_pp.length){localStorage.removeItem('temo_prods')}}}catch(e){localStorage.removeItem('temo_prods')}</script>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff;padding-bottom:80px}.top{background:red;padding:14px;display:flex;justify-content:space-between;font-weight:900;position:sticky;top:0;z-index:50}.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;background:#140000;text-align:center;font-weight:900}.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}.box input{width:100%;padding:12px;background:#000;color:#0f0;border:2px solid #0f0;border-radius:8px;text-align:center;font-weight:900}.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900}.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}.row{display:flex;gap:6px}#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}.cardA textarea{width:100%;min-height:90px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center}.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0}.codeBox{background:#000;border:2px dashed #ff0;border-radius:10px;padding:14px;color:#ff0;font-weight:900;margin:10px 0;font-size:18px}.smallBtn{padding:6px 10px;border:none;border-radius:6px;font-weight:900;margin:2px;font-size:12px}</style></head><body>
-<div class="top"><span>🔥 TEMO STORE</span><span>💰 $<span id="sTop">0</span></span></div>
-<div class="banner">🔥 V10.2 CRUD TOTAL 🔥<br><button onclick="localStorage.clear();location.href=location.pathname+'?v=102&fix='+Date.now()" style="margin-top:8px;padding:10px 20px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">🔧 ARREGLAR TODO</button></div>
-<div class="box"><input id="idIn" readonly><div style="margin-top:10px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="copyID()" style="flex:1;padding:11px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HISTORIAL</button></div><div style="margin-top:12px;background:#1a1a00;border:1px solid #ff0;border-radius:10px;padding:10px"><h4 style="color:#ff0">🎟️ CANJEAR CÓDIGO</h4><div class="row" style="margin-top:8px"><input id="codeIn" placeholder="TEMO-50-XXXX" class="in" style="border-color:#ff0;color:#ff0"><button onclick="redeemCode()" style="padding:10px 14px;background:#ff0;color:#000;border:none;border-radius:6px;font-weight:900">CANJEAR</button></div></div></div>
-<div id="lista"></div>
-<div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ COMPRA EXITOSA</h3><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="copyKey()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="resetWA()" style="width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:900;margin-top:8px">♻️ RESET WA</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
-<div id="histModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">📜 HISTORIAL</h3><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
-<div id="codeModal" class="modal"><div class="modalBox" style="border:2px solid #ff0"><h3 style="color:#ff0">🎟️ CÓDIGO</h3><div id="codeTxt" class="codeBox"></div><p id="codeMonto"></p><button onclick="copyCode()" style="width:100%;padding:12px;background:#ff0;color:#000;border:none;border-radius:8px;font-weight:900">📋 COPIAR</button><button id="waCodeBtn" style="width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:8px">📱 ENVIAR WA</button><button onclick="document.getElementById('codeModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
-<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div><div id="aContent" style="display:none;max-width:750px;margin:0 auto"><h2 style="color:#0f0;text-align:center">PANEL ADMIN V10.2 CRUD</h2>
-<div class="cardA" style="border:2px solid #0af"><h3 style="color:#0af">➕ CREAR PRODUCTO NUEVO</h3><div class="row"><input id="newIcon" placeholder="🔥" class="in" style="width:70px"><input id="newName" placeholder="Nombre ej: DRIP" class="in"></div><button onclick="createProd()" style="width:100%;padding:11px;background:#0af;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:6px">➕ CREAR PRODUCTO</button></div>
-<div class="cardA" style="border:2px solid #ff0"><h3 style="color:#ff0">🎟️ GENERAR CÓDIGO</h3><div class="row"><input id="genMonto" type="number" placeholder="50" class="in"><button onclick="genCode()" style="padding:10px 18px;background:#ff0;color:#000;border:none;border-radius:6px;font-weight:900">GENERAR</button></div><div id="lastCodes"></div></div>
-<div class="cardA" style="border:2px solid #25D366"><h3 style="color:#25D366">📱 WA</h3><div class="row"><input id="waNum" class="in"><button onclick="saveWA()" style="padding:9px 14px;background:#25D366;color:#fff;border:none;border-radius:6px;font-weight:900">💾</button></div><p id="waActual" style="font-size:12px;color:#0f0"></p></div>
-<div class="cardA" style="border:1px solid #555"><h3>🛠️ EDITAR PRODUCTOS</h3><p style="font-size:11px;color:#888">Aquí puedes editar nombre, icono, crear/eliminar planes y borrar productos</p><div id="aList"></div><div class="row" style="margin-top:10px"><button onclick="resetProds()" style="flex:1;padding:10px;background:#111;border:1px solid red;color:red;border-radius:8px;font-weight:900">♻️ RESTAURAR BASE (7 APKs)</button><button onclick="deleteAllProds()" style="flex:1;padding:10px;background:red;border:none;color:#fff;border-radius:8px;font-weight:900">🗑️ BORRAR TODO</button></div></div>
-<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin:20px 0">← SALIR TIENDA</button></div></div>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE V11 FIREBASE</title>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff;padding-bottom:80px}.top{background:red;padding:14px;display:flex;justify-content:space-between;font-weight:900;position:sticky;top:0;z-index:50}.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;background:#140000;text-align:center;font-weight:900}.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}.box input{width:100%;padding:12px;background:#000;color:#0f0;border:2px solid #0f0;border-radius:8px;text-align:center;font-weight:900}.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900}.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}.row{display:flex;gap:6px}#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}.cardA textarea{width:100%;min-height:90px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center}.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0}</style></head><body>
+<div class="top"><span>🔥 TEMO STORE V11</span><span>💰 $<span id="sTop">0</span> | 🔑 <span id="sync">●</span></span></div>
+<div class="banner">🔥 V11 - EN LA NUBE 🔥<br><small id="status" style="color:#0f0">Conectando...</small></div>
+<div class="box"><input id="idIn" readonly><div style="margin-top:10px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="navigator.clipboard.writeText(ID);alert(ID)" style="flex:1;padding:11px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HISTORIAL</button></div></div>
+<div id="lista"><h3 style="text-align:center;padding:20px">Cargando tienda desde la nube...</h3></div>
+
+<div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ COMPRA</h3><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="navigator.clipboard.writeText(lastKey)" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
+<div id="histModal" class="modal"><div class="modalBox"><h3>📜 HISTORIAL</h3><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
+
+<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div>
+<div id="aContent" style="display:none;max-width:750px;margin:0 auto"><h2 style="color:#0f0;text-align:center">PANEL ADMIN V11 NUBE</h2>
+<div class="cardA" style="border:2px solid #0af"><h3 style="color:#0af">➕ CREAR PRODUCTO</h3><div class="row"><input id="newIcon" placeholder="🔥" class="in" style="width:70px"><input id="newName" placeholder="Nombre" class="in"></div><button onclick="createProd()" style="width:100%;padding:11px;background:#0af;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:6px">➕ CREAR</button></div>
+<div class="cardA" style="border:2px solid #ff0"><h3 style="color:#ff0">💰 AGREGAR SALDO A CLIENTE (EN LA NUBE)</h3><div class="row"><input id="targetID" placeholder="ID CLIENTE TEMO-XXXX" class="in"><input id="addSaldo" type="number" placeholder="50" class="in" style="width:100px"></div><button onclick="addSaldoToUser()" style="width:100%;padding:11px;background:#ff0;color:#000;border:none;border-radius:8px;font-weight:900;margin-top:6px">💸 AGREGAR SALDO AHORA (le llega al instante)</button></div>
+<div id="aList"></div><button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button></div></div>
+
 <script>
+// ⬇️⬇️⬇️ PEGA AQUÍ TU CONFIG DE FIREBASE ⬇️⬇️⬇️
+const firebaseConfig = {
+  apiKey: "PEGA_AQUI_TU_API_KEY",
+  authDomain: "temo-store.firebaseapp.com",
+  projectId: "temo-store",
+  storageBucket: "temo-store.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abc"
+};
+// ⬆️⬆️⬆️ PEGA AQUÍ TU CONFIG ⬆️⬆️⬆️
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 var BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},{n:'PATO TEAM',i:'🦆',id:'pato',ps:[{id:'pato-30d',d:'30 DIAS',p:14}]},{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]},{n:'ANDROID PROXY',i:'📦',id:'proxy',ps:[{id:'proxy-30d',d:'30 DIAS',p:8}]}];
-function getWA(){return localStorage.getItem('temo_wa')||'523224528803'}
-var ID=localStorage.getItem('temo_myID')||'';if(!ID||ID=='|'||ID.indexOf('|')!=-1||ID.length<6){ID='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('temo_myID',ID)}
-function copyID(){navigator.clipboard.writeText(ID);alert('Copiado: '+ID)}
-function copyKey(){navigator.clipboard.writeText(lastKey);alert('Key copiada')}
-function copyCode(){navigator.clipboard.writeText(lastCode);alert('Codigo copiado')}
-function resetWA(){window.open('https://wa.me/'+getWA()+'?text='+encodeURIComponent('RESET ID:'+ID+' '+lastProd+' '+lastPlan+' '+lastKey),'_blank')}
-function doLogin(){var u=document.getElementById('aUser').value.trim();var p=document.getElementById('aPass').value.trim();if(u=='Temo2007'&&p=='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';document.getElementById('waNum').value=getWA();document.getElementById('waActual').innerText='Actual: '+getWA();renderAdmin();renderLastCodes()}else{alert('Datos mal')}}
-function saveWA(){var n=document.getElementById('waNum').value.replace(/[^0-9]/g,'');localStorage.setItem('temo_wa',n);document.getElementById('waActual').innerText=n;alert('Guardado: '+n)}
-function loadJSON(k,d){try{var v=localStorage.getItem(k);if(!v)return d;var j=JSON.parse(v);if(j===null)return d;return j}catch(e){return d}}
-function saveJSON(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function getProds(){var p=loadJSON('temo_prods',null);if(!p||!p.length){saveJSON('temo_prods',BASE);return BASE}return p}
-function setProds(p){saveJSON('temo_prods',p);renderProducts();renderAdmin()}
-var users=loadJSON('temo_users',{});if(!users[ID]){users[ID]={saldo:0};saveJSON('temo_users',users)}
-document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;
-function renderProducts(){var prods=getProds();var keys=loadJSON('temo_keys',{});var l=document.getElementById('lista');l.innerHTML='';for(var i=0;i<prods.length;i++){var p=prods[i];var stock=0;for(var j=0;j<p.ps.length;j++){if(keys[p.ps[j].id])stock+=keys[p.ps[j].id].length}l.innerHTML+='<div class=prod><div><b>'+p.i+' '+p.n+'</b><br><small style=color:#888>'+p.ps.length+' planes - '+stock+' keys</small></div><button class=btn onclick="ver(\''+p.id+'\')">VER</button></div>'}}
-renderProducts();
-var lastKey='',lastProd='',lastPlan='',lastCode='';
-function genCode(){var m=parseInt(document.getElementById('genMonto').value);if(!m)return alert('Monto');var r=Math.random().toString(36).substr(2,4).toUpperCase();var chk=btoa(m+'|TEMO2007').substr(0,4).toUpperCase().replace(/[^A-Z0-9]/g,'X');var code='TEMO-'+m+'-'+r+'-'+chk;lastCode=code;document.getElementById('codeTxt').innerText=code;document.getElementById('codeMonto').innerText='$'+m;document.getElementById('codeModal').style.display='flex';document.getElementById('waCodeBtn').onclick=function(){window.open('https://wa.me/?text='+encodeURIComponent('🎟️ Código TEMO: '+code+' $'+m),'_blank')};var lc=loadJSON('temo_gen_codes',[]);lc.unshift({code:code,monto:m});saveJSON('temo_gen_codes',lc.slice(0,20));renderLastCodes()}
-function renderLastCodes(){var lc=loadJSON('temo_gen_codes',[]);var html='';for(var i=0;i<lc.length;i++){html+='<div style=background:#000;padding:6px;margin:4px 0;border-radius:6px;display:flex;justify-content:space-between><span style=color:#ff0>'+lc[i].code+'</span><span style=color:#0f0>$'+lc[i].monto+'</span></div>'}document.getElementById('lastCodes').innerHTML=html}
-function redeemCode(){var input=document.getElementById('codeIn').value.trim().toUpperCase();if(!input)return;var parts=input.split('-');if(parts.length!=4||parts[0]!='TEMO'){alert('Inválido');return}var monto=parseInt(parts[1]);var chk=btoa(monto+'|TEMO2007').substr(0,4).toUpperCase().replace(/[^A-Z0-9]/g,'X');if(parts[3]!=chk){alert('Falso');return}var used=loadJSON('temo_used',[]);for(var i=0;i<used.length;i++){if(used[i]==input){alert('Ya usado');return}}var u=loadJSON('temo_users',{});if(!u[ID])u[ID]={saldo:0};u[ID].saldo+=monto;saveJSON('temo_users',u);used.push(input);saveJSON('temo_used',used);document.getElementById('sTop').innerText=u[ID].saldo;document.getElementById('sTxt').innerText=u[ID].saldo;document.getElementById('codeIn').value='';alert('✅ +$'+monto)}
-function openHist(){var h=loadJSON('temo_hist',{})[ID]||[];var html='';if(!h.length)html='<p style=color:#888>Sin compras</p>';else{for(var i=h.length-1;i>=0;i--){var x=h[i];html+='<div style=background:#000;padding:8px;margin:6px 0;border-radius:6px><b style=color:#0f0>'+x.prod+'-'+x.plan+'</b><br><small>'+x.date+'</small><br><span style=color:#0f0>'+x.key+'</span></div>'}}document.getElementById('histList').innerHTML=html;document.getElementById('histModal').style.display='flex'}
-function ver(pid){var keys=loadJSON('temo_keys',{});var us=loadJSON('temo_users',{});var prods=getProds();var p=null;for(var i=0;i<prods.length;i++){if(prods[i].id==pid){p=prods[i]}}var txt=p.n+'\n';for(var i=0;i<p.ps.length;i++){txt+=p.ps[i].d+' $'+p.ps[i].p+' ('+(keys[p.ps[i].id]?keys[p.ps[i].id].length:0)+')\n'}var ans=prompt(txt+'\nSaldo $'+us[ID].saldo+'\nEscribe plan (ej: 30 DIAS)');if(!ans)return;var plan=null;for(var i=0;i<p.ps.length;i++){if(p.ps[i].d.toLowerCase()==ans.trim().toLowerCase())plan=p.ps[i]}if(!plan)return alert('Plan mal');if((keys[plan.id]?keys[plan.id].length:0)<=0)return alert('Sin stock');if(us[ID].saldo<plan.p)return alert('Saldo insuficiente');var k=keys[plan.id].shift();saveJSON('temo_keys',keys);us[ID].saldo-=plan.p;saveJSON('temo_users',us);var hist=loadJSON('temo_hist',{});if(!hist[ID])hist[ID]=[];hist[ID].push({date:new Date().toLocaleString(),prod:p.n,plan:plan.d,key:k});saveJSON('temo_hist',hist);lastKey=k;lastProd=p.n;lastPlan=plan.d;document.getElementById('modalProd').innerText=p.n+' - '+plan.d;document.getElementById('modalKey').innerText=k;document.getElementById('keyModal').style.display='flex';document.getElementById('sTop').innerText=us[ID].saldo;document.getElementById('sTxt').innerText=us[ID].saldo;renderProducts()}
+
+var ID=localStorage.getItem('temo_myID')||'';if(!ID||ID.length<6){ID='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('temo_myID',ID)}
+document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;
+var lastKey='',lastProd='',lastPlan='';var prodsCache=[];var keysCache={};
+
+// CARGAR PRODUCTOS DESDE LA NUBE
+async function loadProds(){
+ try{
+  let snap=await db.collection('temo_products').get();
+  if(snap.empty){ // primera vez, subir BASE
+   for(let p of BASE){ await db.collection('temo_products').doc(p.id).set(p); }
+   prodsCache=BASE;
+  }else{
+   prodsCache=[];snap.forEach(d=>prodsCache.push(d.data()));
+  }
+  document.getElementById('status').innerText='✅ Conectado - '+prodsCache.length+' productos en la nube';
+  document.getElementById('sync').style.color='#0f0';
+  renderProducts();
+  if(document.getElementById('admin').style.display=='block') renderAdmin();
+ }catch(e){document.getElementById('status').innerText='❌ Error Firebase: '+e.message;document.getElementById('lista').innerHTML='<p style=text-align:center;color:red>Configura Firebase: '+e.message+'</p>';}
+}
+async function loadKeys(){
+ let snap=await db.collection('temo_keys').get();
+ keysCache={};snap.forEach(d=>{keysCache[d.id]=d.data().keys||[]});
+ renderProducts();
+}
+async function loadMySaldo(){
+ let doc=await db.collection('temo_users').doc(ID).get();
+ let saldo=0;if(doc.exists) saldo=doc.data().saldo||0; else {await db.collection('temo_users').doc(ID).set({saldo:0});}
+ document.getElementById('sTop').innerText=saldo;document.getElementById('sTxt').innerText=saldo;
+ db.collection('temo_users').doc(ID).onSnapshot(d=>{if(d.exists){let s=d.data().saldo||0;document.getElementById('sTop').innerText=s;document.getElementById('sTxt').innerText=s;}});
+}
+
+function renderProducts(){
+ let l=document.getElementById('lista');l.innerHTML='';
+ for(let p of prodsCache){
+  let stock=0;for(let pl of p.ps){if(keysCache[pl.id]) stock+=keysCache[pl.id].length;}
+  l.innerHTML+=`<div class=prod><div><b>${p.i} ${p.n}</b><br><small style=color:#888>${p.ps.length} planes - ${stock} keys (nube)</small></div><button class=btn onclick="ver('${p.id}')">VER</button></div>`;
+ }
+}
+
+async function ver(pid){
+ await loadKeys();
+ let p=prodsCache.find(x=>x.id==pid);
+ let txt=p.n+'\n';for(let pl of p.ps){txt+=`${pl.d} $${pl.p} (${keysCache[pl.id]?keysCache[pl.id].length:0} en nube)\n`;}
+ let ans=prompt(txt+'\nEscribe plan (ej: 30 DIAS)');if(!ans)return;
+ let plan=p.ps.find(x=>x.d.toLowerCase()==ans.trim().toLowerCase());if(!plan)return alert('Plan mal');
+ if(!keysCache[plan.id]||keysCache[plan.id].length==0) return alert('Sin stock en la nube');
+ let userDoc=await db.collection('temo_users').doc(ID).get();let saldo=userDoc.data()?.saldo||0;
+ if(saldo<plan.p) return alert('Saldo insuficiente: $'+saldo);
+ let key=keysCache[plan.id][0];
+ // descontar
+ let newKeys=keysCache[plan.id].slice(1);
+ await db.collection('temo_keys').doc(plan.id).set({keys:newKeys});
+ await db.collection('temo_users').doc(ID).update({saldo: saldo-plan.p});
+ let hist=JSON.parse(localStorage.getItem('temo_hist')||'{}');if(!hist[ID])hist[ID]=[];hist[ID].push({date:new Date().toLocaleString(),prod:p.n,plan:plan.d,key:key});localStorage.setItem('temo_hist',JSON.stringify(hist));
+ lastKey=key;lastProd=p.n;lastPlan=plan.d;
+ document.getElementById('modalProd').innerText=p.n+' - '+plan.d;
+ document.getElementById('modalKey').innerText=key;
+ document.getElementById('keyModal').style.display='flex';
+ loadKeys();loadMySaldo();
+}
+
+async function addSaldoToUser(){
+ let tid=document.getElementById('targetID').value.trim().toUpperCase();let monto=parseInt(document.getElementById('addSaldo').value);
+ if(!tid||!monto) return alert('ID y monto');
+ let ref=db.collection('temo_users').doc(tid);let doc=await ref.get();
+ if(!doc.exists){await ref.set({saldo:monto});}else{await ref.update({saldo:(doc.data().saldo||0)+monto});}
+ alert('✅ $'+monto+' agregado a '+tid+' - Ya le aparece a él al instante');
+}
+async function createProd(){let name=document.getElementById('newName').value.trim();let icon=document.getElementById('newIcon').value||'🔥';if(!name)return;let nid=name.toLowerCase().replace(/[^a-z0-9]/g,'').substr(0,10)+'-'+Date.now().toString().slice(-4);let p={n:name.toUpperCase(),i:icon,id:nid,ps:[{id:nid+'-30d',d:'30 DIAS',p:10}]};await db.collection('temo_products').doc(nid).set(p);alert('Creado en la nube');loadProds();}
+function doLogin(){let u=document.getElementById('aUser').value.trim();let p=document.getElementById('aPass').value.trim();if(u=='Temo2007'&&p=='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';renderAdmin();}else alert('mal')}
+async function renderAdmin(){
+ let c=document.getElementById('aList');c.innerHTML='Cargando nube...';await loadKeys();
+ c.innerHTML='';for(let p of prodsCache){
+  let html=`<div class=cardA><b>${p.i} ${p.n}</b> <button onclick="deleteProd('${p.id}')" style="background:red;color:#fff;border:none;padding:4px 8px;border-radius:6px;float:right">BORRAR</button>`;
+  for(let pl of p.ps){
+   let cnt=keysCache[pl.id]?keysCache[pl.id].length:0;let st=keysCache[pl.id]?keysCache[pl.id].join('\n'):'';
+   html+=`<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><b>${pl.d} $${pl.p} - ${cnt} keys</b><textarea id="ta-${pl.id}">${st}</textarea><button class=btn2 onclick="saveKeys('${pl.id}')">💾 GUARDAR KEYS EN LA NUBE (${pl.id}) - Le aparece al cliente</button></div>`;
+  }
+  html+='</div>';let div=document.createElement('div');div.innerHTML=html;c.appendChild(div);
+ }
+}
+async function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);await db.collection('temo_keys').doc(id).set({keys:clean});alert('✅ Guardado en la nube: '+clean.length+' keys - Ya les aparece a los clientes');loadKeys();}
+async function deleteProd(id){if(!confirm('Borrar '+id+' de la nube?'))return;await db.collection('temo_products').doc(id).delete();loadProds();}
+function openHist(){let h=JSON.parse(localStorage.getItem('temo_hist')||'{}')[ID]||[];let html=h.length?h.slice().reverse().map(x=>`<div style=background:#000;padding:8px;margin:6px 0;border-radius:6px><b style=color:#0f0>${x.prod}-${x.plan}</b><br><small>${x.date}</small><br><span style=color:#0f0>${x.key}</span></div>`).join(''):'<p>Sin compras</p>';document.getElementById('histList').innerHTML=html;document.getElementById('histModal').style.display='flex';}
 if(location.search.toLowerCase().indexOf('admin')!=-1)document.getElementById('admin').style.display='block';
-function createProd(){var name=document.getElementById('newName').value.trim();var icon=document.getElementById('newIcon').value.trim()||'🔥';if(!name)return alert('Pon nombre');var prods=getProds();var nid=name.toLowerCase().replace(/[^a-z0-9]/g,'').substr(0,10)+'-'+Date.now().toString().slice(-4);prods.push({n:name.toUpperCase(),i:icon,id:nid,ps:[{id:nid+'-30d',d:'30 DIAS',p:10}]});setProds(prods);document.getElementById('newName').value='';alert('Creado '+name)}
-function resetProds(){if(!confirm('Restaurar los 7 productos base?'))return;saveJSON('temo_prods',BASE);renderProducts();renderAdmin();alert('Restaurado')}
-function deleteAllProds(){if(!confirm('¿Borrar TODOS los productos?'))return;saveJSON('temo_prods',[]);renderProducts();renderAdmin()}
-function deleteProd(id){if(!confirm('¿Eliminar producto?'))return;var prods=getProds();var np=[];for(var i=0;i<prods.length;i++){if(prods[i].id!=id)np.push(prods[i])}setProds(np)}
-function editProd(id){var prods=getProds();for(var i=0;i<prods.length;i++){if(prods[i].id==id){var nn=prompt('Nuevo nombre:',prods[i].n);if(nn){prods[i].n=nn.toUpperCase()}var ii=prompt('Nuevo icono:',prods[i].i);if(ii){prods[i].i=ii}setProds(prods);return}}}
-function addPlan(pid){var prods=getProds();for(var i=0;i<prods.length;i++){if(prods[i].id==pid){var d=prompt('Nombre plan ej: 30 DIAS');if(!d)return;var pr=parseInt(prompt('Precio ej: 10'));if(!pr)return;var nid=pid+'-'+d.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now().toString().slice(-3);prods[i].ps.push({id:nid,d:d.toUpperCase(),p:pr});setProds(prods);return}}}
-function deletePlan(pid,planId){if(!confirm('¿Borrar plan?'))return;var prods=getProds();for(var i=0;i<prods.length;i++){if(prods[i].id==pid){var nps=[];for(var j=0;j<prods[i].ps.length;j++){if(prods[i].ps[j].id!=planId)nps.push(prods[i].ps[j])}prods[i].ps=nps;setProds(prods);return}}}
-function editPlan(pid,planId){var prods=getProds();for(var i=0;i<prods.length;i++){if(prods[i].id==pid){for(var j=0;j<prods[i].ps.length;j++){if(prods[i].ps[j].id==planId){var np=prompt('Nuevo precio para '+prods[i].ps[j].d,prods[i].ps[j].p);if(np){prods[i].ps[j].p=parseInt(np);setProds(prods)}return}}}}}
-function renderAdmin(){var prods=getProds();var keys=loadJSON('temo_keys',{});var c=document.getElementById('aList');c.innerHTML='';for(var pi=0;pi<prods.length;pi++){var p=prods[pi];var html='<div class=cardA style=border:1px solid #0af><div style=display:flex;justify-content:space-between;align-items:center><b>'+p.i+' '+p.n+' ('+p.id+')</b><div><button class=smallBtn style=background:#0af;color:#fff onclick="editProd(\''+p.id+'\')">✏️ EDITAR</button><button class=smallBtn style=background:red;color:#fff onclick="deleteProd(\''+p.id+'\')">🗑️ BORRAR PROD</button><button class=smallBtn style=background:#0f0;color:#000 onclick="addPlan(\''+p.id+'\')">+ PLAN</button></div></div>';for(var j=0;j<p.ps.length;j++){var pl=p.ps[j];var cnt=keys[pl.id]?keys[pl.id].length:0;var st=keys[pl.id]?keys[pl.id].join('\n'):'';html+='<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><div style=display:flex;justify-content:space-between><b>'+pl.d+' $'+pl.p+' - '+cnt+' keys</b><div><button class=smallBtn style=background:#0af;color:#fff onclick="editPlan(\''+p.id+'\',\''+pl.id+'\')">💲 PRECIO</button><button class=smallBtn style=background:red;color:#fff onclick="deletePlan(\''+p.id+'\',\''+pl.id+'\')">🗑️ PLAN</button></div></div><textarea id=ta-'+pl.id+'>'+st+'</textarea><button class=btn2 onclick="saveKeys(\''+pl.id+'\')">💾 GUARDAR KEYS '+pl.id+'</button></div>'}html+='</div>';var div=document.createElement('div');div.innerHTML=html;c.appendChild(div)}}
-function saveKeys(id){var ta=document.getElementById('ta-'+id);var lines=ta.value.split('\n');var clean=[];for(var i=0;i<lines.length;i++){var s=lines[i].trim();if(s.length>=2)clean.push(s)}var k=loadJSON('temo_keys',{});k[id]=clean;saveJSON('temo_keys',k);alert('Guardado '+clean.length+' keys en '+id);renderProducts();renderAdmin()}
+loadProds();loadKeys();loadMySaldo();
 </script></body></html>
