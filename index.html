@@ -1,52 +1,69 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V12 NUBE</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V12.1 FIX</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
-<script>try{let i=localStorage.getItem('temo_myID')||'';if(!i||i.includes('|')||i.length<6||!i.toUpperCase().startsWith('TEMO-')){localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase())}}catch(e){localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase())}</script>
+<script>
+// FIX ID CORRUPTO | ANTES DE TODO
+(function(){
+  try{
+    let id = localStorage.getItem('temo_myID')||'';
+    id = (id||'').trim();
+    if(!id || id=='|' || id.includes('|') || id.length<6 ||!id.toUpperCase().startsWith('TEMO-')){
+      let nid = 'TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();
+      localStorage.setItem('temo_myID', nid);
+      // limpia prods corruptos también
+      let p = localStorage.getItem('temo_prods');
+      if(p){ try{ let jp=JSON.parse(p); if(!jp||!Array.isArray(jp)||jp.length==0) localStorage.removeItem('temo_prods'); }catch(e){ localStorage.removeItem('temo_prods'); } }
+    }
+  }catch(e){ localStorage.clear(); localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase()); }
+})();
+</script>
 <style>body{background:#000;color:#fff;font-family:Arial;margin:0;padding-bottom:90px}.top{background:red;padding:14px;font-weight:900;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;text-align:center;background:#140000}.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}.box input{width:100%;padding:12px;background:#000;color:#0f0;border:2px solid #0f0;border-radius:8px;text-align:center;font-weight:900}.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900}.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}.row{display:flex;gap:6px}#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}.cardA textarea{width:100%;min-height:90px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center}.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0}.sBtn{padding:6px 10px;border:none;border-radius:6px;font-weight:900;margin:2px;font-size:12px}</style>
 </head><body>
-<div class="top"><span>🔥 TEMO V12 NUBE</span><span><span id="mode">LOCAL</span> | <span id="sTop">$0</span></span></div>
-<div class="banner"><span id="status">Iniciando...</span><br><button onclick="localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase());location.href=location.pathname" style="margin-top:8px;padding:8px 14px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">🔧 ARREGLAR</button></div>
-<div class="box"><input id="idIn" readonly><div>ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="copyID()" style="flex:1;padding:11px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HIST</button></div></div>
-<div id="lista"></div>
+<div class="top"><span>🔥 TEMO V12.1 FIX</span><span><span id="mode">...</span> | <span id="sTop">$0</span></span></div>
+<div class="banner"><span id="status">Cargando...</span><br><button onclick="localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase());location.href=location.pathname+'?fix='+Date.now()" style="margin-top:8px;padding:10px 20px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">🔧 ARREGLAR ID Y PRODUCTOS</button></div>
+<div class="box"><input id="idIn" readonly><div style="margin-top:8px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="copyID()" style="flex:1;padding:11px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HIST</button></div></div>
+<div id="lista" style="min-height:100px"></div>
+
 <div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ COMPRA</h3><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="copyKey()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
 <div id="histModal" class="modal"><div class="modalBox"><h3>HISTORIAL</h3><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
-<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN V12</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div>
+
+<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN V12.1</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div>
 <div id="aContent" style="display:none;max-width:800px;margin:0 auto">
-<h2 style="color:#0f0;text-align:center">PANEL ADMIN V12 NUBE</h2>
-<div class="cardA" style="border:2px solid #0af"><h3 style="color:#0af">➕ CREAR PRODUCTO (NUBE)</h3><div class="row"><input id="newIcon" placeholder="🔥" class="in" style="width:80px"><input id="newName" placeholder="Nombre" class="in"></div><button onclick="createProd()" class="btn2" style="background:#0af;color:#fff">➕ CREAR EN LA NUBE</button></div>
-<div class="cardA" style="border:2px solid #0f0"><h3 style="color:#0f0">💰 AGREGAR SALDO - YA LE LLEGA AL CLIENTE</h3><div class="row"><input id="targetID" placeholder="ID CLIENTE TEMO-XXXX" class="in"><input id="addSaldo" type="number" placeholder="50" class="in" style="width:110px"></div><button onclick="addSaldoCloud()" style="width:100%;padding:11px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900;margin-top:6px">💸 AGREGAR SALDO EN LA NUBE (INSTANTÁNEO)</button></div>
-<div class="cardA"><h3>🛠️ PRODUCTOS Y KEYS (NUBE)</h3><div id="aList"></div><div class="row" style="margin-top:10px"><button onclick="resetProds()" style="flex:1;padding:10px;background:#111;border:1px solid red;color:red;border-radius:8px;font-weight:900">♻️ RESTAURAR 7 BASE EN NUBE</button></div></div>
+<h2 style="color:#0f0;text-align:center">PANEL ADMIN V12.1</h2>
+<div class="cardA" style="border:2px solid #0af"><h3 style="color:#0af">➕ CREAR PRODUCTO</h3><div class="row"><input id="newIcon" placeholder="🔥" class="in" style="width:80px"><input id="newName" placeholder="Nombre" class="in"></div><button onclick="createProd()" style="width:100%;padding:11px;background:#0af;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:6px">➕ CREAR</button></div>
+<div class="cardA" style="border:2px solid #0f0"><h3 style="color:#0f0">💰 AGREGAR SALDO (NUBE si tienes Firebase, si no LOCAL)</h3><div class="row"><input id="targetID" placeholder="ID CLIENTE TEMO-XXXX" class="in"><input id="addSaldo" type="number" placeholder="50" class="in" style="width:110px"></div><button onclick="addSaldo()" style="width:100%;padding:11px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900;margin-top:6px">💸 AGREGAR SALDO</button></div>
+<div class="cardA"><h3>🛠️ PRODUCTOS Y KEYS</h3><div id="aList"></div><div class="row" style="margin-top:10px"><button onclick="resetProds()" style="flex:1;padding:10px;background:#111;border:1px solid red;color:red;border-radius:8px;font-weight:900">♻️ RESTAURAR 7 BASE</button></div></div>
 <button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button>
 </div></div>
+
 <script>
-// ⬇️⬇️ PEGA TU CONFIG DE FIREBASE AQUÍ ⬇️⬇️
+// ⬇️ PEGA TU FIREBASE AQUÍ SI LO TIENES, SI NO DÉJALO ASÍ Y FUNCIONA EN LOCAL ⬇️
 const firebaseConfig = {
-  apiKey: "PEGA_AQUI_TU_APIKEY",
+  apiKey: "PEGA_AQUI",
   authDomain: "temo-store.firebaseapp.com",
   projectId: "temo-store",
   storageBucket: "temo-store.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abc"
+  messagingSenderId: "123",
+  appId: "1:123:web:abc"
 };
-// ⬆️⬆️ PEGA TU CONFIG AQUÍ ⬆️⬆️
 
 let useCloud = false; let db = null;
 try{
-  if(firebaseConfig.apiKey &&!firebaseConfig.apiKey.includes('PEGA_AQUI')){
+  if(firebaseConfig.apiKey &&!firebaseConfig.apiKey.includes('PEGA_AQUI') && firebaseConfig.apiKey.length>20){
     firebase.initializeApp(firebaseConfig);
     db = firebase.firestore();
     useCloud = true;
-    document.getElementById('mode').innerText = 'NUBE';
-    document.getElementById('mode').style.color = '#0f0';
-    document.getElementById('status').innerText = '✅ MODO NUBE - Conectado';
-    document.getElementById('status').style.color = '#0f0';
+    document.getElementById('mode').innerText='NUBE';
+    document.getElementById('mode').style.color='#0f0';
   }else{
-    document.getElementById('mode').innerText = 'LOCAL';
-    document.getElementById('status').innerText = '⚠️ MODO LOCAL - Pega tu Firebase config para activar nube';
-    document.getElementById('status').style.color = '#ff0';
+    document.getElementById('mode').innerText='LOCAL';
+    document.getElementById('status').innerText='✅ MODO LOCAL - Productos visibles abajo. Para NUBE pega Firebase';
+    document.getElementById('status').style.color='#0f0';
   }
 }catch(e){
-  document.getElementById('status').innerText = '⚠️ LOCAL: '+e.message;
+  useCloud=false;
+  document.getElementById('mode').innerText='LOCAL';
+  document.getElementById('status').innerText='✅ LOCAL: '+e.message;
 }
 
 const BASE=[
@@ -59,55 +76,69 @@ const BASE=[
  {n:'ANDROID PROXY',i:'📦',id:'proxy',ps:[{id:'proxy-30d',d:'30 DIAS',p:8}]}
 ];
 
-let ID=localStorage.getItem('temo_myID');function L(k,d){try{let v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}function S(k,v){localStorage.setItem(k,JSON.stringify(v))}
-let prodsCache=[];let keysCache={};let lastKey='';
-document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;
+let ID = localStorage.getItem('temo_myID')||'';
+if(!ID || ID=='|' || ID.includes('|') || ID.length<6){ ID='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase(); localStorage.setItem('temo_myID',ID); }
+function L(k,d){try{let v=localStorage.getItem(k);if(!v)return d;let j=JSON.parse(v);if(j===null)return d;return j}catch(e){return d}}function S(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function getProdsSafe(){try{let p=L('temo_prods',null);if(!p||!Array.isArray(p)||p.length==0)return JSON.parse(JSON.stringify(BASE));return p}catch(e){return JSON.parse(JSON.stringify(BASE))}}
+
+let prodsCache = getProdsSafe();
+let keysCache = L('temo_keys',{});
+let users = L('temo_users',{});
+if(!users[ID]){users[ID]={saldo:0};S('temo_users',users);}
+
+document.getElementById('idIn').value=ID;
+document.getElementById('idTxt').innerText=ID;
+document.getElementById('sTop').innerText='$'+(users[ID]?.saldo||0);
+document.getElementById('sTxt').innerText=users[ID]?.saldo||0;
 
 function renderList(){
   let l=document.getElementById('lista');
+  let k = useCloud?keysCache:L('temo_keys',{});
+  let u = L('temo_users',{})[ID]||{saldo:0};
+  document.getElementById('sTop').innerText='$'+u.saldo;
+  document.getElementById('sTxt').innerText=u.saldo;
   let html='';
   for(let p of prodsCache){
-    let stock=0;for(let pl of p.ps){if(keysCache[pl.id]) stock+=keysCache[pl.id].length;}
-    html+=`<div class=prod><div><b>${p.i} ${p.n}</b><br><small>${p.ps.length} planes - ${stock} keys ${useCloud?'(NUBE)':''}</small></div><button class=btn onclick="ver('${p.id}')">VER</button></div>`;
+    let stock=0;for(let pl of p.ps){if(k[pl.id])stock+=k[pl.id].length;}
+    html+=`<div class=prod><div><b>${p.i} ${p.n}</b><br><small>${p.ps.length} planes - ${stock} keys</small></div><button class=btn onclick="ver('${p.id}')">VER</button></div>`;
   }
-  l.innerHTML=html||'<p style=text-align:center;padding:20px;color:#888'>No hay productos</p>';
+  l.innerHTML=html;
+  document.getElementById('status').innerText = (useCloud?'✅ NUBE - ':'✅ LOCAL - ')+prodsCache.length+' productos cargados';
 }
+renderList();
 
-async function init(){
-  if(useCloud){
-    try{
-      let snap=await db.collection('temo_products').get();
-      if(snap.empty){for(let p of BASE){await db.collection('temo_products').doc(p.id).set(p)} prodsCache=BASE;}
-      else{prodsCache=[];snap.forEach(d=>prodsCache.push(d.data()))}
-      let snapK=await db.collection('temo_keys').get();keysCache={};snapK.forEach(d=>keysCache[d.id]=d.data().keys||[]);
-      let userDoc=await db.collection('temo_users').doc(ID).get();if(!userDoc.exists)await db.collection('temo_users').doc(ID).set({saldo:0});
-      db.collection('temo_users').doc(ID).onSnapshot(doc=>{let s=doc.data()?.saldo||0;document.getElementById('sTop').innerText='$'+s;document.getElementById('sTxt').innerText=s;});
-      db.collection('temo_products').onSnapshot(s=>{prodsCache=[];s.forEach(d=>prodsCache.push(d.data()));renderList();if(document.getElementById('admin').style.display=='block')renderAdmin();});
-      db.collection('temo_keys').onSnapshot(s=>{keysCache={};s.forEach(d=>keysCache[d.id]=d.data().keys||[]);renderList();});
-    }catch(e){document.getElementById('status').innerText='❌ Error nube: '+e.message;}
-  }else{
-    prodsCache=L('temo_prods',BASE);keysCache=L('temo_keys',{});let u=L('temo_users',{});let saldo=u[ID]?.saldo||0;document.getElementById('sTop').innerText='$'+saldo;document.getElementById('sTxt').innerText=saldo;
-  }
-  renderList();
+async function initCloud(){
+  if(!useCloud) return;
+  try{
+    let snap=await db.collection('temo_products').get();
+    if(snap.empty){for(let p of BASE)await db.collection('temo_products').doc(p.id).set(p); prodsCache=BASE;}
+    else{prodsCache=[];snap.forEach(d=>prodsCache.push(d.data()));}
+    let snapK=await db.collection('temo_keys').get();keysCache={};snapK.forEach(d=>keysCache[d.id]=d.data().keys||[]);
+    let doc=await db.collection('temo_users').doc(ID).get();if(!doc.exists)await db.collection('temo_users').doc(ID).set({saldo:0});
+    db.collection('temo_users').doc(ID).onSnapshot(d=>{let s=d.data()?.saldo||0;document.getElementById('sTop').innerText='$'+s;document.getElementById('sTxt').innerText=s;});
+    db.collection('temo_products').onSnapshot(s=>{prodsCache=[];s.forEach(d=>prodsCache.push(d.data()));renderList();});
+    db.collection('temo_keys').onSnapshot(s=>{keysCache={};s.forEach(d=>keysCache[d.id]=d.data().keys||[]);renderList();});
+    document.getElementById('status').innerText='✅ NUBE CONECTADA - '+prodsCache.length+' productos';
+  }catch(e){document.getElementById('status').innerText='❌ Error nube: '+e.message;}
 }
-init();
+initCloud();
 
+let lastKey='';
 async function ver(pid){
-  if(useCloud){let s=await db.collection('temo_keys').get();keysCache={};s.forEach(d=>keysCache[d.id]=d.data().keys||[])}
-  else keysCache=L('temo_keys',{});
+  let k = useCloud?keysCache:L('temo_keys',{});
+  let u = L('temo_users',{});
   let p=prodsCache.find(x=>x.id==pid);
-  let txt=p.n+'\n';for(let pl of p.ps){txt+=`${pl.d} $${pl.p} (${keysCache[pl.id]?keysCache[pl.id].length:0} keys)\n`}
-  let saldoNow=parseInt(document.getElementById('sTxt').innerText)||0;
-  let ans=prompt(txt+`\nSaldo $${saldoNow}\nEscribe plan exacto:`);if(!ans)return;
+  let txt=p.n+'\n';for(let pl of p.ps){txt+=`${pl.d} $${pl.p} (${k[pl.id]?k[pl.id].length:0} keys)\n`}
+  let ans=prompt(txt+`\nSaldo $${u[ID]?.saldo||0}\nEscribe plan:`);if(!ans)return;
   let plan=p.ps.find(x=>x.d.toLowerCase()==ans.trim().toLowerCase());if(!plan)return alert('Plan mal');
-  if(!keysCache[plan.id]||keysCache[plan.id].length==0)return alert('Sin stock - Agrega keys en admin');
-  if(saldoNow<plan.p)return alert('Saldo insuficiente');
-  let key=keysCache[plan.id][0];
+  if(!k[plan.id]||k[plan.id].length==0)return alert('Sin stock - ve a admin y agrega keys');
+  if((u[ID]?.saldo||0)<plan.p)return alert('Saldo insuficiente');
+  let key=k[plan.id][0];
   if(useCloud){
-    let newKeys=keysCache[plan.id].slice(1);await db.collection('temo_keys').doc(plan.id).set({keys:newKeys});
+    let nk=k[plan.id].slice(1);await db.collection('temo_keys').doc(plan.id).set({keys:nk});
     let ref=db.collection('temo_users').doc(ID);let doc=await ref.get();await ref.update({saldo:(doc.data().saldo||0)-plan.p});
   }else{
-    keysCache[plan.id].shift();S('temo_keys',keysCache);let u=L('temo_users',{});u[ID].saldo-=plan.p;S('temo_users',u);
+    k[plan.id].shift();S('temo_keys',k);u[ID].saldo-=plan.p;S('temo_users',u);
   }
   let hist=L('temo_hist',{});if(!hist[ID])hist[ID]=[];hist[ID].push({prod:p.n,plan:plan.d,key:key,date:new Date().toLocaleString()});S('temo_hist',hist);
   lastKey=key;document.getElementById('modalProd').innerText=p.n+' - '+plan.d;document.getElementById('modalKey').innerText=key;document.getElementById('keyModal').style.display='flex';renderList();
@@ -116,22 +147,23 @@ function copyID(){navigator.clipboard.writeText(ID);alert(ID)}
 function copyKey(){navigator.clipboard.writeText(lastKey)}
 function openHist(){let h=L('temo_hist',{})[ID]||[];let html=h.length?h.slice().reverse().map(x=>`<div style=background:#000;padding:8px;margin:6px 0;border-radius:6px><b style=color:#0f0>${x.prod}-${x.plan}</b><br><small>${x.date}</small><br><span style=color:#0f0>${x.key}</span></div>`).join(''):'<p>Sin compras</p>';document.getElementById('histList').innerHTML=html;document.getElementById('histModal').style.display='flex';}
 function doLogin(){if(document.getElementById('aUser').value=='Temo2007'&&document.getElementById('aPass').value=='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';renderAdmin()}else alert('mal')}
-async function createProd(){let name=document.getElementById('newName').value.trim();let icon=document.getElementById('newIcon').value.trim()||'🔥';if(!name)return alert('Nombre');let nid=name.toLowerCase().replace(/[^a-z0-9]/g,'').substr(0,10)+'-'+Date.now().toString().slice(-4);let p={n:name.toUpperCase(),i:icon,id:nid,ps:[{id:nid+'-30d',d:'30 DIAS',p:10}]};if(useCloud){await db.collection('temo_products').doc(nid).set(p);alert('Creado en NUBE')}else{let prods=L('temo_prods',BASE);prods.push(p);S('temo_prods',prods);prodsCache=prods;renderList();renderAdmin()}document.getElementById('newName').value='';}
-async function addSaldoCloud(){let tid=document.getElementById('targetID').value.trim().toUpperCase();let monto=parseInt(document.getElementById('addSaldo').value);if(!tid||!monto)return alert('ID y monto');if(!useCloud)return alert('Activa nube primero');let ref=db.collection('temo_users').doc(tid);let doc=await ref.get();if(!doc.exists)await ref.set({saldo:monto});else await ref.update({saldo:(doc.data().saldo||0)+monto});alert('✅ $'+monto+' agregado a '+tid+' - Ya le aparece INSTANTÁNEO');}
-async function renderAdmin(){
-  if(useCloud){let s=await db.collection('temo_keys').get();keysCache={};s.forEach(d=>keysCache[d.id]=d.data().keys||[])}else keysCache=L('temo_keys',{});
+async function createProd(){let name=document.getElementById('newName').value.trim();let icon=document.getElementById('newIcon').value.trim()||'🔥';if(!name)return alert('Nombre');let nid=name.toLowerCase().replace(/[^a-z0-9]/g,'').substr(0,10)+'-'+Date.now().toString().slice(-4);let p={n:name.toUpperCase(),i:icon,id:nid,ps:[{id:nid+'-30d',d:'30 DIAS',p:10}]};if(useCloud){await db.collection('temo_products').doc(nid).set(p);}else{let prods=getProdsSafe();prods.push(p);S('temo_prods',prods);prodsCache=prods;renderList();renderAdmin()}document.getElementById('newName').value='';alert('Creado');}
+async function addSaldo(){let tid=document.getElementById('targetID').value.trim().toUpperCase()||ID;let monto=parseInt(document.getElementById('addSaldo').value);if(!monto)return alert('Monto');if(useCloud){let ref=db.collection('temo_users').doc(tid);let doc=await ref.get();if(!doc.exists)await ref.set({saldo:monto});else await ref.update({saldo:(doc.data().saldo||0)+monto});alert('✅ $'+monto+' a '+tid+' EN NUBE - Ya le aparece')}else{let u=L('temo_users',{});if(!u[tid])u[tid]={saldo:0};u[tid].saldo+=monto;S('temo_users',u);if(tid==ID)renderList();alert('✅ $'+monto+' a '+tid+' LOCAL');}}
+function renderAdmin(){
+  let k = useCloud?keysCache:L('temo_keys',{});
+  let prods = prodsCache;
   let c=document.getElementById('aList');c.innerHTML='';
-  for(let p of prodsCache){
-    let html=`<div class=cardA><div style=display:flex;justify-content:space-between><b>${p.i} ${p.n}</b><button class=sBtn style=background:red;color:#fff onclick="deleteProd('${p.id}')">🗑️ BORRAR</button></div>`;
+  for(let p of prods){
+    let html=`<div class=cardA><div style=display:flex;justify-content:space-between><b>${p.i} ${p.n}</b><button class=sBtn style=background:red;color:#fff onclick="deleteProd('${p.id}')">🗑️</button></div>`;
     for(let pl of p.ps){
-      let cnt=keysCache[pl.id]?keysCache[pl.id].length:0;let st=keysCache[pl.id]?keysCache[pl.id].join('\n'):'';
-      html+=`<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><b>${pl.d} $${pl.p} - ${cnt} keys</b><textarea id="ta-${pl.id}">${st}</textarea><button class=btn2 onclick="saveKeys('${pl.id}')">💾 GUARDAR KEYS EN NUBE - Le aparece al cliente</button></div>`;
+      let cnt=k[pl.id]?k[pl.id].length:0;let st=k[pl.id]?k[pl.id].join('\n'):'';
+      html+=`<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><b>${pl.d} $${pl.p} - ${cnt} keys</b><textarea id="ta-${pl.id}">${st}</textarea><button class=btn2 onclick="saveKeys('${pl.id}')">💾 GUARDAR KEYS ${useCloud?'(NUBE)':'(LOCAL)'}</button></div>`;
     }
     html+='</div>';let div=document.createElement('div');div.innerHTML=html;c.appendChild(div);
   }
 }
-async function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);if(useCloud){await db.collection('temo_keys').doc(id).set({keys:clean});alert('✅ '+clean.length+' keys en NUBE - Ya les aparece a clientes')}else{let k=L('temo_keys',{});k[id]=clean;S('temo_keys',k);alert('Guardado local '+clean.length)}}
-async function deleteProd(id){if(!confirm('¿Borrar '+id+' de la NUBE?'))return;if(useCloud)await db.collection('temo_products').doc(id).delete();else{let prods=L('temo_prods',BASE).filter(x=>x.id!=id);S('temo_prods',prods);prodsCache=prods;renderList();renderAdmin()}}
-async function resetProds(){if(!confirm('¿Restaurar 7 base en NUBE?'))return;if(useCloud){for(let p of BASE){await db.collection('temo_products').doc(p.id).set(p)}alert('Restaurado en nube')}else{S('temo_prods',BASE);prodsCache=BASE;renderList();renderAdmin()}}
+async function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);if(useCloud){await db.collection('temo_keys').doc(id).set({keys:clean});alert('✅ '+clean.length+' keys en NUBE')}else{let k=L('temo_keys',{});k[id]=clean;S('temo_keys',k);alert('✅ '+clean.length+' LOCAL');renderList();renderAdmin();}}
+async function deleteProd(id){if(!confirm('Borrar '+id+'?'))return;if(useCloud)await db.collection('temo_products').doc(id).delete();else{let prods=getProdsSafe().filter(x=>x.id!=id);S('temo_prods',prods);prodsCache=prods;renderList();renderAdmin();}}
+async function resetProds(){if(!confirm('Restaurar 7 base?'))return;if(useCloud){for(let p of BASE)await db.collection('temo_products').doc(p.id).set(p)}else{S('temo_prods',BASE);prodsCache=JSON.parse(JSON.stringify(BASE));renderList();renderAdmin()}}
 if(location.search.toLowerCase().includes('admin'))document.getElementById('admin').style.display='block';
 </script></body></html>
