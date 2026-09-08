@@ -1,21 +1,23 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V11.3</title>
-<script>
-try{
- let id=localStorage.getItem('temo_myID')||'';
- if(!id || id.includes('|') || id.length<6){
-   localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase());
- }
-}catch(e){ localStorage.clear(); localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase()); }
-</script>
-<style>body{background:#000;color:#fff;font-family:Arial;margin:0;padding-bottom:80px}.top{background:red;padding:14px;font-weight:900;display:flex;justify-content:space-between}.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;text-align:center;background:#140000}.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}.box input{width:100%;padding:12px;background:#000;color:#0f0;border:2px solid #0f0;border-radius:8px;text-align:center;font-weight:900}.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900}.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}.row{display:flex;gap:6px}#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}.cardA textarea{width:100%;min-height:90px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center}.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0}</style>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V11.4 FULL</title>
+<script>try{let id=localStorage.getItem('temo_myID')||'';if(!id||id.includes('|')||id.length<6||!id.toUpperCase().startsWith('TEMO-')){localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase())}}catch(e){localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase())}</script>
+<style>body{background:#000;color:#fff;font-family:Arial;margin:0;padding-bottom:90px}.top{background:red;padding:14px;font-weight:900;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}.banner{margin:12px;border:2px solid red;border-radius:14px;padding:14px;text-align:center;background:#140000}.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}.box input{width:100%;padding:12px;background:#000;color:#0f0;border:2px solid #0f0;border-radius:8px;text-align:center;font-weight:900}.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900}.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}.row{display:flex;gap:6px}#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}.cardA textarea{width:100%;min-height:90px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center}.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0}.codeBox{background:#000;border:2px dashed #ff0;border-radius:10px;padding:14px;color:#ff0;font-weight:900;margin:10px 0;font-size:18px}.sBtn{padding:6px 10px;border:none;border-radius:6px;font-weight:900;margin:2px;font-size:12px}</style>
 </head><body>
-<div class="top"><span>🔥 TEMO STORE V11.3</span><span id="saldoTop">$0</span></div>
-<div class="banner">✅ V11.3 - PRODUCTOS FORZADOS<br><button onclick="localStorage.clear();location.reload()" style="margin-top:8px;padding:10px 20px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">🔧 LIMPIAR Y RECARGAR</button><br><small style="color:#0f0">Si ves esto, el HTML si se actualizó</small></div>
-<div class="box"><input id="idIn" readonly><div>ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="copyID()" style="flex:1;padding:11px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HIST</button></div></div>
+<div class="top"><span>🔥 TEMO V11.4 FULL</span><span id="sTop">$0</span></div>
+<div class="banner">✅ V11.4 - TODO RESTAURADO + CRUD<br><button onclick="localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase());location.href=location.pathname+'?v=114'" style="margin-top:8px;padding:10px 20px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">🔧 ARREGLAR TODO</button></div>
+<div class="box"><input id="idIn" readonly><div>ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div class="row" style="margin-top:10px"><button onclick="copyID()" style="flex:1;padding:11px;background:#111;border:2px solid #0f0;border-radius:10px;color:#fff;font-weight:900">📋 ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #555;border-radius:10px;color:#fff;font-weight:900">📜 HIST</button></div><div style="margin-top:12px;background:#1a1a00;border:1px solid #ff0;border-radius:10px;padding:10px"><h4 style="color:#ff0">🎟️ CANJEAR CÓDIGO</h4><div class="row"><input id="codeIn" placeholder="TEMO-50-XXXX" class="in" style="border-color:#ff0;color:#ff0"><button onclick="redeemCode()" style="padding:10px 14px;background:#ff0;color:#000;border:none;border-radius:6px;font-weight:900">CANJEAR</button></div></div></div>
 <div id="lista"></div>
-<div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ COMPRA</h3><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="navigator.clipboard.writeText(lastKey)" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
+<div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ COMPRA</h3><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="copyKey()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
 <div id="histModal" class="modal"><div class="modalBox"><h3>HISTORIAL</h3><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
-<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div><div id="aContent" style="display:none;max-width:750px;margin:0 auto"><h2 style="color:#0f0;text-align:center">ADMIN - KEYS</h2><div id="aList"></div><button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button></div></div>
+<div id="codeModal" class="modal"><div class="modalBox" style="border:2px solid #ff0"><h3 style="color:#ff0">🎟️ CÓDIGO GENERADO</h3><div id="codeTxt" class="codeBox"></div><p id="codeMonto"></p><button onclick="copyCode()" style="width:100%;padding:12px;background:#ff0;color:#000;border:none;border-radius:8px;font-weight:900">📋 COPIAR</button><button id="waCodeBtn" style="width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:8px">📱 ENVIAR WA</button><button onclick="document.getElementById('codeModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
+<div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div>
+<div id="aContent" style="display:none;max-width:800px;margin:0 auto">
+<h2 style="color:#0f0;text-align:center">PANEL ADMIN V11.4 FULL</h2>
+<div class="cardA" style="border:2px solid #0af"><h3 style="color:#0af">➕ CREAR PRODUCTO NUEVO</h3><div class="row"><input id="newIcon" placeholder="🔥 icono" class="in" style="width:80px"><input id="newName" placeholder="Nombre ej: DRIP CLIENT" class="in"></div><button onclick="createProd()" style="width:100%;padding:11px;background:#0af;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:6px">➕ CREAR PRODUCTO</button></div>
+<div class="cardA" style="border:2px solid #ff0"><h3 style="color:#ff0">🎟️ GENERAR CÓDIGO DE SALDO (Para clientes en otro cel)</h3><div class="row"><input id="genMonto" type="number" placeholder="50" class="in"><button onclick="genCode()" style="padding:10px 18px;background:#ff0;color:#000;border:none;border-radius:6px;font-weight:900">GENERAR</button></div><div id="lastCodes" style="margin-top:8px"></div></div>
+<div class="cardA" style="border:2px solid #0f0"><h3 style="color:#0f0">💰 PONER SALDO DIRECTO</h3><div class="row"><input id="targetID" placeholder="ID CLIENTE (TEMO-XXXX) - vacío para ti" class="in"><input id="addSaldo" type="number" placeholder="50" class="in" style="width:110px"></div><button onclick="addSaldoDirect()" style="width:100%;padding:11px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900;margin-top:6px">💸 PONER SALDO AHORA</button></div>
+<div class="cardA" style="border:1px solid #555"><h3>🛠️ EDITAR / BORRAR PRODUCTOS Y KEYS</h3><div id="aList"></div><div class="row" style="margin-top:10px"><button onclick="resetProds()" style="flex:1;padding:10px;background:#111;border:1px solid red;color:red;border-radius:8px;font-weight:900">♻️ RESTAURAR 7 BASE</button><button onclick="deleteAllProds()" style="flex:1;padding:10px;background:red;color:#fff;border:none;border-radius:8px;font-weight:900">🗑️ BORRAR TODO</button></div></div>
+<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;margin:20px 0">← SALIR A TIENDA</button>
+</div></div>
 <script>
 var BASE=[
  {n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
@@ -26,92 +28,79 @@ var BASE=[
  {n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]},
  {n:'ANDROID PROXY',i:'📦',id:'proxy',ps:[{id:'proxy-30d',d:'30 DIAS',p:8}]}
 ];
-var ID = localStorage.getItem('temo_myID');
-if(!ID){ ID='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase(); localStorage.setItem('temo_myID',ID); }
-function L(k,d){try{let v=localStorage.getItem(k);if(!v)return d;return JSON.parse(v);}catch(e){return d}}
+var ID=localStorage.getItem('temo_myID');
+if(!ID||ID.length<6){ID='TEMO-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('temo_myID',ID);}
+function L(k,d){try{let v=localStorage.getItem(k);if(!v)return d;let j=JSON.parse(v);if(j===null)return d;return j}catch(e){return d}}
 function S(k,v){localStorage.setItem(k,JSON.stringify(v))}
-var users=L('temo_users',{}); if(!users[ID]){users[ID]={saldo:50}; S('temo_users',users);}
-var keys=L('temo_keys',{});
-if(!localStorage.getItem('temo_keys')){
- keys={'drip-1d':['DRIP-KEY-TEST-1','DRIP-KEY-2'],'drip-30d':['DRIP30-ABC'],'flou-30d':['FLOU-30-XYZ']};
- S('temo_keys',keys);
-}
-document.getElementById('idIn').value=ID;
-document.getElementById('idTxt').innerText=ID;
-document.getElementById('saldoTop').innerText='$'+(users[ID].saldo||0);
-document.getElementById('sTxt').innerText=users[ID].saldo||0;
-var lastKey='';
+function getProds(){try{let p=L('temo_prods',null);if(!p||!Array.isArray(p)||p.length==0){S('temo_prods',BASE);return JSON.parse(JSON.stringify(BASE));}return p;}catch(e){S('temo_prods',BASE);return JSON.parse(JSON.stringify(BASE));}}
+function setProds(p){S('temo_prods',p);prodsCache=p;render();renderAdmin();}
+var users=L('temo_users',{});if(!users[ID]){users[ID]={saldo:0};S('temo_users',users);}
+var keys=L('temo_keys',{});var prodsCache=getProds();var lastKey='',lastProd='',lastPlan='',lastCode='';
+document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;
+function updSaldoUI(){let u=L('temo_users',{})[ID]||{saldo:0};document.getElementById('sTop').innerText='$'+u.saldo;document.getElementById('sTxt').innerText=u.saldo;}
+updSaldoUI();
 function render(){
- var l=document.getElementById('lista');
- var k=L('temo_keys',{});
- var u=L('temo_users',{})[ID]||{saldo:0};
- document.getElementById('saldoTop').innerText='$'+u.saldo;
- document.getElementById('sTxt').innerText=u.saldo;
- var html='';
- for(var i=0;i<BASE.length;i++){
-  var p=BASE[i];
-  var stock=0;
-  for(var j=0;j<p.ps.length;j++){ var pid=p.ps[j].id; if(k[pid]) stock+=k[pid].length; }
+ let l=document.getElementById('lista');
+ let k=L('temo_keys',{});
+ updSaldoUI();
+ let html='';
+ for(let i=0;i<prodsCache.length;i++){
+  let p=prodsCache[i];
+  let stock=0;for(let j=0;j<p.ps.length;j++){let pid=p.ps[j].id;if(k[pid])stock+=k[pid].length;}
   html+='<div class=prod><div><b>'+p.i+' '+p.n+'</b><br><small>'+p.ps.length+' planes - '+stock+' keys</small></div><button class=btn onclick="ver(\''+p.id+'\')">VER</button></div>';
  }
- l.innerHTML=html;
+ l.innerHTML=html || '<p style=text-align:center;color:#888;padding:20px>No hay productos - Dale a RESTAURAR 7 BASE en admin</p>';
 }
 render();
 function ver(pid){
- var k=L('temo_keys',{});
- var u=L('temo_users',{});
- var p=null;
- for(var i=0;i<BASE.length;i++) if(BASE[i].id==pid) p=BASE[i];
- var txt=p.n+'\n';
- for(var i=0;i<p.ps.length;i++) txt+=p.ps[i].d+' $'+p.ps[i].p+' ('+(k[p.ps[i].id]?k[p.ps[i].id].length:0)+' keys)\n';
- var ans=prompt(txt+'\nSaldo $'+u[ID].saldo+'\nEscribe plan (ej: 30 DIAS)');
- if(!ans) return;
- var plan=null;
- for(var i=0;i<p.ps.length;i++) if(p.ps[i].d.toLowerCase()==ans.trim().toLowerCase()) plan=p.ps[i];
- if(!plan) return alert('Plan no existe');
- if(!k[plan.id] || k[plan.id].length==0) return alert('Sin stock, agrega en admin');
- if(u[ID].saldo < plan.p) return alert('Saldo insuficiente');
- var key=k[plan.id].shift();
- S('temo_keys',k);
- u[ID].saldo-=plan.p;
- S('temo_users',u);
- var hist=L('temo_hist',{}); if(!hist[ID]) hist[ID]=[]; hist[ID].push({prod:p.n,plan:plan.d,key:key,date:new Date().toLocaleString()}); S('temo_hist',hist);
- lastKey=key;
+ let k=L('temo_keys',{});let u=L('temo_users',{});let p=prodsCache.find(x=>x.id==pid);
+ if(!p) return alert('Producto no existe, restaura base');
+ let txt=p.n+'\n';for(let i=0;i<p.ps.length;i++) txt+=p.ps[i].d+' $'+p.ps[i].p+' ('+(k[p.ps[i].id]?k[p.ps[i].id].length:0)+' keys)\n';
+ let ans=prompt(txt+'\nSaldo $'+u[ID].saldo+'\nEscribe plan exacto (ej: 30 DIAS)');if(!ans)return;
+ let plan=p.ps.find(x=>x.d.toLowerCase()==ans.trim().toLowerCase());if(!plan)return alert('Plan mal escrito');
+ if(!k[plan.id]||k[plan.id].length==0) return alert('Sin stock en '+plan.d+' - Ve a admin?admin y agrega keys');
+ if(u[ID].saldo<plan.p) return alert('Saldo insuficiente');
+ let key=k[plan.id].shift();S('temo_keys',k);u[ID].saldo-=plan.p;S('temo_users',u);
+ let hist=L('temo_hist',{});if(!hist[ID])hist[ID]=[];hist[ID].push({prod:p.n,plan:plan.d,key:key,date:new Date().toLocaleString()});S('temo_hist',hist);
+ lastKey=key;lastProd=p.n;lastPlan=plan.d;
  document.getElementById('modalProd').innerText=p.n+' - '+plan.d;
  document.getElementById('modalKey').innerText=key;
  document.getElementById('keyModal').style.display='flex';
  render();
 }
-function copyID(){ navigator.clipboard.writeText(ID); alert(ID); }
-function openHist(){
- var h=L('temo_hist',{})[ID]||[];
- var html=h.length?h.slice().reverse().map(x=>'<div style=background:#000;padding:8px;margin:6px 0;border-radius:6px><b>'+x.prod+'-'+x.plan+'</b><br><small>'+x.date+'</small><br><span style=color:#0f0>'+x.key+'</span></div>').join(''):'<p>Sin compras</p>';
- document.getElementById('histList').innerHTML=html;
- document.getElementById('histModal').style.display='flex';
-}
-function doLogin(){ if(document.getElementById('aUser').value=='Temo2007' && document.getElementById('aPass').value=='Temo2007'){ document.getElementById('aLogin').style.display='none'; document.getElementById('aContent').style.display='block'; renderAdmin(); } else alert('mal'); }
+function copyID(){navigator.clipboard.writeText(ID);alert('Copiado: '+ID)}
+function copyKey(){navigator.clipboard.writeText(lastKey);alert('Key copiada')}
+function copyCode(){navigator.clipboard.writeText(lastCode);alert('Código copiado')}
+function openHist(){let h=L('temo_hist',{})[ID]||[];let html=h.length?h.slice().reverse().map(x=>'<div style=background:#000;padding:8px;margin:6px 0;border-radius:6px><b style=color:#0f0>'+x.prod+'-'+x.plan+'</b><br><small>'+x.date+'</small><br><span style=color:#0f0>'+x.key+'</span></div>').join(''):'<p style=color:#888>Sin compras</p>';document.getElementById('histList').innerHTML=html;document.getElementById('histModal').style.display='flex';}
+function genCode(){let m=parseInt(document.getElementById('genMonto').value);if(!m)return alert('Pon monto');let r=Math.random().toString(36).substr(2,4).toUpperCase();let chk=btoa(m+'|TEMO2007').substr(0,4).toUpperCase().replace(/[^A-Z0-9]/g,'X');let code='TEMO-'+m+'-'+r+'-'+chk;lastCode=code;document.getElementById('codeTxt').innerText=code;document.getElementById('codeMonto').innerText='$'+m+' pesos';document.getElementById('codeModal').style.display='flex';document.getElementById('waCodeBtn').onclick=function(){window.open('https://wa.me/?text='+encodeURIComponent('🎟️ Tu código TEMO: '+code+' por $'+m),'_blank')};let lc=L('temo_gen_codes',[]);lc.unshift({code:code,monto:m});S('temo_gen_codes',lc.slice(0,20));renderLastCodes();}
+function renderLastCodes(){let lc=L('temo_gen_codes',[]);let html='';for(let i=0;i<lc.length;i++){html+='<div style=background:#000;padding:6px;margin:4px 0;border-radius:6px;display:flex;justify-content:space-between><span style=color:#ff0;font-size:12px>'+lc[i].code+'</span><span style=color:#0f0>$'+lc[i].monto+'</span></div>'}document.getElementById('lastCodes').innerHTML=html;}
+function redeemCode(){let input=document.getElementById('codeIn').value.trim().toUpperCase();if(!input)return;let parts=input.split('-');if(parts.length!=4||parts[0]!='TEMO'){alert('Código inválido');return}let monto=parseInt(parts[1]);let chk=btoa(monto+'|TEMO2007').substr(0,4).toUpperCase().replace(/[^A-Z0-9]/g,'X');if(parts[3]!=chk){alert('Código falso');return}let used=L('temo_used',[]);if(used.includes(input)){alert('Ya usado');return}let u=L('temo_users',{});if(!u[ID])u[ID]={saldo:0};u[ID].saldo+=monto;S('temo_users',u);used.push(input);S('temo_used',used);document.getElementById('codeIn').value='';updSaldoUI();alert('✅ +$'+monto)}
+function addSaldoDirect(){let tid=document.getElementById('targetID').value.trim().toUpperCase();let monto=parseInt(document.getElementById('addSaldo').value);if(!monto)return alert('Pon monto');let target=tid||ID;let u=L('temo_users',{});if(!u[target])u[target]={saldo:0};u[target].saldo+=monto;S('temo_users',u);if(target==ID)updSaldoUI();alert('✅ $'+monto+' a '+target);document.getElementById('targetID').value='';document.getElementById('addSaldo').value='';}
+function doLogin(){if(document.getElementById('aUser').value.trim()=='Temo2007'&&document.getElementById('aPass').value.trim()=='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';renderAdmin();renderLastCodes();}else alert('mal');}
+function createProd(){let name=document.getElementById('newName').value.trim();let icon=document.getElementById('newIcon').value.trim()||'🔥';if(!name)return alert('Pon nombre');let prods=getProds();let nid=name.toLowerCase().replace(/[^a-z0-9]/g,'').substr(0,12)+'-'+Date.now().toString().slice(-4);prods.push({n:name.toUpperCase(),i:icon,id:nid,ps:[{id:nid+'-30d',d:'30 DIAS',p:10}]});setProds(prods);document.getElementById('newName').value='';document.getElementById('newIcon').value='';}
+function resetProds(){if(!confirm('¿Restaurar 7 base?'))return;S('temo_prods',BASE);prodsCache=JSON.parse(JSON.stringify(BASE));render();renderAdmin();}
+function deleteAllProds(){if(!confirm('¿Borrar TODOS?'))return;S('temo_prods',[]);prodsCache=[];render();renderAdmin();}
+function deleteProd(id){if(!confirm('¿Borrar '+id+'?'))return;let prods=getProds().filter(x=>x.id!=id);setProds(prods);}
+function editProd(id){let prods=getProds();let p=prods.find(x=>x.id==id);if(!p)return;let nn=prompt('Nuevo nombre:',p.n);if(nn)p.n=nn.toUpperCase();let ii=prompt('Nuevo icono:',p.i);if(ii)p.i=ii;setProds(prods);}
+function addPlan(pid){let prods=getProds();let p=prods.find(x=>x.id==pid);if(!p)return;let d=prompt('Plan ej: 30 DIAS');if(!d)return;let pr=parseInt(prompt('Precio $'));if(!pr&&pr!=0)return;let nid=pid+'-'+d.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now().toString().slice(-3);p.ps.push({id:nid,d:d.toUpperCase(),p:pr});setProds(prods);}
+function deletePlan(pid,planId){if(!confirm('¿Borrar plan?'))return;let prods=getProds();let p=prods.find(x=>x.id==pid);if(!p)return;p.ps=p.ps.filter(x=>x.id!=planId);setProds(prods);}
+function editPlan(pid,planId){let prods=getProds();let p=prods.find(x=>x.id==pid);if(!p)return;let pl=p.ps.find(x=>x.id==planId);if(!pl)return;let nd=prompt('Nombre plan:',pl.d);if(nd)pl.d=nd.toUpperCase();let np=prompt('Precio $:',pl.p);if(np)pl.p=parseInt(np);setProds(prods);}
 function renderAdmin(){
- var k=L('temo_keys',{});
- var html='';
- for(var i=0;i<BASE.length;i++){
-  var p=BASE[i];
-  html+='<div class=cardA><b>'+p.i+' '+p.n+'</b>';
-  for(var j=0;j<p.ps.length;j++){
-   var pl=p.ps[j];
-   var cnt=k[pl.id]?k[pl.id].length:0;
-   var st=k[pl.id]?k[pl.id].join('\n'):'';
-   html+='<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><b>'+pl.d+' $'+pl.p+' - '+cnt+' keys</b><textarea id=ta-'+pl.id+'>'+st+'</textarea><button class=btn2 onclick="saveKeys(\''+pl.id+'\')">💾 GUARDAR</button></div>';
+ let prods=getProds();let k=L('temo_keys',{});
+ let c=document.getElementById('aList');c.innerHTML='';
+ for(let pi=0;pi<prods.length;pi++){
+  let p=prods[pi];
+  let html='<div class=cardA><div style=display:flex;justify-content:space-between;flex-wrap:wrap><b>'+p.i+' '+p.n+'</b><div><button class=sBtn style=background:#0af;color:#fff onclick="editProd(\''+p.id+'\')">✏️ EDITAR PROD</button><button class=sBtn style=background:red;color:#fff onclick="deleteProd(\''+p.id+'\')">🗑️ PROD</button><button class=sBtn style=background:#0f0;color:#000 onclick="addPlan(\''+p.id+'\')">+ PLAN</button></div></div>';
+  for(let j=0;j<p.ps.length;j++){
+   let pl=p.ps[j];
+   let cnt=k[pl.id]?k[pl.id].length:0;
+   let st=k[pl.id]?k[pl.id].join('\n'):'';
+   html+='<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><div style=display:flex;justify-content:space-between;flex-wrap:wrap><b>'+pl.d+' $'+pl.p+' - '+cnt+' keys</b><div><button class=sBtn style=background:#0af;color:#fff onclick="editPlan(\''+p.id+'\',\''+pl.id+'\')">✏️ PLAN</button><button class=sBtn style=background:red;color:#fff onclick="deletePlan(\''+p.id+'\',\''+pl.id+'\')">🗑️ PLAN</button></div></div><textarea id=ta-'+pl.id+'>'+st+'</textarea><button class=btn2 onclick="saveKeys(\''+pl.id+'\')">💾 GUARDAR KEYS</button></div>';
   }
   html+='</div>';
+  let div=document.createElement('div');div.innerHTML=html;c.appendChild(div);
  }
- document.getElementById('aList').innerHTML=html;
 }
-function saveKeys(id){
- var ta=document.getElementById('ta-'+id);
- var clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>1);
- var k=L('temo_keys',{}); k[id]=clean; S('temo_keys',k);
- alert('Guardado '+clean.length+' keys en '+id);
- render();
-}
-if(location.search.toLowerCase().includes('admin')) document.getElementById('admin').style.display='block';
+function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);let k=L('temo_keys',{});k[id]=clean;S('temo_keys',k);alert('Guardado '+clean.length+' en '+id);render();renderAdmin();}
+if(location.search.toLowerCase().includes('admin')){document.getElementById('admin').style.display='block';}
 </script></body></html>
