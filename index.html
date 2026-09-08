@@ -57,3 +57,62 @@ function renderAdmin(){let k=L('temo_keys',{});let c=document.getElementById('aL
 function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);let k=L('temo_keys',{});k[id]=clean;S('temo_keys',k);alert('Guardado '+clean.length+' REALES');render();renderAdmin();}
 if(location.search.toLowerCase().includes('admin'))document.getElementById('admin').style.display='block';
 </script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMO STORE | TEMO NG 666</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background: #000 url('fondo-rojo-neon.webp') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+  }
+  .overlay{
+    background: rgba(0,0,0,0.7);
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+  }
+  h1{
+    font-size: 75px;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000, 0 0 30px #ff0000, 0 0 60px #ff0000;
+    letter-spacing: 8px;
+  }
+  h2{
+    font-size: 32px;
+    color: #fff;
+    text-shadow: 0 0 10px red;
+    margin-top:10px;
+  }
+  .btns{margin-top:40px; display:flex; gap:20px; flex-wrap:wrap; justify-content:center;}
+  .btn{
+    padding:16px 35px;
+    background: #ff0000;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:50px;
+    box-shadow: 0 0 25px #ff0000;
+    transition:0.3s;
+  }
+  .btn:hover{transform:scale(1.1); background:#cc0000;}
+  .btn2{background:transparent; border:2px solid #ff0000;}
+</style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>TEMO STORE</h1>
+    <h2>TEMO NGㅤ⁶⁶⁶</h2>
+    <div class="btns">
+      <a href="#mods" class="btn">VER MODS</a>
+      <a href="https://wa.me/523224528803?text=Hola%20Temo%20vengo%20de%20tu%20web%20TEMO%20STORE" class="btn btn2" target="_blank
