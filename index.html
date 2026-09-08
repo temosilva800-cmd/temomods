@@ -1,33 +1,30 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V13.4 FIX ID HG REAL</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V13.5 100% REAL</title>
 <script>
 (function(){
   try{
     let id = localStorage.getItem('temo_myID');
-    // Si el ID está roto como en tu foto "|", lo borramos y creamos uno bueno
-    if(!id || id.trim()=='|' ||!id.startsWith('TEMO-') || id.length < 10 || id.includes(' ')){
-      let nuevo = 'TEMO-' + Math.random().toString(36).substring(2,8).toUpperCase();
-      localStorage.setItem('temo_myID', nuevo);
+    if(!id || id.trim()=='|' ||!id.startsWith('TEMO-') || id.length < 10){
+      localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase());
     }
-  }catch(e){
-    localStorage.clear();
-    localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase());
-  }
+    // BORRA KEYS FALSAS AUTOMÁTICO
+    let ks = localStorage.getItem('temo_keys');
+    if(ks && (ks.includes('REAL-1D') || ks.includes('DEMO') || ks.includes('DRIP-REAL'))){
+      localStorage.removeItem('temo_keys');
+    }
+  }catch(e){localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase());}
 })();
 </script>
 <style>body{background:#000;color:#fff;font-family:Arial;margin:0;padding-bottom:90px}.top{background:red;padding:14px;font-weight:900;position:sticky;top:0;z-index:99;display:flex;justify-content:space-between}.banner{margin:12px;border:2px solid #0f0;border-radius:14px;padding:14px;text-align:center;background:#0a140a}.box{margin:12px;background:#111;border:1px solid #333;border-radius:14px;padding:14px;text-align:center}.box input{width:100%;padding:12px;background:#000;color:#0f0;border:2px solid #0f0;border-radius:8px;text-align:center;font-weight:900}.prod{margin:10px 12px;background:#111;border:1px solid #333;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}.btn{background:red;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:900}.btn2{background:#0f0;color:#000;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px}.in{width:100%;padding:9px;background:#000;border:1px solid #444;color:#fff;border-radius:6px;margin:4px 0}.row{display:flex;gap:6px}#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}.cardA{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:12px 0}.cardA textarea{width:100%;min-height:120px;background:#000;color:#0f0;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}.modalBox{background:#111;border:2px solid #0f0;border-radius:16px;padding:18px;max-width:420px;width:100%;text-align:center}.keyBox{background:#000;border:1px solid #333;border-radius:8px;padding:12px;color:#0f0;font-weight:900;word-break:break-all;margin:12px 0}</style>
 </head><body>
-<div class="top"><span>🔥 TEMO V13.4 HG REAL</span><span id="sTop">$0</span></div>
-<div class="banner">✅ 6 KEYS HG REALES - FIX ID<br><small>Tu ID se arregló automático</small><br><button onclick="localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase());location.reload()" style="margin-top:8px;padding:8px 14px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">🔧 REINICIAR ID SI SALE |</button></div>
-<div class="box"><input id="idIn" readonly><div style="margin-top:6px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div style="margin-top:10px;background:#000;border:1px solid #0f0;border-radius:10px;padding:10px"><b style="color:#0f0">🎟️ CANJEAR CÓDIGO</b><div class="row" style="margin-top:6px"><input id="codeIn" placeholder="Pega TEMO-50-XXXX" class="in" style="border:2px solid #0f0"><button onclick="redeem()" style="padding:10px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">CANJEAR</button></div></div></div>
+<div class="top"><span>🔥 TEMO V13.5 REAL</span><span id="sTop">$0</span></div>
+<div class="banner">✅ SOLO TUS 6 HG REALES<br><button onclick="localStorage.removeItem('temo_keys');localStorage.removeItem('temo_keys_hash');location.reload()" style="margin-top:8px;padding:10px 16px;background:red;color:#fff;border:none;border-radius:8px;font-weight:900">🗑️ BORRAR KEYS FALSAS</button><br><button onclick="localStorage.clear();localStorage.setItem('temo_myID','TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase());location.reload()" style="margin-top:6px;padding:8px 14px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">🔧 REINICIAR ID</button></div>
+<div class="box"><input id="idIn" readonly><div style="margin-top:6px">ID: <b id="idTxt" style="color:#0f0"></b> | Saldo: $<b id="sTxt" style="color:yellow">0</b></div><div style="margin-top:10px;background:#000;border:1px solid #0f0;border-radius:10px;padding:10px"><b style="color:#0f0">🎟️ CANJEAR CÓDIGO</b><div class="row" style="margin-top:6px"><input id="codeIn" placeholder="TEMO-50-XXXX" class="in" style="border:2px solid #0f0"><button onclick="redeem()" style="padding:10px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">CANJEAR</button></div></div></div>
 <div id="lista"></div>
 <div id="keyModal" class="modal"><div class="modalBox"><h3 style="color:#0f0">✅ KEY REAL ENTREGADA</h3><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="copyKey()" style="width:100%;padding:14px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#222;color:#fff;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
 <div id="admin"><div id="aLogin" style="max-width:360px;margin:80px auto;background:#111;border:2px solid #0f0;border-radius:14px;padding:20px;text-align:center"><h2 style="color:#0f0">ADMIN</h2><input id="aUser" placeholder="Temo2007" class="in"><input id="aPass" type="password" placeholder="Temo2007" class="in"><button onclick="doLogin()" style="width:100%;padding:12px;background:#0f0;border:none;border-radius:8px;font-weight:900;margin-top:8px">ENTRAR</button></div>
-<div id="aContent" style="display:none;max-width:800px;margin:0 auto">
-<h2 style="color:#0f0;text-align:center">ADMIN HG REAL</h2>
-<div class="cardA" style="border:2px solid yellow"><h3 style="color:yellow">🎟️ GENERAR CÓDIGO CLIENTE</h3><div class="row"><input id="codeAmount" type="number" value="5" class="in"><button onclick="genCode()" style="padding:10px;background:yellow;color:#000;border:none;border-radius:8px;font-weight:900">GENERAR</button></div><div id="codeOut" style="margin-top:10px;background:#000;border:1px solid yellow;border-radius:8px;padding:10px;display:none"><b style="color:yellow" id="codeTxt"></b><br><button onclick="copyGenCode()" style="margin-top:8px;padding:8px;background:#fff;color:#000;border:none;border-radius:6px;font-weight:900;width:100%">📋 COPIAR</button></div></div>
-<div id="aList"></div>
-<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button>
-</div></div>
+<div id="aContent" style="display:none;max-width:800px;margin:0 auto"><h2 style="color:#0f0;text-align:center">ADMIN - 6 HG REALES</h2>
+<div class="cardA" style="border:2px solid yellow"><h3 style="color:yellow">🎟️ GENERAR CÓDIGO</h3><div class="row"><input id="codeAmount" type="number" value="5" class="in"><button onclick="genCode()" style="padding:10px;background:yellow;color:#000;border:none;border-radius:8px;font-weight:900">GENERAR</button></div><div id="codeOut" style="margin-top:10px;background:#000;border:1px solid yellow;border-radius:8px;padding:10px;display:none"><b style="color:yellow" id="codeTxt"></b><br><button onclick="copyGenCode()" style="margin-top:8px;padding:8px;background:#fff;color:#000;border:none;border-radius:6px;font-weight:900;width:100%">📋 COPIAR</button></div></div>
+<div id="aList"></div><button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button></div></div>
 <script>
 const BASE=[
  {n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
@@ -38,28 +35,25 @@ const BASE=[
  {n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-7d',d:'7 DIAS',p:10},{id:'cake-15d',d:'15 DIAS',p:16},{id:'cake-30d',d:'30 DIAS',p:22}]},
  {n:'ANDROID PROXY',i:'📦',id:'proxy',ps:[{id:'proxy-30d',d:'30 DIAS',p:8}]}
 ];
+// ESTAS SON LAS ÚNICAS QUE ENTREGA - TUS 6 REALES
 const REAL_KEYS = {
  'hg-1d': ['HG-KHNUVZ','HG-JJVZXY','HG-QACYFH','HG-IBKQCT','HG-XEIIFZ','HG-VIQCNU'],
- 'drip-1d': [], 'drip-7d': [], 'drip-15d': [], 'drip-30d': [], 'flou-7d': [], 'flou-30d': [], 'cuban-1d': [], 'cuban-7d': [], 'cuban-30d': [], 'hg-10d': [], 'hg-30d': [], 'pato-30d': [], 'cake-1d': [], 'cake-7d': [], 'cake-15d': [], 'cake-30d': [], 'proxy-30d': []
+ 'hg-10d': [], 'hg-30d': [], 'drip-1d': [], 'drip-7d': [], 'drip-15d': [], 'drip-30d': [], 'flou-7d': [], 'flou-30d': [], 'cuban-1d': [], 'cuban-7d': [], 'cuban-30d': [], 'pato-30d': [], 'cake-1d': [], 'cake-7d': [], 'cake-15d': [], 'cake-30d': [], 'proxy-30d': []
 };
 let ID=localStorage.getItem('temo_myID');
 function L(k,d){try{let v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
 function S(k,v){localStorage.setItem(k,JSON.stringify(v))}
-let prods=BASE;
-// FORZAR HG REALES - si está vacío o tiene basura, pone tus 6
 let ks=L('temo_keys',null);
-if(!ks ||!ks['hg-1d'] || ks['hg-1d'].length==0 || (ks['hg-1d'][0] && ks['hg-1d'][0].includes('DEMO'))){
-  S('temo_keys', REAL_KEYS);
-}
+if(!ks){S('temo_keys',REAL_KEYS);}
 let users=L('temo_users',{});if(!users[ID]){users[ID]={saldo:0};S('temo_users',users)}
 document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;
 function upd(){let u=L('temo_users',{})[ID]||{saldo:0};document.getElementById('sTop').innerText='$'+u.saldo;document.getElementById('sTxt').innerText=u.saldo}upd();
-function render(){let k=L('temo_keys',{});let h='';for(let p of BASE){let stock=0;for(let pl of p.ps){if(k[pl.id])stock+=k[pl.id].length}h+=`<div class=prod><div><b>${p.i} ${p.n}</b><br><small>${stock} keys - entrega auto</small></div><button class=btn onclick="ver('${p.id}')">VER</button></div>`}document.getElementById('lista').innerHTML=h}render();
+function render(){let k=L('temo_keys',{});let h='';for(let p of BASE){let stock=0;for(let pl of p.ps){if(k[pl.id])stock+=k[pl.id].length}h+=`<div class=prod><div><b>${p.i} ${p.n}</b><br><small>${stock} keys reales</small></div><button class=btn onclick="ver('${p.id}')">VER</button></div>`}document.getElementById('lista').innerHTML=h}render();
 let lastKey='';let lastGenCode='';
-function ver(pid){let k=L('temo_keys',{});let u=L('temo_users',{});let p=BASE.find(x=>x.id==pid);let t=p.n+'\n';for(let pl of p.ps){t+=`${pl.d} $${pl.p} (${k[pl.id]?k[pl.id].length:0} keys)\n`}let ans=prompt(t+`\nSaldo $${u[ID].saldo}\nEscribe plan:`);if(!ans)return;let plan=p.ps.find(x=>x.d.toLowerCase()==ans.trim().toLowerCase());if(!plan)return alert('Plan mal');if(!k[plan.id]||k[plan.id].length==0)return alert('Sin stock de '+plan.d);if(u[ID].saldo<plan.p)return alert('Saldo insuficiente');let key=k[plan.id].shift();S('temo_keys',k);u[ID].saldo-=plan.p;S('temo_users',u);lastKey=key;document.getElementById('modalProd').innerText=p.n+' - '+plan.d;document.getElementById('modalKey').innerText=key;document.getElementById('keyModal').style.display='flex';upd();render();renderAdmin();}
-function copyKey(){navigator.clipboard.writeText(lastKey)}function genCode(){let amt=parseInt(document.getElementById('codeAmount').value)||0;let r1=Math.random().toString(36).substr(2,4).toUpperCase();let r2=Math.random().toString(36).substr(2,4).toUpperCase();let code=`TEMO-${amt}-${r1}-${r2}`;lastGenCode=code;document.getElementById('codeTxt').innerText=code;document.getElementById('codeOut').style.display='block';}function copyGenCode(){navigator.clipboard.writeText(lastGenCode);alert('Copiado '+lastGenCode)}function redeem(){let c=document.getElementById('codeIn').value.trim().toUpperCase();let parts=c.split('-');let amt=parseInt(parts[1]);let used=L('temo_used_codes',[]);if(used.includes(c))return alert('Ya usado');used.push(c);S('temo_used_codes',used);let u=L('temo_users',{});if(!u[ID])u[ID]={saldo:0};u[ID].saldo+=amt;S('temo_users',u);upd();alert('✅ $'+amt);document.getElementById('codeIn').value='';}
+function ver(pid){let k=L('temo_keys',{});let u=L('temo_users',{});let p=BASE.find(x=>x.id==pid);let t=p.n+'\n';for(let pl of p.ps){t+=`${pl.d} $${pl.p} (${k[pl.id]?k[pl.id].length:0})\n`}let ans=prompt(t+`\nSaldo $${u[ID].saldo}\nEscribe plan:`);if(!ans)return;let plan=p.ps.find(x=>x.d.toLowerCase()==ans.trim().toLowerCase());if(!plan)return alert('Plan mal');if(!k[plan.id]||k[plan.id].length==0)return alert('Sin stock - Agrega en ?admin');if(u[ID].saldo<plan.p)return alert('Sin saldo');let key=k[plan.id].shift();S('temo_keys',k);u[ID].saldo-=plan.p;S('temo_users',u);lastKey=key;document.getElementById('modalProd').innerText=p.n+' - '+plan.d;document.getElementById('modalKey').innerText=key;document.getElementById('keyModal').style.display='flex';upd();render();renderAdmin();}
+function copyKey(){navigator.clipboard.writeText(lastKey)}function genCode(){let amt=parseInt(document.getElementById('codeAmount').value)||0;let r1=Math.random().toString(36).substr(2,4).toUpperCase();let r2=Math.random().toString(36).substr(2,4).toUpperCase();let code=`TEMO-${amt}-${r1}-${r2}`;lastGenCode=code;document.getElementById('codeTxt').innerText=code;document.getElementById('codeOut').style.display='block';}function copyGenCode(){navigator.clipboard.writeText(lastGenCode);alert('Copiado')}function redeem(){let c=document.getElementById('codeIn').value.trim().toUpperCase();let amt=parseInt(c.split('-')[1]);let used=L('temo_used_codes',[]);if(used.includes(c))return alert('Ya usado');used.push(c);S('temo_used_codes',used);let u=L('temo_users',{});if(!u[ID])u[ID]={saldo:0};u[ID].saldo+=amt;S('temo_users',u);upd();alert('✅ $'+amt);document.getElementById('codeIn').value='';}
 function doLogin(){if(document.getElementById('aUser').value=='Temo2007'&&document.getElementById('aPass').value=='Temo2007'){document.getElementById('aLogin').style.display='none';document.getElementById('aContent').style.display='block';renderAdmin()}else alert('mal')}
-function renderAdmin(){let k=L('temo_keys',{});let c=document.getElementById('aList');c.innerHTML='';for(let p of BASE){let html=`<div class=cardA><b>${p.i} ${p.n}</b>`;for(let pl of p.ps){let cnt=k[pl.id]?k[pl.id].length:0;let st=k[pl.id]?k[pl.id].join('\n'):'';html+=`<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><b>${pl.d} $${pl.p} - ${cnt} keys REALES</b><textarea id="ta-${pl.id}">${st}</textarea><button class=btn2 onclick="saveKeys('${pl.id}')">💾 GUARDAR</button></div>`}html+='</div>';let d=document.createElement('div');d.innerHTML=html;c.appendChild(d)}}
-function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);let k=L('temo_keys',{});k[id]=clean;S('temo_keys',k);alert('Guardado '+clean.length);render();renderAdmin();}
+function renderAdmin(){let k=L('temo_keys',{});let c=document.getElementById('aList');c.innerHTML='';for(let p of BASE){let html=`<div class=cardA><b>${p.i} ${p.n}</b>`;for(let pl of p.ps){let cnt=k[pl.id]?k[pl.id].length:0;let st=k[pl.id]?k[pl.id].join('\n'):'';html+=`<div style=background:#000;padding:10px;margin:8px 0;border-radius:8px><b>${pl.d} - ${cnt} reales</b><textarea id="ta-${pl.id}">${st}</textarea><button class=btn2 onclick="saveKeys('${pl.id}')">💾 GUARDAR</button></div>`}html+='</div>';let d=document.createElement('div');d.innerHTML=html;c.appendChild(d)}}
+function saveKeys(id){let ta=document.getElementById('ta-'+id);let clean=ta.value.split('\n').map(s=>s.trim()).filter(s=>s.length>=2);let k=L('temo_keys',{});k[id]=clean;S('temo_keys',k);alert('Guardado '+clean.length+' REALES');render();renderAdmin();}
 if(location.search.toLowerCase().includes('admin'))document.getElementById('admin').style.display='block';
 </script></body></html>
