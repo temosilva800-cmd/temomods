@@ -1,97 +1,80 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE - RED NEON</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE NEON</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Arial Black',Arial}
-body{background:#050000;color:#fff;padding-bottom:90px;overflow-x:hidden}
-.top{background:#000;border-bottom:3px solid #ff0000;padding:14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50;box-shadow:0 0 20px #ff0000, 0 0 40px #ff0000 inset}
-.top span:first-child{color:#ff0000;text-shadow:0 0 10px #ff0000, 0 0 20px #ff0000;letter-spacing:2px}
-.top span:last-child{color:#fff;text-shadow:0 0 10px #ff0000}
-.banner{margin:12px;border:2px solid #ff0000;border-radius:14px;padding:16px;background:linear-gradient(180deg,#1a0000,#000);text-align:center;font-weight:900;color:#ff0000;text-shadow:0 0 10px #ff0000, 0 0 20px #ff0000;box-shadow:0 0 15px #ff0000;letter-spacing:1px;animation:glow 2s infinite alternate}
-@keyframes glow{from{box-shadow:0 0 10px #ff0000}to{box-shadow:0 0 25px #ff0000, 0 0 40px #ff0000}}
-.box{margin:12px;background:#0a0a0a;border:2px solid #ff0000;border-radius:14px;padding:14px;text-align:center;box-shadow:0 0 15px rgba(255,0,0,0.4)}
-.box input{width:100%;padding:12px;background:#000;color:#ff0000;border:1px solid #ff0000;border-radius:8px;text-align:center;font-weight:900;box-shadow:0 0 10px rgba(255,0,0,0.5) inset}
-.prod{margin:12px;background:linear-gradient(135deg,#0f0000,#000);border:1px solid #ff0000;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 12px rgba(255,0,0,0.3);transition:0.3s}
-.prod:hover{box-shadow:0 0 20px #ff0000, 0 0 30px #ff0000 inset;transform:scale(1.02)}
-.prod b{color:#fff;text-shadow:0 0 8px #ff0000}
-.btn{background:#ff0000;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-weight:900;box-shadow:0 0 15px #ff0000;cursor:pointer}
-.btn2{background:#ff0000;color:#fff;border:none;padding:10px;border-radius:8px;font-weight:900;width:100%;margin-top:8px;box-shadow:0 0 10px #ff0000}
-.in{width:100%;padding:10px;background:#000;border:1px solid #ff0000;color:#fff;border-radius:8px;margin:4px 0}
-.row{display:flex;gap:6px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(5px)}
-.modalBox{background:#0a0a0a;border:3px solid #ff0000;border-radius:20px;padding:20px;max-width:440px;width:100%;text-align:center;box-shadow:0 0 30px #ff0000, 0 0 60px rgba(255,0,0,0.3) inset;animation:pop 0.3s}
-@keyframes pop{from{transform:scale(0.8)}to{transform:scale(1)}}
-.planBtn{display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid #ff0000;padding:14px;border-radius:12px;margin:10px 0;box-shadow:0 0 10px rgba(255,0,0,0.2)}
-.planBtn:hover{box-shadow:0 0 15px #ff0000}
-.keyBox{background:#000;border:2px solid #ff0000;border-radius:10px;padding:14px;color:#ff0000;font-weight:900;word-break:break-all;margin:12px 0;box-shadow:0 0 15px #ff0000 inset;text-shadow:0 0 5px #ff0000}
-.wa-float{position:fixed;bottom:20px;right:20px;background:#ff0000;color:#fff;width:60px;height:60px;border-radius:50%;text-align:center;line-height:60px;font-size:30px;text-decoration:none;z-index:9999;box-shadow:0 0 20px #ff0000}
-#admin{position:fixed;inset:0;background:#000;z-index:9999;display:none;overflow:auto;padding:12px}
-.cardA{background:#111;border:1px solid #ff0000;border-radius:12px;padding:12px;margin:12px 0;box-shadow:0 0 10px rgba(255,0,0,0.2)}
-.cardA textarea{width:100%;min-height:70px;background:#000;color:#ff0000;border:1px solid #ff0000;border-radius:8px;padding:8px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black,Arial}
+body{background:#000;color:#fff}
+.top{background:#000;border-bottom:3px solid #ff0000;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 0 20px #f00}
+.top b{color:#f00;text-shadow:0 0 10px #f00}
+.banner{margin:12px;border:2px solid #f00;border-radius:14px;padding:16px;background:#100000;text-align:center;color:#f00;text-shadow:0 0 10px #f00;box-shadow:0 0 20px #f00;font-size:18px}
+.box{margin:12px;background:#0a0a0a;border:2px solid #f00;border-radius:14px;padding:14px;text-align:center;box-shadow:0 0 15px rgba(255,0,0,.4)}
+.box input{width:100%;padding:14px;background:#000;color:#f00;border:2px solid #f00;border-radius:10px;text-align:center;font-weight:900;font-size:18px;text-shadow:0 0 10px #f00}
+.btnR{display:block;padding:14px;border-radius:12px;font-weight:900;text-decoration:none;text-align:center;margin-top:10px;box-shadow:0 0 15px #f00}
+.prod{margin:12px;background:#0f0000;border:1px solid #f00;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 10px rgba(255,0,0,.3)}
+.prod b{color:#fff}
+.btn{background:#f00;color:#fff;border:none;padding:10px 22px;border-radius:20px;font-weight:900;box-shadow:0 0 15px #f00}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}
+.modalBox{background:#0a0a0a;border:3px solid #f00;border-radius:18px;padding:18px;max-width:430px;width:100%;text-align:center;box-shadow:0 0 30px #f00}
+.planBtn{display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid #f00;padding:12px;border-radius:10px;margin:8px 0}
+.keyBox{background:#000;border:2px solid #f00;border-radius:10px;padding:12px;color:#f00;font-weight:900;word-break:break-all;margin:10px 0;box-shadow:0 0 15px #f00 inset}
+.in{width:100%;padding:10px;background:#000;border:1px solid #f00;color:#fff;border-radius:8px;margin:4px 0}
+#admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
+.cardA{background:#111;border:1px solid #f00;border-radius:12px;padding:12px;margin:12px 0}
+.cardA textarea{width:100%;min-height:60px;background:#000;color:#f00;border:1px solid #f00;border-radius:8px;padding:8px}
 </style></head><body>
-<div class="top"><span>🔥 TEMO STORE</span><span>💰 $<span id="sTop">0</span></span></div>
-<div class="banner">⚡ TEMO STORE - RED NEON EDITION ⚡</div>
+<div class="top"><b>🔥 TEMO STORE</b><b>💰 $<span id="sTop">0</span></b></div>
+<div class="banner">⚡ TEMO STORE - RED NEON ⚡</div>
 <div class="box">
 <input id="idIn" readonly>
-<div style="margin-top:12px;font-size:14px">ID: <b id="idTxt" style="color:#ff0000;text-shadow:0 0 5px #ff0000"></b> | Saldo: $<b id="sTxt" style="color:#ff0000">0</b></div>
-<div style="margin-top:12px;display:flex;gap:8px;flex-direction:column">
-<a href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20comprar%20saldo" target="_blank" style="display:block;padding:13px;background:#ff0000;color:#fff;border-radius:12px;font-weight:900;text-decoration:none;box-shadow:0 0 15px #ff0000;text-align:center">📲 COMPRAR SALDO</a>
-<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?s=cl&p=a&mlu=4&ilr=4" target="_blank" style="display:block;padding:13px;background:#000;color:#ff0000;border:2px solid #ff0000;border-radius:12px;font-weight:900;text-decoration:none;box-shadow:0 0 15px #ff0000;text-align:center">👥 UNIRME AL GRUPO</a>
+<div style="margin-top:10px">ID: <b id="idTxt" style="color:#f00"></b> | Saldo: $<b id="sTxt" style="color:#f00">0</b></div>
+<a class="btnR" style="background:#f00;color:#fff" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20comprar%20saldo" target="_blank">📲 COMPRAR SALDO - WHATSAPP</a>
+<a class="btnR" style="background:#000;color:#f00;border:2px solid #f00" href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?mode=ac_t" target="_blank">👥 UNIRME AL GRUPO OFICIAL</a>
+<div style="margin-top:10px;display:flex;gap:8px"><button onclick="copyID()" style="flex:1;padding:11px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #f00;color:#fff;border-radius:10px;font-weight:900">📜 HISTORIAL</button><button onclick="clearAll()" style="padding:11px;background:#111;border:1px solid #555;color:#888;border-radius:10px">♻️</button></div>
 </div>
-<div style="margin-top:10px;display:flex;gap:8px"><button onclick="copyID()" style="flex:1;padding:11px;background:#000;border:2px solid #ff0000;border-radius:10px;color:#ff0000;font-weight:900;box-shadow:0 0 10px #ff0000">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#111;border:1px solid #ff0000;border-radius:10px;color:#fff;font-weight:900">📜 HISTORIAL</button></div>
-</div>
-
 <div id="lista"></div>
 
-<div id="planModal" class="modal"><div class="modalBox">
-<h2 id="planTitle" style="color:#ff0000;text-shadow:0 0 10px #ff0000;margin-bottom:10px"></h2>
-<p style="color:#888;font-size:12px;margin-bottom:10px">Selecciona una duración 👇</p>
-<div id="planList"></div>
-<button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:11px;background:#000;border:1px solid #ff0000;color:#ff0000;border-radius:10px;margin-top:12px;font-weight:900">✖ CERRAR</button>
-</div></div>
+<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList" style="margin-top:10px"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:10px">CERRAR</button></div></div>
+<div id="keyModal" class="modal"><div class="modalBox"><h2 style="color:#f00">✅ COMPRA EXITOSA</h2><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="navigator.clipboard.writeText(lastKey).then(()=>alert('Copiado'))" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
+<div id="histModal" class="modal"><div class="modalBox"><h3 style="color:#f00">HISTORIAL</h3><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
 
-<div id="keyModal" class="modal"><div class="modalBox" style="border-color:#ff0000">
-<h2 style="color:#ff0000;text-shadow:0 0 10px #ff0000">✅ COMPRA EXITOSA</h2>
-<p id="modalProd" style="margin:10px 0;color:#fff"></p>
-<div id="modalKey" class="keyBox"></div>
-<button onclick="navigator.clipboard.writeText(lastKey).then(()=>alert('✅ Copiado'))" style="width:100%;padding:13px;background:#ff0000;color:#fff;border:none;border-radius:12px;font-weight:900;box-shadow:0 0 15px #ff0000">📋 COPIAR KEY</button>
-<button onclick="resetWA()" style="width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:8px">♻️ RESET WHATSAPP</button>
-<button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #ff0000;color:#ff0000;border-radius:8px;margin-top:8px">Cerrar</button>
-</div></div>
-
-<div id="histModal" class="modal"><div class="modalBox"><h3 style="color:#ff0000">📜 HISTORIAL</h3><div id="histList" style="margin-top:10px"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #ff0000;color:#ff0000;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
-
-<div id="admin"><div style="max-width:700px;margin:0 auto"><h2 style="color:#ff0000;text-align:center;text-shadow:0 0 10px #ff0000">PANEL ADMIN 🔥</h2>
-<div class="cardA"><h3 style="color:#ff0000">➕ CREAR PRODUCTO NUEVO</h3><input id="newIcon" class="in" placeholder="Icono ej: 💧"><input id="newName" class="in" placeholder="Nombre ej: DRIP CLIENT"><button onclick="createProd()" style="width:100%;padding:12px;background:#ff0000;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:6px;box-shadow:0 0 15px #ff0000">CREAR PRODUCTO</button></div>
-<div class="cardA"><h3 style="color:yellow">💰 RECARGAR SALDO</h3><input id="recId" class="in" placeholder="ID TEMO-XXXX"><input id="recMonto" type="number" class="in" placeholder="Monto"><button onclick="addSaldo()" style="width:100%;padding:10px;background:#ff0000;color:#fff;border:none;border-radius:8px;font-weight:900">+ AGREGAR</button></div>
+<div id="admin"><div style="max-width:700px;margin:auto"><h2 style="color:#f00;text-align:center">PANEL ADMIN</h2>
+<div class="cardA"><input id="newIcon" class="in" placeholder="Icono"><input id="newName" class="in" placeholder="Nombre producto"><button onclick="createProd()" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900">CREAR PRODUCTO</button></div>
+<div class="cardA"><input id="recId" class="in" placeholder="ID TEMO-XXXX"><input id="recMonto" type="number" class="in" placeholder="Monto"><button onclick="addSaldo()" style="width:100%;padding:10px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900">+ RECARGAR</button></div>
 <div id="aList"></div>
-<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#000;border:1px solid #ff0000;color:#ff0000;border-radius:8px;margin:20px 0">← SALIR A TIENDA</button></div></div>
-
-<a class="wa-float" href="https://wa.me/523224528803" target="_blank">💬</a>
+<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button></div></div>
 
 <script>
-let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]}];
-function genID(){return 'TEMO-'+Math.random().toString(36).substring(2,8).toUpperCase()}
-let ID=localStorage.getItem('temo_myID')||genID();localStorage.setItem('temo_myID',ID);
-function getProds(){let c=localStorage.getItem('temo_prods');if(!c||c==='[]'){localStorage.setItem('temo_prods',JSON.stringify(BASE));return BASE}try{let j=JSON.parse(c);return j.length?j:BASE}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
+// PRODUCTOS FORZADOS - SIEMPRE APARECEN
+let BASE=[
+{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
+{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},
+{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},
+{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},
+{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-30d',d:'30 DIAS',p:22}]}
+];
+function genID(){return 'TEMO-'+Math.random().toString(36).substring(2,6).toUpperCase()}
+let ID=localStorage.getItem('temo_myID');if(!ID){ID=genID();localStorage.setItem('temo_myID',ID)}
+// FORZAR PRODUCTOS SI NO EXISTEN
+if(!localStorage.getItem('temo_prods') || localStorage.getItem('temo_prods')==='[]'){localStorage.setItem('temo_prods',JSON.stringify(BASE))}
+function getProds(){try{let j=JSON.parse(localStorage.getItem('temo_prods'));if(!j||j.length===0)return BASE;return j}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
 function getKeys(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
 function getUsers(){try{return JSON.parse(localStorage.getItem('temo_users')||'{}')}catch(e){return{}}}function setUsers(u){localStorage.setItem('temo_users',JSON.stringify(u))}
 function getHist(){try{return JSON.parse(localStorage.getItem('temo_hist')||'{}')}catch(e){return{}}}function setHist(h){localStorage.setItem('temo_hist',JSON.stringify(h))}
 let users=getUsers();if(!users[ID]){users[ID]={saldo:0};setUsers(users)}
 document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;
-function copyID(){navigator.clipboard.writeText(ID).then(()=>alert('✅ Copiado: '+ID))}
-function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#ff5555>'+p.ps.length+' duraciones - '+stock+' keys disponibles</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
-let lastKey="",lastProd="",lastPlan="",currentProd=null;
-function ver(pid){let prods=getProds();let keys=getKeys();let p=prods.find(x=>x.id===pid);currentProd=p;document.getElementById('planTitle').innerText=p.i+' '+p.n;let list=document.getElementById('planList');list.innerHTML='';p.ps.forEach(pl=>{let stock=keys[pl.id]?keys[pl.id].length:0;let col=stock>0?'#00ff00':'#ff0000';let div=document.createElement('div');div.className='planBtn';div.innerHTML='<div style=text-align:left><b style=color:#fff;font-size:16px>'+pl.d+'</b><br><small style=color:'+col+'>● Stock: '+stock+'</small></div><div style=text-align:right><b style=color:#ff0000;font-size:18px;text-shadow:0 0 5px #ff0000>$'+pl.p+'</b><br><button onclick=comprar(\''+pl.id+'\') style=margin-top:6px;padding:8px 18px;background:#ff0000;color:#fff;border:none;border-radius:20px;font-weight:900;box-shadow:0 0 10px #ff0000>COMPRAR</button></div>';list.appendChild(div)});document.getElementById('planModal').style.display='flex'}
-function comprar(planId){let keys=getKeys();let users=getUsers();let plan=currentProd.ps.find(x=>x.id===planId);if((keys[plan.id]?keys[plan.id].length:0)<=0)return alert('❌ Sin stock');if(users[ID].saldo<plan.p)return alert('❌ Saldo insuficiente');let k=keys[plan.id].shift();setKeys(k);users[ID].saldo-=plan.p;setUsers(users);document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;let hist=getHist();if(!hist[ID])hist[ID]=[];hist[ID].push({date:new Date().toLocaleString(),prod:currentProd.n,plan:plan.d,key:k});setHist(hist);render();lastKey=k;lastProd=currentProd.n;lastPlan=plan.d;document.getElementById('planModal').style.display='none';document.getElementById('modalProd').innerText=currentProd.n+' - '+plan.d+' ($'+plan.p+')';document.getElementById('modalKey').innerText=k;document.getElementById('keyModal').style.display='flex'}
-function resetWA(){let msg='🔄 HOLA TEMO NECESITO RESET ID:'+ID+' Producto:'+lastProd+' '+lastPlan+' Key:'+lastKey;window.open('https://wa.me/523224528803?text='+encodeURIComponent(msg),'_blank')}
-function openHist(){let hist=getHist();let my=hist[ID]||[];let list=document.getElementById('histList');list.innerHTML=my.length?'':'<p style=color:#888>Sin compras</p>';my.slice().reverse().forEach(h=>{let d=document.createElement('div');d.style.cssText='background:#000;border:1px solid #ff0000;padding:10px;margin:8px 0;border-radius:10px;text-align:left';d.innerHTML='<b style=color:#ff0000>'+h.prod+' '+h.plan+'</b><br><small style=color:#888>'+h.date+'</small><br><span style=color:#ff0000;font-weight:900;word-break:break-all'>'+h.key+'</span>';list.appendChild(d)});document.getElementById('histModal').style.display='flex'}
+function copyID(){navigator.clipboard.writeText(ID);alert('Copiado: '+ID)}
+function clearAll(){if(confirm('Borrar todo y recargar?')){localStorage.clear();location.reload()}}
+function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#f88>'+p.ps.length+' duraciones | Stock: '+stock+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
+let lastKey="",currentProd=null;
+function ver(pid){let p=getProds().find(x=>x.id===pid);currentProd=p;document.getElementById('planTitle').innerText=p.i+' '+p.n;let list=document.getElementById('planList');list.innerHTML='';let keys=getKeys();p.ps.forEach(pl=>{let stock=keys[pl.id]?keys[pl.id].length:0;let div=document.createElement('div');div.className='planBtn';div.innerHTML='<div style=text-align:left><b>'+pl.d+'</b><br><small style=color:'+(stock>0?'#0f0':'#f00')+'>Stock: '+stock+'</small></div><div><b style=color:#f00>$'+pl.p+'</b><br><button onclick=comprar(\''+pl.id+'\') style=padding:7px 14px;background:#f00;color:#fff;border:none;border-radius:20px;font-weight:900;margin-top:4px>COMPRAR</button></div>';list.appendChild(div)});document.getElementById('planModal').style.display='flex'}
+function comprar(planId){let keys=getKeys();let users=getUsers();let plan=currentProd.ps.find(x=>x.id===planId);if((keys[plan.id]?keys[plan.id].length:0)<=0)return alert('Sin stock');if(users[ID].saldo<plan.p)return alert('Saldo insuficiente $'+users[ID].saldo);let k=keys[plan.id].shift();setKeys(k);users[ID].saldo-=plan.p;setUsers(users);document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;let hist=getHist();if(!hist[ID])hist[ID]=[];hist[ID].push({date:new Date().toLocaleString(),prod:currentProd.n,plan:plan.d,key:k});setHist(hist);render();lastKey=k;document.getElementById('planModal').style.display='none';document.getElementById('modalProd').innerText=currentProd.n+' - '+plan.d;document.getElementById('modalKey').innerText=k;document.getElementById('keyModal').style.display='flex'}
+function openHist(){let my=(getHist()[ID]||[]);let list=document.getElementById('histList');list.innerHTML=my.length?'': '<p>Sin compras</p>';my.slice().reverse().forEach(h=>{let d=document.createElement('div');d.style.cssText='background:#000;border:1px solid #f00;padding:8px;margin:6px 0;border-radius:8px;text-align:left';d.innerHTML='<b>'+h.prod+' '+h.plan+'</b><br><small>'+h.date+'</small><br><span style=color:#f00>'+h.key+'</span>';list.appendChild(d)});document.getElementById('histModal').style.display='flex'}
 if(location.search.includes('admin')){document.getElementById('admin').style.display='block';renderAdmin()}
-function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style=display:flex;gap:6px><input id=name-'+p.id+' value=\''+p.n+'\' class=in><button onclick=saveName(\''+p.id+'\') style=padding:8px;background:yellow;border:none;border-radius:6px>💾</button><button onclick=delProd(\''+p.id+'\') style=padding:8px;background:red;color:#fff;border:none;border-radius:6px>X</button></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;html+='<div style=background:#000;padding:8px;border-radius:8px;margin:6px 0;border:1px solid #330000><div style=display:flex;gap:6px><input id=d-'+pl.id+' value=\''+pl.d+'\' class=in><input id=p-'+pl.id+' type=number value=\''+pl.p+'\' class=in style=width:80px><button onclick=savePlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#ff0000;color:#fff;border:none;border-radius:6px>💾</button><button onclick=delPlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#000;border:1px solid #ff0000;color:#ff0000;border-radius:6px>X</button></div><textarea id=ta-'+pl.id+'>'+(keys[pl.id]?keys[pl.id].join('\n'):'')+'</textarea><div style=display:flex;gap:6px;margin-top:4px><span style=color:#ff0000;font-size:12px>'+cnt+' keys</span><button onclick=saveKeys(\''+pl.id+'\') style=flex:1;padding:6px;background:#ff0000;color:#fff;border:none;border-radius:6px>GUARDAR KEYS</button></div></div>'});html+='<div style=display:flex;gap:6px;margin-top:8px><input id=newD-'+p.id+' placeholder=\'Ej: 1 DIA\' class=in><input id=newP-'+p.id+' type=number placeholder=\'$ \' class=in style=width:80px><button onclick=addPlan(\''+p.id+'\') style=padding:8px;background:#ff0000;color:#fff;border:none;border-radius:6px>➕</button></div>';card.innerHTML=html;c.appendChild(card)})}
-function createProd(){let n=document.getElementById('newName').value.trim();let i=document.getElementById('newIcon').value.trim()||'🔥';if(!n)return alert('Pon nombre');let prods=getProds();let id=n.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now();prods.push({n:n,i:i,id:id,ps:[]});setProds(prods);document.getElementById('newName').value='';render();renderAdmin()}
+function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style=display:flex;gap:6px><input id=name-'+p.id+' value=\''+p.n+'\' class=in><button onclick=saveName(\''+p.id+'\') style=padding:8px;background:yellow;border:none;border-radius:6px>💾</button><button onclick=delProd(\''+p.id+'\') style=padding:8px;background:red;color:#fff;border:none;border-radius:6px>X</button></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;html+='<div style=background:#000;padding:8px;border-radius:8px;margin:6px 0><div style=display:flex;gap:6px><input id=d-'+pl.id+' value=\''+pl.d+'\' class=in><input id=p-'+pl.id+' type=number value=\''+pl.p+'\' class=in style=width:80px><button onclick=savePlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>💾</button><button onclick=delPlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#000;border:1px solid #f00;color:#f00;border-radius:6px>X</button></div><textarea id=ta-'+pl.id+'>'+(keys[pl.id]?keys[pl.id].join('\n'):'')+'</textarea><div style=display:flex;gap:6px;margin-top:4px><span style=color:#f00;font-size:12px>'+cnt+' keys</span><button onclick=saveKeys(\''+pl.id+'\') style=flex:1;padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>GUARDAR KEYS</button></div></div>'});html+='<div style=display:flex;gap:6px;margin-top:8px><input id=newD-'+p.id+' placeholder=\'Ej: 1 DIA\' class=in><input id=newP-'+p.id+' type=number placeholder=\'$ \' class=in style=width:80px><button onclick=addPlan(\''+p.id+'\') style=padding:8px;background:#f00;color:#fff;border:none;border-radius:6px>➕ DURACION</button></div>';card.innerHTML=html;c.appendChild(card)})}
+function createProd(){let n=document.getElementById('newName').value.trim();let i=document.getElementById('newIcon').value.trim()||'🔥';if(!n)return alert('Nombre');let prods=getProds();let id=n.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now();prods.push({n:n,i:i,id:id,ps:[]});setProds(prods);document.getElementById('newName').value='';render();renderAdmin()}
 function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value;setProds(prods);render();renderAdmin()}
 function delProd(pid){if(!confirm('Borrar?'))return;setProds(getProds().filter(x=>x.id!==pid));render();renderAdmin()}
-function addPlan(pid){let d=document.getElementById('newD-'+pid).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+pid).value);if(!d||isNaN(pr))return alert('Duracion y precio');let prods=getProds();let p=prods.find(x=>x.id===pid);let id=pid+'-'+Date.now();p.ps.push({id:id,d:d,p:pr});setProds(prods);renderAdmin()}
+function addPlan(pid){let d=document.getElementById('newD-'+pid).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+pid).value);if(!d||isNaN(pr))return alert('Duracion y precio');let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin()}
 function savePlan(pid,plid){let prods=getProds();let pl=prods.find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(prods);render();renderAdmin()}
 function delPlan(pid,plid){if(!confirm('Borrar duracion?'))return;let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(prods);renderAdmin()}
-function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();alert('Guardado '+lines.length)}
-function addSaldo(){let id=document.getElementById('recId').value.trim().toUpperCase();let m=parseInt(document.getElementById('recMonto').value);if(!id||isNaN(m))return alert('ID y monto');let u=getUsers();if(!u[id])u[id]={saldo:0};u[id].saldo+=m;setUsers(u);alert('Recargado $'+m);if(id===ID){document.getElementById('sTop').innerText=u[id].saldo;document.getElementById('sTxt').innerText=u[id].saldo}renderAdmin()}
+function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();alert(lines.length+' keys guardadas')}
+function addSaldo(){let id=document.getElementById('recId').value.trim().toUpperCase();let m=parseInt(document.getElementById('recMonto').value);if(!id||isNaN(m))return alert('ID y monto');let u=getUsers();if(!u[id])u[id]={saldo:0};u[id].saldo+=m;setUsers(u);alert('Recargado');if(id===ID){document.getElementById('sTop').innerText=u[id].saldo;document.getElementById('sTxt').innerText=u[id].saldo}renderAdmin()}
 </script></body></html>
