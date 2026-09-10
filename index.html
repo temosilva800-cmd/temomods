@@ -103,7 +103,8 @@ function enviarComp(){
   let pend=JSON.parse(localStorage.getItem('temo_comps')||'[]');
   pend.push({id:ID,monto:monto,tel:tel,img:img,fecha:new Date().toLocaleString(),estado:'pendiente'});
   localStorage.setItem('temo_comps', JSON.stringify(pend));
-  const msg=`🔥 *NUEVO COMPROBANTE TEMO STORE*%0A%0AID: ${ID}%0AMonto: $${monto}%0ATel: ${tel}%0AFecha: ${new Date().toLocaleString()}%0A%0AEntra al admin:%0A${location.href.split('?')[0]}?admin`;
+  const linkLimpio = location.origin + location.pathname;
+  const msg=`🔥 *NUEVO COMPROBANTE TEMO STORE*%0A%0AID: ${ID}%0AMonto: $${monto}%0ATel: ${tel}%0AFecha: ${new Date().toLocaleString()}%0A%0AEntra al admin:%0A${linkLimpio}?admin`;
   window.open(`https://wa.me/523224528803?text=${msg}`,'_blank');
   alert('Comprobante enviado! Te avisaré por WhatsApp cuando se apruebe');
   document.getElementById('pagoModal').style.display='none';
@@ -122,7 +123,8 @@ function aprobarComp(i){
   u[co.id].saldo+=parseInt(co.monto);setUsers(u);
   comps[i].estado='aprobado';localStorage.setItem('temo_comps', JSON.stringify(comps));
   if(co.tel){
-    const msgCliente=`✅ *RECARGA APROBADA - TEMO STORE*%0A%0AID: ${co.id}%0AMonto: $${co.monto}%0A%0A🔥 Tu saldo ya está disponible.%0AEntra: ${location.href.split('?')[0]}%0A%0AGracias por comprar en TEMO STORE!`;
+    const limpio = location.origin + location.pathname;
+    const msgCliente=`✅ *RECARGA APROBADA - TEMO STORE*%0A%0AID: ${co.id}%0AMonto: $${co.monto}%0A%0A🔥 Tu saldo ya está disponible.%0AEntra: ${limpio}%0A%0AGracias por comprar en TEMO STORE!`;
     window.open(`https://wa.me/${co.tel}?text=${msgCliente}`,'_blank');
   }
   alert('Aprobado '+co.id+' +$'+co.monto+' y avisado al cliente');
@@ -130,7 +132,20 @@ function aprobarComp(i){
 }
 function rechazarComp(i){let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]');let co=comps[i];comps[i].estado='rechazado';localStorage.setItem('temo_comps', JSON.stringify(comps));if(co.tel){const msg=`❌ *COMPROBANTE RECHAZADO*%0AID: ${co.id}%0AMonto: $${co.monto}%0A%0ATu comprobante no es válido. Mándanos uno legible: 523224528803`;window.open(`https://wa.me/${co.tel}?text=${msg}`,'_blank');}renderComps();}
 function borrarComp(i){let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]');comps.splice(i,1);localStorage.setItem('temo_comps',JSON.stringify(comps));renderComps();}
-if(location.search.includes('admin')){document.getElementById('admin').style.display='block';renderAdmin();renderComps();setInterval(renderComps,5000);}
+
+// ADMIN CON CLAVE
+if(location.search.includes('admin')){
+  let clave = prompt("🔐 CLAVE ADMIN TEMO:");
+  if(clave!== "temo123"){
+    alert("Clave incorrecta");
+    location.href = location.origin + location.pathname;
+  }else{
+    document.getElementById('admin').style.display='block';
+    renderAdmin();renderComps();
+    setInterval(renderComps,5000);
+  }
+}
+
 function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style=display:flex;gap:6px><input id=name-'+p.id+' value=\''+p.n+'\' class=in><button onclick=saveName(\''+p.id+'\') style=padding:8px;background:yellow;border:none;border-radius:6px>💾</button><button onclick=delProd(\''+p.id+'\') style=padding:8px;background:red;color:#fff;border:none;border-radius:6px>X</button></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;html+='<div style=background:#000;padding:8px;border-radius:8px;margin:6px 0><div style=display:flex;gap:6px><input id=d-'+pl.id+' value=\''+pl.d+'\' class=in><input id=p-'+pl.id+' type=number value=\''+pl.p+'\' class=in style=width:80px><button onclick=savePlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>💾</button><button onclick=delPlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#000;border:1px solid #f00;color:#f00;border-radius:6px>X</button></div><textarea id=ta-'+pl.id+'>'+(keys[pl.id]?keys[pl.id].join('\n'):'')+'</textarea><div style=display:flex;gap:6px;margin-top:4px><span style=color:#f00;font-size:12px>'+cnt+' keys</span><button onclick=saveKeys(\''+pl.id+'\') style=flex:1;padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>GUARDAR KEYS</button></div></div>'});html+='<div style=display:flex;gap:6px;margin-top:8px><input id=newD-'+p.id+' placeholder=\'Ej: 1 DIA\' class=in><input id=newP-'+p.id+' type=number placeholder=\'$ \' class=in style=width:80px><button onclick=addPlan(\''+p.id+'\') style=padding:8px;background:#f00;color:#fff;border:none;border-radius:6px>➕ DURACION</button></div>';card.innerHTML=html;c.appendChild(card)})}
 function createProd(){let n=newName.value.trim();let i=newIcon.value.trim()||'🔥';if(!n)return alert('Nombre');let prods=getProds();let id=n.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now();prods.push({n:n,i:i,id:id,ps:[]});setProds(prods);newName.value='';render();renderAdmin();}
 function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value;setProds(prods);render();renderAdmin();}
