@@ -1,95 +1,85 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V68 FIX</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}body{background:#000;color:#fff}.top{padding:18px;text-align:center;border-bottom:4px solid #f00;background:#000;box-shadow:0 0 30px #f00;position:sticky;top:0;z-index:10}.prod{margin:12px;background:#111;border:3px solid #f00;border-radius:18px;padding:16px;box-shadow:0 0 25px #f00}.planRow{display:flex;justify-content:space-between;background:#000;border:2px solid #f00;border-radius:12px;padding:12px;margin:8px 0}.pagoItem{display:flex;justify-content:space-between;background:#000;border:2px solid #0f0;border-radius:12px;padding:12px;margin:8px 0;box-shadow:0 0 15px #0f0}.btnR{width:100%;padding:16px;background:#f00;color:#000;border:none;border-radius:14px;font-weight:900;margin:8px 0;box-shadow:0 0 20px #f00;display:block;text-align:center;text-decoration:none}.btnW{width:100%;padding:16px;background:#000;border:3px solid #fff;color:#fff;border-radius:14px;font-weight:900;margin:8px 0;box-shadow:0 0 20px #fff;display:block;text-align:center;cursor:pointer}.card{margin:12px;background:#111;border:3px solid #f00;border-radius:16px;padding:14px;box-shadow:0 0 20px #f00}.modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:flex-start;justify-content:center;padding:12px;overflow:auto}.box{background:#000;border:4px solid #f00;border-radius:20px;padding:18px;width:100%;max-width:520px;box-shadow:0 0 30px #f00;margin:auto}.boxFull{max-width:900px;border-color:#0f0;box-shadow:0 0 30px #0f0}.input{width:100%;padding:14px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;margin:6px 0;text-align:center;font-weight:900}.inputG{border-color:#0f0;color:#0f0}.item{border:2px solid #f00;padding:10px;border-radius:10px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;background:#000}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:600px){.grid{grid-template-columns:1fr}}</style></head><body>
-<div class="top"><b>🔥 TEMO STORE V68 FIX 🔥</b><br><small>ANDROID | 523224528803</small></div>
-<div style="padding:12px"><a href="https://wa.me/523224528803?text=Hola%20quiero%20comprar" class="btnR">💬 WHATSAPP 523224528803</a><button onclick="abrirVentas()" class="btnW">💰 MIS VENTAS - REVENDEDORES</button></div>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V71 LIMPIA</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}body{background:#000;color:#fff}.top{padding:18px;text-align:center;border-bottom:4px solid #f00;background:#000;box-shadow:0 0 30px #f00;position:sticky;top:0;z-index:10}.prod{margin:12px;background:#111;border:3px solid #f00;border-radius:18px;padding:16px;box-shadow:0 0 25px #f00}.planRow{display:flex;justify-content:space-between;background:#000;border:2px solid #f00;border-radius:12px;padding:12px;margin:8px 0}.pagoItem{display:flex;justify-content:space-between;background:#000;border:2px solid #0f0;border-radius:12px;padding:12px;margin:8px 0;box-shadow:0 0 15px #0f0}.btnR{width:100%;padding:16px;background:#f00;color:#000;border:none;border-radius:14px;font-weight:900;margin:8px 0;box-shadow:0 0 20px #f00;display:block;text-align:center;text-decoration:none}.card{margin:12px;background:#111;border:3px solid #f00;border-radius:16px;padding:14px;box-shadow:0 0 20px #f00}.modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:flex-start;justify-content:center;padding:12px;overflow:auto}.box{background:#000;border:4px solid #f00;border-radius:20px;padding:18px;width:100%;max-width:520px;box-shadow:0 0 30px #f00;margin:auto}.boxFull{max-width:900px;border-color:#f00;box-shadow:0 0 30px #f00}.input{width:100%;padding:12px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;margin:6px 0;text-align:center;font-weight:900}.inputG{border-color:#0f0;color:#0f0}.inputP{width:80px;padding:8px;background:#000;border:2px solid #0f0;color:#0f0;border-radius:8px;text-align:center;font-weight:900}.item{border:2px solid #f00;padding:10px;border-radius:10px;margin:6px 0;background:#000}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:600px){.grid{grid-template-columns:1fr}}</style></head><body>
+<div class="top"><b>🔥 TEMO STORE 🔥</b><br><small>ANDROID | 523224528803 | ASEPTO CUALQUIER METODO</small></div>
+<div style="padding:12px"><a href="https://wa.me/523224528803?text=Hola%20quiero%20comprar%20🛒" class="btnR">💬 WHATSAPP 523224528803</a></div>
 <div id="listaProds"></div>
-<div class="card" style="border-color:#0f0;box-shadow:0 0 25px #0f0"><h3 style="text-align:center;color:#0f0">💳 METODOS DE PAGO</h3><div id="listaPagos"></div><div style="text-align:center;margin-top:10px;padding:10px;border:2px dashed #0f0;border-radius:12px"><h3 style="color:#0f0">ASEPTO CUALQUIER METODO DE PAGO ✅</h3><p>+523224528803 AQUI TU MAGIA ✨</p></div></div>
+<div class="card" style="border-color:#0f0;box-shadow:0 0 25px #0f0"><h3 style="text-align:center;color:#0f0">💳 METODOS DE PAGO</h3><div id="listaPagos"></div><div style="text-align:center;margin-top:8px;padding:10px;border:2px dashed #0f0;border-radius:10px"><b style="color:#0f0">👉🏻 ASEPTO CUALQUIER METODO DE PAGO ✅💵💸</b><br><small>+523224528803 AQUI TU MAGIA ✨</small></div></div>
 
-<div id="planModal" class="modal"><div class="box"><h2 id="planTitle" style="text-align:center;color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" class="btnW" style="border-color:#f00;color:#f00">CERRAR</button></div></div>
-<div id="ventasModal" class="modal"><div class="box"><h2 id="tituloPanel" style="text-align:center;color:#f00">PANEL</h2><div style="display:flex;gap:10px"><div class="card" style="flex:1;text-align:center"><b id="vCount">0</b><br>VENTAS</div><div class="card" style="flex:1;text-align:center"><b id="gCount">$0</b><br>GANADO</div></div><div class="card"><div id="linkTxt" style="font-size:11px;word-break:break-all;color:#0f0"></div><button onclick="navigator.clipboard.writeText(document.getElementById('linkTxt').innerText);alert('Copiado')" class="btnR">COPIAR LINK</button></div><div class="card"><b>YA HICE UNA VENTA</b><input id="vProd" class="input" placeholder="Ej: DRIP 7 DIAS"><input id="vPrecio" type="number" class="input" placeholder="Ej: 12"><button onclick="registrarVenta()" class="btnR">REGISTRAR</button></div><div class="card"><div id="logVentas"></div></div><button onclick="document.getElementById('ventasModal').style.display='none'" class="btnW" style="border-color:#f00;color:#f00">CERRAR</button></div></div>
+<div id="planModal" class="modal"><div class="box"><h2 id="planTitle" style="text-align:center;color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:14px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px;font-weight:900">CERRAR</button></div></div>
 
-<!-- ADMIN V68 CON PRODUCTOS REALES -->
-<div id="loginModal" class="modal"><div class="box"><h2 style="text-align:center;color:#f00">🔥 ADMIN V68 🔥</h2><input id="u" class="input" value="TEMOSTOR"><input id="p" type="password" class="input" value="TEMOSTOR"><button onclick="entrarAdmin()" class="btnR">ENTRAR</button></div></div>
-<div id="adminModal" class="modal"><div class="box boxFull"><h1 style="text-align:center;color:#f00">ADMIN V68 - FIX PRODUCTOS</h1>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0"><div class="card" style="margin:0;text-align:center"><b id="tRevs">0</b><br><small>REVS</small></div><div class="card" style="margin:0;text-align:center"><b id="tVentas">0</b><br><small>VENTAS</small></div><div class="card" style="margin:0;text-align:center"><b id="tGan">$0</b><br><small>GANANCIA</small></div><div class="card" style="margin:0;text-align:center"><b id="tProds">0</b><br><small>PRODS</small></div></div>
+<div id="loginModal" class="modal"><div class="box"><h2 style="text-align:center;color:#f00">ADMIN TEMO</h2><input id="u" class="input" value="TEMOSTOR"><input id="p" type="password" class="input" value="TEMOSTOR"><button onclick="entrarAdmin()" class="btnR">ENTRAR</button></div></div>
 
-<div class="card" style="border-color:#0f0"><h3 style="color:#0f0">💳 PAGOS - Tus 3 reales del screenshot</h3><div id="aPagos"></div><div class="grid"><input id="pNom" class="input inputG" placeholder="Ej: MEXICO OXXO"><input id="pDato" class="input inputG" placeholder="Ej: 2242 1703 2080 0281"></div><button onclick="addPago()" style="width:100%;padding:12px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900;margin:6px 0">+ AGREGAR PAGO</button></div>
+<div id="adminModal" class="modal"><div class="box boxFull"><h1 style="text-align:center;color:#f00">ADMIN V71 - SIN REVS</h1><p style="text-align:center;color:#0f0;font-size:11px">SOLO PRODUCTOS Y PAGOS | temomods.vercel.app/?temo7</p>
 
-<div class="card"><h3>👥 REVS - SEBA 13v $23.10 arreglado</h3><div id="aRevs"></div><div class="grid"><input id="rNom" class="input" placeholder="NOMBRE"><input id="rCod" class="input" placeholder="codigo"></div><button onclick="addRev()" class="btnR">+ CREAR REV</button></div>
+<div class="card" style="border-color:#0f0;box-shadow:0 0 25px #0f0"><h3 style="color:#0f0">💳 MIS PAGOS - Crea / Edita</h3><div id="aPagos"></div>
+<div style="background:#000;border:2px dashed #0f0;border-radius:12px;padding:10px;margin-top:8px">
+<b style="color:#0f0">+ CREAR PAGO:</b>
+<div class="grid"><input id="pNom" class="input inputG" placeholder="Nombre: OXXO"><input id="pDato" class="input inputG" placeholder="Dato: 2242..."><input id="pIcon" class="input inputG" placeholder="Icono 🇲🇽" value="💰"><button onclick="addPago()" style="padding:12px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">+ CREAR PAGO</button></div>
+</div>
+</div>
 
-<div class="card" style="border-color:#f00"><h3>📦 PRODUCTOS - AHORA SI APARECEN (5 con planes)</h3><div id="aProds"></div><div style="border:2px dashed #f00;padding:10px;border-radius:10px;margin-top:8px"><b>EDITAR PRECIO:</b><div class="grid"><input id="prodId" class="input" placeholder="ID: drip, flourite, cuban, hg, pato"><input id="planD" class="input" placeholder="DIA: 7 DIAS"><input id="planP" type="number" class="input" placeholder="Precio nuevo"><button onclick="editPrecio()" style="padding:12px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">CAMBIAR PRECIO</button></div><button onclick="resetProds()" style="width:100%;padding:10px;background:#000;border:2px solid #fff;color:#fff;border-radius:8px;margin-top:6px">🔄 RESTAURAR 5 PRODUCTOS OFICIALES</button></div></div>
+<div class="card"><h3>📦 MIS PRODUCTOS - Edita precio directo</h3><div id="aProds"></div>
+<div style="background:#000;border:2px dashed #f00;border-radius:12px;padding:10px;margin-top:10px">
+<b style="color:#f00">+ CREAR PRODUCTO NUEVO:</b>
+<div class="grid">
+<input id="newProdN" class="input" placeholder="Nombre: HOLO VIP">
+<input id="newProdId" class="input" placeholder="ID: holo">
+<input id="newProdI" class="input" placeholder="Icono: 👑" value="🔥">
+<input id="newProdPlan" class="input" placeholder="Plan: 7 DIAS">
+<input id="newProdPrice" type="number" class="input" placeholder="Precio: 30">
+</div>
+<button onclick="crearProducto()" style="width:100%;padding:12px;background:#f00;color:#000;border:none;border-radius:10px;font-weight:900;margin-top:6px">🔥 CREAR PRODUCTO 🔥</button>
+</div>
+<div style="background:#000;border:2px dashed #0f0;border-radius:12px;padding:10px;margin-top:10px">
+<b style="color:#0f0">+ AGREGAR PLAN A PRODUCTO:</b>
+<div class="grid"><select id="addPlanId" class="input"></select><input id="addPlanD" class="input" placeholder="60 DIAS"><input id="addPlanP" type="number" class="input" placeholder="25"><button onclick="addPlan()" style="padding:12px;background:#0f0;color:#000;border:none;border-radius:10px;font-weight:900">+ PLAN</button></div>
+</div>
+<button onclick="restaurarTodo()" style="width:100%;padding:10px;background:#000;border:2px solid #fff;color:#fff;border-radius:10px;margin-top:10px">🔄 RESTAURAR MIS 5 PRODUCTOS + 3 PAGOS</button>
+</div>
 
-<div class="card"><h3>📋 LOGS</h3><div id="aLogs" style="max-height:300px;overflow:auto;background:#000;padding:8px;border:2px solid #f00;border-radius:10px"></div></div>
-<button onclick="document.getElementById('adminModal').style.display='none'" class="btnR">SALIR</button>
+<button onclick="document.getElementById('adminModal').style.display='none'" class="btnR">SALIR A TIENDA</button>
 </div></div>
 
 <script>
-const productosOFICIALES=[
+const productosQueTenias=[
 {n:"PANEL DRIP CLIENT",i:"💧",id:"drip",ps:[{d:"1 DIA",p:4},{d:"7 DIAS",p:12},{d:"15 DIAS",p:15},{d:"30 DIAS",p:20}]},
 {n:"PANEL FLOURITE",i:"💎",id:"flourite",ps:[{d:"7 DIAS",p:30},{d:"30 DIAS",p:50}]},
 {n:"CUBAN MODS",i:"🇨🇺",id:"cuban",ps:[{d:"1 DIA",p:3},{d:"7 DIAS",p:5},{d:"30 DIAS",p:10}]},
 {n:"PANEL HG CHEATS",i:"🔥",id:"hg",ps:[{d:"1 DIA",p:5},{d:"10 DIAS",p:12},{d:"30 DIAS",p:18}]},
 {n:"PATO TEAM",i:"🦆",id:"pato",ps:[{d:"30 DIAS",p:14}]}
 ];
-const pagosREAL=[
+const pagosQueTenias=[
 {nombre:"MEXICO 🇲🇽 - OXXO",dato:"2242 1703 2080 0281",icon:"🇲🇽"},
 {nombre:"MEXICO 🇲🇽 - CLABE STP",dato:"722969027389252036",icon:"🏦"},
 {nombre:"BINANCE",dato:"1150540078",icon:"🟡"}
 ];
-// FIX: NO sobrescribir si ya existe, solo crear si no existe
-if(!localStorage.getItem('temo_prods')) localStorage.setItem('temo_prods',JSON.stringify(productosOFICIALES));
-if(!localStorage.getItem('temo_pagos')) localStorage.setItem('temo_pagos',JSON.stringify(pagosREAL));
-if(!localStorage.getItem('temo_revs')){
-localStorage.setItem('temo_revs',JSON.stringify([{nombre:'SEBA',codigo:'seba',ventas:13,ganancia:23.1},{nombre:'CHIRI',codigo:'chiri2370',ventas:0,ganancia:0}]));
-localStorage.setItem('temo_ventas_log',JSON.stringify([]));
-}
+if(!localStorage.getItem('temo_prods')) localStorage.setItem('temo_prods',JSON.stringify(productosQueTenias));
+if(!localStorage.getItem('temo_pagos')) localStorage.setItem('temo_pagos',JSON.stringify(pagosQueTenias));
 
-let codigoActual=localStorage.getItem('ultimo_panel')||'seba';
-
-function getProds(){try{return JSON.parse(localStorage.getItem('temo_prods'))||productosOFICIALES}catch(e){return productosOFICIALES}}
-function getPagos(){try{return JSON.parse(localStorage.getItem('temo_pagos'))||pagosREAL}catch(e){return pagosREAL}}
+function getProds(){return JSON.parse(localStorage.getItem('temo_prods'))}
+function getPagos(){return JSON.parse(localStorage.getItem('temo_pagos'))}
+function saveProds(p){localStorage.setItem('temo_prods',JSON.stringify(p));renderFront();renderAdmin();}
+function savePagos(p){localStorage.setItem('temo_pagos',JSON.stringify(p));renderFront();renderAdmin();}
 
 function renderFront(){
 let prods=getProds();
-document.getElementById('listaProds').innerHTML=prods.map(p=>`
-<div class="prod">
-<div style="display:flex;justify-content:space-between"><b>${p.i} ${p.n}</b><span style="background:#f00;color:#000;padding:4px 10px;border-radius:12px;font-size:10px">ANDROID</span></div>
-${p.ps.map(pl=>`<div class="planRow"><div><b>${pl.d}</b> <span style="color:#0f0">$${pl.p} USD 🛒</span></div><button onclick="verProd('${p.id}')" style="padding:8px 14px;background:#f00;color:#000;border:none;border-radius:12px;font-weight:900">VER 🛒</button></div>`).join('')}
-</div>`).join('');
-document.getElementById('listaPagos').innerHTML=getPagos().map(p=>`<div class="pagoItem"><div><b>${p.icon} ${p.nombre}</b><br><small style="color:#0f0">${p.dato}</small></div><button onclick="navigator.clipboard.writeText('${p.dato}');alert('Copiado ${p.nombre}')" style="padding:6px 12px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">COPIAR</button></div>`).join('');
+document.getElementById('listaProds').innerHTML=prods.map(p=>`<div class="prod"><div style="display:flex;justify-content:space-between"><b>${p.i} ${p.n}</b><span style="background:#f00;color:#000;padding:4px 10px;border-radius:12px;font-size:10px">ANDROID</span></div>${p.ps.map(pl=>`<div class="planRow"><div><b>${pl.d}</b> <span style="color:#0f0">$${pl.p} USD</span></div><button onclick="verProd('${p.id}')" style="padding:8px 14px;background:#f00;color:#000;border:none;border-radius:12px;font-weight:900">VER 🛒</button></div>`).join('')}</div>`).join('');
+document.getElementById('listaPagos').innerHTML=getPagos().map(p=>`<div class="pagoItem"><div><b>${p.icon} ${p.nombre}</b><br><small style="color:#0f0">${p.dato}</small></div><button onclick="navigator.clipboard.writeText('${p.dato}');alert('Copiado')" style="padding:6px 12px;background:#0f0;color:#000;border:none;border-radius:8px">COPIAR</button></div>`).join('');
+document.getElementById('addPlanId').innerHTML=getProds().map(p=>`<option value="${p.id}">${p.n} (${p.id})</option>`).join('');
 }
-
 function renderAdmin(){
-let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');let logs=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]');let prods=getProds();let pagos=getPagos();
-document.getElementById('tRevs').innerText=revs.length;
-document.getElementById('tVentas').innerText=logs.length>0?logs.length:revs.reduce((a,b)=>a+(b.ventas||0),0);
-document.getElementById('tGan').innerText='$'+revs.reduce((a,b)=>a+parseFloat(b.ganancia||0),0).toFixed(2);
-document.getElementById('tProds').innerText=prods.length;
-// FIX PRODUCTOS AHORA MUESTRA PLANES Y PRECIOS REALES
-document.getElementById('aProds').innerHTML=prods.map((p,i)=>`
-<div class="item" style="flex-direction:column;align-items:flex-start">
-<b style="color:#f00">${p.i} ${p.n} <span style="background:#f00;color:#000;padding:2px 6px;border-radius:8px;font-size:10px">${p.id}</span></b>
-<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px">
-${p.ps.map(pl=>`<span style="background:#000;border:1px solid #f00;color:#0f0;padding:4px 8px;border-radius:10px;font-size:11px">${pl.d}: $${pl.p} USD</span>`).join('')}
-</div>
-<button onclick="let a=getProds();a.splice(${i},1);localStorage.setItem('temo_prods',JSON.stringify(a));renderFront();renderAdmin()" style="margin-top:6px;background:#f00;color:#000;border:none;padding:4px 10px;border-radius:6px;font-size:11px">BORRAR PRODUCTO</button>
-</div>`).join('')||'<small style="color:#fff">No hay productos - dale a RESTAURAR</small>';
-
-document.getElementById('aPagos').innerHTML=pagos.map((p,i)=>`<div class="item" style="border-color:#0f0"><span><b>${p.icon} ${p.nombre}</b>: <span style="color:#0f0">${p.dato}</span></span><button onclick="let a=getPagos();a.splice(${i},1);localStorage.setItem('temo_pagos',JSON.stringify(a));renderFront();renderAdmin()" style="background:#f00;color:#000;border:none;padding:4px 8px;border-radius:6px">X</button></div>`).join('');
-document.getElementById('aRevs').innerHTML=revs.map((r,i)=>`<div class="item"><span><b>${r.nombre}</b> (${r.codigo})<br>${r.ventas||0}v - $${parseFloat(r.ganancia||0).toFixed(2)}<br><small style="color:#0f0">?ref=${r.codigo} |?panel=${r.codigo}</small></span><button onclick="let a=JSON.parse(localStorage.getItem('temo_revs'));a.splice(${i},1);localStorage.setItem('temo_revs',JSON.stringify(a));renderAdmin()" style="background:#f00;color:#000;border:none;padding:6px 10px;border-radius:6px">X</button></div>`).join('');
-document.getElementById('aLogs').innerHTML=logs.slice().reverse().map(l=>`<small>${l.fecha||''} - ${l.codigo.toUpperCase()} - ${l.producto} $${l.precio} → $${Number(l.comision||0).toFixed(2)}</small><br>`).join('')||'<small>Logs vacíos - SEBA tiene 13 ventas guardadas en REVS</small>';
+let pagos=getPagos();let prods=getProds();
+document.getElementById('aPagos').innerHTML=pagos.map((p,i)=>`<div class="item" style="border-color:#0f0"><div><b>${p.icon} ${p.nombre}</b><br><small style="color:#0f0">${p.dato}</small></div><div style="display:flex;gap:4px"><button onclick="editarPago(${i})" style="background:#0f0;color:#000;border:none;padding:6px 10px;border-radius:6px">EDIT</button><button onclick="let a=getPagos();a.splice(${i},1);savePagos(a)" style="background:#f00;color:#000;border:none;padding:6px 10px;border-radius:6px">X</button></div></div>`).join('');
+document.getElementById('aProds').innerHTML=prods.map((p,pi)=>`<div class="item" style="flex-direction:column;align-items:stretch"><div style="display:flex;justify-content:space-between"><b style="color:#f00">${p.i} ${p.n} <span style="font-size:10px;background:#f00;color:#000;padding:2px 6px;border-radius:8px">${p.id}</span></b><button onclick="if(confirm('Borrar ${p.n}?')){let a=getProds();a.splice(${pi},1);saveProds(a)}" style="background:#f00;color:#000;border:none;padding:4px 8px;border-radius:6px">BORRAR</button></div>${p.ps.map((pl,pj)=>`<div style="display:flex;justify-content:space-between;align-items:center;background:#000;border:2px solid #f00;border-radius:10px;padding:8px;margin:4px 0"><div><b>${pl.d}</b> <span style="color:#0f0">$${pl.p}</span></div><div style="display:flex;gap:4px;align-items:center">$<input id="price_${pi}_${pj}" type="number" value="${pl.p}" class="inputP"><button onclick="cambiarPrecio(${pi},${pj})" style="padding:8px 10px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">💲</button><button onclick="let a=getProds();a[${pi}].ps.splice(${pj},1);saveProds(a)" style="padding:8px 10px;background:#f00;color:#000;border:none;border-radius:8px">X</button></div></div>`).join('')}</div>`).join('');
 }
-
-renderFront();
-
-function verProd(id){let p=getProds().find(x=>x.id===id);document.getElementById('planTitle').innerText=p.i+' '+p.n;document.getElementById('planList').innerHTML=p.ps.map(pl=>`<div class="planRow"><div><b>${pl.d}</b><br><b style="color:#0f0">$${pl.p} USD</b></div><a href="https://wa.me/523224528803?text=Quiero%20${encodeURIComponent(p.n)}%20${pl.d}%20$${pl.p}" target="_blank" style="padding:10px 18px;background:#0f0;color:#000;border-radius:16px;text-decoration:none">COMPRAR 🛒</a></div>`).join('');document.getElementById('planModal').style.display='flex';}
-function abrirVentas(){let pa=new URLSearchParams(location.search).get('panel');if(pa)codigoActual=pa.toLowerCase();localStorage.setItem('ultimo_panel',codigoActual);let r=JSON.parse(localStorage.getItem('temo_revs')).find(x=>x.codigo===codigoActual)||JSON.parse(localStorage.getItem('temo_revs'))[0];document.getElementById('tituloPanel').innerText='PANEL DE '+r.nombre;document.getElementById('vCount').innerText=r.ventas||0;document.getElementById('gCount').innerText='$'+parseFloat(r.ganancia||0).toFixed(2);document.getElementById('linkTxt').innerText=location.origin+location.pathname+'?ref='+r.codigo;document.getElementById('logVentas').innerHTML=(JSON.parse(localStorage.getItem('temo_ventas_log')||'[]').filter(x=>x.codigo===r.codigo).map(l=>`<small>${l.fecha} - ${l.producto} $${l.precio}</small><br>`).join(''))||`${r.ventas||0} ventas registradas`;document.getElementById('ventasModal').style.display='flex';}
-function registrarVenta(){let pr=document.getElementById('vProd').value.trim();let pc=parseFloat(document.getElementById('vPrecio').value);if(!pr||isNaN(pc))return alert('Llena');let com=pc*0.15;let revs=JSON.parse(localStorage.getItem('temo_revs'));let idx=revs.findIndex(x=>x.codigo===codigoActual);if(idx<0)idx=0;revs[idx].ventas=(revs[idx].ventas||0)+1;revs[idx].ganancia=parseFloat((parseFloat(revs[idx].ganancia||0)+com).toFixed(2));localStorage.setItem('temo_revs',JSON.stringify(revs));let logs=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]');logs.push({codigo:codigoActual,producto:pr,precio:pc,comision:parseFloat(com.toFixed(2)),fecha:new Date().toLocaleString()});localStorage.setItem('temo_ventas_log',JSON.stringify(logs));abrirVentas();renderAdmin();}
+function cambiarPrecio(pi,pj){let v=parseFloat(document.getElementById(`price_${pi}_${pj}`).value);if(isNaN(v))return;let prods=getProds();prods[pi].ps[pj].p=v;saveProds(prods);}
+function addPago(){let n=document.getElementById('pNom').value.trim();let d=document.getElementById('pDato').value.trim();let ic=document.getElementById('pIcon').value.trim()||'💰';if(!n||!d)return alert('Llena');let p=getPagos();p.push({nombre:n.toUpperCase(),dato:d,icon:ic});savePagos(p);document.getElementById('pNom').value='';document.getElementById('pDato').value='';}
+function editarPago(i){let pagos=getPagos();let n=prompt('Editar dato:',pagos[i].dato);if(n!==null&&n.trim()!==''){pagos[i].dato=n.trim();savePagos(pagos);}}
+function crearProducto(){let n=document.getElementById('newProdN').value.trim().toUpperCase();let id=document.getElementById('newProdId').value.trim().toLowerCase();let ico=document.getElementById('newProdI').value.trim()||'🔥';let plan=document.getElementById('newProdPlan').value.trim().toUpperCase();let price=parseFloat(document.getElementById('newProdPrice').value);if(!n||!id)return alert('Nombre e ID');if(getProds().find(x=>x.id===id))return alert('ID existe');let nuevo={n:n,i:ico,id:id,ps:[]};if(plan&&!isNaN(price))nuevo.ps.push({d:plan,p:price});let prods=getProds();prods.push(nuevo);saveProds(prods);document.getElementById('newProdN').value='';document.getElementById('newProdId').value='';document.getElementById('newProdPlan').value='';document.getElementById('newProdPrice').value='';alert('✅ Producto '+n+' creado');}
+function addPlan(){let id=document.getElementById('addPlanId').value;let d=document.getElementById('addPlanD').value.trim().toUpperCase();let p=parseFloat(document.getElementById('addPlanP').value);if(!d||isNaN(p))return alert('Llena');let prods=getProds();let prod=prods.find(x=>x.id===id);prod.ps.push({d:d,p:p});saveProds(prods);document.getElementById('addPlanD').value='';document.getElementById('addPlanP').value='';}
+function restaurarTodo(){if(confirm('Restaurar tus 5 productos + 3 pagos que tenias?')){localStorage.setItem('temo_prods',JSON.stringify(productosQueTenias));localStorage.setItem('temo_pagos',JSON.stringify(pagosQueTenias));renderFront();renderAdmin();}}
+function verProd(id){let p=getProds().find(x=>x.id===id);document.getElementById('planTitle').innerText=p.i+' '+p.n;document.getElementById('planList').innerHTML=p.ps.map(pl=>`<div class="planRow"><div><b>${pl.d}</b><br><b style="color:#0f0">$${pl.p} USD</b></div><a href="https://wa.me/523224528803?text=Quiero%20${encodeURIComponent(p.n)}%20${pl.d}%20$${pl.p}" target="_blank" style="padding:10px 18px;background:#0f0;color:#000;border-radius:16px;text-decoration:none">COMPRAR 🛒</a></div>`).join('')+`<div class="card" style="border-color:#0f0"><small>${getPagos().map(x=>x.nombre+': '+x.dato).join('<br>')}</small></div>`;document.getElementById('planModal').style.display='flex';}
 function entrarAdmin(){if(document.getElementById('u').value==='TEMOSTOR'&&document.getElementById('p').value==='TEMOSTOR'){document.getElementById('loginModal').style.display='none';document.getElementById('adminModal').style.display='flex';renderAdmin();}}
-function addRev(){let n=document.getElementById('rNom').value.trim().toUpperCase();let c=document.getElementById('rCod').value.trim().toLowerCase();if(!n||!c)return;let r=JSON.parse(localStorage.getItem('temo_revs'));if(r.find(x=>x.codigo===c))return alert('Ya existe');r.push({nombre:n,codigo:c,ventas:0,ganancia:0});localStorage.setItem('temo_revs',JSON.stringify(r));renderAdmin();}
-function addPago(){let n=document.getElementById('pNom').value.trim();let d=document.getElementById('pDato').value.trim();if(!n||!d)return;let p=getPagos();p.push({nombre:n.toUpperCase(),dato:d,icon:'💰'});localStorage.setItem('temo_pagos',JSON.stringify(p));renderAdmin();renderFront();}
-function editPrecio(){let id=document.getElementById('prodId').value.trim().toLowerCase();let dia=document.getElementById('planD').value.trim().toUpperCase();let precio=parseFloat(document.getElementById('planP').value);if(!id||!dia||isNaN(precio))return alert('Llena ID, DIA, Precio');let prods=getProds();let prod=prods.find(x=>x.id===id);if(!prod)return alert('ID no existe. Usa: drip, flourite, cuban, hg, pato');let pl=prod.ps.find(x=>x.d===dia);if(pl)pl.p=precio;else prod.ps.push({d:dia,p:precio});localStorage.setItem('temo_prods',JSON.stringify(prods));renderAdmin();renderFront();alert('Precio actualizado ✅');}
-function resetProds(){if(confirm('Restaurar los 5 productos oficiales?')){localStorage.setItem('temo_prods',JSON.stringify(productosOFICIALES));renderAdmin();renderFront();}}
-if(location.search.includes('temo7')){document.getElementById('loginModal').style.display='flex';}
-let autoP=new URLSearchParams(location.search).get('panel');if(autoP){codigoActual=autoP.toLowerCase();setTimeout(abrirVentas,600);}
+renderFront();
+if(location.search.includes('temo7'))document.getElementById('loginModal').style.display='flex';
 </script></body></html>
