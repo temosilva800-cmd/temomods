@@ -1,11 +1,12 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V36 LIMPIA</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V40 15% REVS</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}body{background:#000;color:#fff}
-.top{padding:18px;display:flex;justify-content:space-between;border-bottom:5px solid #f00;box-shadow:0 0 45px #f00,0 0 90px #f00;position:sticky;top:0;background:#000;z-index:99}
+.top{padding:18px;display:flex;justify-content:space-between;border-bottom:5px solid #f00;box-shadow:0 0 45px #f00;position:sticky;top:0;background:#000;z-index:99}
 .prod{margin:12px;background:#120000;border:3px solid #f00;border-radius:18px;padding:18px;display:flex;justify-content:space-between;box-shadow:0 0 35px #f00}
 .btn{background:#f00;color:#fff;border:none;padding:13px 26px;border-radius:26px;font-weight:900;box-shadow:0 0 30px #f00;cursor:pointer}
 .pagosBox{margin:12px;background:#0a0000;border:4px solid #f00;border-radius:18px;padding:16px;box-shadow:0 0 40px #f00}
 .pagoItem{background:#000;border:3px solid #f00;padding:13px;border-radius:12px;margin:9px 0;display:flex;justify-content:space-between;box-shadow:0 0 20px #f00}
+.revBanner{margin:12px;background:#f00;border:4px solid #fff;border-radius:18px;padding:16px;box-shadow:0 0 40px #f00;text-align:center}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:12px}
 .modalBox{background:#0a0000;border:5px solid #f00;border-radius:22px;padding:22px;max-width:460px;width:100%;box-shadow:0 0 70px #f00}
 #admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
@@ -13,90 +14,172 @@
 .cardPago{background:#0a0000;border:5px solid #f00;border-radius:20px;padding:16px;margin:18px 0;box-shadow:0 0 50px #f00}
 .cardCrear{background:#0a0000;border:5px solid #f00;border-radius:20px;padding:18px;margin:18px 0;box-shadow:0 0 60px #f00}
 .barraInput{width:100%;padding:16px;background:#000;border:3px solid #f00;color:#fff;border-radius:13px;font-weight:900;box-shadow:0 0 22px #f00;text-transform:uppercase}
-.barraInputCrear{width:100%;padding:19px;background:#000;border:4px solid #f00;color:#fff;border-radius:13px;font-weight:900;box-shadow:0 0 30px #f00}
 .btnPlus{width:70px;height:70px;background:#f00;color:#fff;border:none;border-radius:19px;font-size:44px;font-weight:900;box-shadow:0 0 40px #f00;cursor:pointer}
 .btnCrear{width:100%;padding:22px;background:#f00;color:#fff;border:none;border-radius:15px;font-weight:900;font-size:22px;box-shadow:0 0 45px #f00;cursor:pointer;margin-top:12px}
-.barraDespliegue{display:flex;gap:9px;margin:14px 0;animation:slideDown.45s;align-items:center}
-.barraDespliegueCol{flex-direction:column;display:flex;gap:10px;background:#000;border:4px solid #f00;border-radius:15px;padding:13px;box-shadow:0 0 40px #f00;animation:slideDown.5s}
-@keyframes slideDown{0%{opacity:0;transform:translateY(-30px)}100%{opacity:1;transform:translateY(0)}}
+.barraDespliegue{display:flex;gap:9px;margin:14px 0;align-items:center}
+.barraDespliegueCol{flex-direction:column;display:flex;gap:10px;background:#000;border:4px solid #f00;border-radius:15px;padding:13px;box-shadow:0 0 40px #f00}
 #loginAdmin{position:fixed;inset:0;background:#000;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
 .loginBox{background:#0a0000;border:5px solid #f00;border-radius:24px;padding:28px;max-width:390px;width:100%;box-shadow:0 0 70px #f00;text-align:center}
-select.barraInput{color:#f00}
+.linkBox{width:100%;padding:12px;background:#100;border:2px dashed #f00;color:#f00;border-radius:10px;margin-top:8px;font-size:11px;word-break:break-all}
 </style></head><body>
-<div class="top"><b style="color:#f00;text-shadow:0 0 30px #f00;font-size:22px">🔥 TEMO V36 🔥</b><b style="color:#f00">LIMPIA</b></div>
+<div class="top"><b style="color:#f00;text-shadow:0 0 30px #f00;font-size:20px">🔥 TEMO V40 🔥</b><b style="color:#f00">15% REVS</b></div>
+<div id="refBanner"></div>
 <div style="margin:12px;display:flex;flex-direction:column;gap:12px">
-<a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥" target="_blank" style="display:block;padding:20px;background:#f00;color:#fff;border-radius:15px;text-align:center;font-weight:900;text-decoration:none;font-size:20px;box-shadow:0 0 40px #f00">💬 WHATSAPP PARA COMPRAR</a>
-<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ" target="_blank" style="display:block;padding:17px;background:#000;border:4px solid #f00;color:#f00;border-radius:15px;text-align:center;font-weight:900;text-decoration:none;box-shadow:0 0 40px #f00">👥 GRUPO OFICIAL</a>
+<a id="btnWhaPrincipal" href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥" target="_blank" style="display:block;padding:20px;background:#f00;color:#fff;border-radius:15px;text-align:center;font-weight:900;text-decoration:none;font-size:20px;box-shadow:0 0 40px #f00">💬 WHATSAPP PARA COMPRAR</a>
+<button onclick="document.getElementById('revRegisterModal').style.display='flex'" style="width:100%;padding:17px;background:#000;border:4px solid #f00;color:#f00;border-radius:15px;font-weight:900;box-shadow:0 0 40px #f00">👥 QUIERO SER REVENDEDOR - 15% POR VENTA</button>
 </div>
 <div id="lista"></div><div id="pagosFront"></div>
+
 <div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:13px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px;margin-top:14px;font-weight:900">CERRAR</button></div></div>
-<div id="loginAdmin"><div class="loginBox"><h2 style="color:#f00">🔥 TEMOSTOR 🔥</h2><input id="adminUser" placeholder="USUARIO" style="width:100%;padding:15px;background:#000;border:3px solid #f00;color:#fff;border-radius:13px;margin:9px 0;text-align:center;font-weight:900"><input id="adminPass" type="password" placeholder="CONTRASEÑA" style="width:100%;padding:15px;background:#000;border:3px solid #f00;color:#fff;border-radius:13px;margin:9px 0;text-align:center;font-weight:900"><button onclick="checkAdmin()" style="width:100%;padding:15px;background:#f00;color:#fff;border:none;border-radius:13px;font-weight:900;box-shadow:0 0 40px #f00">⚡ ENTRAR ⚡</button></div></div>
+
+<div id="revRegisterModal" class="modal"><div class="modalBox"><h2 style="color:#f00;text-align:center">👥 SER REVENDEDOR 15%</h2><p style="text-align:center;color:#fff;margin:10px 0;font-size:12px">Tú pones tu nombre y ganas 15% por cada venta</p><input id="regNombre" class="barraInput" placeholder="TU NOMBRE Ej: PEPE" style="margin:8px 0"><input id="regWhats" class="barraInput" placeholder="TU WHATSAPP Ej: 523224528803" style="margin:8px 0"><input id="regCodigo" class="barraInput" placeholder="TU CODIGO Ej: pepe123" style="margin:8px 0"><div id="previewLink" class="linkBox">Tu link: temomods.vercel.app/?ref=TU_CODIGO</div><button onclick="registrarRevPublico()" style="width:100%;padding:16px;background:#f00;color:#fff;border:none;border-radius:13px;font-weight:900;margin-top:12px;box-shadow:0 0 30px #f00">✅ CREAR MI LINK - GANO 15%</button><button onclick="document.getElementById('revRegisterModal').style.display='none'" style="width:100%;padding:13px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px;margin-top:10px;font-weight:900">CERRAR</button></div></div>
+
+<div id="revPanelModal" class="modal"><div class="modalBox"><h2 id="revPanelTitle" style="color:#f00;text-align:center"></h2><div id="revPanelBody"></div><button onclick="document.getElementById('revPanelModal').style.display='none'" style="width:100%;padding:13px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px;margin-top:14px;font-weight:900">CERRAR</button></div></div>
+
+<div id="loginAdmin"><div class="loginBox"><h2 style="color:#f00">🔥 TEMOSTOR 🔥</h2><input id="adminUser" placeholder="USUARIO" style="width:100%;padding:15px;background:#000;border:3px solid #f00;color:#fff;border-radius:13px;margin:9px 0;text-align:center;font-weight:900"><input id="adminPass" type="password" placeholder="CONTRASEÑA" style="width:100%;padding:15px;background:#000;border:3px solid #f00;color:#fff;border-radius:13px;margin:9px 0;text-align:center;font-weight:900"><button onclick="checkAdmin()" style="width:100%;padding:15px;background:#f00;color:#fff;border:none;border-radius:13px;font-weight:900">⚡ ENTRAR ⚡</button></div></div>
 
 <div id="admin"><div style="max-width:900px;margin:auto">
-<h1 style="color:#f00;text-align:center;text-shadow:0 0 35px #f00">🔥 ADMIN V36 LIMPIA 🔥</h1>
-<div style="display:flex;gap:10px;margin:16px 0"><button onclick="guardarConfig()" style="flex:1;padding:18px;background:#f00;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:18px;box-shadow:0 0 40px #f00">💾 GUARDAR TODO</button><button onclick="descargarBackup()" style="flex:1;padding:18px;background:#000;border:4px solid #f00;color:#f00;border-radius:14px;font-weight:900;box-shadow:0 0 30px #f00">📥 BACKUP</button><button onclick="limpiarBancosVacios()" style="padding:18px;background:#000;border:4px solid #f00;color:#f00;border-radius:14px;font-weight:900">🧹 LIMPIAR VACIOS</button></div>
-<div id="saveStatus" style="text-align:center;color:#f00;margin:8px 0">✅ AUTOGUARDADO ACTIVO - Solo se ven los que agregas</div>
-<input type="file" id="fileBackup" style="display:none" accept=".json" onchange="cargarBackup(event)">
-
-<div class="cardCrear"><h2 style="color:#f00;text-align:center">➕ CREAR PRODUCTO</h2><div style="display:flex;gap:10px;margin-top:12px"><input id="newProdName" class="barraInputCrear" placeholder="EJ: LUNA CLIENT" style="flex:1"><input id="newProdIcon" class="barraInputCrear" placeholder="🌙" style="width:95px;text-align:center"></div><button class="btnCrear" onclick="crearProducto()">➕ CREAR PRODUCTO ROJO NEON</button></div>
-
-<div class="cardPago"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3 style="color:#f00">💳 METODOS - SOLO LOS AGREGADOS</h3><small style="color:#f00">Dale + para agregar banco de cualquier país</small></div><button class="btnPlus" onclick="addBarraPago()">+</button></div><div id="pagosList" style="margin-top:14px"></div><div id="contPagos"></div></div>
-
+<h1 style="color:#f00;text-align:center;text-shadow:0 0 35px #f00">🔥 ADMIN V40 - 15% REVS 🔥</h1>
+<div style="display:flex;gap:10px;margin:16px 0;flex-wrap:wrap"><button onclick="guardarConfig()" style="flex:1;padding:18px;background:#f00;color:#fff;border:none;border-radius:14px;font-weight:900;box-shadow:0 0 40px #f00">💾 GUARDAR TODO</button><button onclick="limpiarVaciosForzado()" style="flex:1;padding:18px;background:#000;border:4px solid #f00;color:#f00;border-radius:14px;font-weight:900">🧹 LIMPIAR VACIOS</button></div>
+<div id="saveStatus" style="text-align:center;color:#f00;margin:8px 0">✅ V40 - 15% FIJO</div>
+<div class="cardCrear"><h2 style="color:#f00;text-align:center">➕ CREAR PRODUCTO</h2><div style="display:flex;gap:10px;margin-top:12px"><input id="newProdName" class="barraInput" placeholder="EJ: LUNA CLIENT" style="flex:1"><input id="newProdIcon" class="barraInput" placeholder="🌙" style="width:95px;text-align:center"></div><button class="btnCrear" onclick="crearProducto()">➕ CREAR PRODUCTO</button></div>
+<div class="cardPago"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3 style="color:#f00">💳 METODOS - SOLO AGREGADOS</h3></div><button class="btnPlus" onclick="addBarraPago()">+</button></div><div id="pagosList" style="margin-top:14px"></div><div id="contPagos"></div></div>
+<div class="cardPago"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3 style="color:#f00">👥 REVENDEDORES - 15% C/U</h3><small style="color:#f00">Se registran solos desde tienda</small></div><button class="btnPlus" onclick="addBarraRevendedor()">+</button></div><div id="revList" style="margin-top:14px"></div><div id="contRev"></div></div>
 <div id="aList"></div><button onclick="location.href=location.pathname" style="width:100%;padding:16px;background:#000;border:4px solid #f00;color:#f00;border-radius:14px;margin:28px 0;font-weight:900">← SALIR</button>
 </div></div>
 
 <script>
-let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-30d',d:'30 DIAS',p:25}]},{n:'HOLO VIP',i:'💎',id:'holo',ps:[{id:'holo-1d',d:'1 DIA',p:5}]}];
-const BANCOS_POR_PAIS={
-"MEXICO 🇲🇽":["OXXO","CLABE STP","BBVA MX","Banorte","Santander MX","Azteca","Nu MX","Mercado Pago MX","Binance ID","Spin OXXO","HSBC MX"],
-"COLOMBIA 🇨🇴":["Bancolombia Ahorros","Nequi","Daviplata","Nu Bank CO","Bre-B","BBVA CO","Davivienda","Transfiya","Dale","Lulo Bank"],
-"PERU 🇵🇪":["Yape","Yape QR","Plin","BCP Ahorros","Interbank","BBVA Peru","Scotiabank Peru","Banco de la Nacion"],
-"CHILE 🇨🇱":["Banco Estado Caja Vecina","Banco Estado Transferencia","CuentaRUT","Mach","Mercado Pago CL","Banco de Chile","Santander CL","BCI","Tenpo"],
-"ECUADOR 🇪🇨":["Banco Guayaquil Ahorro","Banco Pichincha Ahorro","Produbanco","Banco Bolivariano","DeUna","PeiGo"],
-"BRASIL 🇧🇷":["PIX CPF","PIX Celular","PIX Aleatorio","Nubank","PicPay","Mercado Pago BR"],
-"ARGENTINA 🇦🇷":["Mercado Pago","CBU / CVU","Uala","Brubank","Naranja X","BBVA AR","Lemon Cash","Prex AR"],
-"BOLIVIA 🇧🇴":["Tigo Money","Banco Union","Banco Nacional","BNB","Yape Bolivia"],
-"VENEZUELA 🇻🇪":["Pago Movil","Binance VZLA","Zinli","Banesco","Provincial"],
-"URUGUAY 🇺🇾":["Prex","Mercado Pago UY","Midinero","BROU"],
-"PARAGUAY 🇵🇾":["Tigo Money PY","Ueno","Personal Pay PY","Bancard"],
-"DOMINICANA 🇩🇴":["Banreservas","Banco Popular","BHD Leon","Qik"],
-"PANAMA 🇵🇦":["Yappy","Nequi Panama","Banistmo"],
-"COSTA RICA 🇨🇷":["SINPE Movil","BAC CR","BNCR"],
-"GUATEMALA 🇬🇹":["Nequi GT","Bi Bank","Banrural"],
-"USA 🇺🇸":["Zelle","PayPal","CashApp","Venmo"],
-"ESPAÑA 🇪🇸":["Bizum","IBAN","Revolut","N26"]
-};
-
+let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12}]},{n:'HOLO VIP',i:'💎',id:'holo',ps:[{id:'holo-1d',d:'1 DIA',p:5}]}];
+const BANCOS_POR_PAIS={"MEXICO 🇲🇽":["OXXO","BBVA MX","Binance ID"],"COLOMBIA 🇨🇴":["Bancolombia","Nequi","Daviplata"],"PERU 🇵🇪":["Yape","Plin","BCP"],"USA 🇺🇸":["Zelle","PayPal"]};
 if(!localStorage.getItem('temo_prods')) localStorage.setItem('temo_prods',JSON.stringify(BASE));
-// --- AQUI ESTA EL FIX: Ya no carga 130, solo deja los que tienen dato o los que tú agregaste ---
 let guardados = JSON.parse(localStorage.getItem('temo_pagos')||'[]');
-if(guardados.length===0){
-// Solo 3 de ejemplo limpios como tu foto
-localStorage.setItem('temo_pagos',JSON.stringify([
-{nombre:'MEXICO 🇲🇽 - OXXO',dato:'722969027'},
-{nombre:'MEXICO 🇲🇽 - BBVA',dato:'224217032'},
-{nombre:'MEXICO 🇲🇽 - Binance ID',dato:'1150540078'}
-]));
-}
-
+if(location.search.includes('limpiar')){let conDato=guardados.filter(x=>x.dato&&x.dato.toString().trim()!=='');localStorage.setItem('temo_pagos',JSON.stringify(conDato));alert('🧹 '+ (guardados.length-conDato.length)+' borrados');location.href=location.pathname+'?temo7';}
+if(guardados.length===0){localStorage.setItem('temo_pagos',JSON.stringify([{nombre:'MEXICO 🇲🇽 - Binance ID',dato:'1150540078'}]));}
 function getProds(){return JSON.parse(localStorage.getItem('temo_prods'))}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p));render();renderPagosFront()}
 function getPagos(){return JSON.parse(localStorage.getItem('temo_pagos'))}function setPagos(p){localStorage.setItem('temo_pagos',JSON.stringify(p));renderPagosFront();renderPagos()}
 function getKeys(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
-function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let s=0;p.ps.forEach(pl=>s+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small>Stock: '+s+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}
-function renderPagosFront(){let pagos=getPagos();let c=document.getElementById('pagosFront');if(pagos.length===0){c.innerHTML='';return;}c.innerHTML='<div class=pagosBox><h3 style="color:#f00;text-align:center">💳 '+pagos.length+' METODOS AGREGADOS</h3>'+pagos.map(p=>'<div class=pagoItem><b>'+p.nombre+'</b><span style=color:#f00;font-weight:900">'+p.dato+'</span></div>').join('')+'</div>'}
+function getRevs(){try{return JSON.parse(localStorage.getItem('temo_revs')||'[]')}catch(e){return[]}}function setRevs(r){localStorage.setItem('temo_revs',JSON.stringify(r));renderRevs();}
+function getRef(){return new URLSearchParams(location.search).get('ref')}function getPanel(){return new URLSearchParams(location.search).get('panel')}
+
+document.getElementById('regCodigo').addEventListener('input',function(){let cod=this.value.toLowerCase().replace(/[^a-z0-9]/g,'');this.value=cod;document.getElementById('previewLink').innerText='Tu link: '+location.origin+location.pathname+'?ref='+ (cod||'TU_CODIGO');});
+
+function registrarRevPublico(){
+let nombre=document.getElementById('regNombre').value.trim().toUpperCase();
+let whats=document.getElementById('regWhats').value.trim().replace(/[^0-9]/g,'');
+let codigo=document.getElementById('regCodigo').value.trim().toLowerCase().replace(/[^a-z0-9]/g,'');
+if(!nombre||!whats||!codigo){alert('Llena todo bro');return;}
+if(codigo.length<3){alert('Código mínimo 3 letras');return;}
+let revs=getRevs();
+if(revs.find(x=>x.codigo.toLowerCase()===codigo.toLowerCase())){alert('Código ya existe');return;}
+revs.push({nombre:nombre,comision:'15',codigo:codigo,whatsapp:whats,ventas:0,ganancia:0,fecha:new Date().toLocaleString()});
+setRevs(revs);
+document.getElementById('revRegisterModal').style.display='none';
+let link=location.origin+location.pathname+'?ref='+codigo;
+let panelLink=location.origin+location.pathname+'?panel='+codigo;
+alert('✅ CREADO\n\nNombre: '+nombre+'\nGanas 15% por venta\nTu link: '+link+'\nTu panel: '+panelLink);
+navigator.clipboard.writeText(link);
+}
+
+function registrarVentaRef(producto, precio){
+let ref=getRef();if(!ref) return;
+let revs=getRevs();let idx=revs.findIndex(x=>x.codigo.toLowerCase()===ref.toLowerCase());
+if(idx>=0){
+let p = parseFloat(precio||0);
+let comision = p * 0.15;
+revs[idx].ventas=(revs[idx].ventas||0)+1;
+revs[idx].ganancia=(parseFloat(revs[idx].ganancia||0)+comision);
+localStorage.setItem('temo_revs',JSON.stringify(revs));
+let log=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]');
+log.push({codigo:ref.toLowerCase(),producto:producto||'PRODUCTO',precio:p,comision:comision.toFixed(2),fecha:new Date().toLocaleString()});
+localStorage.setItem('temo_ventas_log',JSON.stringify(log));
+}
+}
+
+function render(){
+let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';
+prods.forEach(p=>{let s=0;p.ps.forEach(pl=>s+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small>Stock: '+s+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)});
+}
+function renderPagosFront(){
+let pagos=getPagos().filter(p=>p.dato&&p.dato.toString().trim()!=='');
+let c=document.getElementById('pagosFront');
+if(pagos.length===0){c.innerHTML='<div class=pagosBox><h3 style="color:#f00;text-align:center">💳 SIN METODOS</h3></div>';}
+else{c.innerHTML='<div class=pagosBox><h3 style="color:#f00;text-align:center">💳 '+pagos.length+' METODOS</h3>'+pagos.map(p=>'<div class=pagoItem><b>'+p.nombre+'</b><span style=color:#f00;font-weight:900">'+p.dato+'</span></div>').join('')+'</div>';}
+let ref=getRef();let banner=document.getElementById('refBanner');
+if(ref){
+let revs=getRevs();let r=revs.find(x=>x.codigo.toLowerCase()===ref.toLowerCase());
+if(r){
+banner.innerHTML=`<div class=revBanner><b style="color:#fff">👥 COMPRANDO CON: ${r.nombre} | 15% PARA ÉL</b><br><small style="color:#fff"><a href="?panel=${r.codigo}" style="color:#fff;text-decoration:underline">Mi panel</a></small></div>`;
+let btn=document.getElementById('btnWhaPrincipal');
+btn.href=`https://wa.me/${r.whatsapp}?text=Hola%20${r.nombre}%20vengo%20de%20tu%20link%20🔥`;
+btn.innerText=`💬 COMPRAR CON ${r.nombre}`;
+}
+}else{banner.innerHTML='';}
+let panel=getPanel();if(panel){mostrarPanelRev(panel);}
+}
 render();renderPagosFront();
-function ver(pid){let p=getProds().find(x=>x.id===pid);document.getElementById('planTitle').innerText=p.i+' '+p.n;let l=document.getElementById('planList');l.innerHTML='';p.ps.forEach(pl=>{let div=document.createElement('div');div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:3px solid #f00;padding:14px;border-radius:14px;margin:10px 0;box-shadow:0 0 30px #f00';div.innerHTML='<div><b>'+pl.d+'</b><br><b style=color:#f00>$'+pl.p+'</b></div><a href="https://wa.me/523224528803?text=Hola%20quiero%20'+encodeURIComponent(p.n+' '+pl.d)+'" target="_blank" style="padding:12px 18px;background:#f00;color:#fff;border-radius:24px;text-decoration:none;font-weight:900">COMPRAR</a>';l.appendChild(div)});document.getElementById('planModal').style.display='flex'}
+
+function mostrarPanelRev(codigo){
+let revs=getRevs();let r=revs.find(x=>x.codigo.toLowerCase()===codigo.toLowerCase());if(!r) return;
+let log=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]').filter(v=>v.codigo===codigo.toLowerCase());
+let link=location.origin+location.pathname+'?ref='+codigo;
+document.getElementById('revPanelTitle').innerText='👥 PANEL DE '+r.nombre;
+document.getElementById('revPanelBody').innerHTML=`
+<div style="text-align:center">
+<div style="background:#000;border:3px solid #f00;border-radius:12px;padding:12px;margin:10px 0"><b style="color:#f00">TU NOMBRE</b><br><input id="panelNombre" value="${r.nombre}" class="barraInput" style="text-align:center;margin-top:8px"><button onclick="actualizarPanelNombre('${r.codigo}')" style="margin-top:8px;padding:10px 18px;background:#f00;color:#fff;border:none;border-radius:10px;font-weight:900">💾 CAMBIAR NOMBRE</button></div>
+<div style="display:flex;gap:10px"><div style="flex:1;background:#000;border:3px solid #f00;border-radius:12px;padding:12px"><b style="color:#f00;font-size:22px">${r.ventas||0}</b><br><small>VENTAS</small></div><div style="flex:1;background:#000;border:3px solid #f00;border-radius:12px;padding:12px"><b style="color:#0f0;font-size:18px">$${(parseFloat(r.ganancia||0)).toFixed(2)}</b><br><small>GANADO 15%</small></div></div>
+<div class=linkBox style="margin-top:12px">🔗 TU LINK:<br>${link}<br><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="margin-top:8px;padding:8px 14px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900">📋 COPIAR LINK</button></div>
+<div style="margin-top:12px;text-align:left;max-height:220px;overflow:auto;background:#000;border:3px solid #f00;border-radius:12px;padding:10px">${log.length===0?'<small style=color:#f00>Sin ventas aún - comparte tu link</small>':log.map(v=>`<div style="border-bottom:1px solid #300;padding:6px 0"><small>📅 ${v.fecha}<br>📦 ${v.producto} $${v.precio} → 💰 $${v.comision} (15%)</small></div>`).join('')}</div>
+</div>`;
+document.getElementById('revPanelModal').style.display='flex';
+}
+function actualizarPanelNombre(codigo){let nuevo=document.getElementById('panelNombre').value.trim().toUpperCase();if(!nuevo) return;let revs=getRevs();let idx=revs.findIndex(x=>x.codigo.toLowerCase()===codigo.toLowerCase());if(idx>=0){revs[idx].nombre=nuevo;localStorage.setItem('temo_revs',JSON.stringify(revs));alert('✅ Nombre cambiado a '+nuevo);location.reload();}}
+
+function ver(pid){
+let p=getProds().find(x=>x.id===pid);
+document.getElementById('planTitle').innerText=p.i+' '+p.n;
+let l=document.getElementById('planList');l.innerHTML='';
+let ref=getRef();let revs=getRevs();let r=null;if(ref){r=revs.find(x=>x.codigo.toLowerCase()===ref.toLowerCase());}
+p.ps.forEach(pl=>{
+let div=document.createElement('div');div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:3px solid #f00;padding:14px;border-radius:14px;margin:10px 0;box-shadow:0 0 30px #f00';
+let waNum = r? r.whatsapp : '523224528803';
+let waText = r? `Hola%20${r.nombre}%20quiero%20${encodeURIComponent(p.n+' '+pl.d)}%20codigo:${r.codigo}` : `Hola%20quiero%20${encodeURIComponent(p.n+' '+pl.d)}`;
+div.innerHTML='<div><b>'+pl.d+'</b><br><b style=color:#f00>$'+pl.p+'</b></div><a onclick="registrarVentaRef(\''+p.n+' '+pl.d+'\',\''+pl.p+'\')" href="https://wa.me/'+waNum+'?text='+waText+'" target="_blank" style="padding:12px 18px;background:#f00;color:#fff;border-radius:24px;text-decoration:none;font-weight:900">COMPRAR</a>';
+l.appendChild(div)
+});
+document.getElementById('planModal').style.display='flex'
+}
 if(location.search.includes('temo7'))document.getElementById('loginAdmin').style.display='flex';
-function checkAdmin(){if(document.getElementById('adminUser').value==="TEMOSTOR"&&document.getElementById('adminPass').value==="TEMOSTOR"){document.getElementById('loginAdmin').style.display='none';document.getElementById('admin').style.display='block';renderAdmin();renderPagos();}}
+function checkAdmin(){if(document.getElementById('adminUser').value==="TEMOSTOR"&&document.getElementById('adminPass').value==="TEMOSTOR"){document.getElementById('loginAdmin').style.display='none';document.getElementById('admin').style.display='block';renderAdmin();renderPagos();renderRevs();}}
 function crearProducto(){let n=document.getElementById('newProdName').value.trim().toUpperCase();let i=document.getElementById('newProdIcon').value.trim()||'🔥';if(!n)return;let pr=getProds();pr.push({n:n,i:i,id:n.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+Date.now(),ps:[]});setProds(pr);document.getElementById('newProdName').value='';renderAdmin();}
-function renderPagos(){let pagos=getPagos();let c=document.getElementById('pagosList');c.innerHTML='';if(pagos.length===0){c.innerHTML='<div style="text-align:center;color:#f00;padding:20px">No hay bancos aún<br>Dale al + rojo para agregar tu primer banco</div>';return;}pagos.forEach((p,i)=>{let d=document.createElement('div');d.className='barraDespliegue';d.innerHTML=`<input id="pagoN-${i}" value="${p.nombre}" class="barraInput" style="flex:1"><input id="pagoD-${i}" value="${p.dato}" class="barraInput" style="flex:1"><button onclick="savePago(${i})" style="width:54px;height:54px;background:#f00;color:#fff;border:none;border-radius:13px">💾</button><button onclick="delPago(${i})" style="width:54px;height:54px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button>`;c.appendChild(d);});}
-function addBarraPago(){let cont=document.getElementById('contPagos');let id='pago-'+Date.now();let paises=Object.keys(BANCOS_POR_PAIS);let d=document.createElement('div');d.id='row-'+id;d.className='barraDespliegueCol';d.innerHTML=`<div style="display:flex;gap:9px;width:100%;flex-wrap:wrap"><select id="paisSel-${id}" onchange="cambiarBancos('${id}')" class="barraInput" style="flex:1;border:4px solid #f00;color:#f00"><option value="">🌎 PAIS</option>${paises.map(p=>`<option value="${p}">${p}</option>`).join('')}<option value="OTRO">✏️ OTRO</option></select><select id="bancoSel-${id}" onchange="autoFill('${id}')" class="barraInput" style="flex:1;border:4px solid #f00;color:#f00"><option value="">🏦 BANCO</option></select></div><div style="display:flex;gap:9px;width:100%"><input id="newPN-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="Ej: MEXICO - BBVA"><input id="newPD-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="NUMERO"><button onclick="guardarNuevoPago('${id}')" style="width:70px;height:70px;background:#f00;color:#fff;border:none;border-radius:18px;font-size:34px">✔</button><button onclick="document.getElementById('row-${id}').remove()" style="width:56px;height:56px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button></div>`;cont.appendChild(d);d.scrollIntoView({behavior:'smooth'});}
-function cambiarBancos(id){let pais=document.getElementById('paisSel-'+id).value;let sel=document.getElementById('bancoSel-'+id);sel.innerHTML='<option value="">🏦 BANCO</option>';if(BANCOS_POR_PAIS[pais]){BANCOS_POR_PAIS[pais].forEach(b=>{let o=document.createElement('option');o.value=b;o.innerText=b;sel.appendChild(o);});sel.innerHTML+='<option value="CUSTOM">✏️ OTRO BANCO</option>';}}
-function autoFill(id){let pais=document.getElementById('paisSel-'+id).value;let banco=document.getElementById('bancoSel-'+id).value;let input=document.getElementById('newPN-'+id);if(!banco||banco==='CUSTOM'){input.value='';return;}input.value=pais+' - '+banco;}
-function guardarNuevoPago(id){let n=document.getElementById('newPN-'+id).value.trim();let d=document.getElementById('newPD-'+id).value.trim();if(!n||!d){alert('Llena nombre y numero');return;}let p=getPagos();p.push({nombre:n.toUpperCase(),dato:d});setPagos(p);document.getElementById('row-'+id).remove();}
+function renderPagos(){let pagos=getPagos();let c=document.getElementById('pagosList');c.innerHTML='';if(pagos.length===0){c.innerHTML='<div style="text-align:center;color:#f00;padding:20px">No hay bancos</div>';return;}pagos.forEach((p,i)=>{let d=document.createElement('div');d.className='barraDespliegue';d.innerHTML=`<input id="pagoN-${i}" value="${p.nombre}" class="barraInput" style="flex:1"><input id="pagoD-${i}" value="${p.dato}" class="barraInput" style="flex:1"><button onclick="savePago(${i})" style="width:54px;height:54px;background:#f00;color:#fff;border:none;border-radius:13px">💾</button><button onclick="delPago(${i})" style="width:54px;height:54px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button>`;c.appendChild(d);});}
+function addBarraPago(){let cont=document.getElementById('contPagos');let id='pago-'+Date.now();let paises=Object.keys(BANCOS_POR_PAIS);let d=document.createElement('div');d.id='row-'+id;d.className='barraDespliegueCol';d.innerHTML=`<div style="display:flex;gap:9px;width:100%"><select id="paisSel-${id}" onchange="cambiarBancos('${id}')" class="barraInput" style="flex:1"><option value="">🌎 PAIS</option>${paises.map(p=>`<option value="${p}">${p}</option>`).join('')}</select><select id="bancoSel-${id}" onchange="autoFill('${id}')" class="barraInput" style="flex:1"><option value="">🏦 BANCO</option></select></div><div style="display:flex;gap:9px;width:100%"><input id="newPN-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="Ej: MEXICO - BBVA"><input id="newPD-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="NUMERO"><button onclick="guardarNuevoPago('${id}')" style="width:70px;height:70px;background:#f00;color:#fff;border:none;border-radius:18px;font-size:34px">✔</button><button onclick="document.getElementById('row-${id}').remove()" style="width:56px;height:56px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button></div>`;cont.appendChild(d);}
+function cambiarBancos(id){let pais=document.getElementById('paisSel-'+id).value;let sel=document.getElementById('bancoSel-'+id);sel.innerHTML='<option value="">🏦 BANCO</option>';if(BANCOS_POR_PAIS[pais]){BANCOS_POR_PAIS[pais].forEach(b=>{let o=document.createElement('option');o.value=b;o.innerText=b;sel.appendChild(o);});}}
+function autoFill(id){let pais=document.getElementById('paisSel-'+id).value;let banco=document.getElementById('bancoSel-'+id).value;let input=document.getElementById('newPN-'+id);if(!banco){input.value='';return;}input.value=pais+' - '+banco;}
+function guardarNuevoPago(id){let n=document.getElementById('newPN-'+id).value.trim();let d=document.getElementById('newPD-'+id).value.trim();if(!n||!d){alert('Llena');return;}let p=getPagos();p.push({nombre:n.toUpperCase(),dato:d});setPagos(p);document.getElementById('row-'+id).remove();}
 function savePago(i){let p=getPagos();p[i].nombre=document.getElementById(`pagoN-${i}`).value.toUpperCase();p[i].dato=document.getElementById(`pagoD-${i}`).value;setPagos(p);}
-function delPago(i){if(!confirm('Borrar banco?'))return;let p=getPagos();p.splice(i,1);setPagos(p);}
-function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html=`<div style="display:flex;gap:9px"><input id="name-${p.id}" value="${p.n}" class="barraInput" style="flex:1"><input id="icon-${p.id}" value="${p.i}" class="barraInput" style="width:80px;text-align:center"><button onclick="saveName('${p.id}')" style="width:64px;height:64px;background:#f00;color:#fff;border:none;border-radius:14px">💾</button><button onclick="delProd('${p.id}')" style="width:64px;height:64px;background:#000;border:3px solid #f00;color:#f00;border-radius:14px">X</button></div><div style="margin:16px 0 8px;display:flex;gap:12px;align-items:center"><div style="flex:1;color:#f00;font-weight:900">🔴 DURACIONES:</div><button class="btnPlus" onclick="addBarra('${p.id}')">+</button></div><div id="cont-${p.id}">`;p.ps.forEach(pl=>{html+=`<div class="barraDespliegue"><input id="d-${pl.id}" value="${pl.d}" class="barraInput" style="flex:1"><input id="p-${pl.id}" type="number" value="${pl.p}" class="barraInput" style="width:115px"><button onclick="savePlan('${p.id}','${pl.id}')" style="width:54px;height:54px;background:#f00;color:#fff;border:none;border-radius:13px">💾</button><button onclick="delPlan('${p.id}','${pl.id}')" style="width:54px;height:54px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button></div><textarea id="ta-${pl.id}" style="width:100%;min-height:65px;background:#000;border:3px solid #f00;color:#fff;border-radius:11px;padding:10px;margin-bottom:13px">${(keys[pl.id]?keys[pl.id].join('\n'):'')}</textarea><button onclick="saveKeys('${pl.id}')" style="width:100%;padding:11px;background:#000;border:3px solid #f00;color:#f00;border-radius:11px;margin-bottom:16px;font-weight:900">💾 GUARDAR KEYS (${keys[pl.id]?keys[pl.id].length:0})</button>`;});html+=`</div>`;card.innerHTML=html;c.appendChild(card)});}
+function delPago(i){let p=getPagos();p.splice(i,1);setPagos(p);}
+function renderRevs(){
+let revs=getRevs();let c=document.getElementById('revList');if(!c) return;c.innerHTML='';
+if(revs.length===0){c.innerHTML='<div style="text-align:center;color:#f00;padding:15px">No hay revendedores</div>';return;}
+revs.forEach((r,i)=>{
+let link = location.origin+location.pathname+'?ref='+r.codigo;
+let panel = location.origin+location.pathname+'?panel='+r.codigo;
+let div=document.createElement('div');div.style.cssText='background:#000;border:4px solid #f00;border-radius:15px;padding:13px;margin:10px 0;box-shadow:0 0 30px #f00';
+div.innerHTML=`
+<div style="display:flex;gap:8px;width:100%"><input id="revN-${i}" value="${r.nombre}" class="barraInput" style="flex:1"><input id="revCod-${i}" value="${r.codigo}" class="barraInput" style="width:100px"><input id="revW-${i}" value="${r.whatsapp}" class="barraInput" style="flex:1"></div>
+<div style="display:flex;gap:8px;width:100%;margin-top:8px"><button onclick="saveRev(${i})" style="flex:1;padding:10px;background:#f00;color:#fff;border:none;border-radius:10px;font-weight:900">💾 NOMBRE</button><button onclick="delRev(${i})" style="width:54px;background:#000;border:3px solid #f00;color:#f00;border-radius:10px">X</button><button onclick="verVentasRev('${r.codigo}')" style="flex:1;padding:10px;background:#000;border:3px solid #f00;color:#f00;border-radius:10px;font-weight:900">📊 VER</button></div>
+<div class=linkBox>🔗 ${link}<br>📊 ${panel}</div>
+<div style="margin-top:6px;display:flex;justify-content:space-between"><small style="color:#f00">Ventas: ${r.ventas||0}</small><small style="color:#0f0;font-weight:900">💰 $${(parseFloat(r.ganancia||0)).toFixed(2)} (15%)</small></div>
+`;
+c.appendChild(div);
+});
+}
+function addBarraRevendedor(){let cont=document.getElementById('contRev');let id='rev-'+Date.now();let d=document.createElement('div');d.id='row-'+id;d.className='barraDespliegueCol';d.innerHTML=`<div style="display:flex;gap:8px;width:100%"><input id="newRN-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="Nombre"><input id="newRCod-${id}" class="barraInput" style="width:110px;border:4px solid #f00" placeholder="codigo"></div><div style="display:flex;gap:8px;width:100%;margin-top:8px"><input id="newRW-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="WhatsApp"><button onclick="guardarNuevoRev('${id}')" style="width:70px;height:70px;background:#f00;color:#fff;border:none;border-radius:18px;font-size:34px">✔</button><button onclick="document.getElementById('row-${id}').remove()" style="width:56px;height:56px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button></div>`;cont.appendChild(d);}
+function guardarNuevoRev(id){let n=document.getElementById('newRN-'+id).value.trim().toUpperCase();let cod=document.getElementById('newRCod-'+id).value.trim().toLowerCase().replace(/[^a-z0-9]/g,'')||n.toLowerCase()+Date.now().toString().slice(-3);let w=document.getElementById('newRW-'+id).value.trim();if(!n||!w){alert('Nombre y whatsapp');return;}let r=getRevs();r.push({nombre:n,comision:'15',codigo:cod,whatsapp:w,ventas:0,ganancia:0,fecha:new Date().toLocaleString()});setRevs(r);document.getElementById('row-'+id).remove();}
+function saveRev(i){let r=getRevs();r[i].nombre=document.getElementById(`revN-${i}`).value.toUpperCase();r[i].codigo=document.getElementById(`revCod-${i}`).value.toLowerCase();r[i].whatsapp=document.getElementById(`revW-${i}`).value;setRevs(r);}
+function delRev(i){if(!confirm('Borrar revendedor?'))return;let r=getRevs();r.splice(i,1);setRevs(r);}
+function verVentasRev(codigo){let ventas=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]').filter(v=>v.codigo===codigo.toLowerCase());if(ventas.length===0){alert('Sin ventas');return;}let total=ventas.reduce((s,v)=>s+parseFloat(v.comision||0),0);alert('VENTAS DE '+codigo.toUpperCase()+':\nTotal ganado: $'+total.toFixed(2)+'\n\n'+ventas.map(v=>`📅 ${v.fecha} - ${v.producto} $${v.precio} → $${v.comision}`).join('\n'));}
+function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html=`<div style="display:flex;gap:9px"><input id="name-${p.id}" value="${p.n}" class="barraInput" style="flex:1"><input id="icon-${p.id}" value="${p.i}" class="barraInput" style="width:80px;text-align:center"><button onclick="saveName('${p.id}')" style="width:64px;height:64px;background:#f00;color:#fff;border:none;border-radius:14px">💾</button><button onclick="delProd('${p.id}')" style="width:64px;height:64px;background:#000;border:3px solid #f00;color:#f00;border-radius:14px">X</button></div><div style="margin:16px 0 8px;display:flex;gap:12px;align-items:center"><div style="flex:1;color:#f00;font-weight:900">🔴 DURACIONES:</div><button class="btnPlus" onclick="addBarra('${p.id}')">+</button></div><div id="cont-${p.id}">`;p.ps.forEach(pl=>{html+=`<div class="barraDespliegue"><input id="d-${pl.id}" value="${pl.d}" class="barraInput" style="flex:1"><input id="p-${pl.id}" type="number" value="${pl.p}" class="barraInput" style="width:115px"><button onclick="savePlan('${p.id}','${pl.id}')" style="width:54px;height:54px;background:#f00;color:#fff;border:none;border-radius:13px">💾</button><button onclick="delPlan('${p.id}','${pl.id}')" style="width:54px;height:54px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button></div><textarea id="ta-${pl.id}" style="width:100%;min-height:65px;background:#000;border:3px solid #f00;color:#fff;border-radius:11px;padding:10px;margin-bottom:13px">${(keys[pl.id]?keys[pl.id].join('\n'):'')}</textarea><button onclick="saveKeys('${pl.id}')" style="width:100%;padding:11px;background:#000;border:3px solid #f00;color:#f00;border-radius:11px;margin-bottom:16px;font-weight:900">💾 KEYS (${keys[pl.id]?keys[pl.id].length:0})</button>`;});html+=`</div>`;card.innerHTML=html;c.appendChild(card)});}
 function addBarra(pid){let cont=document.getElementById('cont-'+pid);let id='temp-'+Date.now();let d=document.createElement('div');d.id='row-'+id;d.className='barraDespliegue';d.innerHTML=`<input id="newD-${id}" class="barraInput" style="flex:1;border:4px solid #f00" placeholder="EJ: 7 DIAS"><input id="newP-${id}" type="number" class="barraInput" style="width:115px;border:4px solid #f00" placeholder="$"><button onclick="guardarNuevaBarra('${pid}','${id}')" style="width:70px;height:70px;background:#f00;color:#fff;border:none;border-radius:18px;font-size:34px">✔</button><button onclick="document.getElementById('row-${id}').remove()" style="width:54px;height:54px;background:#000;border:3px solid #f00;color:#f00;border-radius:13px">X</button>`;cont.appendChild(d);}
 function guardarNuevaBarra(pid,id){let d=document.getElementById('newD-'+id).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+id).value);if(!d||isNaN(pr))return;let prods=getProds();prods.find(x=>x.id===pid).ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin();}
 function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value.toUpperCase();p.i=document.getElementById('icon-'+pid).value;setProds(prods);renderAdmin()}
@@ -104,9 +187,6 @@ function delProd(pid){setProds(getProds().filter(x=>x.id!==pid));renderAdmin()}
 function savePlan(pid,plid){let pl=getProds().find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(getProds());}
 function delPlan(pid,plid){let p=getProds().find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(getProds());renderAdmin();}
 function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();}
-function guardarConfig(){localStorage.setItem('temo_prods',JSON.stringify(getProds()));localStorage.setItem('temo_pagos',JSON.stringify(getPagos()));localStorage.setItem('temo_keys',JSON.stringify(getKeys()));document.getElementById('saveStatus').innerText='✅ GUARDADO - '+new Date().toLocaleTimeString();alert('✅ TODO GUARDADO');}
-function descargarBackup(){let data={prods:getProds(),pagos:getPagos(),keys:getKeys(),fecha:new Date().toISOString()};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='TEMO-BACKUP-'+new Date().toISOString().slice(0,10)+'.json';a.click();}
-function cargarBackup(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(ev){try{let data=JSON.parse(ev.target.result);if(data.prods)localStorage.setItem('temo_prods',JSON.stringify(data.prods));if(data.pagos)localStorage.setItem('temo_pagos',JSON.stringify(data.pagos));if(data.keys)localStorage.setItem('temo_keys',JSON.stringify(data.keys));alert('✅ RESTAURADO');location.reload();}catch{alert('❌ Archivo invalido');}};r.readAsText(f);}
-function limpiarBancosVacios(){let p=getPagos().filter(x=>x.dato && x.dato.trim()!=='');if(p.length===0){if(!confirm('Borrar TODOS los bancos? Quedará vacío'))return;}localStorage.setItem('temo_pagos',JSON.stringify(p));renderPagos();renderPagosFront();document.getElementById('saveStatus').innerText='🧹 BANCOS VACIOS ELIMINADOS - Solo quedan '+p.length;}
-setInterval(()=>{if(document.getElementById('admin').style.display==='block'){localStorage.setItem('temo_prods',JSON.stringify(getProds()));localStorage.setItem('temo_pagos',JSON.stringify(getPagos()));localStorage.setItem('temo_keys',JSON.stringify(getKeys()));}},3000);
+function guardarConfig(){localStorage.setItem('temo_prods',JSON.stringify(getProds()));localStorage.setItem('temo_pagos',JSON.stringify(getPagos()));localStorage.setItem('temo_keys',JSON.stringify(getKeys()));localStorage.setItem('temo_revs',JSON.stringify(getRevs()));alert('✅ TODO GUARDADO - 15% FIJO');}
+function limpiarVaciosForzado(){let todos=JSON.parse(localStorage.getItem('temo_pagos')||'[]');let conDato=todos.filter(x=>x.dato&&x.dato.toString().trim()!=='');localStorage.setItem('temo_pagos',JSON.stringify(conDato));renderPagos();renderPagosFront();}
 </script></body></html>
