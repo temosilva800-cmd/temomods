@@ -1,160 +1,123 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V27 + PAGOS</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V30 RED NEON</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black,Arial}
 body{background:#000;color:#fff}
-.top{padding:14px;display:flex;justify-content:space-between;border-bottom:3px solid #f00;box-shadow:0 0 20px #f00;background:#000;position:sticky;top:0;z-index:99}
-.prod{margin:12px;background:#120000;border:2px solid #f00;border-radius:14px;padding:14px;display:flex;justify-content:space-between;box-shadow:0 0 15px #f00}
-.btn{background:#f00;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-weight:900}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;padding:10px}
-.modalBox{background:#0a0000;border:3px solid #f00;border-radius:18px;padding:18px;width:100%;max-width:420px;box-shadow:0 0 30px #f00}
-#admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:10px}
-.cardA{background:#0a0000;border:3px solid #f00;border-radius:16px;padding:12px;margin:14px 0;box-shadow:0 0 20px #f00}
-.cardPago{background:#001a1a;border:3px solid #0ff;border-radius:16px;padding:12px;margin:14px 0;box-shadow:0 0 20px #0ff}
-.barraInput{width:100%;padding:16px;background:#000;border:2px solid #f00;color:#fff;border-radius:12px;font-weight:900;font-size:16px;box-shadow:0 0 12px #f00;text-transform:uppercase}
-.barraInputPago{width:100%;padding:14px;background:#000;border:2px solid #0ff;color:#fff;border-radius:12px;font-weight:900;box-shadow:0 0 12px #0ff}
-.btnPlus{width:56px;height:56px;background:#f00;color:#fff;border:none;border-radius:14px;font-size:32px;font-weight:900;box-shadow:0 0 20px #f00;cursor:pointer}
-.btnPlusPago{width:56px;height:56px;background:#0ff;color:#000;border:none;border-radius:14px;font-size:32px;font-weight:900;box-shadow:0 0 20px #0ff;cursor:pointer}
-.barraDespliegue{display:flex;gap:8px;margin:10px 0;animation:slideDown 0.3s ease;align-items:center}
-@keyframes slideDown{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}
+.top{padding:16px;display:flex;justify-content:space-between;border-bottom:4px solid #f00;box-shadow:0 0 30px #f00,0 0 60px #f00;position:sticky;top:0;background:#000;z-index:99}
+.banner{margin:12px;border:4px solid #f00;border-radius:16px;padding:18px;text-align:center;color:#f00;box-shadow:0 0 35px #f00,0 0 60px #f00;background:#0a0000;text-shadow:0 0 15px #f00}
+.prod{margin:12px;background:#120000;border:3px solid #f00;border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 25px #f00,0 0 40px #f00}
+.btn{background:#f00;color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900;box-shadow:0 0 20px #f00,0 0 35px #f00;cursor:pointer}
+.pagosBox{margin:12px;background:#0a0000;border:4px solid #f00;border-radius:16px;padding:14px;box-shadow:0 0 30px #f00,0 0 50px #f00}
+.pagoItem{background:#000;border:3px solid #f00;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;box-shadow:0 0 15px #f00}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:12px}
+.modalBox{background:#0a0000;border:4px solid #f00;border-radius:20px;padding:20px;max-width:440px;width:100%;box-shadow:0 0 50px #f00,0 0 80px #f00}
+#admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
+.cardA{background:#0a0000;border:4px solid #f00;border-radius:18px;padding:14px;margin:16px 0;box-shadow:0 0 30px #f00,0 0 50px #f00}
+.cardPago{background:#0a0000;border:4px solid #f00;border-radius:18px;padding:14px;margin:16px 0;box-shadow:0 0 30px #f00,0 0 50px #f00}
+.cardCrear{background:#0a0000;border:4px solid #f00;border-radius:18px;padding:16px;margin:16px 0;box-shadow:0 0 35px #f00,0 0 70px #f00}
+.barraInput{width:100%;padding:16px;background:#000;border:3px solid #f00;color:#fff;border-radius:12px;font-weight:900;font-size:16px;box-shadow:0 0 20px #f00;text-transform:uppercase}
+.barraInput:focus{border-color:#f00;box-shadow:0 0 30px #f00,0 0 50px #f00;outline:none}
+.barraInputCrear{width:100%;padding:18px;background:#000;border:4px solid #f00;color:#fff;border-radius:12px;font-weight:900;box-shadow:0 0 25px #f00,0 0 40px #f00;font-size:17px;text-transform:uppercase}
+.barraInputCrear:focus{box-shadow:0 0 35px #f00,0 0 60px #f00;outline:none}
+.btnPlus{width:62px;height:62px;background:#f00;color:#fff;border:none;border-radius:16px;font-size:38px;font-weight:900;box-shadow:0 0 30px #f00,0 0 50px #f00;cursor:pointer;transition:0.15s}
+.btnPlus:active{transform:scale(0.9);box-shadow:0 0 50px #f00}
+.btnCrear{width:100%;padding:20px;background:#f00;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:21px;box-shadow:0 0 35px #f00,0 0 70px #f00;cursor:pointer;margin-top:10px;transition:0.15s;text-shadow:0 0 10px #fff}
+.btnCrear:active{transform:scale(0.97)}
+.barraDespliegue{display:flex;gap:8px;margin:12px 0;animation:slideDown 0.35s cubic-bezier(0.34,1.56,0.64,1);align-items:center}
+@keyframes slideDown{0%{opacity:0;transform:translateY(-20px) scale(0.9)}100%{opacity:1;transform:translateY(0) scale(1)}}
 #loginAdmin{position:fixed;inset:0;background:#000;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
-.loginBox{background:#0a0000;border:3px solid #f00;border-radius:20px;padding:20px;width:100%;max-width:350px;box-shadow:0 0 30px #f00}
+.loginBox{background:#0a0000;border:4px solid #f00;border-radius:20px;padding:26px;max-width:380px;width:100%;box-shadow:0 0 50px #f00,0 0 80px #f00;text-align:center}
 </style></head><body>
-<div class="top"><b style="color:#f00">🔥 TEMO STORE V27</b><b style="color:#0f0">ONLINE</b></div>
-<div style="margin:12px;display:flex;flex-direction:column;gap:8px">
-<a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥%20quiero%20comprar" target="_blank" style="display:block;padding:16px;background:#25D366;color:#fff;border-radius:12px;text-align:center;font-weight:900;text-decoration:none">💬 PARA COMPRAR AQUÍ</a>
-<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?s=cl&p=a&mlu=4&ilr=4" target="_blank" style="display:block;padding:14px;background:#000;border:2px solid #f00;color:#f00;border-radius:12px;text-align:center;font-weight:900;text-decoration:none;box-shadow:0 0 15px #f00">👥 GRUPO OFICIAL</a>
+<div class="top"><b style="color:#f00;text-shadow:0 0 20px #f00,0 0 40px #f00;font-size:20px">🔥 TEMO STORE V30 🔥</b><b style="color:#f00;text-shadow:0 0 15px #f00">RED NEON</b></div>
+<div class="banner">⚡ V30 ROJO NEON TOTAL ⚡<br><small>TODO EN ROJO SANGRE</small></div>
+<div style="margin:12px;display:flex;flex-direction:column;gap:10px">
+<a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥%20quiero%20comprar" target="_blank" style="display:block;padding:18px;background:#f00;color:#fff;border-radius:14px;text-align:center;font-weight:900;text-decoration:none;font-size:19px;box-shadow:0 0 30px #f00,0 0 60px #f00;text-shadow:0 0 10px #fff">💬 PARA COMPRAR AQUÍ - WHATSAPP</a>
+<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?s=cl&p=a&mlu=4&ilr=4" target="_blank" style="display:block;padding:16px;background:#000;border:4px solid #f00;color:#f00;border-radius:14px;text-align:center;font-weight:900;text-decoration:none;box-shadow:0 0 30px #f00,0 0 50px #f00;text-shadow:0 0 15px #f00">👥 GRUPO OFICIAL - LINK NUEVO</a>
 </div>
 <div id="lista"></div>
-<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:2px solid #f00;color:#f00;border-radius:8px;margin-top:10px">CERRAR</button></div></div>
-<div id="loginAdmin"><div class="loginBox"><h2 style="color:#f00">TEMOSTOR</h2><input id="adminUser" placeholder="USUARIO" style="width:100%;padding:12px;background:#000;border:2px solid #f00;color:#fff;border-radius:10px;margin:6px 0;text-align:center"><input id="adminPass" type="password" placeholder="CONTRASEÑA" style="width:100%;padding:12px;background:#000;border:2px solid #f00;color:#fff;border-radius:10px;margin:6px 0;text-align:center"><button onclick="checkAdmin()" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:10px;font-weight:900">ENTRAR</button></div></div>
-<div id="admin"><div style="max-width:800px;margin:auto">
-<h2 style="color:#f00;text-align:center">🔥 ADMIN V27 🔥</h2>
+<div id="pagosFront"></div>
+
+<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00;text-shadow:0 0 15px #f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:12px;background:#000;border:3px solid #f00;color:#f00;border-radius:10px;margin-top:12px;font-weight:900;box-shadow:0 0 15px #f00">CERRAR</button></div></div>
+
+<div id="loginAdmin"><div class="loginBox"><h2 style="color:#f00;text-shadow:0 0 20px #f00">🔥 TEMOSTOR 🔥</h2><input id="adminUser" placeholder="USUARIO" style="width:100%;padding:14px;background:#000;border:3px solid #f00;color:#fff;border-radius:12px;margin:8px 0;text-align:center;font-weight:900;box-shadow:0 0 15px #f00"><input id="adminPass" type="password" placeholder="CONTRASEÑA" style="width:100%;padding:14px;background:#000;border:3px solid #f00;color:#fff;border-radius:12px;margin:8px 0;text-align:center;font-weight:900;box-shadow:0 0 15px #f00"><button onclick="checkAdmin()" style="width:100%;padding:14px;background:#f00;color:#fff;border:none;border-radius:12px;font-weight:900;box-shadow:0 0 30px #f00;font-size:18px;text-shadow:0 0 10px #fff">⚡ ENTRAR ⚡</button></div></div>
+
+<div id="admin"><div style="max-width:820px;margin:auto">
+<h1 style="color:#f00;text-align:center;text-shadow:0 0 25px #f00,0 0 50px #f00;margin:10px 0">🔥 ADMIN V30 RED NEON 🔥</h1>
+
+<div class="cardCrear">
+<h2 style="color:#f00;text-align:center;text-shadow:0 0 20px #f00,0 0 40px #f00">➕ CREAR NUEVO PRODUCTO</h2>
+<p style="text-align:center;color:#f00;font-size:12px;margin:6px 0;text-shadow:0 0 10px #f00">TODO ROJO NEON</p>
+<div style="display:flex;gap:10px;margin-top:10px">
+<input id="newProdName" class="barraInputCrear" placeholder="NOMBRE EJ: LUNA" style="flex:1">
+<input id="newProdIcon" class="barraInputCrear" placeholder="🌙" style="width:90px;text-align:center">
+</div>
+<button class="btnCrear" onclick="crearProducto()">➕ CREAR PRODUCTO</button>
+</div>
 
 <div class="cardPago">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-<h3 style="color:#0ff;text-shadow:0 0 10px #0ff">💳 MÉTODOS DE PAGO</h3>
-<button class="btnPlusPago" onclick="addBarraPago()">+</button>
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><h3 style="color:#f00;text-shadow:0 0 20px #f00">💳 MÉTODOS DE PAGO</h3><small style="color:#f00;text-shadow:0 0 10px #f00">Todo rojo neon - Botón + rojo</small></div>
+<button class="btnPlus" onclick="addBarraPago()">+</button>
 </div>
-<div id="pagosList"></div>
+<div id="pagosList" style="margin-top:12px"></div>
 <div id="contPagos"></div>
 </div>
 
 <div id="aList"></div>
-<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#111;border:2px solid #f00;color:#f00;border-radius:10px;margin:20px 0">← SALIR</button>
+<button onclick="location.href=location.pathname" style="width:100%;padding:14px;background:#000;border:4px solid #f00;color:#f00;border-radius:12px;margin:24px 0;font-weight:900;box-shadow:0 0 25px #f00;text-shadow:0 0 15px #f00">← SALIR DEL ADMIN</button>
 </div></div>
+
 <script>
-let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4}]},{n:'HOLO VIP',i:'💎',id:'holo',ps:[]}];
-let PAGOS_BASE=[{nombre:'🟡 Binance',dato:'1150540078'},{nombre:'🔵 OXXO',dato:'2242 1703 2080 0281'},{nombre:'🏦 CLABE',dato:'722969027389252036'}];
+let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12}]},{n:'HOLO VIP',i:'💎',id:'holo',ps:[{id:'holo-1d',d:'1 DIA',p:5}]},{n:'HG PROXY',i:'💰',id:'hgproxy',ps:[]}];
+let PAGOS_BASE=[{nombre:'🟡 Binance ID',dato:'1150540078'},{nombre:'🔵 OXXO',dato:'2242 1703 2080 0281'},{nombre:'🏦 CLABE STP',dato:'722969027389252036'}];
 if(!localStorage.getItem('temo_prods'))localStorage.setItem('temo_prods',JSON.stringify(BASE));
 if(!localStorage.getItem('temo_pagos'))localStorage.setItem('temo_pagos',JSON.stringify(PAGOS_BASE));
-function getProds(){return JSON.parse(localStorage.getItem('temo_prods'))}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
-function getPagos(){return JSON.parse(localStorage.getItem('temo_pagos')||'[]')}function setPagos(p){localStorage.setItem('temo_pagos',JSON.stringify(p))}
-function getKeys(){return JSON.parse(localStorage.getItem('temo_keys')||'{}')}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
-function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small>Stock '+stock+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
-function ver(pid){let p=getProds().find(x=>x.id===pid);document.getElementById('planTitle').innerText=p.i+' '+p.n;let list=document.getElementById('planList');list.innerHTML='';p.ps.forEach(pl=>{let div=document.createElement('div');div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:2px solid #f00;padding:12px;border-radius:12px;margin:8px 0';div.innerHTML='<div><b>'+pl.d+'</b><br><b style=color:#f00>$'+pl.p+'</b></div><a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20quiero%20'+encodeURIComponent(p.n+' '+pl.d)+'" target="_blank" style="padding:10px 16px;background:#25D366;color:#fff;border-radius:20px;text-decoration:none;font-weight:900">COMPRAR</a>';list.appendChild(div)});document.getElementById('planModal').style.display='flex'}
+function getProds(){try{return JSON.parse(localStorage.getItem('temo_prods'))}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p));render();renderPagosFront()}
+function getPagos(){try{return JSON.parse(localStorage.getItem('temo_pagos'))}catch(e){return PAGOS_BASE}}function setPagos(p){localStorage.setItem('temo_pagos',JSON.stringify(p));renderPagosFront();renderPagos()}
+function getKeys(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
+
+function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let div=document.createElement('div');div.className='prod';div.innerHTML='<div><b style=text-shadow:0 0 15px #f00>'+p.i+' '+p.n+'</b><br><small style=color:#f88>Stock: '+stock+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(div)})}
+function renderPagosFront(){let pagos=getPagos();let c=document.getElementById('pagosFront');if(!c)return;c.innerHTML='<div class=pagosBox><h3 style="color:#f00;text-align:center;text-shadow:0 0 20px #f00">💳 METODOS DE PAGO - RED NEON</h3>'+pagos.map(p=>'<div class=pagoItem><b style=text-shadow:0 0 10px #f00>'+p.nombre+'</b><span style=color:#f00;font-weight:900;text-shadow:0 0 10px #f00>'+p.dato+'</span></div>').join('')+'</div>'}
+render();renderPagosFront();
+
+function ver(pid){let p=getProds().find(x=>x.id===pid);document.getElementById('planTitle').innerText=p.i+' '+p.n;let list=document.getElementById('planList');list.innerHTML='';if(p.ps.length===0)list.innerHTML='<p style=color:#888>Sin duraciones aún</p>';p.ps.forEach(pl=>{let div=document.createElement('div');div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:3px solid #f00;padding:14px;border-radius:14px;margin:10px 0;box-shadow:0 0 20px #f00';div.innerHTML='<div style=text-align:left><b>'+pl.d+'</b><br><b style=color:#f00;text-shadow:0 0 15px #f00>$'+pl.p+'</b></div><a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20quiero%20'+encodeURIComponent(p.n+' '+pl.d)+' $'+pl.p+'" target="_blank" style="padding:12px 18px;background:#f00;color:#fff;border-radius:24px;text-decoration:none;font-weight:900;box-shadow:0 0 20px #f00">💬 COMPRAR</a>';list.appendChild(div)});document.getElementById('planModal').style.display='flex'}
 if(location.search.includes('temo7'))document.getElementById('loginAdmin').style.display='flex';
 function checkAdmin(){if(document.getElementById('adminUser').value==="TEMOSTOR"&&document.getElementById('adminPass').value==="TEMOSTOR"){document.getElementById('loginAdmin').style.display='none';document.getElementById('admin').style.display='block';renderAdmin();renderPagos();}else alert("❌")}
 
-function renderPagos(){
-let pagos=getPagos();
-let c=document.getElementById('pagosList');
-c.innerHTML='';
-pagos.forEach((p,i)=>{
-let div=document.createElement('div');
-div.className='barraDespliegue';
-div.innerHTML=`
-<input id="pagoN-${i}" value="${p.nombre}" class="barraInputPago" style="flex:1">
-<input id="pagoD-${i}" value="${p.dato}" class="barraInputPago" style="flex:1">
-<button onclick="savePago(${i})" style="width:48px;height:48px;background:#0ff;border:none;border-radius:10px">💾</button>
-<button onclick="delPago(${i})" style="width:48px;height:48px;background:#f00;color:#fff;border:none;border-radius:10px">X</button>
-`;
-c.appendChild(div);
-});
+function crearProducto(){
+let nombre=document.getElementById('newProdName').value.trim().toUpperCase();
+let icono=document.getElementById('newProdIcon').value.trim()||'🔥';
+if(!nombre){alert('❌ Escribe el nombre');return}
+let prods=getProds();
+let id=nombre.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+Date.now();
+prods.push({n:nombre,i:icono,id:id,ps:[]});
+setProds(prods);
+document.getElementById('newProdName').value='';document.getElementById('newProdIcon').value='';
+renderAdmin();
+alert('✅ Creado en ROJO NEON: '+icono+' '+nombre);
 }
-function addBarraPago(){
-let cont=document.getElementById('contPagos');
-let tempId='pago-'+Date.now();
-let div=document.createElement('div');
-div.className='barraDespliegue';
-div.id='row-'+tempId;
-div.innerHTML=`
-<input id="newPN-${tempId}" class="barraInputPago" style="flex:1;background:#000;border:3px solid #0ff;box-shadow:0 0 20px #0ff" placeholder="🇺🇸 Zelle">
-<input id="newPD-${tempId}" class="barraInputPago" style="flex:1;background:#000;border:3px solid #0ff;box-shadow:0 0 20px #0ff" placeholder="Dato">
-<button onclick="guardarNuevoPago('${tempId}')" style="width:56px;height:56px;background:#0f0;color:#000;border:none;border-radius:14px;font-size:24px;font-weight:900;box-shadow:0 0 20px #0f0">✔</button>
-<button onclick="document.getElementById('row-${tempId}').remove()" style="width:48px;height:48px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px">X</button>
-`;
-cont.appendChild(div);
-}
-function guardarNuevoPago(tempId){
-let n=document.getElementById('newPN-'+tempId).value.trim();
-let d=document.getElementById('newPD-'+tempId).value.trim();
-if(!n||!d){alert('Llena nombre y dato');return}
-let pagos=getPagos();pagos.push({nombre:n,dato:d});setPagos(pagos);document.getElementById('row-'+tempId).remove();renderPagos();
-}
-function savePago(i){let pagos=getPagos();pagos[i].nombre=document.getElementById(`pagoN-${i}`).value;pagos[i].dato=document.getElementById(`pagoD-${i}`).value;setPagos(pagos);renderPagos();}
-function delPago(i){if(!confirm('Borrar pago?'))return;let pagos=getPagos();pagos.splice(i,1);setPagos(pagos);renderPagos();}
+
+function renderPagos(){let pagos=getPagos();let c=document.getElementById('pagosList');c.innerHTML='';pagos.forEach((p,i)=>{let div=document.createElement('div');div.className='barraDespliegue';div.innerHTML=`<input id="pagoN-${i}" value="${p.nombre}" class="barraInput" style="flex:1"><input id="pagoD-${i}" value="${p.dato}" class="barraInput" style="flex:1"><button onclick="savePago(${i})" style="width:52px;height:52px;background:#f00;color:#fff;border:none;border-radius:12px;box-shadow:0 0 20px #f00">💾</button><button onclick="delPago(${i})" style="width:52px;height:52px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px;box-shadow:0 0 15px #f00">X</button>`;c.appendChild(div);});}
+function addBarraPago(){let cont=document.getElementById('contPagos');let tempId='pago-'+Date.now();let div=document.createElement('div');div.className='barraDespliegue';div.id='row-'+tempId;div.innerHTML=`<input id="newPN-${tempId}" class="barraInput" style="flex:1;border:4px solid #f00;box-shadow:0 0 30px #f00" placeholder="Ej: PayPal"><input id="newPD-${tempId}" class="barraInput" style="flex:1;border:4px solid #f00;box-shadow:0 0 30px #f00" placeholder="dato"><button onclick="guardarNuevoPago('${tempId}')" style="width:62px;height:62px;background:#f00;color:#fff;border:none;border-radius:16px;font-size:28px;font-weight:900;box-shadow:0 0 30px #f00">✔</button><button onclick="document.getElementById('row-${tempId}').remove()" style="width:52px;height:52px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px">X</button>`;cont.appendChild(div);div.scrollIntoView({behavior:'smooth'});}
+function guardarNuevoPago(tempId){let n=document.getElementById('newPN-'+tempId).value.trim();let d=document.getElementById('newPD-'+tempId).value.trim();if(!n||!d){alert('Llena los 2');return}let pagos=getPagos();pagos.push({nombre:n,dato:d});setPagos(pagos);document.getElementById('row-'+tempId).remove();}
+function savePago(i){let pagos=getPagos();pagos[i].nombre=document.getElementById(`pagoN-${i}`).value;pagos[i].dato=document.getElementById(`pagoD-${i}`).value;setPagos(pagos);}
+function delPago(i){if(!confirm('Borrar pago?'))return;let pagos=getPagos();pagos.splice(i,1);setPagos(pagos);}
 
 function renderAdmin(){
 let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';
 prods.forEach(p=>{
 let card=document.createElement('div');card.className='cardA';
-let html=`
-<div style="display:flex;gap:8px;align-items:center">
-<input id="name-${p.id}" value="${p.n}" class="barraInput" style="flex:1" placeholder="NOMBRE">
-<input id="icon-${p.id}" value="${p.i}" class="barraInput" style="width:65px;text-align:center">
-<button onclick="saveName('${p.id}')" style="width:56px;height:56px;background:#ff0;border:none;border-radius:14px;font-size:22px">💾</button>
-<button onclick="delProd('${p.id}')" style="width:56px;height:56px;background:#f00;color:#fff;border:none;border-radius:14px">X</button>
-</div>
-<div style="margin:12px 0;display:flex;gap:8px;align-items:center">
-<div style="flex:1;color:#f00;font-weight:900">DURACIONES:</div>
-<button class="btnPlus" onclick="addBarra('${p.id}')">+</button>
-</div>
-<div id="cont-${p.id}">
-`;
+let html=`<div style="display:flex;gap:8px;align-items:center"><input id="name-${p.id}" value="${p.n}" class="barraInput" style="flex:1"><input id="icon-${p.id}" value="${p.i}" class="barraInput" style="width:75px;text-align:center"><button onclick="saveName('${p.id}')" style="width:60px;height:60px;background:#f00;color:#fff;border:none;border-radius:14px;box-shadow:0 0 20px #f00">💾</button><button onclick="delProd('${p.id}')" style="width:60px;height:60px;background:#000;border:3px solid #f00;color:#f00;border-radius:14px;box-shadow:0 0 15px #f00">X</button></div><div style="margin:14px 0 6px;display:flex;gap:10px;align-items:center"><div style="flex:1;color:#f00;font-weight:900;text-shadow:0 0 15px #f00">DURACIONES - TODO ROJO:</div><button class="btnPlus" onclick="addBarra('${p.id}')">+</button></div><div id="cont-${p.id}">`;
 p.ps.forEach(pl=>{
-html+=`
-<div class="barraDespliegue" id="row-${pl.id}">
-<input id="d-${pl.id}" value="${pl.d}" class="barraInput" style="flex:1;padding:12px">
-<input id="p-${pl.id}" type="number" value="${pl.p}" class="barraInput" style="width:100px;padding:12px" placeholder="$">
-<button onclick="savePlan('${p.id}','${pl.id}')" style="width:48px;height:48px;background:#f00;color:#fff;border:none;border-radius:10px">💾</button>
-<button onclick="delPlan('${p.id}','${pl.id}')" style="width:48px;height:48px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px">X</button>
-</div>
-<textarea id="ta-${pl.id}" style="width:100%;min-height:50px;background:#000;border:1px solid #f00;color:#fff;border-radius:8px;padding:6px;margin-bottom:10px">${(keys[pl.id]?keys[pl.id].join('\n'):'')}</textarea>
-`;
+let cnt=keys[pl.id]?keys[pl.id].length:0;
+html+=`<div class="barraDespliegue" id="row-${pl.id}"><input id="d-${pl.id}" value="${pl.d}" class="barraInput" style="flex:1;padding:14px"><input id="p-${pl.id}" type="number" value="${pl.p}" class="barraInput" style="width:110px;padding:14px"><button onclick="savePlan('${p.id}','${pl.id}')" style="width:52px;height:52px;background:#f00;color:#fff;border:none;border-radius:12px;box-shadow:0 0 15px #f00">💾</button><button onclick="delPlan('${p.id}','${pl.id}')" style="width:52px;height:52px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px">X</button></div><textarea id="ta-${pl.id}" placeholder="Keys una por línea" style="width:100%;min-height:60px;background:#000;border:3px solid #f00;color:#fff;border-radius:10px;padding:8px;margin-bottom:12px;box-shadow:0 0 15px #f00">${(keys[pl.id]?keys[pl.id].join('\n'):'')}</textarea><button onclick="saveKeys('${pl.id}')" style="width:100%;padding:10px;background:#000;border:3px solid #f00;color:#f00;border-radius:10px;margin-bottom:14px;font-weight:900;box-shadow:0 0 15px #f00;text-shadow:0 0 10px #f00">💾 GUARDAR KEYS ROJO (${cnt})</button>`;
 });
-html+=`</div>`;
-card.innerHTML=html;c.appendChild(card)
+html+=`</div>`;card.innerHTML=html;c.appendChild(card)
 })}
-
-function addBarra(pid){
-let cont=document.getElementById('cont-'+pid);
-let tempId='temp-'+Date.now();
-let div=document.createElement('div');
-div.className='barraDespliegue';
-div.id='row-'+tempId;
-div.innerHTML=`
-<input id="newD-${tempId}" class="barraInput" style="flex:1;padding:12px;background:#000;border:3px solid #f00;box-shadow:0 0 20px #f00" placeholder="EJ: 7 DIAS">
-<input id="newP-${tempId}" type="number" class="barraInput" style="width:100px;padding:12px;background:#000;border:3px solid #f00;box-shadow:0 0 20px #f00" placeholder="$">
-<button onclick="guardarNuevaBarra('${pid}','${tempId}')" style="width:56px;height:56px;background:#0f0;color:#000;border:none;border-radius:14px;font-size:24px;font-weight:900;box-shadow:0 0 20px #0f0">✔</button>
-<button onclick="document.getElementById('row-${tempId}').remove()" style="width:48px;height:48px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px">X</button>
-`;
-cont.appendChild(div);
-div.scrollIntoView({behavior:'smooth'});
-}
-function guardarNuevaBarra(pid,tempId){
-let d=document.getElementById('newD-'+tempId).value.trim().toUpperCase();
-let pr=parseInt(document.getElementById('newP-'+tempId).value);
-if(!d){alert('Escribe duracion EJ: 7 DIAS');return}
-if(isNaN(pr)){alert('Escribe precio');return}
-let prods=getProds();
-let p=prods.find(x=>x.id===pid);
-p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});
-setProds(prods);
-renderAdmin();
-render();
-}
-function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value; p.i=document.getElementById('icon-'+pid).value; setProds(prods);render();renderAdmin()}
-function delProd(pid){if(!confirm('Borrar?'))return;setProds(getProds().filter(x=>x.id!==pid));render();renderAdmin()}
-function savePlan(pid,plid){let prods=getProds();let pl=prods.find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(prods);render();renderAdmin()}
-function delPlan(pid,plid){if(!confirm('Borrar?'))return;let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(prods);renderAdmin()}
+function addBarra(pid){let cont=document.getElementById('cont-'+pid);let tempId='temp-'+Date.now();let div=document.createElement('div');div.className='barraDespliegue';div.id='row-'+tempId;div.innerHTML=`<input id="newD-${tempId}" class="barraInput" style="flex:1;padding:16px;border:4px solid #f00;box-shadow:0 0 35px #f00" placeholder="EJ: 7 DIAS"><input id="newP-${tempId}" type="number" class="barraInput" style="width:110px;padding:16px;border:4px solid #f00;box-shadow:0 0 35px #f00" placeholder="$"><button onclick="guardarNuevaBarra('${pid}','${tempId}')" style="width:62px;height:62px;background:#f00;color:#fff;border:none;border-radius:16px;font-size:28px;font-weight:900;box-shadow:0 0 35px #f00">✔</button><button onclick="document.getElementById('row-${tempId}').remove()" style="width:52px;height:52px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px">X</button>`;cont.appendChild(div);div.scrollIntoView({behavior:'smooth'});}
+function guardarNuevaBarra(pid,tempId){let d=document.getElementById('newD-'+tempId).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+tempId).value);if(!d||isNaN(pr)){alert('Llena duracion y precio');return}let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin();}
+function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value.toUpperCase();p.i=document.getElementById('icon-'+pid).value;setProds(prods);renderAdmin()}
+function delProd(pid){if(!confirm('Borrar producto?'))return;setProds(getProds().filter(x=>x.id!==pid));renderAdmin()}
+function savePlan(pid,plid){let prods=getProds();let pl=prods.find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(prods);}
+function delPlan(pid,plid){if(!confirm('Borrar?'))return;let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(prods);renderAdmin();}
+function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();alert('✅ '+lines.length+' keys guardadas en ROJO NEON');}
 </script></body></html>
