@@ -1,98 +1,131 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V55 FIX REGISTRAR</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO V58 ADMIN FORZADO</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}body{background:#000;color:#f00}
-.top{padding:18px;display:flex;justify-content:space-between;border-bottom:4px solid #f00;box-shadow:0 0 30px #f00;background:#000;position:sticky;top:0;z-index:10}
-.prod{margin:12px;background:#000;border:3px solid #f00;border-radius:18px;padding:18px;display:flex;justify-content:space-between;box-shadow:0 0 20px #f00}
-.pagosBox{margin:12px;background:#000;border:4px solid #f00;border-radius:18px;padding:16px;box-shadow:0 0 25px #f00}
-.pagoItem{background:#000;border:2px solid #f00;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;box-shadow:0 0 15px #f00}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;padding:14px}
-.modalBox{background:#000;border:4px solid #f00;border-radius:24px;padding:20px;max-width:460px;width:100%;box-shadow:0 0 30px #f00,0 0 80px #f00;max-height:92vh;overflow:auto}
-.barraInput{width:100%;padding:16px;background:#000;border:2px solid #f00;color:#f00;border-radius:13px;font-weight:900;box-shadow:0 0 15px #f00;outline:none;text-align:center}
-.btnNeonRed{width:100%;padding:17px;background:#000;border:3px solid #f00;color:#f00;border-radius:15px;font-weight:900;box-shadow:0 0 20px #f00;cursor:pointer;text-align:center;display:block;margin:6px 0;text-decoration:none}
-.btnNeonSolid{width:100%;padding:18px;background:#f00;color:#000;border:none;border-radius:15px;text-align:center;font-weight:900;font-size:18px;box-shadow:0 0 25px #f00;display:block;margin:6px 0;cursor:pointer}
-#loginAdmin{position:fixed;inset:0;background:#000;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
+.top{padding:18px;border-bottom:4px solid #f00;box-shadow:0 0 30px #f00;background:#000;position:sticky;top:0;z-index:10;text-align:center}
+.cardAdmin{background:#111;border:3px solid #f00;border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 0 20px #f00}
+.barraInput{width:100%;padding:14px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;margin:6px 0;text-align:center;font-weight:900}
+.btnR{padding:10px 20px;background:#f00;color:#000;border:none;border-radius:12px;font-weight:900;cursor:pointer;margin:6px 0;width:100%}
+.btnN{padding:10px 20px;background:#000;border:2px solid #f00;color:#f00;border-radius:12px;font-weight:900;cursor:pointer;margin:6px 0;width:100%}
 </style></head><body>
-<div class="top"><b>🔥 TEMO V55 🔥</b><b>523224528803</b></div>
-<div style="margin:12px;display:flex;flex-direction:column;gap:8px">
-<a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20TEMO%20🔥" target="_blank" class="btnNeonSolid">💬 WHATSAPP 523224528803</a>
-<button onclick="document.getElementById('revRegisterModal').style.display='flex'" class="btnNeonRed">👥 QUIERO SER REVENDEDOR - 15%</button>
-<button onclick="mostrarMiPanelDirecto()" class="btnNeonRed" style="border-color:#fff;color:#fff;box-shadow:0 0 30px #fff,0 0 60px #f00">💰 MIS VENTAS</button>
-<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ" target="_blank" class="btnNeonRed">👥 GRUPO OFICIAL</a>
+<div class="top"><b>🔥 TEMO V58 ADMIN 🔥</b></div>
+
+<div id="front" style="padding:12px">
+<button onclick="abrirVentas()" class="btnN" style="border-color:#fff;color:#fff">💰 MIS VENTAS</button>
+<div id="listaFront"></div>
+<button onclick="document.getElementById('login').style.display='flex'" class="btnN">🔑 ADMIN?temo7</button>
 </div>
-<div id="refBanner"></div><div id="lista"></div><div id="pagosFront"></div>
 
-<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00;text-align:center"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" class="btnNeonRed">CERRAR</button></div></div>
-<div id="revRegisterModal" class="modal"><div class="modalBox"><h2 style="color:#f00;text-align:center">👥 SER REVENDEDOR</h2><input id="regNombre" class="barraInput" placeholder="NOMBRE Ej: SEBA" style="margin:8px 0"><input id="regWhats" class="barraInput" placeholder="WHATSAPP" style="margin:8px 0"><input id="regCodigo" class="barraInput" placeholder="CODIGO Ej: seba" style="margin:8px 0"><div id="previewLink" style="padding:10px;border:2px dashed #f00;border-radius:10px;font-size:11px;word-break:break-all;margin-top:8px">Tu link:?ref=TU_CODIGO</div><button onclick="registrarRevPublico()" class="btnNeonSolid">✅ CREAR LINK</button><button onclick="document.getElementById('revRegisterModal').style.display='none'" class="btnNeonRed">CERRAR</button></div></div>
+<!-- MIS VENTAS MODAL -->
+<div id="ventasModal" style="position:fixed;inset:0;background:#000;z-index:999;display:none;overflow:auto;padding:12px">
+<h2 style="text-align:center" id="tituloPanel">PANEL SEBA</h2>
+<div style="display:flex;gap:10px"><div class="cardAdmin" style="flex:1;text-align:center"><b id="vCount">0</b><br>VENTAS</div><div class="cardAdmin" style="flex:1;text-align:center"><b id="gCount">$0</b><br>GANADO</div></div>
+<div class="cardAdmin"><div id="linkTxt" style="font-size:10px;word-break:break-all"></div><button onclick="navigator.clipboard.writeText(document.getElementById('linkTxt').innerText);alert('Copiado')" class="btnR">COPIAR LINK</button></div>
+<div class="cardAdmin"><b>✅ YA HICE UNA VENTA</b><input id="vProd" class="barraInput" placeholder="Ej: Holo vip"><input id="vPrecio" type="number" class="barraInput" placeholder="Ej: 30"><button onclick="registrarVenta()" class="btnR">🔥 REGISTRAR</button></div>
+<div class="cardAdmin"><div id="logVentas"></div></div>
+<button onclick="document.getElementById('ventasModal').style.display='none'" class="btnN">CERRAR</button>
+</div>
 
-<div id="revPanelModal" class="modal" style="z-index:10002"><div class="modalBox"><h2 id="revPanelTitle" style="color:#f00;text-align:center">PANEL</h2><div id="revPanelBody"></div><button onclick="document.getElementById('revPanelModal').style.display='none'" class="btnNeonRed" style="margin-top:14px">CERRAR</button></div></div>
+<!-- LOGIN -->
+<div id="login" style="position:fixed;inset:0;background:#000;z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px">
+<div class="cardAdmin" style="width:100%;max-width:400px"><h2 style="text-align:center">TEMOSTOR</h2><input id="u" class="barraInput" placeholder="USUARIO" value="TEMOSTOR"><input id="p" type="password" class="barraInput" placeholder="CONTRA" value="TEMOSTOR"><button onclick="entrarAdmin()" class="btnR">ENTRAR</button><button onclick="document.getElementById('login').style.display='none'" class="btnN">VER TIENDA</button></div>
+</div>
 
-<div id="ventaModal" class="modal" style="z-index:10003"><div class="modalBox"><h2 style="color:#f00;text-align:center">✅ YA HICE UNA VENTA</h2><input id="ventaProducto" class="barraInput" placeholder="Que vendiste? Ej: Holo vip" style="margin:10px 0"><input id="ventaPrecio" type="number" inputmode="numeric" class="barraInput" placeholder="Precio? Ej: 30" style="margin:10px 0"><button onclick="confirmarVenta()" class="btnNeonSolid">🔥 REGISTRAR</button><button onclick="document.getElementById('ventaModal').style.display='none'" class="btnNeonRed">CANCELAR</button></div></div>
-
-<div id="loginAdmin"><div class="modalBox"><h2 style="color:#f00;text-align:center">🔥 TEMOSTOR 🔥</h2><input id="adminUser" placeholder="USUARIO" class="barraInput"><input id="adminPass" type="password" placeholder="CONTRA" class="barraInput" style="margin-top:8px"><button onclick="checkAdmin()" class="btnNeonSolid" style="margin-top:12px">⚡ ENTRAR ⚡</button></div></div>
-<div id="admin" style="position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px"><div style="max-width:900px;margin:auto"><h1 style="color:#f00;text-align:center">🔥 ADMIN V55 🔥</h1><div id="aList"></div><button onclick="location.href=location.pathname" class="btnNeonRed" style="margin:20px 0">SALIR</button></div></div>
+<!-- ADMIN -->
+<div id="admin" style="position:fixed;inset:0;background:#000;z-index:10001;display:none;overflow:auto;padding:12px">
+<h1 style="text-align:center">🔥 ADMIN V58 🔥</h1>
+<div class="cardAdmin"><h3>👥 REVENDEDORES - Si no ves nada dale a CREAR SEBA</h3><div id="aRevs">CARGANDO...</div><button onclick="crearSebaForzado()" class="btnR">+ CREAR SEBA FORZADO</button><button onclick="crearChiri()" class="btnN">+ CREAR CHIRI</button></div>
+<div class="cardAdmin"><h3>📦 PRODUCTOS</h3><div id="aProds"></div></div>
+<div class="cardAdmin"><h3>📋 LOG VENTAS</h3><div id="aLogs"></div><button onclick="localStorage.setItem('temo_ventas_log','[]');renderAdmin();alert('Borrado')" class="btnN">BORRAR LOGS</button></div>
+<button onclick="location.href=location.pathname" class="btnR" style="margin-top:20px">SALIR</button>
+</div>
 
 <script>
-function getRevs(){try{return JSON.parse(localStorage.getItem('temo_revs')||'[]')}catch(e){return[]}}function setRevs(r){localStorage.setItem('temo_revs',JSON.stringify(r));}
-if(getRevs().length==0){setRevs([{nombre:'SEBA',codigo:'seba',whatsapp:'523224528803',ventas:1,ganancia:1.5}]);localStorage.setItem('temo_ventas_log',JSON.stringify([{codigo:'seba',producto:'7 días drip',precio:10,comision:'1.50',fecha:'9/9/2026, 9:39:44 p.m.'}]));}
-function getProds(){return JSON.parse(localStorage.getItem('temo_prods')||'[{"n":"DRIP CLIENT","i":"💧","id":"drip","ps":[{"id":"drip-1d","d":"1 DIA","p":3},{"id":"drip-7d","d":"7 DIAS","p":10}]}]');}
-function getPagos(){return JSON.parse(localStorage.getItem('temo_pagos')||'[{"nombre":"BINANCE","dato":"1150540078"}]');}
-function getRef(){return new URLSearchParams(location.search).get('ref')}
-function getPanel(){return new URLSearchParams(location.search).get('panel')}
-function render(){let prods=getProds();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b></div><button style="padding:10px 20px;background:#f00;color:#000;border:none;border-radius:20px;font-weight:900" onclick=ver("'+p.id+'")>VER</button>';c.appendChild(d);});let pagos=getPagos();document.getElementById('pagosFront').innerHTML='<div class=pagosBox><h3 style="text-align:center">💳 METODOS</h3>'+pagos.map(p=>'<div class=pagoItem><b>'+p.nombre+'</b><span>'+p.dato+'</span></div>').join('')+'</div>';let ref=getRef();if(ref){let r=getRevs().find(x=>x.codigo.toLowerCase()===ref.toLowerCase());if(r){document.getElementById('refBanner').innerHTML='<div style="margin:12px;border:3px solid #f00;border-radius:16px;padding:12px;text-align:center;box-shadow:0 0 20px #f00"><b>👥 COMPRANDO CON: '+r.nombre+'</b></div>';}}}
-render();
+// FORZAR DATOS SI ESTA VACIO
+let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');
+if(revs.length==0){
+  revs=[{nombre:'SEBA',codigo:'seba',ventas:1,ganancia:1.5},{nombre:'CHIRI',codigo:'chiri2370',ventas:0,ganancia:0}];
+  localStorage.setItem('temo_revs',JSON.stringify(revs));
+  localStorage.setItem('temo_ventas_log',JSON.stringify([{codigo:'seba',producto:'7 dias drip',precio:10,comision:1.5,fecha:new Date().toLocaleString()}]));
+}
+let codigoActual='seba';
 
-let codigoActualVenta='seba';
+function renderFront(){
+  document.getElementById('listaFront').innerHTML='<div class=cardAdmin>💧 DRIP CLIENT - TIENDA ACTIVA</div>';
+}
+renderFront();
 
-function cargarSeba(){
-  let revs=getRevs();
-  let r=revs.find(x=>x.codigo.toLowerCase()===codigoActualVenta.toLowerCase()) || revs[0] || {nombre:'SEBA',codigo:'seba',ventas:1,ganancia:1.5};
-  codigoActualVenta=r.codigo.toLowerCase();
-  localStorage.setItem('ultimo_panel',codigoActualVenta);
-  let log=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]').filter(v=>v.codigo===codigoActualVenta);
-  if(log.length==0 && codigoActualVenta=='seba') log=[{codigo:'seba',producto:'7 días drip',precio:10,comision:'1.50',fecha:'9/9/2026, 9:39:44 p.m.'}];
-  let link=location.origin+location.pathname+'?ref='+codigoActualVenta;
-  document.getElementById('revPanelTitle').innerHTML='👥 PANEL DE '+r.nombre;
-  document.getElementById('revPanelBody').innerHTML=`<div style="text-align:center"><button onclick="document.getElementById('ventaModal').style.display='flex'" style="width:100%;padding:18px;background:#000;border:3px solid #f00;color:#f00;border-radius:15px;font-weight:900;box-shadow:0 0 20px #f00;margin:10px 0">✅ YA HICE UNA VENTA<br><small>AVISAR AL JEFE 523224528803</small></button><div style="display:flex;gap:10px"><div style="flex:1;border:2px solid #f00;padding:14px;border-radius:15px"><b>${r.ventas||0}</b><br><small>VENTAS</small></div><div style="flex:1;border:2px solid #f00;padding:14px;border-radius:15px"><b>$${(parseFloat(r.ganancia||0)).toFixed(2)}</b><br><small>GANADO</small></div></div><div style="margin-top:10px;border:2px dashed #f00;padding:10px;border-radius:12px"><div style="font-size:11px;word-break:break-all">${link}</div><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="margin-top:8px;padding:8px 16px;background:#f00;color:#000;border:none;border-radius:8px;font-weight:900">COPIAR LINK</button></div><div style="margin-top:10px;text-align:left;max-height:200px;overflow:auto">${log.length?log.map(v=>`<div style="border-bottom:1px solid #f00;padding:6px 0"><small>📅 ${v.fecha}<br>📦 ${v.producto} $${v.precio} → $${v.comision}</small></div>`).join(''):'<small>Sin ventas</small>'}</div></div>`;
+function abrirVentas(){
+  let p=new URLSearchParams(location.search).get('panel');
+  if(p && p.trim()!='') codigoActual=p.toLowerCase();
+  codigoActual=localStorage.getItem('ultimo_panel')||codigoActual;
+  localStorage.setItem('ultimo_panel',codigoActual);
+  let r=JSON.parse(localStorage.getItem('temo_revs')||'[]').find(x=>x.codigo.toLowerCase()===codigoActual.toLowerCase())||JSON.parse(localStorage.getItem('temo_revs')||'[]')[0];
+  if(!r){alert('No hay revendedores, crea uno en admin');return;}
+  document.getElementById('tituloPanel').innerText='👥 PANEL DE '+r.nombre;
+  document.getElementById('vCount').innerText=r.ventas;
+  document.getElementById('gCount').innerText='$'+parseFloat(r.ganancia).toFixed(2);
+  document.getElementById('linkTxt').innerText=location.origin+location.pathname+'?ref='+r.codigo.toLowerCase();
+  let logs=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]').filter(x=>x.codigo===r.codigo.toLowerCase());
+  document.getElementById('logVentas').innerHTML=logs.map(l=>`<small>📅 ${l.fecha}<br>📦 ${l.producto} $${l.precio} → $${l.comision}</small><hr style="border-color:#f00">`).join('')||'Sin ventas';
+  document.getElementById('ventasModal').style.display='block';
 }
 
-function mostrarMiPanelDirecto(){
-  let p=getPanel();
-  if(p && p.trim()!=''){codigoActualVenta=p.toLowerCase();}
-  else{codigoActualVenta=localStorage.getItem('ultimo_panel')||'seba';}
-  document.getElementById('revPanelModal').style.display='flex';
-  cargarSeba();
-}
-
-function confirmarVenta(){
-  let prod=document.getElementById('ventaProducto').value.trim();
-  let prec=parseFloat(document.getElementById('ventaPrecio').value);
-  if(!prod||isNaN(prec)){alert('Pon producto y precio bro');return;}
-  if(!codigoActualVenta || codigoActualVenta.trim()==''){
-    codigoActualVenta=localStorage.getItem('ultimo_panel')||'seba';
-  }
-  codigoActualVenta=codigoActualVenta.toLowerCase();
+function registrarVenta(){
+  let prod=document.getElementById('vProd').value.trim();
+  let prec=parseFloat(document.getElementById('vPrecio').value);
+  if(!prod||isNaN(prec)){alert('Llena producto y precio');return;}
   let com=prec*0.15;
-  let revs=getRevs();
-  let idx=revs.findIndex(x=>x.codigo.toLowerCase()===codigoActualVenta);
-  if(idx<0){
-    if(revs.length>0){idx=0; codigoActualVenta=revs[0].codigo.toLowerCase();}
-    else{alert('No hay revendedor');return;}
-  }
-  revs[idx].ventas=(revs[idx].ventas||0)+1;
-  revs[idx].ganancia=parseFloat(revs[idx].ganancia||0)+com;
-  setRevs(revs);
-  let log=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]');
-  log.push({codigo:codigoActualVenta,producto:prod,precio:prec,comision:com.toFixed(2),fecha:new Date().toLocaleString()});
-  localStorage.setItem('temo_ventas_log',JSON.stringify(log));
-  document.getElementById('ventaModal').style.display='none';
-  document.getElementById('ventaProducto').value='';
-  document.getElementById('ventaPrecio').value='';
-  cargarSeba();
-  window.open('https://wa.me/523224528803?text=🔥 VENTA '+encodeURIComponent(revs[idx].nombre)+'%0A📦 '+encodeURIComponent(prod)+' $'+prec+'%0A💰 Com $'+com.toFixed(2),'_blank');
+  let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');
+  let idx=revs.findIndex(x=>x.codigo.toLowerCase()===codigoActual.toLowerCase());
+  if(idx<0) idx=0;
+  revs[idx].ventas++;
+  revs[idx].ganancia+=com;
+  localStorage.setItem('temo_revs',JSON.stringify(revs));
+  let logs=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]');
+  logs.push({codigo:codigoActual,producto:prod,precio:prec,comision:com,fecha:new Date().toLocaleString()});
+  localStorage.setItem('temo_ventas_log',JSON.stringify(logs));
+  document.getElementById('vProd').value='';document.getElementById('vPrecio').value='';
+  abrirVentas();
+  renderAdmin();
+  alert('REGISTRADO '+prod+' $'+prec+' com $'+com.toFixed(2));
 }
 
-function registrarRevPublico(){let n=document.getElementById('regNombre').value.trim().toUpperCase();let w=document.getElementById('regWhats').value.trim();let c=document.getElementById('regCodigo').value.trim().toLowerCase();if(!n||!w||!c){alert('Llena todo');return;}let revs=getRevs();revs.push({nombre:n,codigo:c,whatsapp:w,ventas:0,ganancia:0});setRevs(revs);document.getElementById('revRegisterModal').style.display='none';alert('Creado '+n);}
-function ver(pid){let p=getProds().find(x=>x.id===pid);document.getElementById('planTitle').innerText=p.n;let l=document.getElementById('planList');l.innerHTML='';p.ps.forEach(pl=>{let d=document.createElement('div');d.style.cssText='display:flex;justify-content:space-between;border:2px solid #f00;padding:10px;margin:8px 0;border-radius:12px';d.innerHTML='<div><b>'+pl.d+'</b><br>$'+pl.p+'</div><a href="https://wa.me/523224528803" target="_blank" style="padding:8px 14px;background:#f00;color:#000;border-radius:16px;text-decoration:none">COMPRAR</a>';l.appendChild(d);});document.getElementById('planModal').style.display='flex';}
-if(location.search.includes('temo7')){document.getElementById('loginAdmin').style.display='flex';}else{document.getElementById('loginAdmin').style.display='none';}
-function checkAdmin(){if(document.getElementById('adminUser').value==="TEMOSTOR"&&document.getElementById('adminPass').value==="TEMOSTOR"){document.getElementById('loginAdmin').style.display='none';document.getElementById('admin').style.display='block';}}
+function renderAdmin(){
+  let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');
+  document.getElementById('aRevs').innerHTML=revs.length?revs.map((r,i)=>`<div style="border:1px solid #f00;padding:6px;margin:4px 0;border-radius:8px;display:flex;justify-content:space-between"><span>${r.nombre} (${r.codigo}) - ${r.ventas} v $${parseFloat(r.ganancia).toFixed(2)}</span><button onclick="borrarRev(${i})" style="background:#f00;color:#000;border:none;padding:4px 8px;border-radius:6px">X</button></div>`).join(''):'VACIO - Dale a CREAR SEBA FORZADO';
+  let logs=JSON.parse(localStorage.getItem('temo_ventas_log')||'[]');
+  document.getElementById('aLogs').innerHTML=logs.slice().reverse().map(l=>`<div><small>${l.fecha} - ${l.codigo} - ${l.producto} $${l.precio}</small></div>`).join('')||'Sin logs';
+  document.getElementById('aProds').innerHTML='DRIP CLIENT ACTIVO';
+}
+
+function entrarAdmin(){
+  if(document.getElementById('u').value==='TEMOSTOR' && document.getElementById('p').value==='TEMOSTOR'){
+    document.getElementById('login').style.display='none';
+    document.getElementById('admin').style.display='block';
+    renderAdmin();
+  }else{alert('Usuario o contra mal');}
+}
+
+function crearSebaForzado(){
+  let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');
+  if(!revs.find(x=>x.codigo==='seba')) revs.push({nombre:'SEBA',codigo:'seba',ventas:1,ganancia:1.5});
+  localStorage.setItem('temo_revs',JSON.stringify(revs));
+  renderAdmin();
+  alert('SEBA CREADO');
+}
+function crearChiri(){
+  let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');
+  if(!revs.find(x=>x.codigo==='chiri2370')) revs.push({nombre:'CHIRI',codigo:'chiri2370',ventas:0,ganancia:0});
+  localStorage.setItem('temo_revs',JSON.stringify(revs));
+  renderAdmin();
+}
+function borrarRev(i){let revs=JSON.parse(localStorage.getItem('temo_revs')||'[]');revs.splice(i,1);localStorage.setItem('temo_revs',JSON.stringify(revs));renderAdmin();}
+
+// Si viene con?temo7 auto muestra login
+if(location.search.includes('temo7')){
+  document.getElementById('login').style.display='flex';
+}else{
+  document.getElementById('login').style.display='none';
+}
+renderAdmin();
 </script></body></html>
