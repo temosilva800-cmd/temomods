@@ -1,124 +1,80 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE V21</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE V23</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black,Arial}
-body{background:#080000;color:#fff}
-.top{background:#000;border-bottom:3px solid #f00;padding:16px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
-.banner{margin:12px;border:2px solid #f00;border-radius:16px;padding:18px;background:#1a0000;text-align:center;color:#f00;box-shadow:0 0 20px #f00}
-.visitasBox{margin:12px;background:#000;border:1px solid #0f0;border-radius:12px;padding:10px;text-align:center;color:#0f0}
-.box{margin:12px;background:#0f0000;border:2px solid #f00;border-radius:16px;padding:16px;text-align:center}
-.btnR{display:block;padding:15px;border-radius:14px;font-weight:900;text-align:center;margin-top:12px;cursor:pointer;text-decoration:none}
-.prod{margin:12px;background:#1a0000;border:1px solid #f00;border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center}
-.btn{background:#f00;color:#fff;border:none;padding:11px 24px;border-radius:24px;font-weight:900;cursor:pointer}
+body{background:#000;color:#fff}
+.top{background:#000;border-bottom:3px solid #f00;padding:16px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 0 25px #f00}
+.banner{margin:12px;border:3px solid #f00;border-radius:16px;padding:18px;background:#0a0000;text-align:center;color:#f00;box-shadow:0 0 35px #f00}
+.prod{margin:12px;background:#120000;border:3px solid #f00;border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 20px #f00}
+.btn{background:#f00;color:#fff;border:none;padding:12px 26px;border-radius:24px;font-weight:900;cursor:pointer;box-shadow:0 0 20px #f00}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:12px}
-.modalBox{background:#0a0000;border:3px solid #f00;border-radius:20px;padding:20px;max-width:450px;width:100%;text-align:center;max-height:92vh;overflow:auto}
-.keyBox{background:#000;border:2px solid #f00;border-radius:12px;padding:12px;color:#f00;font-weight:900;word-break:break-all;margin:10px 0}
-.in{width:100%;padding:12px;background:#000;border:2px solid #f00;color:#fff;border-radius:10px;margin:6px 0}
-#admin{position:fixed;inset:0;background:#050000;z-index:10000;display:none;overflow:auto;padding:12px}
-.cardA{background:#0f0000;border:2px solid #f00;border-radius:14px;padding:12px;margin:12px 0}
-.cardA textarea{width:100%;min-height:60px;background:#000;color:#f00;border:1px solid #f00;border-radius:8px;padding:8px}
-.metodo{background:#000;border:1px solid #f00;border-radius:12px;padding:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center}
-.btnCopy{background:#f00;color:#fff;border:none;padding:6px 14px;border-radius:8px;font-weight:900}
+.modalBox{background:#0a0000;border:3px solid #f00;border-radius:20px;padding:20px;max-width:450px;width:100%;text-align:center;box-shadow:0 0 40px #f00}
+#admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
+.cardA{background:#0a0000;border:3px solid #f00;border-radius:18px;padding:14px;margin:16px 0;box-shadow:0 0 25px #f00}
+.neonInput{width:100%;padding:16px;background:#000;border:3px solid #f00;color:#fff;border-radius:12px;margin:6px 0;font-weight:900;font-size:16px;box-shadow:0 0 15px #f00}
+.neonInput:focus{box-shadow:0 0 30px #f00;outline:none;border-color:#ff0000;transform:scale(1.01)}
+.planBar{width:100%;padding:18px;background:#000;border:3px solid #f00;color:#fff;border-radius:14px;margin:8px 0;font-weight:900;font-size:18px;box-shadow:0 0 20px #f00;text-transform:uppercase}
+.btnNeon{background:#f00;color:#fff;border:none;padding:14px 22px;border-radius:12px;font-weight:900;cursor:pointer;box-shadow:0 0 25px #f00;transition:0.2s}
+.btnNeon:active{transform:scale(0.95)}
 #loginAdmin{position:fixed;inset:0;background:#000;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
-.loginBox{background:#0a0000;border:3px solid #f00;border-radius:20px;padding:25px;max-width:380px;width:100%;text-align:center}
-.loginBox input{width:100%;padding:14px;background:#000;border:2px solid #f00;color:#fff;border-radius:12px;text-align:center;font-weight:900;margin:8px 0}
-.loginBtn{width:100%;padding:14px;background:#f00;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
+.loginBox{background:#0a0000;border:3px solid #f00;border-radius:20px;padding:25px;max-width:380px;width:100%;text-align:center;box-shadow:0 0 40px #f00}
 </style></head><body>
-<div class="top"><b>🔥 TEMO STORE</b><b>ONLINE 🟢</b></div>
-<div class="banner">⚡ TEMO STORE V21 ⚡<br><small>COMPRA DIRECTA POR WHATSAPP</small></div>
-<div class="visitasBox">👁️ VISITAS: <b id="visitCount">0</b> | HOY: <b id="visitHoy">0</b></div>
-
-<div class="box">
-<h2 style="color:#f00">🛒 ¿QUIERES COMPRAR?</h2>
-<p style="margin:10px 0;color:#fff">Toca el botón y te atendemos al instante</p>
-<a class="btnR" style="background:#25D366;color:#fff;font-size:20px;box-shadow:0 0 20px #25D366" href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥%20quiero%20comprar" target="_blank">💬 PARA COMPRAR AQUÍ - WHATSAPP</a>
-<a class="btnR" style="background:#000;color:#f00;border:2px solid #f00" href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?mode=ac_t" target="_blank">👥 GRUPO OFICIAL</a>
-</div>
-
+<div class="top"><b style="color:#f00;text-shadow:0 0 15px #f00">🔥 TEMO STORE V23</b><b style="color:#0f0">ONLINE</b></div>
+<div class="banner">⚡ TEMO STORE V23 NEON ⚡<br><small>V3 ACTUALIZADA - ROJO NEON</small></div>
+<div style="margin:12px;text-align:center"><a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥%20quiero%20comprar" target="_blank" style="display:block;padding:18px;background:#25D366;color:#fff;border-radius:14px;font-weight:900;text-decoration:none;font-size:20px;box-shadow:0 0 25px #25D366">💬 PARA COMPRAR AQUÍ - WHATSAPP</a></div>
 <div id="lista"></div>
-
-<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:10px;margin-top:10px">CERRAR</button></div></div>
-
-<div id="loginAdmin"><div class="loginBox"><h2>🔥 TEMOSTOR 🔥</h2><input id="adminUser" type="text" placeholder="👤 USUARIO"><input id="adminPass" type="password" placeholder="🔑 CONTRASEÑA"><button class="loginBtn" onclick="checkAdmin()">⚡ ENTRAR ⚡</button><button onclick="location.href=location.pathname" style="width:100%;margin-top:10px;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px">← SALIR</button></div></div>
-
-<div id="admin"><div style="max-width:750px;margin:auto"><h2 style="color:#f00;text-align:center">🔥 ADMIN V21 🔥</h2>
-
-<div class="cardA" style="border:2px solid #0f0;background:#001100"><h3 style="color:#0f0">👁️ VISITAS</h3><div style="background:#000;padding:10px;border-radius:8px"><b>Total:</b> <b id="adminTotalVisitas" style="color:#0f0;font-size:22px">0</b><br><b>Hoy:</b> <b id="adminHoyVisitas" style="color:#0f0">0</b><br><small id="adminListaVisitas" style="color:#aaa"></small></div></div>
-
-<div class="cardA" style="border:3px solid #0ff;background:#001a1a"><h3 style="color:#0ff">💳 MÉTODOS DE PAGO</h3><div id="adminPagos"></div><div style="background:#000;padding:10px;border-radius:10px;margin-top:10px"><input id="newPagoNombre" class="in" placeholder="Ej: 🇺🇸 Zelle"><input id="newPagoDato" class="in" placeholder="Dato"><button onclick="addPago()" style="width:100%;padding:10px;background:#0ff;color:#000;border:none;border-radius:8px;font-weight:900">➕ AGREGAR</button></div></div>
-
-<div class="cardA" style="border:3px solid #f0f;background:#1a001a"><h3 style="color:#f0f">📦 CREAR PRODUCTO</h3><input id="newProdNombre" class="in" placeholder="Nombre"><input id="newProdIcon" class="in" placeholder="Icono 🎮"><button onclick="createProd()" style="width:100%;padding:12px;background:#f0f;color:#fff;border:none;border-radius:10px;font-weight:900">➕ CREAR PRODUCTO</button></div>
-
-<div id="aList"></div>
-<button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:10px;margin:20px 0">← SALIR</button>
-</div></div>
-
+<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:12px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;margin-top:10px">CERRAR</button></div></div>
+<div id="loginAdmin"><div class="loginBox"><h2 style="color:#f00">🔥 TEMOSTOR 🔥</h2><input id="adminUser" type="text" placeholder="USUARIO" style="width:100%;padding:14px;background:#000;border:2px solid #f00;color:#fff;border-radius:12px;margin:8px 0;text-align:center"><input id="adminPass" type="password" placeholder="CONTRASEÑA" style="width:100%;padding:14px;background:#000;border:2px solid #f00;color:#fff;border-radius:12px;margin:8px 0;text-align:center"><button onclick="checkAdmin()" style="width:100%;padding:14px;background:#f00;color:#fff;border:none;border-radius:12px;font-weight:900;box-shadow:0 0 20px #f00">⚡ ENTRAR ⚡</button></div></div>
+<div id="admin"><div style="max-width:800px;margin:auto"><h2 style="color:#f00;text-align:center;text-shadow:0 0 25px #f00">🔥 ADMIN V23 NEON - V3 ACTUALIZADA 🔥</h2><div id="aList"></div><button onclick="location.href=location.pathname" style="width:100%;padding:14px;background:#111;color:#f00;border:3px solid #f00;border-radius:12px;margin:20px 0;box-shadow:0 0 15px #f00">← SALIR</button></div></div>
 <script>
-let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]}];
-let PAGOS_BASE=[{nombre:'🟡 Binance',dato:'1150540078'},{nombre:'🔵 OXXO',dato:'2242 1703 2080 0281'},{nombre:'🏦 CLABE',dato:'722969027389252036'}];
+let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-30d',d:'30 DIAS',p:20}]},{n:'HG PROXY',i:'💰',id:'hgproxy',ps:[{id:'hgproxy-1d',d:'1 DIA',p:4},{id:'hgproxy-7d',d:'7 DIAS',p:10}]},{n:'HOLO VIP',i:'💎',id:'holo',ps:[{id:'holo-1d',d:'1 DIA',p:5}]}];
 if(!localStorage.getItem('temo_prods')){localStorage.setItem('temo_prods',JSON.stringify(BASE))}
-if(!localStorage.getItem('temo_pagos')){localStorage.setItem('temo_pagos',JSON.stringify(PAGOS_BASE))}
-function getProds(){try{return JSON.parse(localStorage.getItem('temo_prods'))||BASE}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
-function getPagos(){try{return JSON.parse(localStorage.getItem('temo_pagos'))||PAGOS_BASE}catch(e){return PAGOS_BASE}}function setPagos(p){localStorage.setItem('temo_pagos',JSON.stringify(p))}
+function getProds(){try{return JSON.parse(localStorage.getItem('temo_prods'))}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
 function getKeys(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
-
-async function contarVisita(){try{let res=await fetch('https://api.countapi.xyz/hit/temomods-store-v21/visits');let data=await res.json();document.getElementById('visitCount').innerText=data.value;localStorage.setItem('temo_visitas_total',data.value);}catch(e){let total=parseInt(localStorage.getItem('temo_visitas_total')||'0')+1;localStorage.setItem('temo_visitas_total',total);document.getElementById('visitCount').innerText=total;}let hoy=new Date().toLocaleDateString();let visitasHoy=JSON.parse(localStorage.getItem('temo_visitas_hoy')||'{}');if(visitasHoy.fecha!==hoy){visitasHoy={fecha:hoy,count:1};}else{visitasHoy.count++;}localStorage.setItem('temo_visitas_hoy',JSON.stringify(visitasHoy));document.getElementById('visitHoy').innerText=visitasHoy.count;let registros=JSON.parse(localStorage.getItem('temo_registros_visita')||'[]');registros.push({fecha:new Date().toLocaleString(),id:'WEB'});if(registros.length>100)registros=registros.slice(-100);localStorage.setItem('temo_registros_visita',JSON.stringify(registros));}contarVisita();
-
 function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#f88>Stock: '+stock+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
-
 let currentProd=null;
-function ver(pid){
-  let p=getProds().find(x=>x.id===pid);
-  currentProd=p;
-  document.getElementById('planTitle').innerText=p.i+' '+p.n;
-  let list=document.getElementById('planList');list.innerHTML='';
-  p.ps.forEach(pl=>{
-    let div=document.createElement('div');
-    div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid #f00;padding:12px;border-radius:12px;margin:8px 0';
-    div.innerHTML='<div style=text-align:left><b>'+pl.d+'</b><br><b style=color:#f00>$'+pl.p+'</b></div><div><a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥%20quiero%20comprar%20'+encodeURIComponent(p.n+' '+pl.d+' $'+pl.p)+'" target="_blank" style="padding:10px 16px;background:#25D366;color:#fff;border-radius:20px;font-weight:900;text-decoration:none;display:block">💬 COMPRAR</a></div>';
-    list.appendChild(div)
-  });
-  document.getElementById('planModal').style.display='flex'
-}
-
-if(location.search.includes('temo777')){document.getElementById('loginAdmin').style.display='flex';}
-function checkAdmin(){
-  const u=document.getElementById('adminUser').value.trim();
-  const p=document.getElementById('adminPass').value.trim();
-  if(u==="TEMOSTOR"&&p==="TEMOSTOR"){
-    document.getElementById('loginAdmin').style.display='none';
-    document.getElementById('admin').style.display='block';
-    renderAdmin();renderVisitasAdmin();renderAdminPagos();
-  }else{alert("❌ Incorrecto");}
-}
-function renderVisitasAdmin(){
-  let total = localStorage.getItem('temo_visitas_total')||0;
-  let hoyData = JSON.parse(localStorage.getItem('temo_visitas_hoy')||'{"count":0}');
-  let registros = JSON.parse(localStorage.getItem('temo_registros_visita')||'[]').slice(-20).reverse();
-  document.getElementById('adminTotalVisitas').innerText = total;
-  document.getElementById('adminHoyVisitas').innerText = hoyData.count||0;
-  document.getElementById('adminListaVisitas').innerHTML = registros.map(r=>`${r.fecha}`).join('<br>');
-}
-function renderAdminPagos(){
-  let pagos=getPagos();
-  let c=document.getElementById('adminPagos');
-  c.innerHTML=pagos.map((p,i)=>`
-    <div style="background:#000;border:1px solid #0ff;padding:8px;border-radius:8px;margin:6px 0;display:flex;gap:6px;align-items:center">
-      <input id="pagoN-${i}" value="${p.nombre}" class="in" style="flex:1;border-color:#0ff">
-      <input id="pagoD-${i}" value="${p.dato}" class="in" style="flex:1;border-color:#0ff">
-      <button onclick="savePago(${i})" style="padding:8px;background:#0ff;border:none;border-radius:6px">💾</button>
-      <button onclick="delPago(${i})" style="padding:8px;background:#f00;color:#fff;border:none;border-radius:6px">X</button>
-    </div>
-  `).join('');
-}
-function savePago(i){let pagos=getPagos();pagos[i].nombre=document.getElementById(`pagoN-${i}`).value;pagos[i].dato=document.getElementById(`pagoD-${i}`).value;setPagos(pagos);renderAdminPagos();}
-function delPago(i){if(!confirm('Borrar?'))return;let pagos=getPagos();pagos.splice(i,1);setPagos(pagos);renderAdminPagos();}
-function addPago(){let n=document.getElementById('newPagoNombre').value.trim();let d=document.getElementById('newPagoDato').value.trim();if(!n||!d)return alert('Nombre y dato');let pagos=getPagos();pagos.push({nombre:n,dato:d});setPagos(pagos);document.getElementById('newPagoNombre').value='';document.getElementById('newPagoDato').value='';renderAdminPagos();}
-function createProd(){let nombre=document.getElementById('newProdNombre').value.trim().toUpperCase();let icono=document.getElementById('newProdIcon').value.trim()||'🔥';if(!nombre)return alert('Nombre');let prods=getProds();let id=nombre.toLowerCase().replace(/[^a-z0-9]/g,'').substring(0,10)+'-'+Date.now();prods.push({n:nombre,i:icono,id:id,ps:[]});setProds(prods);document.getElementById('newProdNombre').value='';document.getElementById('newProdIcon').value='';render();renderAdmin();}
-function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style=display:flex;gap:6px><input id=name-'+p.id+' value=\''+p.n+'\' class=in><input id=icon-'+p.id+' value=\''+p.i+'\' class=in style=width:60px><button onclick=saveName(\''+p.id+'\') style=padding:8px;background:yellow;border:none;border-radius:6px>💾</button><button onclick=delProd(\''+p.id+'\') style=padding:8px;background:red;color:#fff;border:none;border-radius:6px>X</button></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;html+='<div style=background:#000;padding:8px;border-radius:8px;margin:6px 0><div style=display:flex;gap:6px><input id=d-'+pl.id+' value=\''+pl.d+'\' class=in><input id=p-'+pl.id+' type=number value=\''+pl.p+'\' class=in style=width:80px><button onclick=savePlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>💾</button><button onclick=delPlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#000;border:1px solid #f00;color:#f00;border-radius:6px>X</button></div><textarea id=ta-'+pl.id+'>'+(keys[pl.id]?keys[pl.id].join('\n'):'')+'</textarea><div style=display:flex;gap:6px;margin-top:4px><span style=color:#f00;font-size:12px>'+cnt+' keys</span><button onclick=saveKeys(\''+pl.id+'\') style=flex:1;padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>GUARDAR KEYS</button></div></div>'});html+='<div style=display:flex;gap:6px;margin-top:8px><input id=newD-'+p.id+' placeholder=\'1 DIA\' class=in><input id=newP-'+p.id+' type=number placeholder=\'$ \' class=in style=width:80px><button onclick=addPlan(\''+p.id+'\') style=padding:8px;background:#f00;color:#fff;border:none;border-radius:6px>➕ PLAN</button></div>';card.innerHTML=html;c.appendChild(card)})}
+function ver(pid){let p=getProds().find(x=>x.id===pid);currentProd=p;document.getElementById('planTitle').innerText=p.i+' '+p.n;let list=document.getElementById('planList');list.innerHTML='';p.ps.forEach(pl=>{let div=document.createElement('div');div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:2px solid #f00;padding:14px;border-radius:14px;margin:10px 0;box-shadow:0 0 15px #f00';div.innerHTML='<div style=text-align:left><b>'+pl.d+'</b><br><b style=color:#f00>$'+pl.p+'</b></div><a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥%20quiero%20comprar%20'+encodeURIComponent(p.n+' '+pl.d)+' $'+pl.p+'" target="_blank" style="padding:12px 18px;background:#25D366;color:#fff;border-radius:20px;font-weight:900;text-decoration:none">💬 COMPRAR</a>';list.appendChild(div)});document.getElementById('planModal').style.display='flex'}
+if(location.search.includes('temo7')){document.getElementById('loginAdmin').style.display='flex';}
+function checkAdmin(){if(document.getElementById('adminUser').value==="TEMOSTOR"&&document.getElementById('adminPass').value==="TEMOSTOR"){document.getElementById('loginAdmin').style.display='none';document.getElementById('admin').style.display='block';renderAdmin();}else alert("❌");}
+function renderAdmin(){
+let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';
+prods.forEach(p=>{
+let card=document.createElement('div');card.className='cardA';
+let html=`<div style="display:flex;gap:8px;margin-bottom:12px">
+<input id="name-${p.id}" value="${p.n}" class="neonInput" style="flex:1">
+<input id="icon-${p.id}" value="${p.i}" class="neonInput" style="width:70px;text-align:center">
+<button onclick="saveName('${p.id}')" style="padding:12px;background:#ff0;border:none;border-radius:10px">💾</button>
+<button onclick="delProd('${p.id}')" style="padding:12px;background:#f00;color:#fff;border:none;border-radius:10px">X</button>
+</div>`;
+p.ps.forEach(pl=>{
+let cnt=keys[pl.id]?keys[pl.id].length:0;
+html+=`<div style="background:#000;padding:12px;border-radius:14px;margin:12px 0;border:2px solid #f00">
+<div style="display:flex;gap:8px">
+<input id="d-${pl.id}" value="${pl.d}" class="planBar" style="flex:1">
+<input id="p-${pl.id}" type="number" value="${pl.p}" class="planBar" style="width:110px">
+<button onclick="savePlan('${p.id}','${pl.id}')" class="btnNeon">💾</button>
+<button onclick="delPlan('${p.id}','${pl.id}')" style="padding:12px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px">X</button>
+</div>
+<textarea id="ta-${pl.id}" class="neonInput" style="min-height:80px">${(keys[pl.id]?keys[pl.id].join('\n'):'')}</textarea>
+<div style="display:flex;gap:10px;align-items:center"><span style="color:#0f0">${cnt} KEYS</span><button onclick="saveKeys('${pl.id}')" class="btnNeon" style="flex:1">GUARDAR KEYS</button></div>
+</div>`});
+html+=`<div style="background:#000;padding:14px;border-radius:14px;border:3px dashed #f00;box-shadow:0 0 20px #f00">
+<h3 style="color:#f00;margin-bottom:10px">➕ AGREGAR DURACIÓN - BARRAS GRANDES NEON</h3>
+<input id="newD-${p.id}" class="planBar" placeholder="🔥 DURACION EJ: 7 DIAS">
+<input id="newP-${p.id}" type="number" class="planBar" placeholder="💰 PRECIO EJ: 15">
+<button onclick="addPlan('${p.id}')" class="btnNeon" style="width:100%;padding:18px;font-size:19px;margin-top:8px">➕ AGREGAR PLAN</button>
+</div>`;
+card.innerHTML=html;c.appendChild(card)
+})}
 function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value; p.i=document.getElementById('icon-'+pid).value; setProds(prods);render();renderAdmin();}
 function delProd(pid){if(!confirm('Borrar?'))return;setProds(getProds().filter(x=>x.id!==pid));render();renderAdmin();}
-function addPlan(pid){let d=document.getElementById('newD-'+pid).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+pid).value);if(!d||isNaN(pr))return alert('Duracion y precio');let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin();}
+function addPlan(pid){
+let d=document.getElementById('newD-'+pid).value.trim().toUpperCase();
+let pr=parseInt(document.getElementById('newP-'+pid).value);
+if(!d){alert('❌ Escribe duración EJ: 7 DIAS');return}
+if(isNaN(pr)){alert('❌ Escribe precio EJ: 10');return}
+let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin();alert('✅ Agregado '+d);
+}
 function savePlan(pid,plid){let prods=getProds();let pl=prods.find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(prods);render();renderAdmin();}
 function delPlan(pid,plid){if(!confirm('Borrar?'))return;let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(prods);renderAdmin();}
-function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();alert(lines.length+' keys')}
+function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();alert(lines.length+' keys');}
 </script></body></html>
