@@ -2,15 +2,15 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black,Arial}
 body{background:#000;color:#fff}
-.top{background:#000;border-bottom:3px solid #ff0000;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 0 20px #f00}
+.top{background:#000;border-bottom:3px solid #f00;padding:14px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 0 20px #f00}
 .top b{color:#f00;text-shadow:0 0 10px #f00}
 .banner{margin:12px;border:2px solid #f00;border-radius:14px;padding:16px;background:#100000;text-align:center;color:#f00;text-shadow:0 0 10px #f00;box-shadow:0 0 20px #f00;font-size:18px}
 .box{margin:12px;background:#0a0a0a;border:2px solid #f00;border-radius:14px;padding:14px;text-align:center;box-shadow:0 0 15px rgba(255,0,0,.4)}
 .box input{width:100%;padding:14px;background:#000;color:#f00;border:2px solid #f00;border-radius:10px;text-align:center;font-weight:900;font-size:18px;text-shadow:0 0 10px #f00}
-.btnR{display:block;padding:14px;border-radius:12px;font-weight:900;text-decoration:none;text-align:center;margin-top:10px;box-shadow:0 0 15px #f00}
+.btnR{display:block;padding:14px;border-radius:12px;font-weight:900;text-decoration:none;text-align:center;margin-top:10px;box-shadow:0 0 15px #f00;cursor:pointer}
 .prod{margin:12px;background:#0f0000;border:1px solid #f00;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 10px rgba(255,0,0,.3)}
 .prod b{color:#fff}
-.btn{background:#f00;color:#fff;border:none;padding:10px 22px;border-radius:20px;font-weight:900;box-shadow:0 0 15px #f00}
+.btn{background:#f00;color:#fff;border:none;padding:10px 22px;border-radius:20px;font-weight:900;box-shadow:0 0 15px #f00;cursor:pointer}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}
 .modalBox{background:#0a0a0a;border:3px solid #f00;border-radius:18px;padding:18px;max-width:430px;width:100%;text-align:center;box-shadow:0 0 30px #f00}
 .planBtn{display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid #f00;padding:12px;border-radius:10px;margin:8px 0}
@@ -19,17 +19,42 @@ body{background:#000;color:#fff}
 #admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
 .cardA{background:#111;border:1px solid #f00;border-radius:12px;padding:12px;margin:12px 0}
 .cardA textarea{width:100%;min-height:60px;background:#000;color:#f00;border:1px solid #f00;border-radius:8px;padding:8px}
+/* PAGO STYLES */
+.metodo{background:#000;border:1px solid #f00;border-radius:10px;padding:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.metodo code{color:#f00}
+.btnCopy{background:#f00;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-weight:900}
 </style></head><body>
 <div class="top"><b>🔥 TEMO STORE</b><b>💰 $<span id="sTop">0</span></b></div>
 <div class="banner">⚡ TEMO STORE - RED NEON ⚡</div>
 <div class="box">
 <input id="idIn" readonly>
 <div style="margin-top:10px">ID: <b id="idTxt" style="color:#f00"></b> | Saldo: $<b id="sTxt" style="color:#f00">0</b></div>
-<a class="btnR" style="background:#f00;color:#fff" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20comprar%20saldo" target="_blank">📲 COMPRAR SALDO - WHATSAPP</a>
+
+<!-- BOTON NUEVO RECARGAR SALDO -->
+<a class="btnR" style="background:#f00;color:#fff" onclick="openPago()">💳 RECARGAR SALDO</a>
+<a class="btnR" style="background:#25D366;color:#fff;box-shadow:0 0 15px #25D366" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20comprar%20saldo%20mi%20ID%20es%20" target="_blank">📲 COMPRAR SALDO - WHATSAPP</a>
+
 <a class="btnR" style="background:#000;color:#f00;border:2px solid #f00" href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?mode=ac_t" target="_blank">👥 UNIRME AL GRUPO OFICIAL</a>
 <div style="margin-top:10px;display:flex;gap:8px"><button onclick="copyID()" style="flex:1;padding:11px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #f00;color:#fff;border-radius:10px;font-weight:900">📜 HISTORIAL</button><button onclick="clearAll()" style="padding:11px;background:#111;border:1px solid #555;color:#888;border-radius:10px">♻️</button></div>
 </div>
 <div id="lista"></div>
+
+<!-- MODAL METODOS DE PAGO NUEVO -->
+<div id="pagoModal" class="modal"><div class="modalBox">
+<h2 style="color:#f00">💳 RECARGAR SALDO</h2>
+<p style="color:#aaa;font-size:12px">Elige tu método - Se acredita en 5-15 min</p>
+
+<div class="metodo"><div><b>🟡 Binance</b><br><code id="bBinance">1150540078</code><br><small style="color:#aaa">USDT / Pay ID</small></div><button class="btnCopy" onclick="copyT('1150540078')">Copiar</button></div>
+
+<div class="metodo"><div><b>🔵 Mercado Pago OXXO</b><br><code>2242 1703 2080 0281</code><br><small style="color:#aaa">Paga en caja OXXO</small></div><button class="btnCopy" onclick="copyT('2242170320800281')">Copiar</button></div>
+
+<img src="qr_oxxo.jpg" style="width:180px;display:block;margin:8px auto;border-radius:12px;border:2px solid #f00">
+
+<div class="metodo"><div><b>🏦 CLABE SPEI</b><br><code>722969027389252036</code><br><small style="color:#aaa">Transferencia</small></div><button class="btnCopy" onclick="copyT('722969027389252036')">Copiar</button></div>
+
+<a href="https://wa.me/523224528803?text=Hola%20TEMO%20ya%20pague%20mi%20ID%20es%20" target="_blank" style="display:block;background:#25D366;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:900;margin-top:12px;box-shadow:0 0 15px #25D366">✅ ENVIAR COMPROBANTE</a>
+<button onclick="document.getElementById('pagoModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:8px">CERRAR</button>
+</div></div>
 
 <div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList" style="margin-top:10px"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:10px">CERRAR</button></div></div>
 <div id="keyModal" class="modal"><div class="modalBox"><h2 style="color:#f00">✅ COMPRA EXITOSA</h2><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="navigator.clipboard.writeText(lastKey).then(()=>alert('Copiado'))" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
@@ -42,7 +67,8 @@ body{background:#000;color:#fff}
 <button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button></div></div>
 
 <script>
-// PRODUCTOS FORZADOS - SIEMPRE APARECEN
+function copyT(t){navigator.clipboard.writeText(t).then(()=>alert('Copiado: '+t))}
+function openPago(){document.getElementById('pagoModal').style.display='flex'}
 let BASE=[
 {n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
 {n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},
@@ -52,7 +78,6 @@ let BASE=[
 ];
 function genID(){return 'TEMO-'+Math.random().toString(36).substring(2,6).toUpperCase()}
 let ID=localStorage.getItem('temo_myID');if(!ID){ID=genID();localStorage.setItem('temo_myID',ID)}
-// FORZAR PRODUCTOS SI NO EXISTEN
 if(!localStorage.getItem('temo_prods') || localStorage.getItem('temo_prods')==='[]'){localStorage.setItem('temo_prods',JSON.stringify(BASE))}
 function getProds(){try{let j=JSON.parse(localStorage.getItem('temo_prods'));if(!j||j.length===0)return BASE;return j}catch(e){return BASE}}function setProds(p){localStorage.setItem('temo_prods',JSON.stringify(p))}
 function getKeys(){try{return JSON.parse(localStorage.getItem('temo_keys')||'{}')}catch(e){return{}}}function setKeys(k){localStorage.setItem('temo_keys',JSON.stringify(k))}
