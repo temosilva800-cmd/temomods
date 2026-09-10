@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE NEON</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEMO STORE NEON PRO</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black,Arial}
 body{background:#000;color:#fff}
@@ -11,71 +11,76 @@ body{background:#000;color:#fff}
 .prod{margin:12px;background:#0f0000;border:1px solid #f00;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 10px rgba(255,0,0,.3)}
 .prod b{color:#fff}
 .btn{background:#f00;color:#fff;border:none;padding:10px 22px;border-radius:20px;font-weight:900;box-shadow:0 0 15px #f00;cursor:pointer}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}
-.modalBox{background:#0a0a0a;border:3px solid #f00;border-radius:18px;padding:18px;max-width:430px;width:100%;text-align:center;box-shadow:0 0 30px #f00}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;padding:12px}
+.modalBox{background:#0a0a0a;border:3px solid #f00;border-radius:18px;padding:18px;max-width:450px;width:100%;text-align:center;box-shadow:0 0 30px #f00;max-height:92vh;overflow:auto}
 .planBtn{display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid #f00;padding:12px;border-radius:10px;margin:8px 0}
 .keyBox{background:#000;border:2px solid #f00;border-radius:10px;padding:12px;color:#f00;font-weight:900;word-break:break-all;margin:10px 0;box-shadow:0 0 15px #f00 inset}
 .in{width:100%;padding:10px;background:#000;border:1px solid #f00;color:#fff;border-radius:8px;margin:4px 0}
 #admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
 .cardA{background:#111;border:1px solid #f00;border-radius:12px;padding:12px;margin:12px 0}
 .cardA textarea{width:100%;min-height:60px;background:#000;color:#f00;border:1px solid #f00;border-radius:8px;padding:8px}
-/* PAGO STYLES */
 .metodo{background:#000;border:1px solid #f00;border-radius:10px;padding:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;text-align:left}
 .metodo code{color:#f00}
 .btnCopy{background:#f00;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-weight:900}
 </style></head><body>
-<div class="top"><b>🔥 TEMO STORE</b><b>💰 $<span id="sTop">0</span></b></div>
-<div class="banner">⚡ TEMO STORE - RED NEON ⚡</div>
+<div class="top"><b>🔥 TEMO STORE PRO</b><b>💰 $<span id="sTop">0</span></b></div>
+<div class="banner">⚡ TEMO STORE - RED NEON PRO ⚡</div>
 <div class="box">
 <input id="idIn" readonly>
 <div style="margin-top:10px">ID: <b id="idTxt" style="color:#f00"></b> | Saldo: $<b id="sTxt" style="color:#f00">0</b></div>
-
-<!-- BOTON NUEVO RECARGAR SALDO -->
 <a class="btnR" style="background:#f00;color:#fff" onclick="openPago()">💳 RECARGAR SALDO</a>
 <a class="btnR" style="background:#25D366;color:#fff;box-shadow:0 0 15px #25D366" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20comprar%20saldo%20mi%20ID%20es%20" target="_blank">📲 COMPRAR SALDO - WHATSAPP</a>
-
 <a class="btnR" style="background:#000;color:#f00;border:2px solid #f00" href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ?mode=ac_t" target="_blank">👥 UNIRME AL GRUPO OFICIAL</a>
 <div style="margin-top:10px;display:flex;gap:8px"><button onclick="copyID()" style="flex:1;padding:11px;background:#000;border:2px solid #f00;color:#f00;border-radius:10px;font-weight:900">📋 COPIAR ID</button><button onclick="openHist()" style="flex:1;padding:11px;background:#222;border:1px solid #f00;color:#fff;border-radius:10px;font-weight:900">📜 HISTORIAL</button><button onclick="clearAll()" style="padding:11px;background:#111;border:1px solid #555;color:#888;border-radius:10px">♻️</button></div>
 </div>
 <div id="lista"></div>
 
-<!-- MODAL METODOS DE PAGO NUEVO -->
 <div id="pagoModal" class="modal"><div class="modalBox">
 <h2 style="color:#f00">💳 RECARGAR SALDO</h2>
-<p style="color:#aaa;font-size:12px">Elige tu método - Se acredita en 5-15 min</p>
+<p style="color:#aaa;font-size:12px">Paga y sube tu comprobante - 5-15 min</p>
 
-<div class="metodo"><div><b>🟡 Binance</b><br><code id="bBinance">1150540078</code><br><small style="color:#aaa">USDT / Pay ID</small></div><button class="btnCopy" onclick="copyT('1150540078')">Copiar</button></div>
+<div class="metodo"><div><b>🟡 Binance</b><br><code>1150540078</code></div><button class="btnCopy" onclick="copyT('1150540078')">Copiar</button></div>
+<div class="metodo"><div><b>🔵 OXXO</b><br><code>2242 1703 2080 0281</code></div><button class="btnCopy" onclick="copyT('2242170320800281')">Copiar</button></div>
+<img src="qr_oxxo.jpg" style="width:160px;display:block;margin:6px auto;border-radius:12px;border:2px solid #f00">
+<div class="metodo"><div><b>🏦 CLABE</b><br><code>722969027389252036</code></div><button class="btnCopy" onclick="copyT('722969027389252036')">Copiar</button></div>
+<div id="paisesDinamicos"></div>
 
-<div class="metodo"><div><b>🔵 Mercado Pago OXXO</b><br><code>2242 1703 2080 0281</code><br><small style="color:#aaa">Paga en caja OXXO</small></div><button class="btnCopy" onclick="copyT('2242170320800281')">Copiar</button></div>
+<div style="background:#100000;border:2px dashed #f00;padding:12px;border-radius:12px;margin:14px 0;text-align:left">
+<b style="color:#f00">📤 SUBIR COMPROBANTE</b>
+<input type="file" id="compFile" accept="image/*" style="width:100%;margin:8px 0;color:#fff">
+<input id="compMonto" type="number" placeholder="Monto pagado Ej: 50" class="in">
+<img id="prevComp" style="width:100%;max-width:220px;display:none;margin:8px auto;border-radius:10px;border:2px solid #f00">
+<button onclick="enviarComp()" style="width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:900;box-shadow:0 0 15px #25D366">✅ ENVIAR COMPROBANTE + AVISAR WHATSAPP</button>
+</div>
 
-<img src="qr_oxxo.jpg" style="width:180px;display:block;margin:8px auto;border-radius:12px;border:2px solid #f00">
-
-<div class="metodo"><div><b>🏦 CLABE SPEI</b><br><code>722969027389252036</code><br><small style="color:#aaa">Transferencia</small></div><button class="btnCopy" onclick="copyT('722969027389252036')">Copiar</button></div>
-
-<a href="https://wa.me/523224528803?text=Hola%20TEMO%20ya%20pague%20mi%20ID%20es%20" target="_blank" style="display:block;background:#25D366;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:900;margin-top:12px;box-shadow:0 0 15px #25D366">✅ ENVIAR COMPROBANTE</a>
 <button onclick="document.getElementById('pagoModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:8px">CERRAR</button>
 </div></div>
 
 <div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList" style="margin-top:10px"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:10px">CERRAR</button></div></div>
 <div id="keyModal" class="modal"><div class="modalBox"><h2 style="color:#f00">✅ COMPRA EXITOSA</h2><p id="modalProd"></p><div id="modalKey" class="keyBox"></div><button onclick="navigator.clipboard.writeText(lastKey).then(()=>alert('Copiado'))" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:10px;font-weight:900">📋 COPIAR KEY</button><button onclick="document.getElementById('keyModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:8px">Cerrar</button></div></div>
-<div id="histModal" class="modal"><div class="modalBox"><h3 style="color:#f00">HISTORIAL</h3><div id="histList"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
+<div id="histModal" class="modal"><div class="modalBox"><h3 style="color:#f00">HISTORIAL</h3><div id="histList"></div><div id="histComps" style="margin-top:12px"></div><button onclick="document.getElementById('histModal').style.display='none'" style="width:100%;padding:10px;background:#000;border:1px solid #f00;color:#f00;border-radius:8px;margin-top:10px">Cerrar</button></div></div>
 
-<div id="admin"><div style="max-width:700px;margin:auto"><h2 style="color:#f00;text-align:center">PANEL ADMIN</h2>
+<div id="admin"><div style="max-width:750px;margin:auto"><h2 style="color:#f00;text-align:center">PANEL ADMIN PRO</h2>
+
+<div class="cardA" style="border:2px solid #0f0;background:#001100">
+<h3 style="color:#0f0">🧾 COMPROBANTES POR APROBAR <span id="badgeComp" style="background:#0f0;color:#000;padding:2px 8px;border-radius:10px">0</span></h3>
+<div id="listaComps"></div>
+</div>
+
+<div class="cardA" style="border:2px dashed #f00;background:#100000">
+<h3 style="color:#f00">🌍 AGREGAR PAIS / METODO</h3>
+<input id="paisNombre" class="in" placeholder="País Ej: Argentina"><input id="paisBandera" class="in" placeholder="Bandera Ej: 🇦🇷"><input id="metodoNombre" class="in" placeholder="Método Ej: Personal Pay"><input id="metodoDato" class="in" placeholder="Dato visible Ej: Alias: mi.alias"><input id="metodoCuenta" class="in" placeholder="Dato a copiar"><button onclick="agregarPais()" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900;margin-top:8px">+ AGREGAR PAIS</button><div id="listaPaises" style="margin-top:12px"></div>
+</div>
+
 <div class="cardA"><input id="newIcon" class="in" placeholder="Icono"><input id="newName" class="in" placeholder="Nombre producto"><button onclick="createProd()" style="width:100%;padding:12px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900">CREAR PRODUCTO</button></div>
-<div class="cardA"><input id="recId" class="in" placeholder="ID TEMO-XXXX"><input id="recMonto" type="number" class="in" placeholder="Monto"><button onclick="addSaldo()" style="width:100%;padding:10px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900">+ RECARGAR</button></div>
+<div class="cardA"><input id="recId" class="in" placeholder="ID TEMO-XXXX"><input id="recMonto" type="number" class="in" placeholder="Monto"><button onclick="addSaldo()" style="width:100%;padding:10px;background:#f00;color:#fff;border:none;border-radius:8px;font-weight:900">+ RECARGAR MANUAL</button></div>
 <div id="aList"></div>
 <button onclick="location.href=location.pathname" style="width:100%;padding:12px;background:#222;color:#fff;border-radius:8px;margin:20px 0">← SALIR</button></div></div>
 
 <script>
 function copyT(t){navigator.clipboard.writeText(t).then(()=>alert('Copiado: '+t))}
-function openPago(){document.getElementById('pagoModal').style.display='flex'}
-let BASE=[
-{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
-{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},
-{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},
-{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},
-{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-30d',d:'30 DIAS',p:22}]}
-];
+function openPago(){renderPaisesPago();document.getElementById('pagoModal').style.display='flex'}
+let BASE=[{n:'DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},{n:'FLOURITE',i:'💎',id:'flou',ps:[{id:'flou-7d',d:'7 DIAS',p:30},{id:'flou-30d',d:'30 DIAS',p:50}]},{n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},{n:'HG CHEATS',i:'⚡',id:'hg',ps:[{id:'hg-1d',d:'1 DIA',p:5},{id:'hg-10d',d:'10 DIAS',p:12},{id:'hg-30d',d:'30 DIAS',p:18}]},{n:'CAKE',i:'🎂',id:'cake',ps:[{id:'cake-1d',d:'1 DIA',p:4},{id:'cake-30d',d:'30 DIAS',p:22}]}];
 function genID(){return 'TEMO-'+Math.random().toString(36).substring(2,6).toUpperCase()}
 let ID=localStorage.getItem('temo_myID');if(!ID){ID=genID();localStorage.setItem('temo_myID',ID)}
 if(!localStorage.getItem('temo_prods') || localStorage.getItem('temo_prods')==='[]'){localStorage.setItem('temo_prods',JSON.stringify(BASE))}
@@ -86,20 +91,55 @@ function getHist(){try{return JSON.parse(localStorage.getItem('temo_hist')||'{}'
 let users=getUsers();if(!users[ID]){users[ID]={saldo:0};setUsers(users)}
 document.getElementById('idIn').value=ID;document.getElementById('idTxt').innerText=ID;document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;
 function copyID(){navigator.clipboard.writeText(ID);alert('Copiado: '+ID)}
-function clearAll(){if(confirm('Borrar todo y recargar?')){localStorage.clear();location.reload()}}
-function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#f88>'+p.ps.length+' duraciones | Stock: '+stock+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
+function clearAll(){if(confirm('Borrar todo?')){localStorage.clear();location.reload()}}
+function render(){let prods=getProds();let keys=getKeys();let c=document.getElementById('lista');c.innerHTML='';prods.forEach(p=>{let stock=0;p.ps.forEach(pl=>stock+=(keys[pl.id]?keys[pl.id].length:0));let d=document.createElement('div');d.className='prod';d.innerHTML='<div><b>'+p.i+' '+p.n+'</b><br><small style=color:#f88>'+p.ps.length+' dur | Stock: '+stock+'</small></div><button class=btn onclick=ver(\''+p.id+'\')>VER</button>';c.appendChild(d)})}render();
 let lastKey="",currentProd=null;
 function ver(pid){let p=getProds().find(x=>x.id===pid);currentProd=p;document.getElementById('planTitle').innerText=p.i+' '+p.n;let list=document.getElementById('planList');list.innerHTML='';let keys=getKeys();p.ps.forEach(pl=>{let stock=keys[pl.id]?keys[pl.id].length:0;let div=document.createElement('div');div.className='planBtn';div.innerHTML='<div style=text-align:left><b>'+pl.d+'</b><br><small style=color:'+(stock>0?'#0f0':'#f00')+'>Stock: '+stock+'</small></div><div><b style=color:#f00>$'+pl.p+'</b><br><button onclick=comprar(\''+pl.id+'\') style=padding:7px 14px;background:#f00;color:#fff;border:none;border-radius:20px;font-weight:900;margin-top:4px>COMPRAR</button></div>';list.appendChild(div)});document.getElementById('planModal').style.display='flex'}
 function comprar(planId){let keys=getKeys();let users=getUsers();let plan=currentProd.ps.find(x=>x.id===planId);if((keys[plan.id]?keys[plan.id].length:0)<=0)return alert('Sin stock');if(users[ID].saldo<plan.p)return alert('Saldo insuficiente $'+users[ID].saldo);let k=keys[plan.id].shift();setKeys(k);users[ID].saldo-=plan.p;setUsers(users);document.getElementById('sTop').innerText=users[ID].saldo;document.getElementById('sTxt').innerText=users[ID].saldo;let hist=getHist();if(!hist[ID])hist[ID]=[];hist[ID].push({date:new Date().toLocaleString(),prod:currentProd.n,plan:plan.d,key:k});setHist(hist);render();lastKey=k;document.getElementById('planModal').style.display='none';document.getElementById('modalProd').innerText=currentProd.n+' - '+plan.d;document.getElementById('modalKey').innerText=k;document.getElementById('keyModal').style.display='flex'}
-function openHist(){let my=(getHist()[ID]||[]);let list=document.getElementById('histList');list.innerHTML=my.length?'': '<p>Sin compras</p>';my.slice().reverse().forEach(h=>{let d=document.createElement('div');d.style.cssText='background:#000;border:1px solid #f00;padding:8px;margin:6px 0;border-radius:8px;text-align:left';d.innerHTML='<b>'+h.prod+' '+h.plan+'</b><br><small>'+h.date+'</small><br><span style=color:#f00>'+h.key+'</span>';list.appendChild(d)});document.getElementById('histModal').style.display='flex'}
-if(location.search.includes('admin')){document.getElementById('admin').style.display='block';renderAdmin()}
+function openHist(){let my=(getHist()[ID]||[]);let list=document.getElementById('histList');list.innerHTML=my.length?'':'<p>Sin compras</p>';my.slice().reverse().forEach(h=>{let d=document.createElement('div');d.style.cssText='background:#000;border:1px solid #f00;padding:8px;margin:6px 0;border-radius:8px;text-align:left';d.innerHTML='<b>'+h.prod+' '+h.plan+'</b><br><small>'+h.date+'</small><br><span style=color:#f00>'+h.key+'</span>';list.appendChild(d)});let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]').filter(c=>c.id===ID);let hc=document.getElementById('histComps');hc.innerHTML=comps.length?'<h4 style=color:#0f0>📤 Mis comprobantes</h4>'+comps.map(c=>`<div style="background:#001100;border:1px solid #0f0;padding:6px;border-radius:8px;margin:4px 0;text-align:left"><small>$${c.monto} - ${c.fecha} - ${c.estado}</small></div>`).join(''):'';document.getElementById('histModal').style.display='flex'}
+
+// COMPROBANTES
+document.getElementById('compFile')?.addEventListener('change', e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=ev=>{document.getElementById('prevComp').src=ev.target.result;document.getElementById('prevComp').style.display='block';window._compBase64=ev.target.result;};
+  r.readAsDataURL(f);
+});
+function enviarComp(){
+  const monto=document.getElementById('compMonto').value;
+  const img=window._compBase64;
+  if(!img) return alert('Sube foto');
+  if(!monto) return alert('Pon monto');
+  let pend=JSON.parse(localStorage.getItem('temo_comps')||'[]');
+  pend.push({id:ID,monto:monto,img:img,fecha:new Date().toLocaleString(),estado:'pendiente'});
+  localStorage.setItem('temo_comps', JSON.stringify(pend));
+  const msg=`🔥 *NUEVO COMPROBANTE TEMO STORE*%0A%0AID: ${ID}%0AMonto: $${monto}%0AFecha: ${new Date().toLocaleString()}%0A%0AEntra al admin para aprobar:%0A${location.href.split('?')[0]}?admin`;
+  window.open(`https://wa.me/523224528803?text=${msg}`,'_blank');
+  alert('Comprobante enviado! Te avisaré cuando se apruebe');
+  document.getElementById('pagoModal').style.display='none';
+}
+
+// PAISES
+let paises=JSON.parse(localStorage.getItem('temo_paises')||'[]');
+function agregarPais(){const p={nombre:paisNombre.value.trim(),bandera:paisBandera.value.trim(),metodo:metodoNombre.value.trim(),dato:metodoDato.value.trim(),cuenta:metodoCuenta.value.trim()};if(!p.nombre||!p.metodo) return alert('País y método');paises.push(p);localStorage.setItem('temo_paises',JSON.stringify(paises));paisNombre.value='';metodoNombre.value='';metodoDato.value='';metodoCuenta.value='';renderPaisesAdmin();renderPaisesPago();}
+function borrarPais(i){paises.splice(i,1);localStorage.setItem('temo_paises',JSON.stringify(paises));renderPaisesAdmin();renderPaisesPago();}
+function renderPaisesAdmin(){const cont=document.getElementById('listaPaises');if(!cont)return;cont.innerHTML=paises.map((p,i)=>`<div style="background:#000;border:1px solid #444;padding:8px;border-radius:8px;margin:5px 0;display:flex;justify-content:space-between"><span style="color:#fff">${p.bandera} ${p.nombre} - ${p.metodo}<br><small style="color:#aaa">${p.dato}</small></span><button onclick="borrarPais(${i})" style="background:#f00;color:#fff;border:none;padding:5px 10px;border-radius:6px">X</button></div>`).join('')||'<small style=color:#555>Sin países</small>';}
+function renderPaisesPago(){const cont=document.getElementById('paisesDinamicos');if(!cont)return;cont.innerHTML=paises.map(p=>`<div class="metodo"><div><b>${p.bandera} ${p.nombre} - ${p.metodo}</b><br><code>${p.dato}</code></div><button class="btnCopy" onclick="copyT('${p.cuenta||p.dato}')">Copiar</button></div>`).join('');}
+renderPaisesAdmin();renderPaisesPago();
+
+// ADMIN COMPROBANTES
+function renderComps(){let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]');let c=document.getElementById('listaComps');let b=document.getElementById('badgeComp');if(!c)return;let pend=comps.filter(x=>x.estado==='pendiente');if(b)b.innerText=pend.length;if(!comps.length){c.innerHTML='<small style=color:#555>Sin comprobantes</small>';return;}c.innerHTML=comps.slice().reverse().map((co,idxRev)=>{let i=comps.length-1-idxRev;return `<div style="background:#000;border:1px solid ${co.estado==='pendiente'?'#0f0':'#555'};padding:10px;border-radius:10px;margin:8px 0"><b style="color:${co.estado==='pendiente'?'#0f0':'#aaa'}">ID: ${co.id} | $${co.monto} | ${co.fecha} | ${co.estado.toUpperCase()}</b><br><img src="${co.img}" style="width:100%;max-width:250px;border-radius:8px;margin:8px 0;border:1px solid #f00"><div style="display:flex;gap:8px">${co.estado==='pendiente'?`<button onclick="aprobarComp(${i})" style="flex:1;padding:10px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:900">✅ APROBAR +$${co.monto}</button><button onclick="rechazarComp(${i})" style="padding:10px;background:#f00;color:#fff;border:none;border-radius:8px">X</button>`:`<button onclick="borrarComp(${i})" style="width:100%;padding:8px;background:#222;color:#fff;border:1px solid #555;border-radius:6px">Borrar</button>`}</div></div>`}).join('');if(pend.length>0){try{new Audio('https://cdn.pixabay.com/download/audio/2022/03/24/audio_3c8c66aa5c.mp3').play().catch(()=>{});}catch(e){}}}
+function aprobarComp(i){let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]');let co=comps[i];let u=getUsers();if(!u[co.id])u[co.id]={saldo:0};u[co.id].saldo+=parseInt(co.monto);setUsers(u);comps[i].estado='aprobado';localStorage.setItem('temo_comps',JSON.stringify(comps));alert('Aprobado '+co.id+' +$'+co.monto);renderComps();renderAdmin();}
+function rechazarComp(i){if(!confirm('Rechazar?'))return;let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]');comps[i].estado='rechazado';localStorage.setItem('temo_comps',JSON.stringify(comps));renderComps();}
+function borrarComp(i){let comps=JSON.parse(localStorage.getItem('temo_comps')||'[]');comps.splice(i,1);localStorage.setItem('temo_comps',JSON.stringify(comps));renderComps();}
+if(location.search.includes('admin')){document.getElementById('admin').style.display='block';renderAdmin();renderComps();setInterval(renderComps,5000);}
 function renderAdmin(){let prods=getProds();let keys=getKeys();let c=document.getElementById('aList');c.innerHTML='';prods.forEach(p=>{let card=document.createElement('div');card.className='cardA';let html='<div style=display:flex;gap:6px><input id=name-'+p.id+' value=\''+p.n+'\' class=in><button onclick=saveName(\''+p.id+'\') style=padding:8px;background:yellow;border:none;border-radius:6px>💾</button><button onclick=delProd(\''+p.id+'\') style=padding:8px;background:red;color:#fff;border:none;border-radius:6px>X</button></div>';p.ps.forEach(pl=>{let cnt=keys[pl.id]?keys[pl.id].length:0;html+='<div style=background:#000;padding:8px;border-radius:8px;margin:6px 0><div style=display:flex;gap:6px><input id=d-'+pl.id+' value=\''+pl.d+'\' class=in><input id=p-'+pl.id+' type=number value=\''+pl.p+'\' class=in style=width:80px><button onclick=savePlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>💾</button><button onclick=delPlan(\''+p.id+'\',\''+pl.id+'\') style=padding:6px;background:#000;border:1px solid #f00;color:#f00;border-radius:6px>X</button></div><textarea id=ta-'+pl.id+'>'+(keys[pl.id]?keys[pl.id].join('\n'):'')+'</textarea><div style=display:flex;gap:6px;margin-top:4px><span style=color:#f00;font-size:12px>'+cnt+' keys</span><button onclick=saveKeys(\''+pl.id+'\') style=flex:1;padding:6px;background:#f00;color:#fff;border:none;border-radius:6px>GUARDAR KEYS</button></div></div>'});html+='<div style=display:flex;gap:6px;margin-top:8px><input id=newD-'+p.id+' placeholder=\'Ej: 1 DIA\' class=in><input id=newP-'+p.id+' type=number placeholder=\'$ \' class=in style=width:80px><button onclick=addPlan(\''+p.id+'\') style=padding:8px;background:#f00;color:#fff;border:none;border-radius:6px>➕ DURACION</button></div>';card.innerHTML=html;c.appendChild(card)})}
-function createProd(){let n=document.getElementById('newName').value.trim();let i=document.getElementById('newIcon').value.trim()||'🔥';if(!n)return alert('Nombre');let prods=getProds();let id=n.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now();prods.push({n:n,i:i,id:id,ps:[]});setProds(prods);document.getElementById('newName').value='';render();renderAdmin()}
-function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value;setProds(prods);render();renderAdmin()}
-function delProd(pid){if(!confirm('Borrar?'))return;setProds(getProds().filter(x=>x.id!==pid));render();renderAdmin()}
-function addPlan(pid){let d=document.getElementById('newD-'+pid).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+pid).value);if(!d||isNaN(pr))return alert('Duracion y precio');let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin()}
-function savePlan(pid,plid){let prods=getProds();let pl=prods.find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(prods);render();renderAdmin()}
-function delPlan(pid,plid){if(!confirm('Borrar duracion?'))return;let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(prods);renderAdmin()}
+function createProd(){let n=newName.value.trim();let i=newIcon.value.trim()||'🔥';if(!n)return alert('Nombre');let prods=getProds();let id=n.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now();prods.push({n:n,i:i,id:id,ps:[]});setProds(prods);newName.value='';render();renderAdmin();}
+function saveName(pid){let prods=getProds();let p=prods.find(x=>x.id===pid);p.n=document.getElementById('name-'+pid).value;setProds(prods);render();renderAdmin();}
+function delProd(pid){if(!confirm('Borrar?'))return;setProds(getProds().filter(x=>x.id!==pid));render();renderAdmin();}
+function addPlan(pid){let d=document.getElementById('newD-'+pid).value.trim().toUpperCase();let pr=parseInt(document.getElementById('newP-'+pid).value);if(!d||isNaN(pr))return alert('Duracion y precio');let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps.push({id:pid+'-'+Date.now(),d:d,p:pr});setProds(prods);renderAdmin();}
+function savePlan(pid,plid){let prods=getProds();let pl=prods.find(x=>x.id===pid).ps.find(x=>x.id===plid);pl.d=document.getElementById('d-'+plid).value.toUpperCase();pl.p=parseInt(document.getElementById('p-'+plid).value);setProds(prods);render();renderAdmin();}
+function delPlan(pid,plid){if(!confirm('Borrar duracion?'))return;let prods=getProds();let p=prods.find(x=>x.id===pid);p.ps=p.ps.filter(x=>x.id!==plid);setProds(prods);renderAdmin();}
 function saveKeys(id){let lines=document.getElementById('ta-'+id).value.split('\n').map(s=>s.trim()).filter(s=>s);let k=getKeys();k[id]=lines;setKeys(k);render();renderAdmin();alert(lines.length+' keys guardadas')}
-function addSaldo(){let id=document.getElementById('recId').value.trim().toUpperCase();let m=parseInt(document.getElementById('recMonto').value);if(!id||isNaN(m))return alert('ID y monto');let u=getUsers();if(!u[id])u[id]={saldo:0};u[id].saldo+=m;setUsers(u);alert('Recargado');if(id===ID){document.getElementById('sTop').innerText=u[id].saldo;document.getElementById('sTxt').innerText=u[id].saldo}renderAdmin()}
+function addSaldo(){let id=recId.value.trim().toUpperCase();let m=parseInt(recMonto.value);if(!id||isNaN(m))return alert('ID y monto');let u=getUsers();if(!u[id])u[id]={saldo:0};u[id].saldo+=m;setUsers(u);alert('Recargado');if(id===ID){sTop.innerText=u[id].saldo;sTxt.innerText=u[id].saldo}renderAdmin();}
 </script></body></html>
