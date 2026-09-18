@@ -1,34 +1,46 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TEMO STORE V38 - PRODUCTOS REALES</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEMO 亗 - ROJO NEON</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}body{background:#000;color:#fff}
-.top{padding:18px;display:flex;justify-content:space-between;border-bottom:5px solid #f00;box-shadow:0 0 45px #f00;position:sticky;top:0;background:#000;z-index:99}
-.prod{margin:12px;background:#120000;border:3px solid #f00;border-radius:18px;padding:18px;display:flex;justify-content:space-between;box-shadow:0 0 35px #f00}
-.btn{background:#f00;color:#fff;border:none;padding:13px 26px;border-radius:26px;font-weight:900;box-shadow:0 0 30px #f00;cursor:pointer}
-.pagosBox{margin:12px;background:#0a0000;border:4px solid #f00;border-radius:18px;padding:16px;box-shadow:0 0 40px #f00}
-.pagoItem{background:#000;border:3px solid #f00;padding:13px;border-radius:12px;margin:9px 0;display:flex;justify-content:space-between;box-shadow:0 0 20px #f00}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial Black}
+body{background:#000;color:#fff;overflow-x:hidden}
+@keyframes neonPulse{0%,100%{box-shadow:0 0 20px #f00,0 0 40px #f00,0 0 60px #f00}50%{box-shadow:0 0 30px #f00,0 0 60px #f00,0 0 90px #f00}}
+@keyframes textGlow{0%,100%{text-shadow:0 0 10px #f00,0 0 20px #f00,0 0 40px #f00}50%{text-shadow:0 0 20px #f00,0 0 40px #f00,0 0 80px #f00}}
+.top{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:5px solid #f00;box-shadow:0 0 45px #f00;position:sticky;top:0;background:#000;z-index:99;animation:neonPulse 2s infinite}
+.logo{color:#f00;font-size:26px;animation:textGlow 1.5s infinite;letter-spacing:2px}
+.prod{margin:14px;background:linear-gradient(145deg,#1a0000,#0a0000);border:3px solid #f00;border-radius:20px;padding:20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 35px #f00, inset 0 0 20px rgba(255,0,0,0.2);transition:0.3s}
+.prod:hover{transform:scale(1.02);box-shadow:0 0 50px #f00,0 0 80px #f00}
+.btn{background:#f00;color:#fff;border:none;padding:14px 28px;border-radius:30px;font-weight:900;box-shadow:0 0 30px #f00;cursor:pointer;animation:neonPulse 2s infinite}
+.btn:hover{background:#fff;color:#f00}
+.pagosBox{margin:14px;background:#0a0000;border:4px solid #f00;border-radius:20px;padding:18px;box-shadow:0 0 50px #f00;animation:neonPulse 3s infinite}
+.pagoItem{background:#000;border:2px solid #f00;padding:14px;border-radius:14px;margin:10px 0;display:flex;justify-content:space-between;box-shadow:0 0 20px #f00}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:12px}
-.modalBox{background:#0a0000;border:5px solid #f00;border-radius:22px;padding:22px;max-width:460px;width:100%;box-shadow:0 0 70px #f00}
-</style>
-</head>
-<body>
-<div class="top"><b style="color:#f00;text-shadow:0 0 30px #f00;font-size:22px">🔥 TEMO STORE V38 🔥</b><b style="color:#f00">PRODUCTOS</b></div>
+.modalBox{background:#0a0000;border:5px solid #f00;border-radius:24px;padding:24px;max-width:480px;width:100%;box-shadow:0 0 80px #f00;animation:neonPulse 2s infinite}
+.marcaAgua{position:fixed;bottom:10px;right:10px;color:#f00;opacity:0.15;font-size:80px;font-weight:900;pointer-events:none;transform:rotate(-15deg);text-shadow:0 0 30px #f00}
+#admin{position:fixed;inset:0;background:#000;z-index:10000;display:none;overflow:auto;padding:12px}
+.barraInput{width:100%;padding:16px;background:#000;border:3px solid #f00;color:#fff;border-radius:13px;font-weight:900;box-shadow:0 0 22px #f00;text-transform:uppercase}
+#loginAdmin{position:fixed;inset:0;background:#000;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px}
+.loginBox{background:#0a0000;border:5px solid #f00;border-radius:24px;padding:28px;max-width:390px;width:100%;box-shadow:0 0 70px #f00;text-align:center;animation:neonPulse 2s infinite}
+</style></head><body>
+<div class="marcaAgua">TEMO 亗</div>
+<div class="top"><b class="logo">🔥 TEMO 亗 🔥</b><b style="color:#f00;text-shadow:0 0 20px #f00">ROJO NEON V38</b></div>
+
+<div style="text-align:center;padding:18px;color:#f00;text-shadow:0 0 20px #f00;font-size:14px">⚡ LA MARCA QUE ILUMINA LA CALLE ⚡</div>
 
 <div style="margin:12px;display:flex;flex-direction:column;gap:12px">
-<a href="https://wa.me/523224528803?text=Hola%20bro%20vengo%20de%20tu%20web%20🔥" target="_blank" style="display:block;padding:20px;background:#f00;color:#fff;border-radius:15px;text-align:center;font-weight:900;text-decoration:none;font-size:20px;box-shadow:0 0 40px #f00">💬 WHATSAPP PARA COMPRAR +52 322 452 8803</a>
-<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ" target="_blank" style="display:block;padding:17px;background:#000;border:4px solid #f00;color:#f00;border-radius:15px;text-align:center;font-weight:900;text-decoration:none;box-shadow:0 0 40px #f00">👥 GRUPO OFICIAL</a>
+<a href="https://wa.me/523224528803?text=Hola%20Temo%20亗%20vengo%20de%20tu%20web%20🔥" target="_blank" style="display:block;padding:22px;background:#f00;color:#fff;border-radius:18px;text-align:center;font-weight:900;text-decoration:none;font-size:21px;box-shadow:0 0 50px #f00;animation:neonPulse 2s infinite">💬 WHATSAPP TEMO 亗</a>
+<a href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ" target="_blank" style="display:block;padding:18px;background:#000;border:4px solid #f00;color:#f00;border-radius:18px;text-align:center;font-weight:900;text-decoration:none;box-shadow:0 0 40px #f00">👥 GRUPO OFICIAL TEMO 亗</a>
 </div>
 
-<div id="lista"></div>
-<div id="pagosFront"></div>
+<div id="lista"></div><div id="pagosFront"></div>
 
-<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:13px;background:#000;border:3px solid #f00;color:#f00;border-radius:12px;margin-top:14px;font-weight:900">CERRAR</button></div></div>
+<div style="text-align:center;margin:30px 0;padding:20px;border-top:3px solid #f00;box-shadow:0 -10px 40px #f00">
+<b style="color:#f00;text-shadow:0 0 20px #f00;font-size:28px">TEMO 亗</b><br><small style="color:#f00">DESDE LA IGLESIA HASTA LA CIMA 🔥</small><br><small style="color:#600">Ocotlán Jalisco - Formagio - TemoStore</small>
+</div>
+
+<div id="planModal" class="modal"><div class="modalBox"><h2 id="planTitle" style="color:#f00;text-shadow:0 0 20px #f00"></h2><div id="planList"></div><button onclick="document.getElementById('planModal').style.display='none'" style="width:100%;padding:14px;background:#000;border:3px solid #f00;color:#f00;border-radius:14px;margin-top:16px;font-weight:900;box-shadow:0 0 20px #f00">✖ CERRAR</button></div></div>
 
 <script>
-const PRODUCTOS = [
+const PRODUCTOS=[
 {n:'PANEL DRIP CLIENT',i:'💧',id:'drip',ps:[{id:'drip-1d',d:'1 DIA',p:4},{id:'drip-7d',d:'7 DIAS',p:12},{id:'drip-15d',d:'15 DIAS',p:15},{id:'drip-30d',d:'30 DIAS',p:20}]},
 {n:'PANEL FLOURITE',i:'💎',id:'flourite',ps:[{id:'flourite-7d',d:'7 DIAS',p:30},{id:'flourite-30d',d:'30 DIAS',p:50}]},
 {n:'CUBAN MODS',i:'🇨🇺',id:'cuban',ps:[{id:'cuban-1d',d:'1 DIA',p:3},{id:'cuban-7d',d:'7 DIAS',p:5},{id:'cuban-30d',d:'30 DIAS',p:10}]},
@@ -38,39 +50,15 @@ const PRODUCTOS = [
 {n:'TEMOMODS',i:'⚡',id:'temomods',ps:[{id:'temomods-1m',d:'1 MES',p:10},{id:'temomods-3m',d:'3 MESES',p:20},{id:'temomods-perm',d:'PERMANENTE',p:35}]},
 {n:'MONITE KEY',i:'🔑',id:'monite',ps:[{id:'monite-15d',d:'15 DIAS',p:7},{id:'monite-30d',d:'1 MES',p:12}]},
 {n:'PROXY ANDROID',i:'🌐',id:'proxy',ps:[{id:'proxy-1d',d:'1 DIA',p:3},{id:'proxy-7d',d:'7 DIAS',p:10}]},
-{n:'ANDROID PROXY 30D',i:'📡',id:'aproxy30',ps:[{id:'aproxy30-30d',d:'30 DIAS',p:15}]},
+{n:'ANDROID PROXY',i:'📡',id:'aproxy30',ps:[{id:'aproxy30-30d',d:'30 DIAS',p:15}]},
 {n:'KEY EXTERNAL iOS',i:'🍎',id:'ios',ps:[{id:'ios-30d',d:'30 DIAS',p:20}]},
 {n:'PC - COMPUTADORA',i:'💻',id:'pc',ps:[{id:'pc-30d',d:'30 DIAS',p:25}]},
 {n:'CUENTAS PRIME',i:'👑',id:'prime',ps:[{id:'prime-1',d:'CUENTA PRIME',p:5}]}
 ];
-
-const PAGOS = [{nombre:'MEXICO 🇲🇽 - Binance ID',dato:'1150540078'},{nombre:'ACEPTO CUALQUIER METODO DE PAGO ✅',dato:'CONSULTAR'}];
-
-function render(){
-let c=document.getElementById('lista');c.innerHTML='';
-PRODUCTOS.forEach(p=>{
-let d=document.createElement('div');d.className='prod';
-d.innerHTML=`<div><b>${p.i} ${p.n}</b><br><small style="color:#f00">${p.ps.length} planes</small></div><button class=btn onclick="ver('${p.id}')">VER</button>`;
-c.appendChild(d)
-})
-}
-function renderPagosFront(){
-let c=document.getElementById('pagosFront');
-c.innerHTML='<div class=pagosBox><h3 style="color:#f00;text-align:center">💳 METODOS DE PAGO</h3>'+PAGOS.map(p=>`<div class=pagoItem><b>${p.nombre}</b><span style=color:#f00;font-weight:900>${p.dato}</span></div>`).join('')+'</div>';
-}
-function ver(pid){
-let p=PRODUCTOS.find(x=>x.id===pid);
-document.getElementById('planTitle').innerText=p.i+' '+p.n;
-let l=document.getElementById('planList');l.innerHTML='';
-p.ps.forEach(pl=>{
-let div=document.createElement('div');
-div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:3px solid #f00;padding:14px;border-radius:14px;margin:10px 0;box-shadow:0 0 30px #f00';
-div.innerHTML=`<div><b>${pl.d}</b><br><b style=color:#f00>$${pl.p} USD 🛒</b></div><a href="https://wa.me/523224528803?text=Hola%20quiero%20${encodeURIComponent(p.n+' '+pl.d)}%20💳" target="_blank" style="padding:12px 18px;background:#f00;color:#fff;border-radius:24px;text-decoration:none;font-weight:900">COMPRAR</a>`;
-l.appendChild(div)
-});
-document.getElementById('planModal').style.display='flex'
-}
+const PAGOS=[{nombre:'MEXICO 🇲🇽 - Binance ID',dato:'1150540078'}];
+function render(){let c=document.getElementById('lista');c.innerHTML='';PRODUCTOS.forEach(p=>{let d=document.createElement('div');d.className='prod';d.innerHTML=`<div><b style="text-shadow:0 0 15px #f00">${p.i} ${p.n}</b><br><small style="color:#f00">TEMO 亗 - ${p.ps.length} planes</small></div><button class=btn onclick="ver('${p.id}')">VER</button>`;c.appendChild(d)})}
+function renderPagosFront(){let c=document.getElementById('pagosFront');c.innerHTML='<div class=pagosBox><h3 style="color:#f00;text-align:center;text-shadow:0 0 20px #f00">💳 PAGOS TEMO 亗 - '+PAGOS.length+'</h3>'+PAGOS.map(p=>`<div class=pagoItem><b>${p.nombre}</b><span style=color:#f00;font-weight:900;text-shadow:0 0 15px #f00>${p.dato}</span></div>`).join('')+'</div>';}
+function ver(pid){let p=PRODUCTOS.find(x=>x.id===pid);document.getElementById('planTitle').innerText='🔥 '+p.i+' '+p.n+' - TEMO 亗';let l=document.getElementById('planList');l.innerHTML='';p.ps.forEach(pl=>{let div=document.createElement('div');div.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#000;border:3px solid #f00;padding:14px;border-radius:14px;margin:10px 0;box-shadow:0 0 30px #f00';div.innerHTML=`<div><b>${pl.d}</b><br><b style=color:#f00;text-shadow:0 0 15px #f00>$${pl.p} USD 🛒</b></div><a href="https://wa.me/523224528803?text=Hola%20Temo%20亗%20quiero%20${encodeURIComponent(p.n+' '+pl.d)}" target="_blank" style="padding:12px 18px;background:#f00;color:#fff;border-radius:24px;text-decoration:none;font-weight:900;box-shadow:0 0 20px #f00">COMPRAR</a>`;l.appendChild(div)});document.getElementById('planModal').style.display='flex'}
 render();renderPagosFront();
 </script>
-</body>
-</html>
+</body></html>
