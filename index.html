@@ -3,99 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASE TEMO V47 - CON AVISO</title>
+<title>BASE TEMO V48 FULL DIAMANTES</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
-@keyframes neonRed{0%,100%{text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033}50%{text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033}}
+@keyframes neonRed{0%,100%{text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033}50%{text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033}}
 @keyframes borderRed{0%,100%{border-color:#ff0033;box-shadow:0 0 10px #ff003355}50%{border-color:#ff3355;box-shadow:0 0 30px #ff0033cc}}
 @keyframes blinkRed{0%,100%{box-shadow:0 0 10px #ff0033}50%{box-shadow:0 0 25px #ff0033,0 0 45px #ff0033}}
 @keyframes blinkBlue{0%,100%{box-shadow:0 0 10px #00aaff}50%{box-shadow:0 0 25px #00aaff,0 0 45px #00aaff}}
 body{background:#000;color:#fff;font-family:Arial,sans-serif;padding:12px;margin:0}
-h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:18px 0;letter-spacing:4px;font-size:26px;animation:neonRed 1.2s infinite alternate}
-.sub{text-align:center;color:#ff0033;font-size:11px;margin-bottom:18px;letter-spacing:2px}
+h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:18px 0;letter-spacing:4px;font-size:24px;animation:neonRed 1.2s infinite alternate}
+.sub{text-align:center;color:#ff0033;font-size:11px;margin-bottom:18px}
 .section{background:#0a0a0a;border:2px solid #ff0033;border-radius:20px;padding:14px;margin-bottom:24px;animation:borderRed 1.8s infinite}
 .section h2{color:#ff0033;font-size:14px;text-shadow:0 0 12px #ff0033;border-left:5px solid #ff0033;padding-left:10px;margin-bottom:10px}
 .note{font-size:11px;color:#ff003388;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .item{background:#121212;border:1px solid #ffffff22;border-radius:16px;padding:12px;text-align:center}
 .item .name{font-size:11px;color:#ffbbbb;margin:6px 0;min-height:26px;font-weight:700}
-.item .price{color:#ff0033;font-weight:900;font-size:16px;text-shadow:0 0 12px #ff0033;animation:neonRed 1.5s infinite alternate}
-.btn{display:block;margin-top:6px;text-decoration:none;padding:9px;border-radius:22px;font-size:9px;font-weight:900;letter-spacing:1px;text-align:center;cursor:pointer}
+.item .price{color:#ff0033;font-weight:900;font-size:15px;animation:neonRed 1.5s infinite alternate}
+.btn{display:block;margin-top:6px;padding:9px;border-radius:22px;font-size:9px;font-weight:900;text-align:center;cursor:pointer}
 .btn-temo{background:#ff0033;color:#000;animation:blinkRed 1.2s infinite}
 .btn-angel{background:#00aaff;color:#000;animation:blinkBlue 1.2s infinite}
-.icon{font-size:22px}
+#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow-y:auto;padding:20px}
+.ventaCard{background:#111;border-left:4px solid #00aaff;padding:10px;margin-bottom:10px;border-radius:10px;font-size:12px}
+.ventaCard.temo{border-left-color:#ff0033}
+#adminBtn{position:fixed;bottom:15px;right:15px;background:#ff0033;color:#000;padding:12px 18px;border-radius:30px;font-size:12px;font-weight:900;z-index:999;box-shadow:0 0 20px #ff0033}
 </style>
 <script>
-function comprarTemo(producto, precio){
-  let msg = `Hola Temo quiero ${producto} por $${precio} MXN`;
-  window.open(`https://wa.me/523224528803?text=${encodeURIComponent(msg)}`, '_blank');
-}
-function comprarAngel(producto, precio){
-  let msgAngel = `Hola Angel quiero ${producto} por $${precio} MXN`;
-  let msgTemo = `🔔 AVISO VENTA ANGEL: Un cliente clickeo ${producto} por $${precio} MXN con ANGEL - Revisa que lo atienda`;
-  window.open(`https://wa.me/529371098563?text=${encodeURIComponent(msgAngel)}`, '_blank');
-  setTimeout(()=>{ window.open(`https://wa.me/523224528803?text=${encodeURIComponent(msgTemo)}`, '_blank'); }, 1000);
-}
+function comprarTemo(prod, precio){ guardarVenta('TEMO 🔴', prod, precio); window.open(`https://wa.me/523224528803?text=${encodeURIComponent('Hola Temo quiero '+prod+' por $'+precio+' MXN')}`, '_blank'); }
+function comprarAngel(prod, precio){ guardarVenta('ANGEL 🔵', prod, precio); window.open(`https://wa.me/529371098563?text=${encodeURIComponent('Hola Angel quiero '+prod+' por $'+precio+' MXN')}`, '_blank'); }
+function guardarVenta(vendedor, prod, precio){ let ventas = JSON.parse(localStorage.getItem('ventasV48')||'[]'); ventas.unshift({fecha:new Date().toLocaleString(), vendedor:vendedor, producto:prod, precio:precio}); localStorage.setItem('ventasV48', JSON.stringify(ventas)); }
+function verAdmin(){ document.getElementById('adminPanel').style.display='block'; let ventas = JSON.parse(localStorage.getItem('ventasV48')||'[]'); let html = `<h2 style="color:#ff0033">📊 PANEL ${ventas.length} VENTAS</h2><button onclick="cerrarAdmin()" style="background:#fff;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">CERRAR</button> <button onclick="borrarVentas()" style="background:#ff0033;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">BORRAR</button><br><br>`; if(ventas.length==0) html+='<p>Sin ventas aún</p>'; ventas.forEach(v=>{ html+=`<div class="ventaCard ${v.vendedor.includes('TEMO')?'temo':''}"><b>${v.vendedor}</b> - ${v.producto} - $${v.precio}<br><small>${v.fecha}</small></div>`; }); document.getElementById('listaVentas').innerHTML = html; }
+function cerrarAdmin(){ document.getElementById('adminPanel').style.display='none'; }
+function borrarVentas(){ if(confirm('¿Borrar historial?')){ localStorage.removeItem('ventasV48'); verAdmin(); } }
 </script>
 </head>
 <body>
-<h1>⚡ BASE TEMO V47 ⚡</h1>
-<p class="sub">🔴 TEMO ROJO + 🔵 ANGEL AZUL • CON AVISO 🔵</p>
+<h1>⚡ BASE TEMO V48 FULL ⚡</h1>
+<p class="sub">🔴 TEMO ROJO NEON + 🔵 ANGEL AZUL NEON</p>
 
 <div class="section"><h2>💧 DRIP CLIENT</h2><div class="grid">
-<div class="item"><div class="icon">💧</div><div class="name">DRIP 1 Día</div><div class="price">$20 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 1 Dia','20')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 1 Dia','20')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💧</div><div class="name">DRIP 7 Días</div><div class="price">$60 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 7 Dias','60')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 7 Dias','60')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💧</div><div class="name">DRIP 30 Días</div><div class="price">$150 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 30 Dias','150')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 30 Dias','150')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💧</div><div class="name">DRIP Perma</div><div class="price">$320 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP Permanente','320')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP Permanente','320')">ANGEL 🔵</a></div>
-</div></div>
-
-<div class="section"><h2>💠 FLOURITE</h2><div class="grid">
-<div class="item"><div class="icon">💠</div><div class="name">FLOURITE 7 Días</div><div class="price">$80 MXN</div><a class="btn btn-temo" onclick="comprarTemo('FLOURITE 7 Dias','80')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE 7 Dias','80')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💠</div><div class="name">FLOURITE 30 Días</div><div class="price">$180 MXN</div><a class="btn btn-temo" onclick="comprarTemo('FLOURITE 30 Dias','180')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE 30 Dias','180')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💠</div><div class="name">FLOURITE Perma</div><div class="price">$380 MXN</div><a class="btn btn-temo" onclick="comprarTemo('FLOURITE Perma','380')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE Perma','380')">ANGEL 🔵</a></div>
-</div></div>
-
-<div class="section"><h2>🇨🇺 CUBAN MODS</h2><div class="grid">
-<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN 7 Días</div><div class="price">$70 MXN</div><a class="btn btn-temo" onclick="comprarTemo('CUBAN 7 Dias','70')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN 7 Dias','70')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN 30 Días</div><div class="price">$160 MXN</div><a class="btn btn-temo" onclick="comprarTemo('CUBAN 30 Dias','160')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN 30 Dias','160')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN Perma</div><div class="price">$350 MXN</div><a class="btn btn-temo" onclick="comprarTemo('CUBAN Perma','350')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN Perma','350')">ANGEL 🔵</a></div>
-</div></div>
-
-<div class="section"><h2>⚔️ HG CHEATS</h2><div class="grid">
-<div class="item"><div class="icon">⚔️</div><div class="name">HG 7 Días</div><div class="price">$90 MXN</div><a class="btn btn-temo" onclick="comprarTemo('HG 7 Dias','90')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('HG 7 Dias','90')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">⚔️</div><div class="name">HG 30 Días</div><div class="price">$200 MXN</div><a class="btn btn-temo" onclick="comprarTemo('HG 30 Dias','200')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('HG 30 Dias','200')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">⚔️</div><div class="name">HG Perma</div><div class="price">$400 MXN</div><a class="btn btn-temo" onclick="comprarTemo('HG Perma','400')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('HG Perma','400')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">DRIP 1 Día</div><div class="price">$20 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 1 Dia','20')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 1 Dia','20')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">DRIP 7 Días</div><div class="price">$60 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 7 Dias','60')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 7 Dias','60')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">DRIP 30 Días</div><div class="price">$150 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 30 Dias','150')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 30 Dias','150')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">DRIP Perma</div><div class="price">$320 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP Perma','320')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP Perma','320')">ANGEL 🔵</a></div>
 </div></div>
 
 <div class="section"><h2>🧩 FRAGMENTOS EVO X ID 🪽</h2><p class="note">Llegan a veces inmediatos o a veces a lo largo del día</p><div class="grid">
-<div class="item"><div class="icon">🧁</div><div class="name">50 Fragmentos</div><div class="price">$45 MXN</div><a class="btn btn-temo" onclick="comprarTemo('50 Fragmentos EVO','45')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('50 Fragmentos EVO','45')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">100 Fragmentos</div><div class="price">$85 MXN</div><a class="btn btn-temo" onclick="comprarTemo('100 Fragmentos EVO','85')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('100 Fragmentos EVO','85')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">200 Fragmentos</div><div class="price">$160 MXN</div><a class="btn btn-temo" onclick="comprarTemo('200 Fragmentos EVO','160')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('200 Fragmentos EVO','160')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">250 Fragmentos</div><div class="price">$205 MXN</div><a class="btn btn-temo" onclick="comprarTemo('250 Fragmentos EVO','205')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('250 Fragmentos EVO','205')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">300 Fragmentos</div><div class="price">$260 MXN</div><a class="btn btn-temo" onclick="comprarTemo('300 Fragmentos EVO','260')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('300 Fragmentos EVO','260')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">350 Fragmentos</div><div class="price">$305 MXN</div><a class="btn btn-temo" onclick="comprarTemo('350 Fragmentos EVO','305')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('350 Fragmentos EVO','305')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">400 Fragmentos</div><div class="price">$345 MXN</div><a class="btn btn-temo" onclick="comprarTemo('400 Fragmentos EVO','345')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('400 Fragmentos EVO','345')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">500 Fragmentos</div><div class="price">$450 MXN</div><a class="btn btn-temo" onclick="comprarTemo('500 Fragmentos EVO','450')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('500 Fragmentos EVO','450')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">🧁</div><div class="name">600 Fragmentos</div><div class="price">$520 MXN</div><a class="btn btn-temo" onclick="comprarTemo('600 Fragmentos EVO','520')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('600 Fragmentos EVO','520')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">50 Fragmentos</div><div class="price">$45 MXN</div><a class="btn btn-temo" onclick="comprarTemo('50 Frag EVO','45')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('50 Frag EVO','45')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">100 Fragmentos</div><div class="price">$85 MXN</div><a class="btn btn-temo" onclick="comprarTemo('100 Frag EVO','85')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('100 Frag EVO','85')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">200 Fragmentos</div><div class="price">$160 MXN</div><a class="btn btn-temo" onclick="comprarTemo('200 Frag EVO','160')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('200 Frag EVO','160')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">250 Fragmentos</div><div class="price">$205 MXN</div><a class="btn btn-temo" onclick="comprarTemo('250 Frag EVO','205')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('250 Frag EVO','205')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">300 Fragmentos</div><div class="price">$260 MXN</div><a class="btn btn-temo" onclick="comprarTemo('300 Frag EVO','260')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('300 Frag EVO','260')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">350 Fragmentos</div><div class="price">$305 MXN</div><a class="btn btn-temo" onclick="comprarTemo('350 Frag EVO','305')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('350 Frag EVO','305')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">400 Fragmentos</div><div class="price">$345 MXN</div><a class="btn btn-temo" onclick="comprarTemo('400 Frag EVO','345')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('400 Frag EVO','345')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">500 Fragmentos</div><div class="price">$450 MXN</div><a class="btn btn-temo" onclick="comprarTemo('500 Frag EVO','450')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('500 Frag EVO','450')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">600 Fragmentos</div><div class="price">$520 MXN</div><a class="btn btn-temo" onclick="comprarTemo('600 Frag EVO','520')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('600 Frag EVO','520')">ANGEL 🔵</a></div>
 </div></div>
 
 <div class="section"><h2>💎 DIAMANTES PROMO 1 VEZ</h2><div class="grid">
-<div class="item"><div class="icon">💎</div><div class="name">(100) 110</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 Diamantes PROMO','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 Diamantes PROMO','18')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">(300) 341</div><div class="price">$48 MXN</div><a class="btn btn-temo" onclick="comprarTemo('341 Diamantes PROMO','48')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('341 Diamantes PROMO','48')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">(500) 572</div><div class="price">$68 MXN</div><a class="btn btn-temo" onclick="comprarTemo('572 Diamantes PROMO','68')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('572 Diamantes PROMO','68')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">(1k) 1166</div><div class="price">$135 MXN</div><a class="btn btn-temo" onclick="comprarTemo('1166 Diamantes PROMO','135')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('1166 Diamantes PROMO','135')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">(2k) 2398</div><div class="price">$260 MXN</div><a class="btn btn-temo" onclick="comprarTemo('2398 Diamantes PROMO','260')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('2398 Diamantes PROMO','260')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">(6k) 6160</div><div class="price">$615 MXN</div><a class="btn btn-temo" onclick="comprarTemo('6160 Diamantes PROMO','615')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('6160 Diamantes PROMO','615')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">📅</div><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Tarjeta Mensual','170')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Tarjeta Mensual','170')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">12320 Diamantes</div><div class="price">$1500 MXN</div><a class="btn btn-temo" onclick="comprarTemo('12320 Diamantes','1500')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('12320 Diamantes','1500')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">(100) 110</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 PROMO 1 VEZ','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 PROMO 1 VEZ','18')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">(300) 341</div><div class="price">$48 MXN</div><a class="btn btn-temo" onclick="comprarTemo('341 PROMO','48')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('341 PROMO','48')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">(500) 572</div><div class="price">$68 MXN</div><a class="btn btn-temo" onclick="comprarTemo('572 PROMO','68')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('572 PROMO','68')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">(1000) 1166</div><div class="price">$135 MXN</div><a class="btn btn-temo" onclick="comprarTemo('1166 PROMO','135')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('1166 PROMO','135')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">(2000) 2398</div><div class="price">$260 MXN</div><a class="btn btn-temo" onclick="comprarTemo('2398 PROMO','260')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('2398 PROMO','260')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">(6000) 6160</div><div class="price">$615 MXN</div><a class="btn btn-temo" onclick="comprarTemo('6160 PROMO','615')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('6160 PROMO','615')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Mensual','170')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Mensual','170')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">12320 Diamantes</div><div class="price">$1500 MXN</div><a class="btn btn-temo" onclick="comprarTemo('12320','1500')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('12320','1500')">ANGEL 🔵</a></div>
 </div></div>
 
-<div class="section"><h2>⚡ 1 A 3 MINUTOS</h2><div class="grid">
-<div class="item"><div class="icon">👑</div><div class="name">Membresia Semanal</div><div class="price">$9 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Membresia Semanal','9')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Membresia Semanal','9')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">110 Diamantes</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 Diamantes','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 Diamantes','18')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">341 Diamantes</div><div class="price">$55 MXN</div><a class="btn btn-temo" onclick="comprarTemo('341 Diamantes','55')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('341 Diamantes','55')">ANGEL 🔵</a></div>
-<div class="item"><div class="icon">💎</div><div class="name">572 Diamantes</div><div class="price">$88 MXN</div><a class="btn btn-temo" onclick="comprarTemo('572 Diamantes','88')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('572 Diamantes','88')">ANGEL 🔵</a></div>
+<div class="section"><h2>⚡ LLEGAN 1 A 3 MINUTOS</h2><div class="grid">
+<div class="item"><div class="name">Membresia Semanal</div><div class="price">$9 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Membresia Semanal','9')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Membresia Semanal','9')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">110 Diamantes</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 1-3min','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 1-3min','18')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Tarjeta Semanal','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Tarjeta Semanal','35')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">220 Diamantes</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('220','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('220','35')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">Pase Booyah</div><div class="price">$50 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Pase Booyah','50')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Pase Booyah','50')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">341 Diamantes</div><div class="price">$55 MXN</div><a class="btn btn-temo" onclick="comprarTemo('341 1-3min','55')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('341 1-3min','55')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">572 Diamantes</div><div class="price">$88 MXN</div><a class="btn btn-temo" onclick="comprarTemo('572 1-3min','88')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('572 1-3min','88')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">6160 Diamantes</div><div class="price">$720 MXN</div><a class="btn btn-temo" onclick="comprarTemo('6160 1-3min','720')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('6160 1-3min','720')">ANGEL 🔵</a></div>
 </div></div>
 
+<div class="section"><h2>⏰ 30 MIN A 2 HORAS</h2><div class="grid">
+<div class="item"><div class="name">110 Diamantes</div><div class="price">$19 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 30min','19')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 30min','19')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">231 Diamantes</div><div class="price">$39 MXN</div><a class="btn btn-temo" onclick="comprarTemo('231','39')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('231','39')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">330 Diamantes</div><div class="price">$56 MXN</div><a class="btn btn-temo" onclick="comprarTemo('330','56')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('330','56')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">583 Diamantes</div><div class="price">$87 MXN</div><a class="btn btn-temo" onclick="comprarTemo('583','87')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('583','87')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">1188 Diamantes</div><div class="price">$162 MXN</div><a class="btn btn-temo" onclick="comprarTemo('1188','162')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('1188','162')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">2420 Diamantes</div><div class="price">$322 MXN</div><a class="btn btn-temo" onclick="comprarTemo('2420','322')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('2420','322')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">6160 Diamantes</div><div class="price">$820 MXN</div><a class="btn btn-temo" onclick="comprarTemo('6160 2h','820')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('6160 2h','820')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('PASE BOOYAH 30min','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('PASE BOOYAH 30min','35')">ANGEL 🔵</a></div>
+</div></div>
+
+<div id="adminPanel"><div id="listaVentas"></div></div>
+<a id="adminBtn" onclick="verAdmin()">📊 VER VENTAS</a>
 </body>
 </html>
