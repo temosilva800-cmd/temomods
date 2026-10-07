@@ -3,49 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASE TEMO V48 FULL DIAMANTES</title>
+<title>BASE TEMO V49 FINAL 2 USERS</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
-@keyframes neonRed{0%,100%{text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033}50%{text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033}}
+@keyframes neonRed{0%,100%{text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033}50%{text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033}}
 @keyframes borderRed{0%,100%{border-color:#ff0033;box-shadow:0 0 10px #ff003355}50%{border-color:#ff3355;box-shadow:0 0 30px #ff0033cc}}
 @keyframes blinkRed{0%,100%{box-shadow:0 0 10px #ff0033}50%{box-shadow:0 0 25px #ff0033,0 0 45px #ff0033}}
 @keyframes blinkBlue{0%,100%{box-shadow:0 0 10px #00aaff}50%{box-shadow:0 0 25px #00aaff,0 0 45px #00aaff}}
 body{background:#000;color:#fff;font-family:Arial,sans-serif;padding:12px;margin:0}
-h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:18px 0;letter-spacing:4px;font-size:24px;animation:neonRed 1.2s infinite alternate}
-.sub{text-align:center;color:#ff0033;font-size:11px;margin-bottom:18px}
+h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:18px 0;letter-spacing:4px;font-size:24px;animation:neonRed 1.2s infinite alternate;cursor:pointer}
+.sub{text-align:center;color:#ff0033;font-size:10px;margin-bottom:18px;letter-spacing:1px}
 .section{background:#0a0a0a;border:2px solid #ff0033;border-radius:20px;padding:14px;margin-bottom:24px;animation:borderRed 1.8s infinite}
-.section h2{color:#ff0033;font-size:14px;text-shadow:0 0 12px #ff0033;border-left:5px solid #ff0033;padding-left:10px;margin-bottom:10px}
-.note{font-size:11px;color:#ff003388;margin-bottom:10px}
+.section h2{color:#ff0033;font-size:13px;text-shadow:0 0 12px #ff0033;border-left:5px solid #ff0033;padding-left:10px;margin-bottom:10px}
+.note{font-size:10px;color:#ff003388;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .item{background:#121212;border:1px solid #ffffff22;border-radius:16px;padding:12px;text-align:center}
-.item .name{font-size:11px;color:#ffbbbb;margin:6px 0;min-height:26px;font-weight:700}
-.item .price{color:#ff0033;font-weight:900;font-size:15px;animation:neonRed 1.5s infinite alternate}
-.btn{display:block;margin-top:6px;padding:9px;border-radius:22px;font-size:9px;font-weight:900;text-align:center;cursor:pointer}
+.item.name{font-size:11px;color:#ffbbbb;margin:6px 0;min-height:26px;font-weight:700}
+.item.price{color:#ff0033;font-weight:900;font-size:15px;animation:neonRed 1.5s infinite alternate}
+.btn{display:block;margin-top:6px;padding:9px;border-radius:22px;font-size:9px;font-weight:900;text-align:center;cursor:pointer;text-decoration:none}
 .btn-temo{background:#ff0033;color:#000;animation:blinkRed 1.2s infinite}
 .btn-angel{background:#00aaff;color:#000;animation:blinkBlue 1.2s infinite}
-#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;overflow-y:auto;padding:20px}
+#loginPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;padding:30px;text-align:center}
+#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;overflow-y:auto;padding:20px}
+.input{width:90%;max-width:300px;padding:12px;border-radius:10px;border:1px solid #ff0033;background:#111;color:#fff;margin:8px 0}
 .ventaCard{background:#111;border-left:4px solid #00aaff;padding:10px;margin-bottom:10px;border-radius:10px;font-size:12px}
 .ventaCard.temo{border-left-color:#ff0033}
-#adminBtn{position:fixed;bottom:15px;right:15px;background:#ff0033;color:#000;padding:12px 18px;border-radius:30px;font-size:12px;font-weight:900;z-index:999;box-shadow:0 0 20px #ff0033}
 </style>
 <script>
-function comprarTemo(prod, precio){ guardarVenta('TEMO 🔴', prod, precio); window.open(`https://wa.me/523224528803?text=${encodeURIComponent('Hola Temo quiero '+prod+' por $'+precio+' MXN')}`, '_blank'); }
-function comprarAngel(prod, precio){ guardarVenta('ANGEL 🔵', prod, precio); window.open(`https://wa.me/529371098563?text=${encodeURIComponent('Hola Angel quiero '+prod+' por $'+precio+' MXN')}`, '_blank'); }
-function guardarVenta(vendedor, prod, precio){ let ventas = JSON.parse(localStorage.getItem('ventasV48')||'[]'); ventas.unshift({fecha:new Date().toLocaleString(), vendedor:vendedor, producto:prod, precio:precio}); localStorage.setItem('ventasV48', JSON.stringify(ventas)); }
-function verAdmin(){ document.getElementById('adminPanel').style.display='block'; let ventas = JSON.parse(localStorage.getItem('ventasV48')||'[]'); let html = `<h2 style="color:#ff0033">📊 PANEL ${ventas.length} VENTAS</h2><button onclick="cerrarAdmin()" style="background:#fff;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">CERRAR</button> <button onclick="borrarVentas()" style="background:#ff0033;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">BORRAR</button><br><br>`; if(ventas.length==0) html+='<p>Sin ventas aún</p>'; ventas.forEach(v=>{ html+=`<div class="ventaCard ${v.vendedor.includes('TEMO')?'temo':''}"><b>${v.vendedor}</b> - ${v.producto} - $${v.precio}<br><small>${v.fecha}</small></div>`; }); document.getElementById('listaVentas').innerHTML = html; }
+let toques=0, userActual=null;
+const USERS={temo:{pass:'temo123', name:'TEMO JEFE 🔴', color:'#ff0033'}, angel:{pass:'angel123', name:'ANGEL 🔵', color:'#00aaff'}};
+function contarToques(){ toques++; if(toques>=5){ toques=0; document.getElementById('loginPanel').style.display='block'; } setTimeout(()=>toques=0,2000); }
+function login(){ let u=document.getElementById('user').value.toLowerCase().trim(); let p=document.getElementById('pass').value.trim(); if(USERS[u] && USERS[u].pass===p){ userActual=u; document.getElementById('loginPanel').style.display='none'; verAdmin(); } else alert('Usuario o pass mal'); }
+function comprarTemo(prod, precio){ guardarVenta('TEMO 🔴','temo',prod,precio); window.open(`https://wa.me/523224528803?text=${encodeURIComponent('Hola Temo quiero '+prod+' por $'+precio+' MXN')}`,'_blank'); }
+function comprarAngel(prod, precio){ guardarVenta('ANGEL 🔵','angel',prod,precio); window.open(`https://wa.me/529371098563?text=${encodeURIComponent('Hola Angel quiero '+prod+' por $'+precio+' MXN')}`,'_blank'); }
+function guardarVenta(label, owner, prod, precio){ let v=JSON.parse(localStorage.getItem('ventasV49')||'[]'); v.unshift({fecha:new Date().toLocaleString(), label:label, owner:owner, producto:prod, precio:precio}); localStorage.setItem('ventasV49', JSON.stringify(v)); }
+function verAdmin(){ document.getElementById('adminPanel').style.display='block'; let ventas=JSON.parse(localStorage.getItem('ventasV49')||'[]'); let filtradas=userActual==='temo'?ventas:ventas.filter(x=>x.owner===userActual); let totalTemo=ventas.filter(x=>x.owner==='temo').length; let totalAngel=ventas.filter(x=>x.owner==='angel').length; let html=`<h2 style="color:${USERS[userActual].color}">📊 ${USERS[userActual].name}</h2><p>User: <b>${userActual.toUpperCase()}</b> - ${userActual==='temo'?`Total:${ventas.length} | Temo:${totalTemo} | Angel:${totalAngel}`:`Tus ventas:${filtradas.length}`}</p><button onclick="cerrarAdmin()" style="background:#fff;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">CERRAR</button> <button onclick="logout()" style="background:${USERS[userActual].color};color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">SALIR</button> ${userActual==='temo'?`<button onclick="borrarVentas()" style="background:#ff0033;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">BORRAR</button>`:''}<br><br>`; if(filtradas.length==0) html+='<p>Sin ventas aún</p>'; filtradas.forEach(v=>{ html+=`<div class="ventaCard ${v.owner==='temo'?'temo':''}"><b>${v.label} - ${v.producto} $${v.precio}</b><br><small>${v.fecha}</small></div>`; }); document.getElementById('listaVentas').innerHTML=html; }
 function cerrarAdmin(){ document.getElementById('adminPanel').style.display='none'; }
-function borrarVentas(){ if(confirm('¿Borrar historial?')){ localStorage.removeItem('ventasV48'); verAdmin(); } }
+function logout(){ userActual=null; cerrarAdmin(); document.getElementById('loginPanel').style.display='none'; }
+function borrarVentas(){ if(userActual!=='temo') return alert('Solo Temo'); if(confirm('¿Borrar todo?')){ localStorage.removeItem('ventasV49'); verAdmin(); } }
+window.onload=function(){ if(location.search.includes('admin')) document.getElementById('loginPanel').style.display='block'; }
 </script>
 </head>
 <body>
-<h1>⚡ BASE TEMO V48 FULL ⚡</h1>
-<p class="sub">🔴 TEMO ROJO NEON + 🔵 ANGEL AZUL NEON</p>
+<h1 onclick="contarToques()">⚡ BASE TEMO V49 ⚡</h1>
+<p class="sub">5 TOQUES AL TITULO O?admin PARA ENTRAR • 🔴 TEMO + 🔵 ANGEL</p>
 
 <div class="section"><h2>💧 DRIP CLIENT</h2><div class="grid">
 <div class="item"><div class="name">DRIP 1 Día</div><div class="price">$20 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 1 Dia','20')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 1 Dia','20')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">DRIP 7 Días</div><div class="price">$60 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 7 Dias','60')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 7 Dias','60')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">DRIP 30 Días</div><div class="price">$150 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP 30 Dias','150')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 30 Dias','150')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">DRIP Perma</div><div class="price">$320 MXN</div><a class="btn btn-temo" onclick="comprarTemo('DRIP Perma','320')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP Perma','320')">ANGEL 🔵</a></div>
+</div></div>
+
+<div class="section"><h2>💠 FLOURITE / 🇨🇺 CUBAN / ⚔️ HG</h2><div class="grid">
+<div class="item"><div class="name">FLOURITE 7 Días</div><div class="price">$80 MXN</div><a class="btn btn-temo" onclick="comprarTemo('FLOURITE 7d','80')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE 7d','80')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">FLOURITE 30 Días</div><div class="price">$180 MXN</div><a class="btn btn-temo" onclick="comprarTemo('FLOURITE 30d','180')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE 30d','180')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">FLOURITE Perma</div><div class="price">$380 MXN</div><a class="btn btn-temo" onclick="comprarTemo('FLOURITE Perma','380')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE Perma','380')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">CUBAN 7 Días</div><div class="price">$70 MXN</div><a class="btn btn-temo" onclick="comprarTemo('CUBAN 7d','70')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN 7d','70')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">CUBAN 30 Días</div><div class="price">$160 MXN</div><a class="btn btn-temo" onclick="comprarTemo('CUBAN 30d','160')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN 30d','160')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">CUBAN Perma</div><div class="price">$350 MXN</div><a class="btn btn-temo" onclick="comprarTemo('CUBAN Perma','350')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN Perma','350')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">HG 7 Días</div><div class="price">$90 MXN</div><a class="btn btn-temo" onclick="comprarTemo('HG 7d','90')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('HG 7d','90')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">HG Perma</div><div class="price">$400 MXN</div><a class="btn btn-temo" onclick="comprarTemo('HG Perma','400')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('HG Perma','400')">ANGEL 🔵</a></div>
 </div></div>
 
 <div class="section"><h2>🧩 FRAGMENTOS EVO X ID 🪽</h2><p class="note">Llegan a veces inmediatos o a veces a lo largo del día</p><div class="grid">
@@ -60,8 +78,8 @@ function borrarVentas(){ if(confirm('¿Borrar historial?')){ localStorage.remove
 <div class="item"><div class="name">600 Fragmentos</div><div class="price">$520 MXN</div><a class="btn btn-temo" onclick="comprarTemo('600 Frag EVO','520')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('600 Frag EVO','520')">ANGEL 🔵</a></div>
 </div></div>
 
-<div class="section"><h2>💎 DIAMANTES PROMO 1 VEZ</h2><div class="grid">
-<div class="item"><div class="name">(100) 110</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 PROMO 1 VEZ','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 PROMO 1 VEZ','18')">ANGEL 🔵</a></div>
+<div class="section"><h2>💎 PROMO 1 VEZ</h2><div class="grid">
+<div class="item"><div class="name">(100) 110</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 PROMO','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 PROMO','18')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">(300) 341</div><div class="price">$48 MXN</div><a class="btn btn-temo" onclick="comprarTemo('341 PROMO','48')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('341 PROMO','48')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">(500) 572</div><div class="price">$68 MXN</div><a class="btn btn-temo" onclick="comprarTemo('572 PROMO','68')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('572 PROMO','68')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">(1000) 1166</div><div class="price">$135 MXN</div><a class="btn btn-temo" onclick="comprarTemo('1166 PROMO','135')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('1166 PROMO','135')">ANGEL 🔵</a></div>
@@ -71,11 +89,11 @@ function borrarVentas(){ if(confirm('¿Borrar historial?')){ localStorage.remove
 <div class="item"><div class="name">12320 Diamantes</div><div class="price">$1500 MXN</div><a class="btn btn-temo" onclick="comprarTemo('12320','1500')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('12320','1500')">ANGEL 🔵</a></div>
 </div></div>
 
-<div class="section"><h2>⚡ LLEGAN 1 A 3 MINUTOS</h2><div class="grid">
+<div class="section"><h2>⚡ 1 A 3 MINUTOS</h2><div class="grid">
 <div class="item"><div class="name">Membresia Semanal</div><div class="price">$9 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Membresia Semanal','9')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Membresia Semanal','9')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">110 Diamantes</div><div class="price">$18 MXN</div><a class="btn btn-temo" onclick="comprarTemo('110 1-3min','18')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('110 1-3min','18')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Tarjeta Semanal','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Tarjeta Semanal','35')">ANGEL 🔵</a></div>
-<div class="item"><div class="name">220 Diamantes</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('220','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('220','35')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">220 Diamantes</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('220 1-3min','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('220 1-3min','35')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">Pase Booyah</div><div class="price">$50 MXN</div><a class="btn btn-temo" onclick="comprarTemo('Pase Booyah','50')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('Pase Booyah','50')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">341 Diamantes</div><div class="price">$55 MXN</div><a class="btn btn-temo" onclick="comprarTemo('341 1-3min','55')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('341 1-3min','55')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">572 Diamantes</div><div class="price">$88 MXN</div><a class="btn btn-temo" onclick="comprarTemo('572 1-3min','88')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('572 1-3min','88')">ANGEL 🔵</a></div>
@@ -90,10 +108,18 @@ function borrarVentas(){ if(confirm('¿Borrar historial?')){ localStorage.remove
 <div class="item"><div class="name">1188 Diamantes</div><div class="price">$162 MXN</div><a class="btn btn-temo" onclick="comprarTemo('1188','162')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('1188','162')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">2420 Diamantes</div><div class="price">$322 MXN</div><a class="btn btn-temo" onclick="comprarTemo('2420','322')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('2420','322')">ANGEL 🔵</a></div>
 <div class="item"><div class="name">6160 Diamantes</div><div class="price">$820 MXN</div><a class="btn btn-temo" onclick="comprarTemo('6160 2h','820')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('6160 2h','820')">ANGEL 🔵</a></div>
-<div class="item"><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('PASE BOOYAH 30min','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('PASE BOOYAH 30min','35')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn btn-temo" onclick="comprarTemo('PASE BOOYAH 2h','35')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('PASE BOOYAH 2h','35')">ANGEL 🔵</a></div>
 </div></div>
 
+<div id="loginPanel">
+<h2 style="color:#ff0033">🔐 LOGIN 2 USERS</h2>
+<input id="user" class="input" placeholder="Usuario: temo o angel">
+<input id="pass" class="input" type="password" placeholder="Contraseña">
+<br><br>
+<button onclick="login()" style="background:#ff0033;color:#000;padding:12px 30px;border-radius:30px;border:none;font-weight:900">ENTRAR</button><br><br>
+<p style="font-size:11px;color:#888">temo / temo123 = JEFE ve todo<br>angel / angel123 = ve solo suyas</p>
+<button onclick="document.getElementById('loginPanel').style.display='none'" style="background:#222;color:#fff;padding:8px 15px;border-radius:20px;border:none;margin-top:10px">Cerrar</button>
+</div>
 <div id="adminPanel"><div id="listaVentas"></div></div>
-<a id="adminBtn" onclick="verAdmin()">📊 VER VENTAS</a>
 </body>
 </html>
