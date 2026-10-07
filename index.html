@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADMIN TEMO</title>
-<style>body{background:#080808;color:#fff;font-family:sans-serif;padding:15px}h1{color:#ff0033;text-align:center}input,button{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ff003355;background:#151515;color:#fff}button{background:#ff0033;font-weight:bold;cursor:pointer}.card{background:#121212;padding:15px;border-radius:15px;margin:10px 0;border:1px solid #ff003322}</style>
-</head><body>
-<h1>🔒 ADMIN BASE TEMO</h1>
-<div class="card">
-<h3>➕ CREAR PRODUCTO NUEVO</h3>
-<input id="nom" placeholder="Nombre Ej: DIAMANTES">
-<input id="ico" placeholder="Icono Ej: 💎">
-<button onclick="addProd()">CREAR PRODUCTO</button>
-</div>
-<div class="card">
-<h3>➕ AGREGAR PRECIO A PRODUCTO</h3>
-<select id="selProd" style="width:100%;padding:12px;background:#151515;color:#fff;border-radius:10px"></select>
-<input id="dur" placeholder="Ej: 100 Diamantes">
-<input id="pre" type="number" placeholder="Precio Ej: 18">
-<button onclick="addPrecio()">AGREGAR PRECIO</button>
-</div>
-<button onclick="guardar()" style="background:#00ff88;color:#000;margin-top:20px">💾 GUARDAR TODO Y ACTUALIZAR TIENDA PÚBLICA</button>
-<div id="lista"></div>
-<script>
-let BASE = JSON.parse(localStorage.getItem('BASE_TEMO')||'[]');
-function render(){
- let s=document.getElementById('selProd'); s.innerHTML='';
- BASE.forEach((p,i)=>{s.innerHTML+=`<option value="${i}">${p.n}</option>`});
- document.getElementById('lista').innerHTML = BASE.map((p,i)=>`<div class="card">${p.i} ${p.n} (${p.ps.length} precios) <button onclick="BASE.splice(${i},1);render()">Eliminar</button></div>`).join('');
- localStorage.setItem('BASE_TEMO', JSON.stringify(BASE));
-}
-function addProd(){
- let n=document.getElementById('nom').value, i=document.getElementById('ico').value;
- if(!n)return alert('Pon nombre');
- BASE.push({n:n,i:i||'💎',ps:[]}); render();
-}
-function addPrecio(){
- let idx=document.getElementById('selProd').value, d=document.getElementById('dur').value, p=document.getElementById('pre').value;
- if(!d||!p)return alert('Faltan datos');
- BASE[idx].ps.push({d:d,p:parseInt(p)}); render();
-}
-function guardar(){
- localStorage.setItem('BASE_TEMO', JSON.stringify(BASE));
- alert('¡Guardado! Ahora copia este código y pegalo en tu index.html público. Tu BASE ya está actualizada.');
- console.log(JSON.stringify(BASE));
-}
-render();
-</script>
-</body></html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BASE TEMO - TIENDA OFICIAL</title>
+<style>
+body{background:#050505;color:#fff;font-family:sans-serif;padding:12px;margin:0}
+h1{text-align:center;color:#ff0033;text-shadow:0 0 15px #ff0033;margin:15px 0}
+.section{background:#101010;border:1px solid #ff003322;border-radius:16px;padding:14px;margin-bottom:18px}
+.section h2{color:#ff0033;font-size:16px;border-left:4px solid #ff0033;padding-left:8px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item{background:#1a1a1a;border:1px solid #ffffff10;border-radius:12px;padding:12px;text-align:center}
+.item .name{font-size:12px;color:#bbb;margin:6px 0;min-height:26px}
+.item .price{color:#fff;font-weight:800;font-size:16px}
+.item .btn{display:block;margin-top:8px;background:#ff0033;color:#fff;text-decoration:none;padding:8px;border-radius:8px;font-size:11px;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>🔥 BASE TEMO OFICIAL 🔥</h1>
+
+<div class="section"><h2>🧩 FRAGMENTOS EVO</h2><div class="grid">
+<div class="item"><div>🧩</div><div class="name">100 Fragmentos</div><div class="price">$30 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20100%20Frag">COMPRAR</a></div>
+<div class="item"><div>🧩</div><div class="name">200 Fragmentos</div><div class="price">$55 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20200%20Frag">COMPRAR</a></div>
+<div class="item"><div>🧩</div><div class="name">300 Fragmentos</div><div class="price">$80 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20300%20Frag">COMPRAR</a></div>
+<div class="item"><div>🧩</div><div class="name">500 Fragmentos</div><div class="price">$130 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20500%20Frag">COMPRAR</a></div>
+<div class="item"><div>🧩</div><div class="name">1000 Fragmentos</div><div class="price">$240 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%201000%20Frag">COMPRAR</a></div>
+<div class="item"><div>🧩</div><div class="name">2000 Fragmentos</div><div class="price">$460 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%202000%20Frag">COMPRAR</a></div>
+</div></div>
+
+<div class="section"><h2>💎 DIAMANTES PROMO 1 VEZ</h2><div class="grid">
+<div class="item"><div>💎</div><div class="name">(100) 110 Diamantes</div><div class="price">$18 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20110%20promo">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">(300) 341 Diamantes</div><div class="price">$48 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20341%20promo">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">(500) 572 Diamantes</div><div class="price">$68 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%20572%20promo">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">(1k) 1166 Diamantes</div><div class="price">$135 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%201166%20promo">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">(2k) 2398 Diamantes</div><div class="price">$260 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%202398%20promo">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">(6k) 6160 Diamantes</div><div class="price">$615 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%206160%20promo">COMPRAR</a></div>
+<div class="item"><div>📅</div><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Tarjeta%20Mensual">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">12320 Diamantes</div><div class="price">$1500 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Quiero%2012320">COMPRAR</a></div>
+</div></div>
+
+<div class="section"><h2>⚡ LLEGAN 1 A 3 MINUTOS</h2><div class="grid">
+<div class="item"><div>👑</div><div class="name">Membresía Semanal</div><div class="price">$9 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Membresia%20Semanal">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">110 Diamantes</div><div class="price">$18 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110%20diamantes">COMPRAR</a></div>
+<div class="item"><div>📅</div><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Tarjeta%20Semanal">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">220 Diamantes</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=220%20diamantes">COMPRAR</a></div>
+<div class="item"><div>🎟️</div><div class="name">Pase Booyah</div><div class="price">$50 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Pase%20Booyah">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">341 Diamantes</div><div class="price">$55 MXN</div><a class="btn" href="https://wa.me/523224528803?text=341%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">572 Diamantes</div><div class="price">$88 MXN</div><a class="btn" href="https://wa.me/523224528803?text=572%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">6160 Diamantes</div><div class="price">$720 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160%20diamantes">COMPRAR</a></div>
+</div></div>
+
+<div class="section"><h2>⏰ LLEGAN 30 MIN A 2 HORAS</h2><div class="grid">
+<div class="item"><div>💎</div><div class="name">110 Diamantes</div><div class="price">$19 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110%2030min">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">231 Diamantes</div><div class="price">$39 MXN</div><a class="btn" href="https://wa.me/523224528803?text=231%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">330 Diamantes</div><div class="price">$56 MXN</div><a class="btn" href="https://wa.me/523224528803?text=330%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">583 Diamantes</div><div class="price">$87 MXN</div><a class="btn" href="https://wa.me/523224528803?text=583%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">1188 Diamantes</div><div class="price">$162 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1188%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">2420 Diamantes</div><div class="price">$322 MXN</div><a class="btn" href="https://wa.me/523224528803?text=2420%20diamantes">COMPRAR</a></div>
+<div class="item"><div>💎</div><div class="name">6160 Diamantes</div><div class="price">$820 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160%20820">COMPRAR</a></div>
+<div class="item"><div>🎟️</div><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Pase%20Booyah%2035">COMPRAR</a></div>
+</div></div>
+
+</body>
+</html>
