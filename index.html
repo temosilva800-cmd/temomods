@@ -3,70 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASE TEMO V44 - 2 VENDEDORES</title>
+<title>BASE TEMO V45 - NEON PARPADEO</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
-@keyframes neonGlow{0%,100%{text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033}50%{text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033}}
-@keyframes borderPulse{0%,100%{border-color:#ff0033;box-shadow:0 0 10px #ff003355}50%{border-color:#ff1a4d;box-shadow:0 0 25px #ff0033aa}}
-@keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.6}}
+@keyframes neonGlow{
+  0%,100%{text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033; box-shadow:0 0 5px #ff0033,0 0 15px #ff003355}
+  50%{text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033; box-shadow:0 0 20px #ff0033,0 0 40px #ff0033aa}
+}
+@keyframes borderPulse{
+  0%,100%{border-color:#ff0033;box-shadow:0 0 10px #ff003333, inset 0 0 10px #ff003311}
+  50%{border-color:#ff3355;box-shadow:0 0 30px #ff0033cc, inset 0 0 20px #ff003344}
+}
+@keyframes flicker{
+  0%,18%,22%,25%,53%,57%,100%{opacity:1}
+  20%,24%,55%{opacity:0.4}
+}
+@keyframes blinkBtn{
+  0%,100%{opacity:1; box-shadow:0 0 10px #ff0033}
+  50%{opacity:0.8; box-shadow:0 0 25px #ff0033,0 0 45px #ff0033}
+}
 body{background:#000;color:#fff;font-family:Arial,sans-serif;padding:12px;margin:0}
-h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:20px 0;letter-spacing:4px;font-size:24px;animation:neonGlow 1.5s infinite alternate,flicker 3s infinite}
-.sub{text-align:center;color:#ff0033;font-size:11px;margin-bottom:20px;letter-spacing:2px}
-.section{background:#0a0a0a;border:2px solid #ff0033;border-radius:18px;padding:14px;margin-bottom:22px;animation:borderPulse 2s infinite}
-.section h2{color:#ff0033;font-size:14px;text-shadow:0 0 8px #ff0033;border-left:4px solid #ff0033;padding-left:10px}
-.note{font-size:11px;color:#ff0033aa;margin-bottom:10px}
+h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:18px 0;letter-spacing:5px;font-size:28px;animation:neonGlow 1.2s infinite alternate, flicker 3s infinite}
+.sub{text-align:center;color:#ff0033;font-size:11px;margin-bottom:18px;letter-spacing:3px;animation:flicker 2.5s infinite}
+.section{background:#0a0a0a;border:2px solid #ff0033;border-radius:20px;padding:14px;margin-bottom:24px;animation:borderPulse 1.8s infinite}
+.section h2{color:#ff0033;font-size:14px;text-shadow:0 0 12px #ff0033;border-left:5px solid #ff0033;padding-left:10px;margin-bottom:10px;animation:flicker 4s infinite}
+.note{font-size:11px;color:#ff003388;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.item{background:#111;border:1px solid #ff003388;border-radius:14px;padding:12px;text-align:center}
-.item .name{font-size:11px;color:#ffbbbb;margin:6px 0;min-height:26px;font-weight:700}
-.item .price{color:#ff0033;font-weight:900;font-size:15px;text-shadow:0 0 8px #ff0033}
-.btn{display:block;margin-top:6px;text-decoration:none;padding:8px;border-radius:20px;font-size:10px;font-weight:900;letter-spacing:1px}
-.btn-temo{background:#ff0033;color:#000;box-shadow:0 0 12px #ff0033}
-.btn-angel{background:#fff;color:#000;box-shadow:0 0 12px #fff;margin-top:5px}
-.icon{font-size:22px;filter:drop-shadow(0 0 6px #ff0033)}
+.item{background:#121212;border:1px solid #ff003366;border-radius:16px;padding:12px;text-align:center;animation:borderPulse 3s infinite}
+.item:hover{transform:scale(1.04);border-color:#fff;box-shadow:0 0 35px #ff0033}
+.item .name{font-size:11px;color:#ffaaaa;margin:6px 0;min-height:26px;font-weight:700}
+.item .price{color:#ff0033;font-weight:900;font-size:16px;text-shadow:0 0 12px #ff0033;animation:neonGlow 1.5s infinite alternate}
+.btn{display:block;margin-top:6px;text-decoration:none;padding:9px;border-radius:22px;font-size:9px;font-weight:900;letter-spacing:1px;text-align:center;animation:blinkBtn 1.5s infinite}
+.btn-temo{background:#ff0033;color:#000}
+.btn-angel{background:#fff;color:#000;box-shadow:0 0 12px #fff;margin-top:6px;animation:blinkBtn 1.5s infinite 0.7s}
+.icon{font-size:22px;filter:drop-shadow(0 0 8px #ff0033);animation:flicker 3s infinite}
 </style>
 </head>
 <body>
-<h1>⚡ BASE TEMO V44 ⚡</h1>
-<p class="sub">🔴 TEMO + ANGEL • OFICIAL 🔴</p>
+<h1>⚡ BASE TEMO V45 ⚡</h1>
+<p class="sub">🔴 ROJO NEON PARPADEANTE • TEMO + ANGEL 🔴</p>
+
+<div class="section"><h2>💧 DRIP CLIENT</h2><div class="grid">
+<div class="item"><div class="icon">💧</div><div class="name">DRIP 1 Día</div><div class="price">$20 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%201%20dia%20DRIP%20%2420">TEMO 🔴</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%201%20dia%20DRIP%20%2420">ANGEL ⚪</a></div>
+<div class="item"><div class="icon">💧</div><div class="name">DRIP 7 Días</div><div class="price">$60 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%207%20dias%20DRIP%20%2460">TEMO 🔴</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%207%20dias%20DRIP%20%2460">ANGEL ⚪</a></div>
+<div class="item"><div class="icon">💧</div><div class="name">DRIP 30 Días</div><div class="price">$150 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%2030%20dias%20DRIP%20%24150">TEMO 🔴</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%2030%20dias%20DRIP%20%24150">ANGEL ⚪</a></div>
+<div class="item"><div class="icon">💧</div><div class="name">DRIP Perma</div><div class="price">$320 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20DRIP%20Perma%20%24320">TEMO 🔴</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20DRIP%20Perma%20%24320">ANGEL ⚪</a></div>
+</div></div>
+
+<div class="section"><h2>💠 FLOURITE</h2><div class="grid">
+<div class="item"><div class="icon">💠</div><div class="name">FLOURITE 7 Días</div><div class="price">$80 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20FLOURITE%207d%20%2480">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20FLOURITE%207d%20%2480">ANGEL</a></div>
+<div class="item"><div class="icon">💠</div><div class="name">FLOURITE 30 Días</div><div class="price">$180 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20FLOURITE%2030d%20%24180">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20FLOURITE%2030d%20%24180">ANGEL</a></div>
+<div class="item"><div class="icon">💠</div><div class="name">FLOURITE Perma</div><div class="price">$380 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20FLOURITE%20Perma%20%24380">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20FLOURITE%20Perma%20%24380">ANGEL</a></div>
+</div></div>
+
+<div class="section"><h2>🇨🇺 CUBAN MODS</h2><div class="grid">
+<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN 7 Días</div><div class="price">$70 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20CUBAN%207d%20%2470">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20CUBAN%207d%20%2470">ANGEL</a></div>
+<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN 30 Días</div><div class="price">$160 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20CUBAN%2030d%20%24160">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20CUBAN%2030d%20%24160">ANGEL</a></div>
+<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN Perma</div><div class="price">$350 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20CUBAN%20Perma%20%24350">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20CUBAN%20Perma%20%24350">ANGEL</a></div>
+</div></div>
+
+<div class="section"><h2>⚔️ HG CHEATS</h2><div class="grid">
+<div class="item"><div class="icon">⚔️</div><div class="name">HG 7 Días</div><div class="price">$90 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20HG%207d%20%2490">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20HG%207d%20%2490">ANGEL</a></div>
+<div class="item"><div class="icon">⚔️</div><div class="name">HG 30 Días</div><div class="price">$200 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20HG%2030d%20%24200">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20HG%2030d%20%24200">ANGEL</a></div>
+<div class="item"><div class="icon">⚔️</div><div class="name">HG Perma</div><div class="price">$400 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20HG%20Perma%20%24400">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20HG%20Perma%20%24400">ANGEL</a></div>
+</div></div>
 
 <div class="section"><h2>🧩 FRAGMENTOS EVO X ID 🪽</h2><p class="note">Llegan a veces inmediatos o a veces a lo largo del día</p><div class="grid">
+<div class="item"><div class="icon">🧁</div><div class="name">50 Fragmentos</div><div class="price">$45 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%2050%20Frag%20EVO%20%2445">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%2050%20Frag%20EVO%20%2445">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">100 Fragmentos</div><div class="price">$85 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20100%20Frag%20EVO%20%2485">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20100%20Frag%20EVO%20%2485">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">200 Fragmentos</div><div class="price">$160 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20200%20Frag%20EVO%20%24160">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20200%20Frag%20EVO%20%24160">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">250 Fragmentos</div><div class="price">$205 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20250%20Frag%20EVO%20%24205">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20250%20Frag%20EVO%20%24205">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">300 Fragmentos</div><div class="price">$260 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20300%20Frag%20EVO%20%24260">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20300%20Frag%20EVO%20%24260">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">350 Fragmentos</div><div class="price">$305 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20350%20Frag%20EVO%20%24305">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20350%20Frag%20EVO%20%24305">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">400 Fragmentos</div><div class="price">$345 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20400%20Frag%20EVO%20%24345">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20400%20Frag%20EVO%20%24345">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">500 Fragmentos</div><div class="price">$450 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20500%20Frag%20EVO%20%24450">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20500%20Frag%20EVO%20%24450">ANGEL</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">600 Fragmentos</div><div class="price">$520 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20600%20Frag%20EVO%20%24520">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20600%20Frag%20EVO%20%24520">ANGEL</a></div>
+</div></div>
 
-<div class="item"><div class="icon">🧁</div><div class="name">50 Fragmentos</div><div class="price">$45 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%2050%20Fragmentos%20EVO%20por%20%2445%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%2050%20Fragmentos%20EVO%20por%20%2445%20MXN">COMPRAR ANGEL</a></div>
+<div class="section"><h2>💎 DIAMANTES PROMO 1 VEZ</h2><div class="grid">
+<div class="item"><div class="icon">💎</div><div class="name">(100) 110</div><div class="price">$18 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20(100)%20110%20PROMO%20%2418">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20(100)%20110%20PROMO%20%2418">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(300) 341</div><div class="price">$48 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20(300)%20341%20PROMO%20%2448">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20(300)%20341%20PROMO%20%2448">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(500) 572</div><div class="price">$68 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20(500)%20572%20PROMO%20%2468">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20(500)%20572%20PROMO%20%2468">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(1k) 1166</div><div class="price">$135 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20(1k)%201166%20%24135">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20(1k)%201166%20%24135">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(2k) 2398</div><div class="price">$260 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20(2k)%202398%20%24260">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20(2k)%202398%20%24260">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(6k) 6160</div><div class="price">$615 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20(6k)%206160%20%24615">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20(6k)%206160%20%24615">ANGEL</a></div>
+<div class="item"><div class="icon">📅</div><div class="name">Mensual</div><div class="price">$170 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20Mensual%20%24170">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20Mensual%20%24170">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">12320</div><div class="price">$1500 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%2012320%20%241500">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%2012320%20%241500">ANGEL</a></div>
+</div></div>
 
-<div class="item"><div class="icon">🧁</div><div class="name">100 Fragmentos</div><div class="price">$85 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20100%20Fragmentos%20EVO%20por%20%2485%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20100%20Fragmentos%20EVO%20por%20%2485%20MXN">COMPRAR ANGEL</a></div>
+<div class="section"><h2>⚡ 1 A 3 MIN</h2><div class="grid">
+<div class="item"><div class="icon">👑</div><div class="name">Semanal</div><div class="price">$9 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20Semanal%20%249">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20Semanal%20%249">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">110</div><div class="price">$18 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20110%20%2418">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20110%20%2418">ANGEL</a></div>
+<div class="item"><div class="icon">📅</div><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20Tarjeta%20Sem%20%2435">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20Tarjeta%20Sem%20%2435">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">220</div><div class="price">$35 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20220%20%2435">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20220%20%2435">ANGEL</a></div>
+<div class="item"><div class="icon">🎟️</div><div class="name">Booyah</div><div class="price">$50 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20Booyah%20%2450">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20Booyah%20%2450">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">341</div><div class="price">$55 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20341%20%2455">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20341%20%2455">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">572</div><div class="price">$88 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20572%20%2488">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20572%20%2488">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">6160</div><div class="price">$720 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%206160%20%24720">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%206160%20%24720">ANGEL</a></div>
+</div></div>
 
-<div class="item"><div class="icon">🧁</div><div class="name">200 Fragmentos</div><div class="price">$160 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20200%20Fragmentos%20EVO%20por%20%24160%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20200%20Fragmentos%20EVO%20por%20%24160%20MXN">COMPRAR ANGEL</a></div>
-
-<div class="item"><div class="icon">🧁</div><div class="name">250 Fragmentos</div><div class="price">$205 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20250%20Fragmentos%20EVO%20por%20%24205%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20250%20Fragmentos%20EVO%20por%20%24205%20MXN">COMPRAR ANGEL</a></div>
-
-<div class="item"><div class="icon">🧁</div><div class="name">300 Fragmentos</div><div class="price">$260 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20300%20Fragmentos%20EVO%20por%20%24260%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20300%20Fragmentos%20EVO%20por%20%24260%20MXN">COMPRAR ANGEL</a></div>
-
-<div class="item"><div class="icon">🧁</div><div class="name">350 Fragmentos</div><div class="price">$305 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20350%20Fragmentos%20EVO%20por%20%24305%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20350%20Fragmentos%20EVO%20por%20%24305%20MXN">COMPRAR ANGEL</a></div>
-
-<div class="item"><div class="icon">🧁</div><div class="name">400 Fragmentos</div><div class="price">$345 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20400%20Fragmentos%20EVO%20por%20%24345%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20400%20Fragmentos%20EVO%20por%20%24345%20MXN">COMPRAR ANGEL</a></div>
-
-<div class="item"><div class="icon">🧁</div><div class="name">500 Fragmentos</div><div class="price">$450 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20500%20Fragmentos%20EVO%20por%20%24450%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20500%20Fragmentos%20EVO%20por%20%24450%20MXN">COMPRAR ANGEL</a></div>
-
-<div class="item"><div class="icon">🧁</div><div class="name">600 Fragmentos</div><div class="price">$520 MXN</div>
-<a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20quiero%20600%20Fragmentos%20EVO%20por%20%24520%20MXN">COMPRAR TEMO</a>
-<a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20quiero%20600%20Fragmentos%20EVO%20por%20%24520%20MXN">COMPRAR ANGEL</a></div>
-
+<div class="section"><h2>⏰ 30 MIN A 2 HORAS</h2><div class="grid">
+<div class="item"><div class="icon">💎</div><div class="name">110</div><div class="price">$19 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20110%20%2419">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20110%20%2419">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">231</div><div class="price">$39 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20231%20%2439">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20231%20%2439">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">330</div><div class="price">$56 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20330%20%2456">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20330%20%2456">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">583</div><div class="price">$87 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20583%20%2487">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20583%20%2487">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">1188</div><div class="price">$162 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%201188%20%24162">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%201188%20%24162">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">2420</div><div class="price">$322 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%202420%20%24322">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%202420%20%24322">ANGEL</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">6160</div><div class="price">$820 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%206160%20%24820">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%206160%20%24820">ANGEL</a></div>
+<div class="item"><div class="icon">🎟️</div><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn btn-temo" href="https://wa.me/523224528803?text=Hola%20Temo%20PASE%2035">TEMO</a><a class="btn btn-angel" href="https://wa.me/529371098563?text=Hola%20Angel%20PASE%2035">ANGEL</a></div>
 </div></div>
 </body>
 </html>
