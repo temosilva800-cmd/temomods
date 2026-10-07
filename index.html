@@ -3,92 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASE TEMO V39 - COMPLETA</title>
+<title>BASE TEMO V42 - NEON ANIMADO</title>
 <style>
-body{background:#050505;color:#fff;font-family:Arial,sans-serif;padding:12px;margin:0}
-h1{text-align:center;color:#ff0033;text-shadow:0 0 15px #ff0033;margin:15px 0}
-.sub{text-align:center;color:#777;font-size:12px;margin-bottom:15px}
-.section{background:#101010;border:1px solid #ff003322;border-radius:16px;padding:14px;margin-bottom:18px}
-.section h2{color:#ff0033;font-size:15px;border-left:4px solid #ff0033;padding-left:8px;margin-bottom:12px}
-.badge{background:#ff0033;color:#fff;font-size:9px;padding:2px 7px;border-radius:10px;margin-left:6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.item{background:#1a1a1a;border:1px solid #ffffff0f;border-radius:12px;padding:12px;text-align:center}
-.item .name{font-size:11px;color:#bbb;margin:6px 0;min-height:28px;font-weight:600}
-.item .price{color:#fff;font-weight:800;font-size:15px}
-.item .btn{display:block;margin-top:8px;background:#ff0033;color:#fff;text-decoration:none;padding:7px;border-radius:8px;font-size:10px;font-weight:bold}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+@keyframes neonGlow {
+  0%,100% { text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033; box-shadow:0 0 5px #ff0033,0 0 20px #ff003355; }
+  50% { text-shadow:0 0 10px #ff0033,0 0 20px #ff0033,0 0 40px #ff0033,0 0 80px #ff0033; box-shadow:0 0 10px #ff0033,0 0 30px #ff0033aa; }
+}
+@keyframes borderPulse {
+  0%,100% { border-color:#ff0033; box-shadow:0 0 10px #ff003355, inset 0 0 10px #ff003311; }
+  50% { border-color:#ff1a4d; box-shadow:0 0 25px #ff0033aa, inset 0 0 20px #ff003333; }
+}
+@keyframes flicker {
+  0%,18%,22%,25%,53%,57%,100% { opacity:1; }
+  20%,24%,55% { opacity:0.6; }
+}
+body{background:#000;color:#fff;font-family:Arial,sans-serif;padding:12px;margin:0}
+h1{font-family:'Orbitron',sans-serif;text-align:center;color:#ff0033;margin:20px 0;letter-spacing:4px;font-size:26px;animation:neonGlow 1.5s infinite alternate, flicker 3s infinite}
+.sub{text-align:center;color:#ff0033;font-size:11px;margin-bottom:20px;letter-spacing:3px;animation:flicker 2s infinite}
+.section{background:#0a0a0a;border:2px solid #ff0033;border-radius:18px;padding:14px;margin-bottom:22px;animation:borderPulse 2s infinite}
+.section h2{color:#ff0033;font-size:14px;text-shadow:0 0 8px #ff0033;border-left:4px solid #ff0033;padding-left:10px;margin-bottom:8px;letter-spacing:1px;animation:flicker 4s infinite}
+.note{font-size:11px;color:#ff0033aa;margin-bottom:10px}
+.badge{background:#ff0033;color:#000;font-size:9px;padding:3px 10px;border-radius:20px;box-shadow:0 0 15px #ff0033;font-weight:900;margin-left:6px;animation:neonGlow 1s infinite alternate}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item{background:#111;border:1px solid #ff003388;border-radius:14px;padding:14px;text-align:center;box-shadow:0 0 10px #ff003311;transition:.3s;animation:borderPulse 3s infinite}
+.item:hover{transform:scale(1.05);border-color:#fff;box-shadow:0 0 30px #ff0033}
+.item .name{font-size:11px;color:#ffbbbb;margin:8px 0;min-height:28px;font-weight:700}
+.item .price{color:#ff0033;font-weight:900;font-size:17px;text-shadow:0 0 10px #ff0033;animation:neonGlow 2s infinite alternate}
+.item .btn{display:block;margin-top:10px;background:#ff0033;color:#000;text-decoration:none;padding:9px;border-radius:20px;font-size:10px;font-weight:900;box-shadow:0 0 15px #ff0033;letter-spacing:1px;animation:neonGlow 1.5s infinite alternate}
+.icon{font-size:24px;filter:drop-shadow(0 0 8px #ff0033);animation:flicker 2.5s infinite}
 </style>
 </head>
 <body>
-<h1>🔥 BASE TEMO V39 🔥</h1>
-<p class="sub">DRIP • FLOURITE • CUBAN • HG • EVO • DIAMANTES</p>
+<h1>⚡ BASE TEMO V42 ⚡</h1>
+<p class="sub">🔴 ROJO NEON PARPADEANTE • OFICIAL 🔴</p>
 
-<div class="section"><h2>💧 DRIP CLIENT <span class="badge">CLIENT</span></h2><div class="grid">
-<div class="item"><div>💧</div><div class="name">DRIP 1 Día</div><div class="price">$20 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%201%20dia">COMPRAR</a></div>
-<div class="item"><div>💧</div><div class="name">DRIP 7 Días</div><div class="price">$60 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%207%20dias">COMPRAR</a></div>
-<div class="item"><div>💧</div><div class="name">DRIP 30 Días</div><div class="price">$150 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%2030%20dias">COMPRAR</a></div>
-<div class="item"><div>💧</div><div class="name">DRIP Permanente</div><div class="price">$320 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%20Perma">COMPRAR</a></div>
+<div class="section"><h2>💧 DRIP CLIENT</h2><div class="grid">
+<div class="item"><div class="icon">💧</div><div class="name">DRIP 1 Día</div><div class="price">$20 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%201d">COMPRAR</a></div>
+<div class="item"><div class="icon">💧</div><div class="name">DRIP 7 Días</div><div class="price">$60 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%207d">COMPRAR</a></div>
+<div class="item"><div class="icon">💧</div><div class="name">DRIP 30 Días</div><div class="price">$150 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%2030d">COMPRAR</a></div>
+<div class="item"><div class="icon">💧</div><div class="name">DRIP Permanente</div><div class="price">$320 MXN</div><a class="btn" href="https://wa.me/523224528803?text=DRIP%20Perma">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>💠 FLOURITE <span class="badge">CLIENT</span></h2><div class="grid">
-<div class="item"><div>💠</div><div class="name">FLOURITE 7 Días</div><div class="price">$80 MXN</div><a class="btn" href="https://wa.me/523224528803?text=FLOURITE%207d">COMPRAR</a></div>
-<div class="item"><div>💠</div><div class="name">FLOURITE 30 Días</div><div class="price">$180 MXN</div><a class="btn" href="https://wa.me/523224528803?text=FLOURITE%2030d">COMPRAR</a></div>
-<div class="item"><div>💠</div><div class="name">FLOURITE Perma</div><div class="price">$380 MXN</div><a class="btn" href="https://wa.me/523224528803?text=FLOURITE%20Perma">COMPRAR</a></div>
+<div class="section"><h2>💠 FLOURITE</h2><div class="grid">
+<div class="item"><div class="icon">💠</div><div class="name">FLOURITE 7 Días</div><div class="price">$80 MXN</div><a class="btn" href="https://wa.me/523224528803?text=FLOURITE%207d">COMPRAR</a></div>
+<div class="item"><div class="icon">💠</div><div class="name">FLOURITE 30 Días</div><div class="price">$180 MXN</div><a class="btn" href="https://wa.me/523224528803?text=FLOURITE%2030d">COMPRAR</a></div>
+<div class="item"><div class="icon">💠</div><div class="name">FLOURITE Perma</div><div class="price">$380 MXN</div><a class="btn" href="https://wa.me/523224528803?text=FLOURITE%20Perma">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>🇨🇺 CUBAN MODS <span class="badge">MODS</span></h2><div class="grid">
-<div class="item"><div>🇨🇺</div><div class="name">CUBAN 7 Días</div><div class="price">$70 MXN</div><a class="btn" href="https://wa.me/523224528803?text=CUBAN%207d">COMPRAR</a></div>
-<div class="item"><div>🇨🇺</div><div class="name">CUBAN 30 Días</div><div class="price">$160 MXN</div><a class="btn" href="https://wa.me/523224528803?text=CUBAN%2030d">COMPRAR</a></div>
-<div class="item"><div>🇨🇺</div><div class="name">CUBAN Perma</div><div class="price">$350 MXN</div><a class="btn" href="https://wa.me/523224528803?text=CUBAN%20Perma">COMPRAR</a></div>
+<div class="section"><h2>🇨🇺 CUBAN MODS</h2><div class="grid">
+<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN 7 Días</div><div class="price">$70 MXN</div><a class="btn" href="https://wa.me/523224528803?text=CUBAN%207d">COMPRAR</a></div>
+<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN 30 Días</div><div class="price">$160 MXN</div><a class="btn" href="https://wa.me/523224528803?text=CUBAN%2030d">COMPRAR</a></div>
+<div class="item"><div class="icon">🇨🇺</div><div class="name">CUBAN Perma</div><div class="price">$350 MXN</div><a class="btn" href="https://wa.me/523224528803?text=CUBAN%20Perma">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>⚔️ HG CHEATS <span class="badge">CHEATS</span></h2><div class="grid">
-<div class="item"><div>⚔️</div><div class="name">HG 7 Días</div><div class="price">$90 MXN</div><a class="btn" href="https://wa.me/523224528803?text=HG%207d">COMPRAR</a></div>
-<div class="item"><div>⚔️</div><div class="name">HG 30 Días</div><div class="price">$200 MXN</div><a class="btn" href="https://wa.me/523224528803?text=HG%2030d">COMPRAR</a></div>
-<div class="item"><div>⚔️</div><div class="name">HG Perma</div><div class="price">$400 MXN</div><a class="btn" href="https://wa.me/523224528803?text=HG%20Perma">COMPRAR</a></div>
+<div class="section"><h2>⚔️ HG CHEATS</h2><div class="grid">
+<div class="item"><div class="icon">⚔️</div><div class="name">HG 7 Días</div><div class="price">$90 MXN</div><a class="btn" href="https://wa.me/523224528803?text=HG%207d">COMPRAR</a></div>
+<div class="item"><div class="icon">⚔️</div><div class="name">HG 30 Días</div><div class="price">$200 MXN</div><a class="btn" href="https://wa.me/523224528803?text=HG%2030d">COMPRAR</a></div>
+<div class="item"><div class="icon">⚔️</div><div class="name">HG Perma</div><div class="price">$400 MXN</div><a class="btn" href="https://wa.me/523224528803?text=HG%20Perma">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>🧩 FRAGMENTOS EVO</h2><div class="grid">
-<div class="item"><div>🧩</div><div class="name">100 Fragmentos</div><div class="price">$30 MXN</div><a class="btn" href="https://wa.me/523224528803?text=100%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">200 Fragmentos</div><div class="price">$55 MXN</div><a class="btn" href="https://wa.me/523224528803?text=200%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">300 Fragmentos</div><div class="price">$80 MXN</div><a class="btn" href="https://wa.me/523224528803?text=300%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">400 Fragmentos</div><div class="price">$105 MXN</div><a class="btn" href="https://wa.me/523224528803?text=400%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">500 Fragmentos</div><div class="price">$130 MXN</div><a class="btn" href="https://wa.me/523224528803?text=500%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">1000 Fragmentos</div><div class="price">$240 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1000%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">1500 Fragmentos</div><div class="price">$350 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1500%20Frag">COMPRAR</a></div>
-<div class="item"><div>🧩</div><div class="name">2000 Fragmentos</div><div class="price">$460 MXN</div><a class="btn" href="https://wa.me/523224528803?text=2000%20Frag">COMPRAR</a></div>
+<div class="section"><h2>🧩 FRAGMENTOS EVO X ID 🪽 <span class="badge">EVO</span></h2><p class="note">Llegan a veces inmediatos o a veces a lo largo del día</p><div class="grid">
+<div class="item"><div class="icon">🧁</div><div class="name">50 Fragmentos</div><div class="price">$45 MXN</div><a class="btn" href="https://wa.me/523224528803?text=50%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">100 Fragmentos</div><div class="price">$85 MXN</div><a class="btn" href="https://wa.me/523224528803?text=100%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">200 Fragmentos</div><div class="price">$160 MXN</div><a class="btn" href="https://wa.me/523224528803?text=200%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">250 Fragmentos</div><div class="price">$205 MXN</div><a class="btn" href="https://wa.me/523224528803?text=250%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">300 Fragmentos</div><div class="price">$260 MXN</div><a class="btn" href="https://wa.me/523224528803?text=300%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">350 Fragmentos</div><div class="price">$305 MXN</div><a class="btn" href="https://wa.me/523224528803?text=350%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">400 Fragmentos</div><div class="price">$345 MXN</div><a class="btn" href="https://wa.me/523224528803?text=400%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">500 Fragmentos</div><div class="price">$450 MXN</div><a class="btn" href="https://wa.me/523224528803?text=500%20Frag">COMPRAR</a></div>
+<div class="item"><div class="icon">🧁</div><div class="name">600 Fragmentos</div><div class="price">$520 MXN</div><a class="btn" href="https://wa.me/523224528803?text=600%20Frag">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>💎 DIAMANTES PROMO 1 VEZ</h2><div class="grid">
-<div class="item"><div>💎</div><div class="name">(100) 110 Diamantes</div><div class="price">$18 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110%20promo">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">(300) 341 Diamantes</div><div class="price">$48 MXN</div><a class="btn" href="https://wa.me/523224528803?text=341%20promo">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">(500) 572 Diamantes</div><div class="price">$68 MXN</div><a class="btn" href="https://wa.me/523224528803?text=572%20promo">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">(1k) 1166 Diamantes</div><div class="price">$135 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1166%20promo">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">(2k) 2398 Diamantes</div><div class="price">$260 MXN</div><a class="btn" href="https://wa.me/523224528803?text=2398%20promo">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">(6k) 6160 Diamantes</div><div class="price">$615 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160%20promo">COMPRAR</a></div>
-<div class="item"><div>📅</div><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Mensual">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">12320 Diamantes</div><div class="price">$1500 MXN</div><a class="btn" href="https://wa.me/523224528803?text=12320">COMPRAR</a></div>
+<div class="section"><h2>💎 PROMO 1 VEZ</h2><div class="grid">
+<div class="item"><div class="icon">💎</div><div class="name">(100) 110</div><div class="price">$18 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110%20promo">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(300) 341</div><div class="price">$48 MXN</div><a class="btn" href="https://wa.me/523224528803?text=341%20promo">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(500) 572</div><div class="price">$68 MXN</div><a class="btn" href="https://wa.me/523224528803?text=572%20promo">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(1k) 1166</div><div class="price">$135 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1166%20promo">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(2k) 2398</div><div class="price">$260 MXN</div><a class="btn" href="https://wa.me/523224528803?text=2398%20promo">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">(6k) 6160</div><div class="price">$615 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160%20promo">COMPRAR</a></div>
+<div class="item"><div class="icon">📅</div><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Mensual">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">12320</div><div class="price">$1500 MXN</div><a class="btn" href="https://wa.me/523224528803?text=12320">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>⚡ LLEGAN 1 A 3 MINUTOS</h2><div class="grid">
-<div class="item"><div>👑</div><div class="name">Membresía Semanal</div><div class="price">$9 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Semanal%209">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">110 Diamantes</div><div class="price">$18 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110">COMPRAR</a></div>
-<div class="item"><div>📅</div><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Tarjeta%20Semanal">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">220 Diamantes</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=220">COMPRAR</a></div>
-<div class="item"><div>🎟️</div><div class="name">Pase Booyah</div><div class="price">$50 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Booyah">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">341 Diamantes</div><div class="price">$55 MXN</div><a class="btn" href="https://wa.me/523224528803?text=341">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">572 Diamantes</div><div class="price">$88 MXN</div><a class="btn" href="https://wa.me/523224528803?text=572">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">6160 Diamantes</div><div class="price">$720 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160">COMPRAR</a></div>
+<div class="section"><h2>⚡ 1 A 3 MIN</h2><div class="grid">
+<div class="item"><div class="icon">👑</div><div class="name">Membresía Semanal</div><div class="price">$9 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Semanal">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">110 Diamantes</div><div class="price">$18 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110">COMPRAR</a></div>
+<div class="item"><div class="icon">📅</div><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Tarjeta%20Semanal">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">220 Diamantes</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=220">COMPRAR</a></div>
+<div class="item"><div class="icon">🎟️</div><div class="name">Pase Booyah</div><div class="price">$50 MXN</div><a class="btn" href="https://wa.me/523224528803?text=Booyah">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">341</div><div class="price">$55 MXN</div><a class="btn" href="https://wa.me/523224528803?text=341">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">572</div><div class="price">$88 MXN</div><a class="btn" href="https://wa.me/523224528803?text=572">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">6160</div><div class="price">$720 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160">COMPRAR</a></div>
 </div></div>
 
-<div class="section"><h2>⏰ LLEGAN 30 MIN A 2 HORAS</h2><div class="grid">
-<div class="item"><div>💎</div><div class="name">110 Diamantes</div><div class="price">$19 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110%2030min">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">231 Diamantes</div><div class="price">$39 MXN</div><a class="btn" href="https://wa.me/523224528803?text=231">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">330 Diamantes</div><div class="price">$56 MXN</div><a class="btn" href="https://wa.me/523224528803?text=330">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">583 Diamantes</div><div class="price">$87 MXN</div><a class="btn" href="https://wa.me/523224528803?text=583">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">1188 Diamantes</div><div class="price">$162 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1188">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">2420 Diamantes</div><div class="price">$322 MXN</div><a class="btn" href="https://wa.me/523224528803?text=2420">COMPRAR</a></div>
-<div class="item"><div>💎</div><div class="name">6160 Diamantes</div><div class="price">$820 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160%20820">COMPRAR</a></div>
-<div class="item"><div>🎟️</div><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=PASE%2035">COMPRAR</a></div>
+<div class="section"><h2>⏰ 30 MIN A 2 HORAS</h2><div class="grid">
+<div class="item"><div class="icon">💎</div><div class="name">110 Diamantes</div><div class="price">$19 MXN</div><a class="btn" href="https://wa.me/523224528803?text=110%2030min">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">231 Diamantes</div><div class="price">$39 MXN</div><a class="btn" href="https://wa.me/523224528803?text=231">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">330 Diamantes</div><div class="price">$56 MXN</div><a class="btn" href="https://wa.me/523224528803?text=330">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">583</div><div class="price">$87 MXN</div><a class="btn" href="https://wa.me/523224528803?text=583">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">1188</div><div class="price">$162 MXN</div><a class="btn" href="https://wa.me/523224528803?text=1188">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">2420</div><div class="price">$322 MXN</div><a class="btn" href="https://wa.me/523224528803?text=2420">COMPRAR</a></div>
+<div class="item"><div class="icon">💎</div><div class="name">6160</div><div class="price">$820 MXN</div><a class="btn" href="https://wa.me/523224528803?text=6160%20820">COMPRAR</a></div>
+<div class="item"><div class="icon">🎟️</div><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn" href="https://wa.me/523224528803?text=PASE%2035">COMPRAR</a></div>
 </div></div>
 </body>
 </html>
