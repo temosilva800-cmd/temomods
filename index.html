@@ -3,123 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASE TEMO V50.2 ROJO AZUL CELESTE</title>
+<title>BASE TEMO V50.2 ROJO NEON</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
-@keyframes rgbText{
-0%{color:#ff0000;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000}
-25%{color:#0040ff;text-shadow:0 0 10px #0040ff,0 0 20px #0040ff}
-50%{color:#00d5ff;text-shadow:0 0 10px #00d5ff,0 0 20px #00d5ff}
-75%{color:#ffffff;text-shadow:0 0 10px #ffffff,0 0 20px #ffffff}
-100%{color:#ff0000;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000}
+@keyframes rojoText{
+0%{color:#ff0000;text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff0000}
+50%{color:#ffffff;text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 25px #ff0000}
+100%{color:#ff0000;text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff0000}
 }
-@keyframes rgbBorder{
-0%{border-color:#ff0000;box-shadow:0 0 15px #ff0000}
-25%{border-color:#0040ff;box-shadow:0 0 15px #0040ff}
-50%{border-color:#00d5ff;box-shadow:0 0 15px #00d5ff}
-75%{border-color:#ffffff;box-shadow:0 0 15px #ffffff}
-100%{border-color:#ff0000;box-shadow:0 0 15px #ff0000}
+@keyframes rojoBorder{
+0%{border-color:#ff0000;box-shadow:0 0 10px #ff0000}
+50%{border-color:#ff3333;box-shadow:0 0 20px #ff0000,0 0 35px #ff0000}
+100%{border-color:#ff0000;box-shadow:0 0 10px #ff0000}
 }
-@keyframes rgbButtonBorder{
-0%{border-color:#ff0000;box-shadow:0 0 10px #ff0000,0 0 20px #ff0000, inset 0 0 5px #ff0000}
-25%{border-color:#0040ff;box-shadow:0 0 10px #0040ff,0 0 20px #0040ff, inset 0 0 5px #0040ff}
-50%{border-color:#00d5ff;box-shadow:0 0 10px #00d5ff,0 0 20px #00d5ff, inset 0 0 5px #00d5ff}
-75%{border-color:#ffffff;box-shadow:0 0 10px #ffffff,0 0 20px #ffffff, inset 0 0 5px #ffffff}
-100%{border-color:#ff0000;box-shadow:0 0 10px #ff0000,0 0 20px #ff0000, inset 0 0 5px #ff0000}
+@keyframes rojoBtn{
+0%{border-color:#ff0000;box-shadow:0 0 8px #ff0000,0 0 15px #ff0000, inset 0 0 5px #ff0000}
+50%{border-color:#ff2222;box-shadow:0 0 15px #ff0000,0 0 30px #ff0000, inset 0 0 8px #ff0000}
+100%{border-color:#ff0000;box-shadow:0 0 8px #ff0000,0 0 15px #ff0000, inset 0 0 5px #ff0000}
 }
 body{background:#000;color:#fff;font-family:Arial;padding:12px;margin:0}
-h1{font-family:'Orbitron',sans-serif;text-align:center;margin:18px 0;font-size:26px;letter-spacing:3px;animation:rgbText 1s infinite linear}
-.section{background:#0a0a0a;border:2px solid #ff0000;border-radius:20px;padding:14px;margin-bottom:22px;animation:rgbBorder 1s infinite linear}
-.section h2{font-size:12px;animation:rgbText 1s infinite linear;border-left:5px solid currentColor;padding-left:10px;margin-bottom:10px}
+h1{font-family:'Orbitron',sans-serif;text-align:center;margin:18px 0;font-size:26px;letter-spacing:3px;animation:rojoText 1.2s infinite linear}
+.section{background:#0d0000;border:2px solid #ff0000;border-radius:20px;padding:14px;margin-bottom:22px;animation:rojoBorder 1.2s infinite linear}
+.section h2{font-size:12px;animation:rojoText 1.2s infinite linear;border-left:5px solid #ff0000;padding-left:10px;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.item{background:#111;border:1px solid #ffffff15;border-radius:16px;padding:11px;text-align:center}
+.item{background:#111;border:1px solid #ff000055;border-radius:16px;padding:11px;text-align:center}
 .name{font-size:10px;color:#fff;margin:5px 0;min-height:22px;font-weight:700}
-.price{font-weight:900;font-size:13px;animation:rgbText 1s infinite linear;margin-bottom:5px}
-.btn{display:block;margin-top:6px;padding:9px;border-radius:22px;font-size:8px;font-weight:900;text-align:center;cursor:pointer;color:#fff;background:#0f0f0f;border:2px solid #ff0000;animation:rgbButtonBorder 1s infinite linear;text-decoration:none}
+.price{font-weight:900;font-size:13px;animation:rojoText 1.2s infinite linear;margin-bottom:5px}
+.btn{display:block;margin-top:6px;padding:9px;border-radius:22px;font-size:8px;font-weight:900;text-align:center;cursor:pointer;color:#fff;background:#1a0000;border:2px solid #ff0000;animation:rojoBtn 1.2s infinite linear;text-decoration:none}
 .btn-angel{animation-delay:0.5s}
 #loginPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;padding:30px;text-align:center}
 #adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;overflow-y:auto;padding:20px}
-.input{width:90%;max-width:300px;padding:12px;border-radius:10px;border:2px solid #ff0000;background:#111;color:#fff;margin:8px 0;animation:rgbBorder 1s infinite}
+.input{width:90%;max-width:300px;padding:12px;border-radius:10px;border:2px solid #ff0000;background:#111;color:#fff;margin:8px 0;animation:rojoBorder 1.2s infinite}
 </style>
-<script>
-let userActual=null;const USERS={temo:{pass:'temo123'}, angel:{pass:'angel123'}};
-function login(){let u=document.getElementById('user').value.toLowerCase().trim(),p=document.getElementById('pass').value.trim();if(USERS[u]&&USERS[u].pass===p){userActual=u;document.getElementById('loginPanel').style.display='none';verAdmin();}else alert('Mal');}
-function comprarTemo(pr,pe){guardar('TEMO 🔴','temo',pr,pe);window.open(`https://wa.me/523224528803?text=${encodeURIComponent('Hola Temo quiero '+pr+' $'+pe)}`,'_blank');}
-function comprarAngel(pr,pe){guardar('ANGEL 🔵','angel',pr,pe);window.open(`https://wa.me/529371098563?text=${encodeURIComponent('Hola Angel quiero '+pr+' $'+pe)}`,'_blank');}
-function guardar(l,o,p,pr){let v=JSON.parse(localStorage.getItem('v502')||'[]');v.unshift({fecha:new Date().toLocaleString(),label:l,owner:o,producto:p,precio:pr});localStorage.setItem('v502',JSON.stringify(v));}
-function verAdmin(){document.getElementById('adminPanel').style.display='block';let ve=JSON.parse(localStorage.getItem('v502')||'[]');let fi=userActual==='temo'?ve:ve.filter(x=>x.owner===userActual);let html=`<h2 style="animation:rgbText 1s infinite">📊 ${userActual.toUpperCase()} Total:${ve.length}</h2><button onclick="document.getElementById('adminPanel').style.display='none'" style="background:#fff;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">CERRAR</button><br><br>`;fi.forEach(v=>{html+=`<div style="background:#111;border-left:4px solid #00d5ff;padding:10px;margin-bottom:10px;border-radius:10px;font-size:12px"><b>${v.label} - ${v.producto} $${v.precio}</b><br><small>${v.fecha}</small></div>`;});document.getElementById('listaVentas').innerHTML=html;}
-window.onload=function(){if(location.search.includes('temo2024'))document.getElementById('loginPanel').style.display='block';}
-</script>
 </head>
 <body>
 <h1>⚡ BASE TEMO V50.2 ⚡</h1>
 
 <div class="section"><h2>💧 DRIP CLIENT</h2><div class="grid">
-<div class="item"><div class="name">DRIP 1 Día</div><div class="price">$20</div><a class="btn" onclick="comprarTemo('DRIP 1 Dia','20')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 1 Dia','20')">ANGEL 🔵</a></div>
-<div class="item"><div class="name">DRIP 7 Días</div><div class="price">$60</div><a class="btn" onclick="comprarTemo('DRIP 7 Dias','60')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 7 Dias','60')">ANGEL 🔵</a></div>
-<div class="item"><div class="name">DRIP 30 Días</div><div class="price">$150</div><a class="btn" onclick="comprarTemo('DRIP 30 Dias','150')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP 30 Dias','150')">ANGEL 🔵</a></div>
-<div class="item"><div class="name">DRIP Perma</div><div class="price">$320</div><a class="btn" onclick="comprarTemo('DRIP Perma','320')">TEMO 🔴</a><a class="btn btn-angel" onclick="comprarAngel('DRIP Perma','320')">ANGEL 🔵</a></div>
+<div class="item"><div class="name">DRIP 1 Día</div><div class="price">$20</div><a class="btn" data-v="temo" data-p="DRIP 1 Dia" data-pr="20">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="DRIP 1 Dia" data-pr="20">ANGEL 🔴</a></div>
+<div class="item"><div class="name">DRIP 7 Días</div><div class="price">$60</div><a class="btn" data-v="temo" data-p="DRIP 7 Dias" data-pr="60">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="DRIP 7 Dias" data-pr="60">ANGEL 🔴</a></div>
+<div class="item"><div class="name">DRIP 30 Días</div><div class="price">$150</div><a class="btn" data-v="temo" data-p="DRIP 30 Dias" data-pr="150">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="DRIP 30 Dias" data-pr="150">ANGEL 🔴</a></div>
+<div class="item"><div class="name">DRIP Perma</div><div class="price">$320</div><a class="btn" data-v="temo" data-p="DRIP Perma" data-pr="320">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="DRIP Perma" data-pr="320">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>💠 FLOURITE / CUBAN / HG</h2><div class="grid">
-<div class="item"><div class="name">FLOURITE 7d</div><div class="price">$80</div><a class="btn" onclick="comprarTemo('FLOURITE 7d','80')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE 7d','80')">ANGEL</a></div>
-<div class="item"><div class="name">FLOURITE 30d</div><div class="price">$180</div><a class="btn" onclick="comprarTemo('FLOURITE 30d','180')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE 30d','180')">ANGEL</a></div>
-<div class="item"><div class="name">FLOURITE Perma</div><div class="price">$380</div><a class="btn" onclick="comprarTemo('FLOURITE Perma','380')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('FLOURITE Perma','380')">ANGEL</a></div>
-<div class="item"><div class="name">CUBAN 7d</div><div class="price">$70</div><a class="btn" onclick="comprarTemo('CUBAN 7d','70')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN 7d','70')">ANGEL</a></div>
-<div class="item"><div class="name">CUBAN 30d</div><div class="price">$160</div><a class="btn" onclick="comprarTemo('CUBAN 30d','160')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN 30d','160')">ANGEL</a></div>
-<div class="item"><div class="name">CUBAN Perma</div><div class="price">$350</div><a class="btn" onclick="comprarTemo('CUBAN Perma','350')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('CUBAN Perma','350')">ANGEL</a></div>
-<div class="item"><div class="name">HG 7d</div><div class="price">$90</div><a class="btn" onclick="comprarTemo('HG 7d','90')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('HG 7d','90')">ANGEL</a></div>
-<div class="item"><div class="name">HG Perma</div><div class="price">$400</div><a class="btn" onclick="comprarTemo('HG Perma','400')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('HG Perma','400')">ANGEL</a></div>
+<div class="item"><div class="name">FLOURITE 7d</div><div class="price">$80</div><a class="btn" data-v="temo" data-p="FLOURITE 7d" data-pr="80">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="FLOURITE 7d" data-pr="80">ANGEL 🔴</a></div>
+<div class="item"><div class="name">FLOURITE 30d</div><div class="price">$180</div><a class="btn" data-v="temo" data-p="FLOURITE 30d" data-pr="180">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="FLOURITE 30d" data-pr="180">ANGEL 🔴</a></div>
+<div class="item"><div class="name">FLOURITE Perma</div><div class="price">$380</div><a class="btn" data-v="temo" data-p="FLOURITE Perma" data-pr="380">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="FLOURITE Perma" data-pr="380">ANGEL 🔴</a></div>
+<div class="item"><div class="name">CUBAN 7d</div><div class="price">$70</div><a class="btn" data-v="temo" data-p="CUBAN 7d" data-pr="70">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="CUBAN 7d" data-pr="70">ANGEL 🔴</a></div>
+<div class="item"><div class="name">CUBAN 30d</div><div class="price">$160</div><a class="btn" data-v="temo" data-p="CUBAN 30d" data-pr="160">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="CUBAN 30d" data-pr="160">ANGEL 🔴</a></div>
+<div class="item"><div class="name">CUBAN Perma</div><div class="price">$350</div><a class="btn" data-v="temo" data-p="CUBAN Perma" data-pr="350">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="CUBAN Perma" data-pr="350">ANGEL 🔴</a></div>
+<div class="item"><div class="name">HG 7d</div><div class="price">$90</div><a class="btn" data-v="temo" data-p="HG 7d" data-pr="90">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="HG 7d" data-pr="90">ANGEL 🔴</a></div>
+<div class="item"><div class="name">HG Perma</div><div class="price">$400</div><a class="btn" data-v="temo" data-p="HG Perma" data-pr="400">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="HG Perma" data-pr="400">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>🧩 FRAGMENTOS EVO (9)</h2><div class="grid">
-<div class="item"><div class="name">50 Frag</div><div class="price">$45</div><a class="btn" onclick="comprarTemo('50 Frag','45')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('50 Frag','45')">ANGEL</a></div>
-<div class="item"><div class="name">100 Frag</div><div class="price">$85</div><a class="btn" onclick="comprarTemo('100 Frag','85')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('100 Frag','85')">ANGEL</a></div>
-<div class="item"><div class="name">200 Frag</div><div class="price">$160</div><a class="btn" onclick="comprarTemo('200 Frag','160')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('200 Frag','160')">ANGEL</a></div>
-<div class="item"><div class="name">250 Frag</div><div class="price">$205</div><a class="btn" onclick="comprarTemo('250 Frag','205')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('250 Frag','205')">ANGEL</a></div>
-<div class="item"><div class="name">300 Frag</div><div class="price">$260</div><a class="btn" onclick="comprarTemo('300 Frag','260')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('300 Frag','260')">ANGEL</a></div>
-<div class="item"><div class="name">350 Frag</div><div class="price">$305</div><a class="btn" onclick="comprarTemo('350 Frag','305')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('350 Frag','305')">ANGEL</a></div>
-<div class="item"><div class="name">400 Frag</div><div class="price">$345</div><a class="btn" onclick="comprarTemo('400 Frag','345')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('400 Frag','345')">ANGEL</a></div>
-<div class="item"><div class="name">500 Frag</div><div class="price">$450</div><a class="btn" onclick="comprarTemo('500 Frag','450')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('500 Frag','450')">ANGEL</a></div>
-<div class="item"><div class="name">600 Frag</div><div class="price">$520</div><a class="btn" onclick="comprarTemo('600 Frag','520')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('600 Frag','520')">ANGEL</a></div>
+<div class="item"><div class="name">50 Frag</div><div class="price">$45</div><a class="btn" data-v="temo" data-p="50 Frag" data-pr="45">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="50 Frag" data-pr="45">ANGEL 🔴</a></div>
+<div class="item"><div class="name">100 Frag</div><div class="price">$85</div><a class="btn" data-v="temo" data-p="100 Frag" data-pr="85">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="100 Frag" data-pr="85">ANGEL 🔴</a></div>
+<div class="item"><div class="name">200 Frag</div><div class="price">$160</div><a class="btn" data-v="temo" data-p="200 Frag" data-pr="160">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="200 Frag" data-pr="160">ANGEL 🔴</a></div>
+<div class="item"><div class="name">250 Frag</div><div class="price">$205</div><a class="btn" data-v="temo" data-p="250 Frag" data-pr="205">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="250 Frag" data-pr="205">ANGEL 🔴</a></div>
+<div class="item"><div class="name">300 Frag</div><div class="price">$260</div><a class="btn" data-v="temo" data-p="300 Frag" data-pr="260">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="300 Frag" data-pr="260">ANGEL 🔴</a></div>
+<div class="item"><div class="name">350 Frag</div><div class="price">$305</div><a class="btn" data-v="temo" data-p="350 Frag" data-pr="305">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="350 Frag" data-pr="305">ANGEL 🔴</a></div>
+<div class="item"><div class="name">400 Frag</div><div class="price">$345</div><a class="btn" data-v="temo" data-p="400 Frag" data-pr="345">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="400 Frag" data-pr="345">ANGEL 🔴</a></div>
+<div class="item"><div class="name">500 Frag</div><div class="price">$450</div><a class="btn" data-v="temo" data-p="500 Frag" data-pr="450">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="500 Frag" data-pr="450">ANGEL 🔴</a></div>
+<div class="item"><div class="name">600 Frag</div><div class="price">$520</div><a class="btn" data-v="temo" data-p="600 Frag" data-pr="520">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="600 Frag" data-pr="520">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>💎 PROMO 1 VEZ (8)</h2><div class="grid">
-<div class="item"><div class="name">110 PROMO</div><div class="price">$18</div><a class="btn" onclick="comprarTemo('110 PROMO','18')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('110 PROMO','18')">ANGEL</a></div>
-<div class="item"><div class="name">341 PROMO</div><div class="price">$48</div><a class="btn" onclick="comprarTemo('341 PROMO','48')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('341 PROMO','48')">ANGEL</a></div>
-<div class="item"><div class="name">572 PROMO</div><div class="price">$68</div><a class="btn" onclick="comprarTemo('572 PROMO','68')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('572 PROMO','68')">ANGEL</a></div>
-<div class="item"><div class="name">1166 PROMO</div><div class="price">$135</div><a class="btn" onclick="comprarTemo('1166 PROMO','135')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('1166 PROMO','135')">ANGEL</a></div>
-<div class="item"><div class="name">2398 PROMO</div><div class="price">$260</div><a class="btn" onclick="comprarTemo('2398 PROMO','260')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('2398 PROMO','260')">ANGEL</a></div>
-<div class="item"><div class="name">6160 PROMO</div><div class="price">$615</div><a class="btn" onclick="comprarTemo('6160 PROMO','615')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('6160 PROMO','615')">ANGEL</a></div>
-<div class="item"><div class="name">Mensual</div><div class="price">$170</div><a class="btn" onclick="comprarTemo('Mensual','170')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('Mensual','170')">ANGEL</a></div>
-<div class="item"><div class="name">12320</div><div class="price">$1500</div><a class="btn" onclick="comprarTemo('12320','1500')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('12320','1500')">ANGEL</a></div>
+<div class="item"><div class="name">110 PROMO</div><div class="price">$18</div><a class="btn" data-v="temo" data-p="110 PROMO" data-pr="18">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="110 PROMO" data-pr="18">ANGEL 🔴</a></div>
+<div class="item"><div class="name">341 PROMO</div><div class="price">$48</div><a class="btn" data-v="temo" data-p="341 PROMO" data-pr="48">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="341 PROMO" data-pr="48">ANGEL 🔴</a></div>
+<div class="item"><div class="name">572 PROMO</div><div class="price">$68</div><a class="btn" data-v="temo" data-p="572 PROMO" data-pr="68">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="572 PROMO" data-pr="68">ANGEL 🔴</a></div>
+<div class="item"><div class="name">1166 PROMO</div><div class="price">$135</div><a class="btn" data-v="temo" data-p="1166 PROMO" data-pr="135">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1166 PROMO" data-pr="135">ANGEL 🔴</a></div>
+<div class="item"><div class="name">2398 PROMO</div><div class="price">$260</div><a class="btn" data-v="temo" data-p="2398 PROMO" data-pr="260">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2398 PROMO" data-pr="260">ANGEL 🔴</a></div>
+<div class="item"><div class="name">6160 PROMO</div><div class="price">$615</div><a class="btn" data-v="temo" data-p="6160 PROMO" data-pr="615">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 PROMO" data-pr="615">ANGEL 🔴</a></div>
+<div class="item"><div class="name">Mensual</div><div class="price">$170</div><a class="btn" data-v="temo" data-p="Mensual" data-pr="170">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Mensual" data-pr="170">ANGEL 🔴</a></div>
+<div class="item"><div class="name">12320</div><div class="price">$1500</div><a class="btn" data-v="temo" data-p="12320" data-pr="1500">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="12320" data-pr="1500">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>⚡ 1 A 3 MIN (10)</h2><div class="grid">
-<div class="item"><div class="name">Memb Semanal</div><div class="price">$9</div><a class="btn" onclick="comprarTemo('Memb Semanal','9')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('Memb Semanal','9')">ANGEL</a></div>
-<div class="item"><div class="name">110 Diam</div><div class="price">$18</div><a class="btn" onclick="comprarTemo('110 1-3m','18')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('110 1-3m','18')">ANGEL</a></div>
-<div class="item"><div class="name">Tarjeta Sem</div><div class="price">$35</div><a class="btn" onclick="comprarTemo('Tarjeta Semanal','35')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('Tarjeta Semanal','35')">ANGEL</a></div>
-<div class="item"><div class="name">220 Diam</div><div class="price">$35</div><a class="btn" onclick="comprarTemo('220 1-3m','35')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('220 1-3m','35')">ANGEL</a></div>
-<div class="item"><div class="name">Pase Booyah</div><div class="price">$50</div><a class="btn" onclick="comprarTemo('Pase Booyah','50')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('Pase Booyah','50')">ANGEL</a></div>
-<div class="item"><div class="name">341 Diam</div><div class="price">$55</div><a class="btn" onclick="comprarTemo('341 1-3m','55')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('341 1-3m','55')">ANGEL</a></div>
-<div class="item"><div class="name">572 Diam</div><div class="price">$88</div><a class="btn" onclick="comprarTemo('572 1-3m','88')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('572 1-3m','88')">ANGEL</a></div>
-<div class="item"><div class="name">1166 Diam</div><div class="price">$165</div><a class="btn" onclick="comprarTemo('1166 1-3m','165')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('1166 1-3m','165')">ANGEL</a></div>
-<div class="item"><div class="name">2398 Diam</div><div class="price">$310</div><a class="btn" onclick="comprarTemo('2398 1-3m','310')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('2398 1-3m','310')">ANGEL</a></div>
-<div class="item"><div class="name">6160 Diam</div><div class="price">$720</div><a class="btn" onclick="comprarTemo('6160 1-3m','720')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('6160 1-3m','720')">ANGEL</a></div>
+<div class="item"><div class="name">Memb Semanal</div><div class="price">$9</div><a class="btn" data-v="temo" data-p="Memb Semanal" data-pr="9">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Memb Semanal" data-pr="9">ANGEL 🔴</a></div>
+<div class="item"><div class="name">110 Diam</div><div class="price">$18</div><a class="btn" data-v="temo" data-p="110 1-3m" data-pr="18">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="110 1-3m" data-pr="18">ANGEL 🔴</a></div>
+<div class="item"><div class="name">Tarjeta Sem</div><div class="price">$35</div><a class="btn" data-v="temo" data-p="Tarjeta Semanal" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Tarjeta Semanal" data-pr="35">ANGEL 🔴</a></div>
+<div class="item"><div class="name">220 Diam</div><div class="price">$35</div><a class="btn" data-v="temo" data-p="220 1-3m" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="220 1-3m" data-pr="35">ANGEL 🔴</a></div>
+<div class="item"><div class="name">Pase Booyah</div><div class="price">$50</div><a class="btn" data-v="temo" data-p="Pase Booyah" data-pr="50">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Pase Booyah" data-pr="50">ANGEL 🔴</a></div>
+<div class="item"><div class="name">341 Diam</div><div class="price">$55</div><a class="btn" data-v="temo" data-p="341 1-3m" data-pr="55">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="341 1-3m" data-pr="55">ANGEL 🔴</a></div>
+<div class="item"><div class="name">572 Diam</div><div class="price">$88</div><a class="btn" data-v="temo" data-p="572 1-3m" data-pr="88">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="572 1-3m" data-pr="88">ANGEL 🔴</a></div>
+<div class="item"><div class="name">1166 Diam</div><div class="price">$165</div><a class="btn" data-v="temo" data-p="1166 1-3m" data-pr="165">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1166 1-3m" data-pr="165">ANGEL 🔴</a></div>
+<div class="item"><div class="name">2398 Diam</div><div class="price">$310</div><a class="btn" data-v="temo" data-p="2398 1-3m" data-pr="310">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2398 1-3m" data-pr="310">ANGEL 🔴</a></div>
+<div class="item"><div class="name">6160 Diam</div><div class="price">$720</div><a class="btn" data-v="temo" data-p="6160 1-3m" data-pr="720">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 1-3m" data-pr="720">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>⏰ 30 MIN A 2H (8)</h2><div class="grid">
-<div class="item"><div class="name">110 Diam</div><div class="price">$19</div><a class="btn" onclick="comprarTemo('110 30m','19')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('110 30m','19')">ANGEL</a></div>
-<div class="item"><div class="name">231 Diam</div><div class="price">$39</div><a class="btn" onclick="comprarTemo('231','39')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('231','39')">ANGEL</a></div>
-<div class="item"><div class="name">330 Diam</div><div class="price">$56</div><a class="btn" onclick="comprarTemo('330','56')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('330','56')">ANGEL</a></div>
-<div class="item"><div class="name">583 Diam</div><div class="price">$87</div><a class="btn" onclick="comprarTemo('583','87')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('583','87')">ANGEL</a></div>
-<div class="item"><div class="name">1188 Diam</div><div class="price">$162</div><a class="btn" onclick="comprarTemo('1188','162')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('1188','162')">ANGEL</a></div>
-<div class="item"><div class="name">2420 Diam</div><div class="price">$322</div><a class="btn" onclick="comprarTemo('2420','322')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('2420','322')">ANGEL</a></div>
-<div class="item"><div class="name">6160 Diam</div><div class="price">$820</div><a class="btn" onclick="comprarTemo('6160 2h','820')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('6160 2h','820')">ANGEL</a></div>
-<div class="item"><div class="name">PASE BOOYAH</div><div class="price">$35</div><a class="btn" onclick="comprarTemo('PASE BOOYAH','35')">TEMO</a><a class="btn btn-angel" onclick="comprarAngel('PASE BOOYAH','35')">ANGEL</a></div>
+<div class="item"><div class="name">110 Diam</div><div class="price">$19</div><a class="btn" data-v="temo" data-p="110 30m" data-pr="19">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="110 30m" data-pr="19">ANGEL 🔴</a></div>
+<div class="item"><div class="name">231 Diam</div><div class="price">$39</div><a class="btn" data-v="temo" data-p="231" data-pr="39">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="231" data-pr="39">ANGEL 🔴</a></div>
+<div class="item"><div class="name">330 Diam</div><div class="price">$56</div><a class="btn" data-v="temo" data-p="330" data-pr="56">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="330" data-pr="56">ANGEL 🔴</a></div>
+<div class="item"><div class="name">583 Diam</div><div class="price">$87</div><a class="btn" data-v="temo" data-p="583" data-pr="87">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="583" data-pr="87">ANGEL 🔴</a></div>
+<div class="item"><div class="name">1188 Diam</div><div class="price">$162</div><a class="btn" data-v="temo" data-p="1188" data-pr="162">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1188" data-pr="162">ANGEL 🔴</a></div>
+<div class="item"><div class="name">2420 Diam</div><div class="price">$322</div><a class="btn" data-v="temo" data-p="2420" data-pr="322">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2420" data-pr="322">ANGEL 🔴</a></div>
+<div class="item"><div class="name">6160 Diam</div><div class="price">$820</div><a class="btn" data-v="temo" data-p="6160 2h" data-pr="820">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 2h" data-pr="820">ANGEL 🔴</a></div>
+<div class="item"><div class="name">PASE BOOYAH</div><div class="price">$35</div><a class="btn" data-v="temo" data-p="PASE BOOYAH" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="PASE BOOYAH" data-pr="35">ANGEL 🔴</a></div>
 </div></div>
 
-<div id="loginPanel"><h2 style="animation:rgbText 1s infinite">🔐 ACCESO</h2><input id="user" class="input" placeholder="temo o angel"><input id="pass" class="input" type="password" placeholder="pass"><br><br><button onclick="login()" style="background:#111;color:#fff;padding:12px 30px;border-radius:30px;border:2px solid #ff0000;font-weight:900;animation:rgbButtonBorder 1s infinite">ENTRAR</button><br><br><button onclick="document.getElementById('loginPanel').style.display='none'" style="background:#222;color:#fff;padding:8px 15px;border-radius:20px;border:none">Cerrar</button></div>
+<div id="loginPanel"><h2 style="animation:rojoText 1.2s infinite">🔐 ACCESO</h2><input id="user" class="input" placeholder="temo o angel"><input id="pass" class="input" type="password" placeholder="pass"><br><br><button id="btnLogin" style="background:#1a0000;color:#fff;padding:12px 30px;border-radius:30px;border:2px solid #ff0000;font-weight:900;animation:rojoBtn 1.2s infinite">ENTRAR</button><br><br><button id="btnCerrarLogin" style="background:#222;color:#fff;padding:8px 15px;border-radius:20px;border:none">Cerrar</button></div>
 <div id="adminPanel"><div id="listaVentas"></div></div>
+
+<script>
+var userActual=null;
+var USERS={temo:'temo123', angel:'angel123'};
+
+function comprar(v,pr,pe){
+  var label = v==='temo' ? 'TEMO 🔴' : 'ANGEL 🔴';
+  var tel = v==='temo' ? '523224528803' : '529371098563';
+  var nombre = v==='temo' ? 'Temo' : 'Angel';
+  var arr = JSON.parse(localStorage.getItem('v502')||'[]');
+  arr.unshift({fecha:new Date().toLocaleString(),label:label,owner:v,producto:pr,precio:pe});
+  localStorage.setItem('v502',JSON.stringify(arr));
+  window.open('https://wa.me/'+tel+'?text='+encodeURIComponent('Hola '+nombre+' quiero '+pr+' $'+pe),'_blank');
+}
+
+document.addEventListener('click', function(e){
+  var b = e.target.closest('.btn');
+  if(b){
+    comprar(b.getAttribute('data-v'), b.getAttribute('data-p'), b.getAttribute('data-pr'));
+    return;
+  }
+  if(e.target.id==='btnLogin'){
+    var u=document.getElementById('user').value.toLowerCase().trim();
+    var p=document.getElementById('pass').value.trim();
+    if(USERS[u] && USERS[u]===p){
+      userActual=u;
+      document.getElementById('loginPanel').style.display='none';
+      verAdmin();
+    } else alert('Mal');
+  }
+  if(e.target.id==='btnCerrarLogin'){
+    document.getElementById('loginPanel').style.display='none';
+  }
+});
+
+function verAdmin(){
+  document.getElementById('adminPanel').style.display='block';
+  var ve=JSON.parse(localStorage.getItem('v502')||'[]');
+  var fi=userActual==='temo'?ve:ve.filter(function(x){return x.owner===userActual;});
+  var html='<h2 style="animation:rojoText 1.2s infinite">📊 '+userActual.toUpperCase()+' Total:'+ve.length+'</h2><button id="btnCerrarAdmin" style="background:#fff;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">CERRAR</button><br><br>';
+  fi.forEach(function(v){
+    html+='<div style="background:#111;border-left:4px solid #ff0000;padding:10px;margin-bottom:10px;border-radius:10px;font-size:12px"><b>'+v.label+' - '+v.producto+' $'+v.precio+'</b><br><small>'+v.fecha+'</small></div>';
+  });
+  document.getElementById('listaVentas').innerHTML=html;
+  document.getElementById('btnCerrarAdmin').addEventListener('click', function(){
+    document.getElementById('adminPanel').style.display='none';
+  });
+}
+
+if(location.search.includes('temo2024')) document.getElementById('loginPanel').style.display='block';
+</script>
 </body>
 </html>
