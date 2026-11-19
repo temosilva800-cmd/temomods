@@ -22,14 +22,10 @@ h1{font-family:'Orbitron',sans-serif;margin:18px 0 5px 0;font-size:26px;letter-s
 .price-cotizar{font-weight:900;font-size:13px;color:#ff3333;text-shadow:0 0 10px #ff0000;margin-bottom:5px}
 .btn{display:block;margin-top:6px;padding:9px;border-radius:22px;font-size:9px;font-weight:900;text-align:center;cursor:pointer;color:#fff;background:#1a0000;border:2px solid #ff0000;animation:rojoBtn 1.2s infinite linear;text-decoration:none}
 .btn-angel{animation-delay:0.5s}
-#loginPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;padding:30px;text-align:center}
-#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;overflow-y:auto;padding:20px}
-.input{width:90%;max-width:300px;padding:12px;border-radius:10px;border:2px solid #ff0000;background:#111;color:#fff;margin:8px 0;animation:rojoBorder 1.2s infinite}
+.input{width:90%;max-width:350px;padding:13px;border-radius:12px;border:2px solid #ff0000;background:#111;color:#fff;margin:10px 0;text-align:center;animation:rojoBorder 1.2s infinite}
 .pagos{background:#0d0000;border:2px solid #ff0000;border-radius:20px;padding:15px;margin-bottom:22px;animation:rojoBorder 1.2s infinite linear}
 .pagos h2{animation:rojoText 1.2s infinite linear;font-size:14px}
 .pagos p{font-size:13px;line-height:1.6;color:#ffcccc}
-.pagos b{color:#fff}
-.linkBtn{display:block;background:#1a0000;border:2px solid #ff0000;animation:rojoBtn 1.2s infinite linear;color:#fff;padding:12px;border-radius:25px;text-decoration:none;font-weight:900;font-size:12px;margin:8px 0}
 </style>
 </head>
 <body>
@@ -44,67 +40,32 @@ h1{font-family:'Orbitron',sans-serif;margin:18px 0 5px 0;font-size:26px;letter-s
 <div class="item"><div class="name">(2k) 2398 Diam</div><div class="price">$260 MXN</div><a class="btn" data-v="temo" data-p="2398 PROMO 1 VEZ" data-pr="260">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2398 PROMO 1 VEZ" data-pr="260">ANGEL 🔴</a></div>
 <div class="item"><div class="name">(6k) 6160 Diam</div><div class="price">$615 MXN</div><a class="btn" data-v="temo" data-p="6160 PROMO 1 VEZ" data-pr="615">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 PROMO 1 VEZ" data-pr="615">ANGEL 🔴</a></div>
 <div class="item"><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn" data-v="temo" data-p="Tarjeta Mensual PROMO" data-pr="170">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Tarjeta Mensual PROMO" data-pr="170">ANGEL 🔴</a></div>
-<div class="item"><div class="name">2398 Diam</div><div class="price">$300 MXN</div><a class="btn" data-v="temo" data-p="2398 Diam PROMO" data-pr="300">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2398 Diam PROMO" data-pr="300">ANGEL 🔴</a></div>
-<div class="item"><div class="name">3564 Diam</div><div class="price">$450 MXN</div><a class="btn" data-v="temo" data-p="3564 Diam PROMO" data-pr="450">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="3564 Diam PROMO" data-pr="450">ANGEL 🔴</a></div>
-<div class="item"><div class="name">4796 Diam</div><div class="price">$590 MXN</div><a class="btn" data-v="temo" data-p="4796 Diam PROMO" data-pr="590">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="4796 Diam PROMO" data-pr="590">ANGEL 🔴</a></div>
-<div class="item"><div class="name">6160 Diam</div><div class="price">$720 MXN</div><a class="btn" data-v="temo" data-p="6160 Diam PROMO" data-pr="720">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 Diam PROMO" data-pr="720">ANGEL 🔴</a></div>
 <div class="item"><div class="name">12320 Diam</div><div class="price">$1500 MXN</div><a class="btn" data-v="temo" data-p="12320 Diam PROMO" data-pr="1500">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="12320 Diam PROMO" data-pr="1500">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>⚡ SECCIÓN 2 — LLEGAN 1 A 3 MINUTOS</h2><div class="grid">
 <div class="item"><div class="name">Membresía Semanal</div><div class="price">$9 MXN</div><a class="btn" data-v="temo" data-p="Memb Semanal 1-3m" data-pr="9">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Memb Semanal 1-3m" data-pr="9">ANGEL 🔴</a></div>
 <div class="item"><div class="name">110 Diam</div><div class="price">$18 MXN</div><a class="btn" data-v="temo" data-p="110 Diam 1-3m" data-pr="18">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="110 Diam 1-3m" data-pr="18">ANGEL 🔴</a></div>
-<div class="item"><div class="name">Tarjeta Semanal</div><div class="price">$35 MXN</div><a class="btn" data-v="temo" data-p="Tarjeta Semanal 1-3m" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Tarjeta Semanal 1-3m" data-pr="35">ANGEL 🔴</a></div>
-<div class="item"><div class="name">220 Diam</div><div class="price">$35 MXN</div><a class="btn" data-v="temo" data-p="220 Diam 1-3m" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="220 Diam 1-3m" data-pr="35">ANGEL 🔴</a></div>
 <div class="item"><div class="name">Pase Booyah</div><div class="price">$50 MXN</div><a class="btn" data-v="temo" data-p="Pase Booyah 1-3m" data-pr="50">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Pase Booyah 1-3m" data-pr="50">ANGEL 🔴</a></div>
 <div class="item"><div class="name">341 Diam</div><div class="price">$55 MXN</div><a class="btn" data-v="temo" data-p="341 Diam 1-3m" data-pr="55">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="341 Diam 1-3m" data-pr="55">ANGEL 🔴</a></div>
 <div class="item"><div class="name">572 Diam</div><div class="price">$88 MXN</div><a class="btn" data-v="temo" data-p="572 Diam 1-3m" data-pr="88">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="572 Diam 1-3m" data-pr="88">ANGEL 🔴</a></div>
-<div class="item"><div class="name">682 Diam</div><div class="price">$100 MXN</div><a class="btn" data-v="temo" data-p="682 Diam 1-3m" data-pr="100">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="682 Diam 1-3m" data-pr="100">ANGEL 🔴</a></div>
 <div class="item"><div class="name">Tarjeta Mensual</div><div class="price">$170 MXN</div><a class="btn" data-v="temo" data-p="Tarjeta Mensual 1-3m" data-pr="170">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="Tarjeta Mensual 1-3m" data-pr="170">ANGEL 🔴</a></div>
-<div class="item"><div class="name">2398 Diam</div><div class="price">$300 MXN</div><a class="btn" data-v="temo" data-p="2398 Diam 1-3m" data-pr="300">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2398 Diam 1-3m" data-pr="300">ANGEL 🔴</a></div>
-<div class="item"><div class="name">3564 Diam</div><div class="price">$450 MXN</div><a class="btn" data-v="temo" data-p="3564 Diam 1-3m" data-pr="450">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="3564 Diam 1-3m" data-pr="450">ANGEL 🔴</a></div>
-<div class="item"><div class="name">4796 Diam</div><div class="price">$590 MXN</div><a class="btn" data-v="temo" data-p="4796 Diam 1-3m" data-pr="590">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="4796 Diam 1-3m" data-pr="590">ANGEL 🔴</a></div>
-<div class="item"><div class="name">6160 Diam</div><div class="price">$720 MXN</div><a class="btn" data-v="temo" data-p="6160 Diam 1-3m" data-pr="720">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 Diam 1-3m" data-pr="720">ANGEL 🔴</a></div>
-<div class="item"><div class="name">12320 Diam</div><div class="price">$1500 MXN</div><a class="btn" data-v="temo" data-p="12320 Diam 1-3m" data-pr="1500">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="12320 Diam 1-3m" data-pr="1500">ANGEL 🔴</a></div>
-</div></div>
-
-<div class="section"><h2>⏰ SECCIÓN 3 — LLEGAN 30 MIN A 2 HORAS</h2><div class="grid">
-<div class="item"><div class="name">110 Diam</div><div class="price">$19 MXN</div><a class="btn" data-v="temo" data-p="110 Diam 30m-2h" data-pr="19">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="110 Diam 30m-2h" data-pr="19">ANGEL 🔴</a></div>
-<div class="item"><div class="name">231 Diam</div><div class="price">$39 MXN</div><a class="btn" data-v="temo" data-p="231 Diam 30m-2h" data-pr="39">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="231 Diam 30m-2h" data-pr="39">ANGEL 🔴</a></div>
-<div class="item"><div class="name">330 Diam</div><div class="price">$56 MXN</div><a class="btn" data-v="temo" data-p="330 Diam 30m-2h" data-pr="56">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="330 Diam 30m-2h" data-pr="56">ANGEL 🔴</a></div>
-<div class="item"><div class="name">583 Diam</div><div class="price">$87 MXN</div><a class="btn" data-v="temo" data-p="583 Diam 30m-2h" data-pr="87">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="583 Diam 30m-2h" data-pr="87">ANGEL 🔴</a></div>
-<div class="item"><div class="name">1188 Diam</div><div class="price">$162 MXN</div><a class="btn" data-v="temo" data-p="1188 Diam 30m-2h" data-pr="162">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1188 Diam 30m-2h" data-pr="162">ANGEL 🔴</a></div>
-<div class="item"><div class="name">2420 Diam</div><div class="price">$322 MXN</div><a class="btn" data-v="temo" data-p="2420 Diam 30m-2h" data-pr="322">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2420 Diam 30m-2h" data-pr="322">ANGEL 🔴</a></div>
-<div class="item"><div class="name">6160 Diam</div><div class="price">$820 MXN</div><a class="btn" data-v="temo" data-p="6160 Diam 30m-2h" data-pr="820">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="6160 Diam 30m-2h" data-pr="820">ANGEL 🔴</a></div>
-<div class="item"><div class="name">PASE BOOYAH</div><div class="price">$35 MXN</div><a class="btn" data-v="temo" data-p="PASE BOOYAH 30m-2h" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="PASE BOOYAH 30m-2h" data-pr="35">ANGEL 🔴</a></div>
 </div></div>
 
 <div class="section"><h2>📱 SECCIÓN 4 — TIKTOK & INSTAGRAM</h2>
 <div class="subSec">🎵 TIKTOK</div>
 <div class="grid">
 <div class="item"><div class="name">1k Vistas TikTok</div><div class="price">$19 MXN</div><a class="btn" data-v="temo" data-p="1k Vistas TikTok" data-pr="19">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1k Vistas TikTok" data-pr="19">ANGEL 🔴</a></div>
-<div class="item"><div class="name">1k Likes TikTok</div><div class="price-cotizar">COTIZAR EN WHATSAPP</div><a class="btn" data-v="temo" data-p="COTIZAR 1k Likes TikTok" data-pr="COTIZAR" data-cotizar="1">TEMO 🔴 COTIZAR</a><a class="btn btn-angel" data-v="angel" data-p="COTIZAR 1k Likes TikTok" data-pr="COTIZAR" data-cotizar="1">ANGEL 🔴 COTIZAR</a></div>
 <div class="item"><div class="name">1k Seguidores TikTok</div><div class="price">$100 MXN</div><a class="btn" data-v="temo" data-p="1k Seguidores TikTok" data-pr="100">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1k Seguidores TikTok" data-pr="100">ANGEL 🔴</a></div>
 </div>
 <div class="subSec">📸 INSTAGRAM</div>
 <div class="grid">
-<div class="item"><div class="name">1k Likes Instagram</div><div class="price-cotizar">COTIZAR EN WHATSAPP</div><a class="btn" data-v="temo" data-p="COTIZAR 1k Likes Instagram" data-pr="COTIZAR" data-cotizar="1">TEMO 🔴 COTIZAR</a><a class="btn btn-angel" data-v="angel" data-p="COTIZAR 1k Likes Instagram" data-pr="COTIZAR" data-cotizar="1">ANGEL 🔴 COTIZAR</a></div>
 <div class="item"><div class="name">1k Seguidores Mix IG</div><div class="price">$89 MXN</div><a class="btn" data-v="temo" data-p="1k Seguidores Mix IG" data-pr="89">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1k Seguidores Mix IG" data-pr="89">ANGEL 🔴</a></div>
-<div class="item"><div class="name">1k Seguidores Stable IG</div><div class="price">$129 MXN</div><a class="btn" data-v="temo" data-p="1k Seguidores Stable IG" data-pr="129">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1k Seguidores Stable IG" data-pr="129">ANGEL 🔴</a></div>
 <div class="item"><div class="name">10k Vistas Reels</div><div class="price">$19 MXN</div><a class="btn" data-v="temo" data-p="10k Vistas Reels" data-pr="19">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="10k Vistas Reels" data-pr="19">ANGEL 🔴</a></div>
-</div></div>
-
-<div class="section"><h2>❤️ SECCIÓN 5 — FREE FIRE LIKES (UID LATAM)</h2><div class="grid">
-<div class="item"><div class="name">100 Likes FF</div><div class="price-cotizar">COTIZAR EN WHATSAPP</div><a class="btn" data-v="temo" data-p="COTIZAR 100 Likes FF" data-pr="COTIZAR" data-cotizar="1">TEMO 🔴 COTIZAR</a><a class="btn btn-angel" data-v="angel" data-p="COTIZAR 100 Likes FF" data-pr="COTIZAR" data-cotizar="1">ANGEL 🔴 COTIZAR</a></div>
-<div class="item"><div class="name">200 Likes FF</div><div class="price-cotizar">COTIZAR EN WHATSAPP</div><a class="btn" data-v="temo" data-p="COTIZAR 200 Likes FF" data-pr="COTIZAR" data-cotizar="1">TEMO 🔴 COTIZAR</a><a class="btn btn-angel" data-v="angel" data-p="COTIZAR 200 Likes FF" data-pr="COTIZAR" data-cotizar="1">ANGEL 🔴 COTIZAR</a></div>
-<div class="item"><div class="name">500 Likes FF</div><div class="price-cotizar">COTIZAR EN WHATSAPP</div><a class="btn" data-v="temo" data-p="COTIZAR 500 Likes FF" data-pr="COTIZAR" data-cotizar="1">TEMO 🔴 COTIZAR</a><a class="btn btn-angel" data-v="angel" data-p="COTIZAR 500 Likes FF" data-pr="COTIZAR" data-cotizar="1">ANGEL 🔴 COTIZAR</a></div>
-<div class="item"><div class="name">1000 Likes FF</div><div class="price-cotizar">COTIZAR EN WHATSAPP</div><a class="btn" data-v="temo" data-p="COTIZAR 1000 Likes FF" data-pr="COTIZAR" data-cotizar="1">TEMO 🔴 COTIZAR</a><a class="btn btn-angel" data-v="angel" data-p="COTIZAR 1000 Likes FF" data-pr="COTIZAR" data-cotizar="1">ANGEL 🔴 COTIZAR</a></div>
 </div></div>
 
 <div class="section"><h2>🛡️ HONOR PARA CLANES</h2><div class="grid">
 <div class="item"><div class="name">1 Escuadra Honor</div><div class="price">$35 MXN</div><a class="btn" data-v="temo" data-p="1 Escuadra Honor Clan" data-pr="35">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="1 Escuadra Honor Clan" data-pr="35">ANGEL 🔴</a></div>
-<div class="item"><div class="name">2 Escuadras Honor</div><div class="price">$70 MXN</div><a class="btn" data-v="temo" data-p="2 Escuadras Honor Clan" data-pr="70">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="2 Escuadras Honor Clan" data-pr="70">ANGEL 🔴</a></div>
-<div class="item"><div class="name">3 Escuadras Honor</div><div class="price">$105 MXN</div><a class="btn" data-v="temo" data-p="3 Escuadras Honor Clan" data-pr="105">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="3 Escuadras Honor Clan" data-pr="105">ANGEL 🔴</a></div>
 <div class="item"><div class="name">5 Escuadras Honor</div><div class="price">$175 MXN</div><a class="btn" data-v="temo" data-p="5 Escuadras Honor Clan" data-pr="175">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="5 Escuadras Honor Clan" data-pr="175">ANGEL 🔴</a></div>
 <div class="item"><div class="name">10 Escuadras Honor</div><div class="price">$350 MXN</div><a class="btn" data-v="temo" data-p="10 Escuadras Honor Clan" data-pr="350">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="10 Escuadras Honor Clan" data-pr="350">ANGEL 🔴</a></div>
 </div></div>
@@ -113,60 +74,42 @@ h1{font-family:'Orbitron',sans-serif;margin:18px 0 5px 0;font-size:26px;letter-s
 <div class="item"><div class="name">50 🧁 Frag EVO</div><div class="price">$45 MXN</div><a class="btn" data-v="temo" data-p="50 Frag EVO" data-pr="45">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="50 Frag EVO" data-pr="45">ANGEL 🔴</a></div>
 <div class="item"><div class="name">100 🧁 Frag EVO</div><div class="price">$85 MXN</div><a class="btn" data-v="temo" data-p="100 Frag EVO" data-pr="85">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="100 Frag EVO" data-pr="85">ANGEL 🔴</a></div>
 <div class="item"><div class="name">200 🧁 Frag EVO</div><div class="price">$160 MXN</div><a class="btn" data-v="temo" data-p="200 Frag EVO" data-pr="160">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="200 Frag EVO" data-pr="160">ANGEL 🔴</a></div>
-<div class="item"><div class="name">250 🧁 Frag EVO</div><div class="price">$205 MXN</div><a class="btn" data-v="temo" data-p="250 Frag EVO" data-pr="205">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="250 Frag EVO" data-pr="205">ANGEL 🔴</a></div>
-<div class="item"><div class="name">300 🧁 Frag EVO</div><div class="price">$260 MXN</div><a class="btn" data-v="temo" data-p="300 Frag EVO" data-pr="260">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="300 Frag EVO" data-pr="260">ANGEL 🔴</a></div>
-<div class="item"><div class="name">350 🧁 Frag EVO</div><div class="price">$305 MXN</div><a class="btn" data-v="temo" data-p="350 Frag EVO" data-pr="305">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="350 Frag EVO" data-pr="305">ANGEL 🔴</a></div>
-<div class="item"><div class="name">400 🧁 Frag EVO</div><div class="price">$345 MXN</div><a class="btn" data-v="temo" data-p="400 Frag EVO" data-pr="345">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="400 Frag EVO" data-pr="345">ANGEL 🔴</a></div>
-<div class="item"><div class="name">500 🧁 Frag EVO</div><div class="price">$450 MXN</div><a class="btn" data-v="temo" data-p="500 Frag EVO" data-pr="450">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="500 Frag EVO" data-pr="450">ANGEL 🔴</a></div>
-<div class="item"><div class="name">600 🧁 Frag EVO</div><div class="price">$520 MXN</div><a class="btn" data-v="temo" data-p="600 Frag EVO" data-pr="520">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="600 Frag EVO" data-pr="520">ANGEL 🔴</a></div>
+<div class="item"><div class="name">500 🧁 Frag EVO</div><div class="price">$380 MXN</div><a class="btn" data-v="temo" data-p="500 Frag EVO" data-pr="380">TEMO 🔴</a><a class="btn btn-angel" data-v="angel" data-p="500 Frag EVO" data-pr="380">ANGEL 🔴</a></div>
 </div></div>
 
-<div class="pagos">
-<h2>💳 MÉTODOS DE PAGO</h2>
-<p><b>OXXO • TRANSFERENCIA • Binance</b><br>Binance ID: <b>1150540078</b><br><br>Dime qué te interesa y te ayudamos en seguida. ¿Qué paquete quieres?</p>
-<a class="linkBtn" href="https://temomods.vercel.app/" target="_blank">🌐 VISITA NUESTRA WEB</a>
-<a class="linkBtn" href="https://chat.whatsapp.com/FbeCjgnoNoiE9GtfzbkotQ" target="_blank">💬 ÚNETE A NUESTRO GRUPO OFICIAL</a>
+<!-- DESCARGADOR ROJO NEON -->
+<div class="section" style="text-align:center">
+<h2 style="text-align:center">📥 DESCARGAR VIDEO SIN MARCA DE AGUA</h2>
+<p style="font-size:12px;color:#ffcccc;line-height:1.6;text-align:center">Pega el link del video de TikTok<br>y descarga sin marca 🔴</p>
+<input id="linkVideo" class="input" type="text" placeholder="Pega aquí el link de TikTok...">
+<br>
+<a class="btn" onclick="descargarVideo()" style="font-size:12px;padding:13px">📥 DESCARGAR AHORA 🔴</a>
+<p style="font-size:10px;color:#ffaaaa;margin-top:10px;text-align:center">Se abrirá la herramienta en otra pestaña</p>
 </div>
 
-<div id="loginPanel"><h2 style="animation:rojoText 1.2s infinite">🔐 ACCESO</h2><input id="user" class="input" placeholder="temo o angel"><input id="pass" class="input" type="password" placeholder="pass"><br><br><button id="btnLogin" style="background:#1a0000;color:#fff;padding:12px 30px;border-radius:30px;border:2px solid #ff0000;font-weight:900;animation:rojoBtn 1.2s infinite">ENTRAR</button><br><br><button id="btnCerrarLogin" style="background:#222;color:#fff;padding:8px 15px;border-radius:20px;border:none">Cerrar</button></div>
-<div id="adminPanel"><div id="listaVentas"></div></div>
+<div class="pagos" style="text-align:center">
+<h2>💳 MÉTODOS DE PAGO</h2>
+<p><b>OXXO - Transferencia - Mercado Pago</b><br>Pide tu cuenta por WhatsApp al comprar</p>
+</div>
 
 <script>
-var userActual=null;
-var USERS={temo:'temo123', angel:'angel123'};
-function comprar(v,pr,pe,esCotizar){
-  var label = v==='temo' ? 'TEMO 🔴' : 'ANGEL 🔴';
-  var tel = v==='temo' ? '523224528803' : '529371098563';
-  var nombre = v==='temo' ? 'Temo' : 'Angel';
-  var arr = JSON.parse(localStorage.getItem('v502')||'[]');
-  arr.unshift({fecha:new Date().toLocaleString(),label:label,owner:v,producto:pr,precio:pe});
-  localStorage.setItem('v502',JSON.stringify(arr));
-  if(esCotizar){
-    window.open('https://wa.me/'+tel+'?text='+encodeURIComponent('Hola '+nombre+' quiero COTIZAR precio de '+pr+' ¿En cuánto me lo dejas?'),' _blank');
-  } else {
-    window.open('https://wa.me/'+tel+'?text='+encodeURIComponent('Hola '+nombre+' quiero '+pr+' $'+pe+' MXN'),' _blank');
-  }
+function descargarVideo(){
+  var link = document.getElementById('linkVideo').value.trim();
+  if(!link){ alert("Bro, primero pega el link del video"); return; }
+  window.open('https://ssstik.io/en?url=' + encodeURIComponent(link), '_blank');
 }
-document.addEventListener('click', function(e){
-  var b = e.target.closest('.btn');
-  if(b){ comprar(b.getAttribute('data-v'), b.getAttribute('data-p'), b.getAttribute('data-pr'), b.getAttribute('data-cotizar')==='1'); return; }
-  if(e.target.id==='btnLogin'){
-    var u=document.getElementById('user').value.toLowerCase().trim();
-    var p=document.getElementById('pass').value.trim();
-    if(USERS[u] && USERS[u]===p){ userActual=u; document.getElementById('loginPanel').style.display='none'; verAdmin(); } else alert('Mal');
-  }
-  if(e.target.id==='btnCerrarLogin'){ document.getElementById('loginPanel').style.display='none'; }
+document.querySelectorAll('.btn[data-v]').forEach(function(b){
+  b.addEventListener('click', function(e){
+    if(b.hasAttribute('onclick')) return;
+    var v = b.getAttribute('data-v');
+    var p = b.getAttribute('data-p');
+    var pr = b.getAttribute('data-pr');
+    var msg = "Hola " + (v==='temo'?'TEMO':'ANGEL') + " quiero comprar: " + p + " - $" + pr + " MXN";
+    // CAMBIA TU NUMERO AQUI ABAJO
+    var numero = "5210000000000";
+    window.open('https://wa.me/' + numero + '?text=' + encodeURIComponent(msg), '_blank');
+  });
 });
-function verAdmin(){
-  document.getElementById('adminPanel').style.display='block';
-  var ve=JSON.parse(localStorage.getItem('v502')||'[]');
-  var fi=userActual==='temo'?ve:ve.filter(function(x){return x.owner===userActual;});
-  var html='<h2 style="animation:rojoText 1.2s infinite">📊 '+userActual.toUpperCase()+' Total:'+ve.length+'</h2><button id="btnCerrarAdmin" style="background:#fff;color:#000;padding:8px 15px;border-radius:20px;border:none;font-weight:900">CERRAR</button><br><br>';
-  fi.forEach(function(v){ html+='<div style="background:#111;border-left:4px solid #ff0000;padding:10px;margin-bottom:10px;border-radius:10px;font-size:12px"><b>'+v.label+' - '+v.producto+' $'+v.precio+'</b><br><small>'+v.fecha+'</small></div>'; });
-  document.getElementById('listaVentas').innerHTML=html;
-  document.getElementById('btnCerrarAdmin').addEventListener('click', function(){ document.getElementById('adminPanel').style.display='none'; });
-}
-if(location.search.includes('temo2024')) document.getElementById('loginPanel').style.display='block';
 </script>
 </body>
 </html>
